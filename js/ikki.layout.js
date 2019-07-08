@@ -124,7 +124,7 @@ function tokenAuth() {
 // 面包屑导航
 function showPath(hash) {
     $('#path').html('');
-    $.each($('#navMenu, #menuH, #menuV').find('.links-'+ hash).children('.k-link').parents('.k-item'), function (i, doms) {
+    $.each($('#navPanelBar, #menuH, #menuV').find('.links-'+ hash).children('.k-link').parents('.k-item'), function (i, doms) {
         $('#path').prepend('<span><i class="fas fa-angle-double-right"></i>' + $(doms).children('.k-link').html() + '</span>');
     });
     if (hash === '404') {
