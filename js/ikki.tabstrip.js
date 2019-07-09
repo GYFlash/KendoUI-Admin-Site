@@ -41,7 +41,7 @@ router.route('(/:lv1)(/:lv2)(/:lv3)(/:lv4)(/:lv5)', function (lv1, lv2, lv3, lv4
             } else if (routeFile === '404') {
                 tabText = '<span id="tab-' + routeFile + '"><i class="fas fa-info-circle"></i>404<small>Error</small><i class="fas fa-times-circle"></i></span>';
             } else {
-                tabText = '<span id="tab-' + routeFile + '">' + $('#navMenu, #menuH, #menuV').find('.links-'+ routeFile).children('.k-link').html() + '<i class="fas fa-times-circle"></i></span>';
+                tabText = '<span id="tab-' + routeFile + '">' + $('#navPanelBar, #menuH, #menuV').find('.links-'+ routeFile).children('.k-link').html() + '<i class="fas fa-times-circle"></i></span>';
             }
             tabContent = $(new kendo.View(routeFile + 'Temp', { wrap: false }).render()).parent().html();
             tabStrip.append({
@@ -88,7 +88,7 @@ $(function () {
             } else if (selected === '404') {
                 router.navigate('/404');
             } else {
-                location.href = $('#navMenu, #menuH, #menuV').find('.links-'+ selected).children('.k-link').attr('href');
+                location.href = $('#navPanelBar, #menuH, #menuV').find('.links-'+ selected).children('.k-link').attr('href');
             }
         },
         activate: function (e) {
