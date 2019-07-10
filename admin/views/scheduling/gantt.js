@@ -245,7 +245,44 @@ $(function () {
             ]
         },
         toolbar: ['append', 'pdf'],
-        views: [],
+        views: [
+            { type: 'day',
+                selected: true,
+                range: {
+                    start: new Date('2019/8/14'),
+                    end: new Date('2019/8/17')
+                },
+                slotSize: 160,
+                timeHeaderTemplate: '#= kendo.toString(start, "HH时") #',
+                dayHeaderTemplate: '#= kendo.toString(start, "dddd MM月dd日") #',
+                resizeTooltipFormat: 'MM月dd日 dddd HH时'
+            },
+            { type: 'week',
+                range: {
+                    start: new Date('2019/8/12'),
+                    end: new Date('2019/8/24')
+                },
+                slotSize: 200,
+                dayHeaderTemplate: '#= kendo.toString(start, "dddd MM月dd日") #',
+                weekHeaderTemplate: '#= kendo.toString(start, "dddd MM月dd日") # - #= kendo.toString(kendo.date.addDays(end, -1), "dddd MM月dd日") #',
+                resizeTooltipFormat: 'MM月dd日 dddd'
+            },
+            { type: 'month',
+                range: {
+                    start: new Date('2019/7/1'),
+                    end: new Date('2019/9/30')
+                },
+                slotSize: 240,
+                weekHeaderTemplate: '#= kendo.toString(start, "ddd MM月dd日") # - #= kendo.toString(kendo.date.addDays(end, -1), "ddd MM月dd日") #',
+                monthHeaderTemplate: '#= kendo.toString(start, "MM月") #',
+                resizeTooltipFormat: 'yyyy年MM月dd日 dddd'
+            },
+            { type: 'year',
+                monthHeaderTemplate: '#= kendo.toString(start, "MM月") #',
+                yearHeaderTemplate: '#= kendo.toString(start, "yyyy年") #',
+                resizeTooltipFormat: 'yyyy年MM月dd日 dddd'
+            }
+        ],
         pdf: {
             fileName: 'Gantt.pdf',
             creator: 'IKKI Studio',
@@ -264,10 +301,6 @@ $(function () {
             { field: 'end', title: '结束时间', format: '{0:HH:mm}', width: 90, editable: true, sortable: true }
         ],
         date: new Date('2019/8/15'),
-        range: {
-            start: new Date('2019/1/1'),
-            end: new Date('2019/12/31')
-        },
         workDayStart: new Date('2019/8/15 11:00 AM'),
         workDayEnd: new Date('2019/8/15 11:00 PM'),
         resizable: true,
