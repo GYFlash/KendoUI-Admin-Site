@@ -548,11 +548,11 @@ ROOT/·····································�
     * [列表视图 <small>[ ListView ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/data/listview) ✔️
     * [电子表格 <small>[ Spreadsheet ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/data/spreadsheet) ✔️
     * [透视表格 <small>[ PivotGrid ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/data/pivotgrid) ✔️
-* 日程 <small>[ Scheduling ]</small>
+* 日程 <small>[ Scheduling ]</small> 💯
     * [日历 <small>[ Calendar ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/scheduling/calendar) ✔️
     * [多重日历 <small>[ MultiViewCalendar ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/scheduling/multiviewcalendar) ✔️
     * [日程表 <small>[ Scheduler ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/scheduling/scheduler) ✔️
-    * 甘特图 <small>[ Gantt ]</small>
+    * [甘特图 <small>[ Gantt ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/scheduling/gantt) ✔️
 * 会话 <small>[ Conversational ]</small>
     * 聊天 <small>[ Chat ]</small>
 * 媒体 <small>[ Media ]</small>

@@ -1352,6 +1352,10 @@ form .searchBtn.row {
 .k-calendar-range caption {
   caption-side: top; }
 
+/* 甘特图 */
+.k-gantt .k-tooltip {
+  white-space: nowrap; }
+
 /* 自定义 Kendo UI 组件 ------------------------------ */
 /* 时间轴 */
 .k-timeaxis {

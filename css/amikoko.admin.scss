@@ -1720,6 +1720,13 @@ form {
     }
 }
 
+/* 甘特图 */
+.k-gantt {
+    .k-tooltip {
+        white-space: nowrap;
+    }
+}
+
 /* 自定义 Kendo UI 组件 ------------------------------ */
 
 /* 时间轴 */
