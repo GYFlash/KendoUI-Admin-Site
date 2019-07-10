@@ -633,7 +633,7 @@
         },
         {
             "id": "07",
-            "text": "<i class='fas fa-calendar-alt'></i><sup></sup><abbr>日程<small>Scheduling</small><sub class='theme-l'>\uD83C\uDFAF</sub></abbr>",
+            "text": "<i class='fas fa-calendar-alt'></i><abbr>日程<small>Scheduling</small><sub class='theme-l'>\uD83C\uDF0C</sub></abbr>",
             "encoded": false,
             "items": [
                 {
@@ -659,7 +659,7 @@
                 },
                 {
                     "id": "0704",
-                    "text": "<i class='ganttIcon'></i>甘特图<small>Gantt</small><sub class='theme-l'>\uD83D\uDD28</sub>",
+                    "text": "<i class='ganttIcon'></i>甘特图<small>Gantt</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
                     "encoded": false,
                     "cssClass": "links-gantt",
                     "url": "javascript:linkTo(\"/scheduling/\", \"gantt\");"
@@ -668,12 +668,12 @@
         },
         {
             "id": "08",
-            "text": "<i class='fas fa-comments'></i><abbr>会话<small>Conversational</small><sub class='theme-l'>\uD83D\uDD54</sub></abbr>",
+            "text": "<i class='fas fa-comments'></i><sup></sup><abbr>会话<small>Conversational</small><sub class='theme-l'>\uD83C\uDFAF</sub></abbr>",
             "encoded": false,
             "items": [
                 {
                     "id": "0801",
-                    "text": "<i class='chatIcon'></i>聊天<small>Chat</small>",
+                    "text": "<i class='chatIcon'></i>聊天<small>Chat</small><sub class='theme-l'>\uD83D\uDD28</sub>",
                     "encoded": false,
                     "cssClass": "links-chat",
                     "url": "javascript:linkTo(\"/conversational/\", \"chat\");"
