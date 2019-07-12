@@ -114,6 +114,7 @@
                             <span class="k-invalid-msg" data-for="password"></span>
                             <span class="k-invalid-msg" data-for="confirmPassword"></span>
                         </div>
+                        <div id="passStrength"></div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
@@ -249,6 +250,35 @@
                         $('#register input[name=password], #register input[name=confirmPassword]').attr('type', 'password');
                         $('#showPass i').removeClass('fa-eye').addClass('fa-eye-slash');
                     }
+                });
+                // 密码强度
+                var passProgress = $('#passStrength').kendoProgressBar({
+                    animation: {
+                        duration: 200
+                    },
+                    min: 5,
+                    max: 16,
+                    change: function (e) {
+                        if (e.value < 6) {
+                            this.progressStatus.text('密码强度');
+                        } else if (e.value <= 7) {
+                            this.progressStatus.text('弱');
+                            this.progressWrapper.removeClass('bg-danger bg-warning bg-success bg-info').addClass('bg-danger');
+                        } else if (e.value <= 9) {
+                            this.progressStatus.text('中');
+                            this.progressWrapper.removeClass('bg-danger bg-warning bg-success bg-info').addClass('bg-warning');
+                        } else if (e.value <= 12) {
+                            this.progressStatus.text('强');
+                            this.progressWrapper.removeClass('bg-danger bg-warning bg-success bg-info').addClass('bg-success');
+                        } else {
+                            this.progressStatus.text('超强');
+                            this.progressWrapper.removeClass('bg-danger bg-warning bg-success bg-info').addClass('bg-info');
+                        }
+                    }
+                }).data('kendoProgressBar');
+                passProgress.progressStatus.text('密码强度');
+                $('#register input[name="password"]').keyup(function () {
+                    passProgress.value(this.value.length);
                 });
                 // 获取验证码
                 $('#getCode').unbind('click').click(function () {
