@@ -108,6 +108,9 @@
                             </div>
                             <input class="form-control form-control-lg" name="password" type="password" placeholder="密码" required data-required-msg="请输入密码！" pattern="[A-Za-z0-9]{6,20}" data-pattern-msg="请输入6-20个大小写字母或数字！">
                             <input class="form-control form-control-lg" name="confirmPassword" type="password" placeholder="确认密码" required data-required-msg="请输入确认密码！">
+                            <div class="input-group-append">
+                                <button class="btn input-group-text" id="showPass" type="button"><i class="fas fa-eye-slash"></i></button>
+                            </div>
                             <span class="k-invalid-msg" data-for="password"></span>
                             <span class="k-invalid-msg" data-for="confirmPassword"></span>
                         </div>
@@ -237,6 +240,16 @@
                     position: 'top',
                     content: '密码由6-20个大小写字母或数字组成！'
                 });
+                // 显示密码
+                $('#showPass').unbind('click').click(function () {
+                    if ($(this).find('.fa-eye-slash').length === 1) {
+                        $('#register input[name=password], #register input[name=confirmPassword]').attr('type', 'text');
+                        $('#showPass i').removeClass('fa-eye-slash').addClass('fa-eye');
+                    } else {
+                        $('#register input[name=password], #register input[name=confirmPassword]').attr('type', 'password');
+                        $('#showPass i').removeClass('fa-eye').addClass('fa-eye-slash');
+                    }
+                });
                 // 获取验证码
                 $('#getCode').unbind('click').click(function () {
                     var sec = 60,
@@ -292,6 +305,13 @@
                         matchPassword: function (input) {
                             if (!input.is('#register input[name=confirmPassword]')) {
                                 return true;
+                            }
+                            if (input.val() === $('#register input[name=password]').val()) {
+                                $('#register input[name=password]').removeClass('is-invalid').addClass('is-valid');
+                                input.removeClass('is-invalid').addClass('is-valid');
+                            } else {
+                                $('#register input[name=password]').removeClass('is-valid').addClass('is-invalid');
+                                input.removeClass('is-valid').addClass('is-invalid');
                             }
                             return (input.val() === $('#register input[name=password]').val());
                         },
@@ -385,16 +405,7 @@
                         vCode: "验证码不正确，请重新输入！"
                     }
                 }).data('kendoValidator');
-                $('#register input[name=userName]').focus(function () {
-                    $(this).removeClass('is-valid is-invalid');
-                });
-                $('#register input[name=email]').focus(function () {
-                    $(this).removeClass('is-valid is-invalid');
-                });
-                $('#register input[name=mobile]').focus(function () {
-                    $(this).removeClass('is-valid is-invalid');
-                });
-                $('#register input[name=vCode]').focus(function () {
+                $('#register input').focus(function () {
                     $(this).removeClass('is-valid is-invalid');
                 });
                 // 注册提交
