@@ -950,6 +950,13 @@ iframe#section {
                     top: 12px;
                     right: 10px;
                 }
+                #passStrength {
+                    border-radius: 2px;
+                    width: 100%;
+                    .k-progress-status-wrap {
+                        justify-content: center;
+                    }
+                }
             }
         }
         form {

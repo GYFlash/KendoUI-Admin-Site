@@ -796,6 +796,12 @@ iframe#section {
         position: absolute;
         top: 12px;
         right: 10px; }
+      #login main #toggle #register #passStrength {
+        border-radius: 2px;
+        width: 100%; }
+        #login main #toggle #register #passStrength .k-progress-status-wrap {
+          -ms-flex-pack: center;
+              justify-content: center; }
   #login main form {
     padding: 0 15px;
     width: 100%; }
