@@ -36,7 +36,7 @@ function tokenAuth() {
     $.fn.ajaxPost({
         ajaxAsync: false,
         ajaxData: {
-            userid: sessionStorage.getItem('userid')
+            userId: sessionStorage.getItem('userId')
         },
         ajaxUrl: tokenUrl,
         succeed: function (res) {

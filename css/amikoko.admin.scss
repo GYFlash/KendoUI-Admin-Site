@@ -902,6 +902,7 @@ iframe#section {
 #login {
     main {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         overflow: hidden;
@@ -915,43 +916,60 @@ iframe#section {
         text-align: center;
         color: #fff;
         opacity: .6;
-        form {
-            padding: 15px;
+        #avatar {
+            border-radius: $border-radius-round;
+            width: 128px;
+            height: 128px;
+            background: #fff;
+            box-shadow: 0 0 3px 1px rgba(0, 0, 0, .6);
+            transition: all 1s;
+        }
+        .user-avatar {
+            transform: rotateY(360deg);
+        }
+        h3 {
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: 100;
+            small {
+                display: block;
+                margin-top: 10px;
+                font-size: $font-size-m;
+                line-height: 20px;
+            }
+        }
+        #toggle {
+            position: relative;
             width: 100%;
-            max-width: 420px;
-            #avatar {
-                border-radius: $border-radius-round;
-                width: 128px;
-                height: 128px;
-                background: #fff;
-                box-shadow: 0 0 3px 1px rgba(0, 0, 0, .6);
-                transition: all 1s;
-            }
-            .user-avatar {
-                transform: rotateY(360deg);
-            }
-            h3 {
-                margin: 20px 0;
-                font-size: 24px;
-                font-weight: 100;
-                small {
-                    display: block;
-                    margin-top: 10px;
-                    font-size: $font-size-m;
-                    line-height: 20px;
+            max-width: 430px;
+            #register {
+                display: none;
+                position: absolute;
+                .spinner-border {
+                    position: absolute;
+                    top: 12px;
+                    right: 10px;
                 }
             }
+        }
+        form {
+            padding: 0 15px;
+            width: 100%;
             .form-group {
                 text-align: left;
             }
-            i {
-                margin-right: 8px;
+            i.fas {
                 width: 16px;
                 height: 16px;
                 font-size: 16px;
             }
             .form-control:focus {
                 @include focus-shadow;
+            }
+            .form-control-lg {
+                padding: 1.3rem 1rem;
+                height: 40px;
+                font-size: 1rem;
             }
             .k-tooltip-validation {
                 display: block;

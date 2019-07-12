@@ -107,7 +107,7 @@ function tokenAuth() {
     $.fn.ajaxPost({
         ajaxAsync: false,
         ajaxData: {
-            userid: sessionStorage.getItem('userid')
+            userId: sessionStorage.getItem('userId')
         },
         ajaxUrl: tokenUrl,
         succeed: function (res) {
@@ -207,7 +207,7 @@ function lockScreen() {
     };
     $('#locking').remove();
     if (sessionStorage.getItem("avatar")) {
-        $('body').append('<div id="locking"><figure onclick="lockInput(this);"><img src="' + sessionStorage.getItem("avatar") + '" alt="' + sessionStorage.getItem("username") + '"></figure><h3>' + sessionStorage.getItem("username") + '</h3></div>');
+        $('body').append('<div id="locking"><figure onclick="lockInput(this);"><img src="' + sessionStorage.getItem("avatar") + '" alt="' + sessionStorage.getItem("userName") + '"></figure><h3>' + sessionStorage.getItem("userName") + '</h3></div>');
     } else {
         $('body').append('<div id="locking"><figure onclick="logout();"><img src="img/avatar.png" alt="IKKI"></figure><h3>你没有正常登录哦~</h3></div>');
     }
