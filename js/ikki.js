@@ -988,3 +988,105 @@ function linkDetails(dataItem) {
         }
     });
 }
+
+/* 自定义组件 ****************************************************************************/
+
+// 步骤条
+function steps(func) {
+    $('.k-step').kendoTabStrip({
+        animation: false,
+        show: function(e) {
+            $(e.contentElement).find('.k-step-prev').unbind('click').click(function () {
+                $('.k-step').data('kendoTabStrip').select($(e.item).index() - 1);
+            });
+            $(e.contentElement).find('.k-step-next').unbind('click').click(function () {
+                $('.k-step').data('kendoTabStrip').select($(e.item).index() + 1);
+            });
+            $(e.contentElement).find('.k-step-fin').unbind('click').click(function () {
+                func();
+            });
+        }
+    }).data('kendoTabStrip').select(0);
+}
+
+// 表单步骤条
+function stepsForm(func) {
+    var kendoStep = $('.k-step').kendoTabStrip({
+        animation: false,
+        show: function(e) {
+            $(e.contentElement).find('.k-step-prev').unbind('click').click(function () {
+                $('.k-step').data('kendoTabStrip').select($(e.item).index() - 1);
+            });
+            $(e.contentElement).find('.k-step-next').unbind('click').click(function () {
+                if ($(e.contentElement).find('form').kendoValidator().data('kendoValidator').validate()) {
+                    $.fn.ajaxPost({
+                        ajaxData: $(e.contentElement).find('form').serializeObject(),
+                        ajaxUrl: $(e.contentElement).find('form').attr('action'),
+                        succeed: function() {
+                            $('.k-step').data('kendoTabStrip').select($(e.item).index() + 1);
+                        },
+                        isMsg: true
+                    });
+                }
+            });
+            $(e.contentElement).find('.k-step-fin').unbind('click').click(function () {
+                if ($(e.contentElement).find('form').kendoValidator().data('kendoValidator').validate()) {
+                    $.fn.ajaxPost({
+                        ajaxData: $(e.contentElement).find('form').serializeObject(),
+                        ajaxUrl: $(e.contentElement).find('form').attr('action'),
+                        succeed: function() {
+                            func();
+                        },
+                        isMsg: true
+                    });
+                }
+            });
+        }
+    }).data('kendoTabStrip').select(0);
+}
+
+// 单向步骤条
+function stepsNoBack(func) {
+    var kendoStep = $('.k-step').kendoTabStrip({
+        animation: false,
+        show: function(e) {
+            $(e.contentElement).find('.k-step-next').unbind('click').click(function () {
+                if ($(e.contentElement).find('form').kendoValidator().data('kendoValidator').validate()) {
+                    $(e.contentElement).find('.k-step-next').addClass('k-state-disabled').removeClass('k-state-selected').prop('disabled', true);
+                    $.fn.ajaxPost({
+                        ajaxData: $(e.contentElement).find('form').serializeObject(),
+                        ajaxUrl: $(e.contentElement).find('form').attr('action'),
+                        succeed: function() {
+                            kendoStep.disable(kendoStep.tabGroup.children()).enable(kendoStep.tabGroup.children().eq($(e.item).index() + 1)).select($(e.item).index() + 1);
+                        },
+                        failed: function(){
+                            $(e.contentElement).find('.k-step-next').addClass('k-state-selected').removeClass('k-state-disabled').prop('disabled', false);
+                        },
+                        isMsg: true
+                    });
+                } else {
+                    noticeMsg('表单中有选项未填写正确！请检查……', 'error', 'center', 1000);
+                }
+            });
+            $(e.contentElement).find('.k-step-fin').unbind('click').click(function () {
+                if ($(e.contentElement).find('form').kendoValidator().data('kendoValidator').validate()) {
+                    $(e.contentElement).find('.k-step-fin').addClass('k-state-disabled').removeClass('k-state-selected').prop('disabled', true);
+                    $.fn.ajaxPost({
+                        ajaxData: $(e.contentElement).find('form').serializeObject(),
+                        ajaxUrl: $(e.contentElement).find('form').attr('action'),
+                        succeed: function() {
+                            func();
+                        },
+                        failed: function(){
+                            $(e.contentElement).find('.k-step-fin').addClass('k-state-selected').removeClass('k-state-disabled').prop('disabled', false);
+                        },
+                        isMsg: true
+                    });
+                } else {
+                    noticeMsg('表单中有选项未填写正确！请检查……', 'error', 'center', 1000);
+                }
+            });
+        }
+    }).data('kendoTabStrip');
+    kendoStep.disable(kendoStep.tabGroup.children()).enable(kendoStep.tabGroup.children().eq(0)).select(0);
+}

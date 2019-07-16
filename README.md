@@ -267,6 +267,12 @@ GitHub Demo: [https://ikki2000.github.io/KendoUI-Admin-Site/](https://ikki2000.g
     |  | *rangeEnd* | object | --- | 结束的 DOM 对象 |
     |  | *type* | string | --- | 日期的类型：<br>'Year'<br>'Month'<br>'Time'<br>'DateTime'<br>'Date' |
     | **serializeObject** | --- | --- | --- | 表单序列化 json 对象 |
+    | **steps** | --- | --- | --- | 步骤条 |
+    |  | *func* | function | --- | 步骤完成后的回调 |
+    | **stepsForm** | --- | --- | --- | 表单步骤条 |
+    |  | *func* | function | --- | 步骤完成后的回调 |
+    | **stepsNoBack** | --- | --- | --- | 单向步骤条 |
+    |  | *func* | function | --- | 步骤完成后的回调 |
 
 #### 前后端交互规范：
 
