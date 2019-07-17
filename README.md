@@ -443,7 +443,7 @@ ROOT/·····································�
 
 * [登录 <small>[ Sign In ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/login.html) ✔️
 * [注册 <small>[ Register ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/login.html) ✔️
-* 忘记密码 <small>[ Forget Password ]</small>
+* [忘记密码 <small>[ Forget Password ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/login.html) ✔️
 * [框架 <small>[ Admin Layout ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/index.html) ✔️
 * [主页 <small>[ Home ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/home) ✔️
 * 403页 <small>[ 403 ]</small>

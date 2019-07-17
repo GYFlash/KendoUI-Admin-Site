@@ -950,72 +950,85 @@ iframe#section {
                     top: 12px;
                     right: 10px;
                 }
-                #passStrength {
-                    border-radius: 2px;
-                    width: 100%;
-                    .k-progress-status-wrap {
-                        justify-content: center;
-                    }
+            }
+        }
+    }
+    form {
+        padding: 0 15px;
+        width: 100%;
+        .form-group {
+            text-align: left;
+        }
+        i.fas {
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+        }
+        .form-control:focus {
+            @include focus-shadow;
+        }
+        .form-control-lg {
+            padding: 1.3rem 1rem;
+            height: 40px;
+            font-size: 1rem;
+        }
+        .k-tooltip-validation {
+            display: block;
+            margin: 0;
+            border: 1px solid #faa685;
+            border-radius: 0;
+            padding: 5px 10px;
+            width: 100%;
+            color: #a64515;
+            background-color: #fddacc;
+        }
+        .verify-bar-area {
+            position: relative;
+            border: 1px solid #ced4da;
+            border-radius: $border-radius;
+            text-align: center;
+            color: #495057;
+            background: #fff;
+            .verify-left-bar {
+                position: absolute;
+                top: -1px;
+                left: -1px;
+                border-radius: $border-radius 0 0 $border-radius;
+            }
+            .verify-move-block {
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: $border-radius;
+                color: #fff;
+                background: #007bff;
+                cursor: pointer;
+                &:hover {
+                    background: #0069d9;
+                }
+                .verify-icon {
+                    margin-right: 0;
                 }
             }
         }
-        form {
-            padding: 0 15px;
+        .custom-control {
+            .custom-control-label {
+                &:before,
+                &:after {
+                    width: $font-size-l;
+                    height: $font-size-l;
+                }
+            }
+        }
+        .k-progressbar {
+            border-radius: 4px;
             width: 100%;
-            .form-group {
-                text-align: left;
-            }
-            i.fas {
-                width: 16px;
-                height: 16px;
-                font-size: 16px;
-            }
-            .form-control:focus {
-                @include focus-shadow;
-            }
-            .form-control-lg {
-                padding: 1.3rem 1rem;
-                height: 40px;
-                font-size: 1rem;
-            }
-            .k-tooltip-validation {
-                display: block;
-                margin: 0;
-                border: 1px solid #faa685;
-                border-radius: 0;
-                padding: 5px 10px;
-                width: 100%;
-                color: #a64515;
-                background-color: #fddacc;
-            }
-            .verify-bar-area {
-                position: relative;
+            .k-progress-status-wrap {
+                justify-content: center;
                 border: 1px solid #ced4da;
-                border-radius: $border-radius;
-                text-align: center;
-                color: #495057;
-                background: #fff;
-                .verify-left-bar {
-                    position: absolute;
-                    top: -1px;
-                    left: -1px;
-                    border-radius: $border-radius 0 0 $border-radius;
-                }
-                .verify-move-block {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    border-radius: $border-radius;
-                    color: #fff;
-                    background: #007bff;
-                    cursor: pointer;
-                    &:hover {
-                        background: #0069d9;
-                    }
-                    .verify-icon {
-                        margin-right: 0;
-                    }
-                }
+                font-size: 12px;
+                font-weight: 100;
+                line-height: 20px;
             }
         }
     }
@@ -1753,6 +1766,92 @@ form {
 }
 
 /* 自定义 Kendo UI 组件 ------------------------------ */
+
+/* 步骤条 */
+.k-step {
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 4px;
+    background: #fff;
+    .k-tabstrip-items {
+        justify-content: space-between;
+        margin: 0 auto;
+        border: none;
+        padding: 20px 0;
+        width: 72%;
+        &:after {
+            position: absolute;
+            top: 38%;
+            left: 5%;
+            z-index: 1;
+            width: 90%;
+            height: 1px;
+            background: #ccc;
+            content: "";
+        }
+        .k-item {
+            position: relative;
+            z-index: 9;
+            .k-link {
+                flex-direction: column;
+                em {
+                    display: block;
+                    padding: 0 12px;
+                    font-style: normal;
+                    background: #fff;
+                    strong {
+                        display: inline-block;
+                        margin-bottom: 6px;
+                        border-width: 1px;
+                        border-style: solid;
+                        border-radius: 50%;
+                        width: 28px;
+                        height: 28px;
+                        line-height: 28px;
+                        background: #fff;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        .k-item.k-state-active {
+            z-index: 9;
+            border: none;
+            background: none;
+            & ~ li > .k-link {
+                color: #ccc;
+                strong {
+                    border-color: #ccc;
+                    color: #fff;
+                    background: #ccc;
+                }
+            }
+        }
+        .k-item.k-state-disabled {
+            opacity: 1;
+        }
+    }
+    .k-content {
+        margin: 0 20px 20px 20px;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: 4px;
+        padding: 20px 20px 10px 20px;
+        .k-step-btns {
+            margin-top: 20px;
+            text-align: center;
+            button {
+                margin: 0 10px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .k-step {
+        .k-tabstrip-items {
+            width: 96%;
+        }
+    }
+}
 
 /* 时间轴 */
 .k-timeaxis {

@@ -1015,7 +1015,7 @@ function stepsForm(func) {
         animation: false,
         show: function(e) {
             $(e.contentElement).find('.k-step-prev').unbind('click').click(function () {
-                $('.k-step').data('kendoTabStrip').select($(e.item).index() - 1);
+                kendoStep.select($(e.item).index() - 1);
             });
             $(e.contentElement).find('.k-step-next').unbind('click').click(function () {
                 if ($(e.contentElement).find('form').kendoValidator().data('kendoValidator').validate()) {
@@ -1023,7 +1023,7 @@ function stepsForm(func) {
                         ajaxData: $(e.contentElement).find('form').serializeObject(),
                         ajaxUrl: $(e.contentElement).find('form').attr('action'),
                         succeed: function() {
-                            $('.k-step').data('kendoTabStrip').select($(e.item).index() + 1);
+                            kendoStep.select($(e.item).index() + 1);
                         },
                         isMsg: true
                     });
@@ -1042,7 +1042,8 @@ function stepsForm(func) {
                 }
             });
         }
-    }).data('kendoTabStrip').select(0);
+    }).data('kendoTabStrip');
+    kendoStep.select(0);
 }
 
 // 单向步骤条
