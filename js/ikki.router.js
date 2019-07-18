@@ -9,9 +9,10 @@
 // 路由创建
 var router = new kendo.Router({
         change: function (e) {
+            $('#inProgress').css('display', 'flex');
+            $('#inProgress .progress-bar').removeClass('w-100').addClass('animated');
             tokenAuth();
             showPath(e.url.split('/')[e.url.split('/').length - 1]);
-            $('#loading').show();
         },
         routeMissing: function () {
             error404();
@@ -39,7 +40,8 @@ router.route('(/:lv1)(/:lv2)(/:lv3)(/:lv4)(/:lv5)', function (lv1, lv2, lv3, lv4
         $('#template').html(temp);
         layout.showIn('#container', new kendo.View(routeFile + 'Temp', { wrap: false }));
         $.getScript(path + routePath + '.js', function () {
-            $('#loading').hide();
+            $('#inProgress .progress-bar').removeClass('animated').addClass('w-100');
+            $('#inProgress').fadeOut();
         });
     }).fail(function () {
         error404();
@@ -68,13 +70,15 @@ $(function () {
 
 // 路由刷新
 function refresh() {
-    $('#loading').show();
+    $('#inProgress').css('display', 'flex');
+    $('#inProgress .progress-bar').removeClass('w-100').addClass('animated');
     tokenAuth();
     $.get(path + webType + '/views' + location.hash.split('#')[1] + '.html', function (temp) {
         $('#template').html(temp);
         layout.showIn('#container', new kendo.View(location.hash.split('/')[location.hash.split('/').length - 1] + 'Temp', { wrap: false }));
         $.getScript(path + webType + '/views' + location.hash.split('#')[1] + '.js', function () {
-            $('#loading').hide();
+            $('#inProgress .progress-bar').removeClass('animated').addClass('w-100');
+            $('#inProgress').fadeOut();
         });
     });
 }

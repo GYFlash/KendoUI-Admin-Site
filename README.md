@@ -449,12 +449,14 @@ ROOT/·····································�
 * [403页 <small>[ 403 ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/403) ✔️
 * [404页 <small>[ 404 ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/404) ✔️
 * [500页 <small>[ 500 ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/500) ✔️
+* 路由页面加载进度条 <small>[ Router Progress ]</small> ✔️
 * 回到顶部 <small>[ Go Top ]</small> ✔️
 
 #### 顶部菜单 <small>[ Menu ]</small>
 
 * 导航折叠 <small>[ Navigation Drawer ]</small> ✔️
 * 面包屑 <small>[ Breadcrumb ]</small> ✔️
+* 搜索 <small>[ Search ]</small>
 * 刷新 <small>[ Refresh ]</small> ✔️
 * 全屏 <small>[ Full Screen ]</small> ✔️
 * 锁屏 <small>[ Lock Screen ]</small> ✔️

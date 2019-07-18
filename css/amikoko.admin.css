@@ -87,6 +87,20 @@ iframe#section {
   background: #eee;
   text-shadow: 1px 1px 0 #fff; }
 
+#inProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px; }
+  #inProgress .animated {
+    animation: inProgress 10s ease-in-out forwards; }
+
+@keyframes inProgress {
+  0% {
+    width: 0; }
+  100% {
+    width: 98%; } }
 #loading {
   display: none;
   position: fixed;
