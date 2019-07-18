@@ -105,29 +105,22 @@ $(function () {
             error: function (xhr, status, thrown) {
                 alertMsg(thrown, 'error');
             },
-            statusCode: {
-                403: function () {
-                    alertMsg('服务器拒绝请求！', 'error');
-                },
-                404: function () {
-                    alertMsg('页面未找到！', 'error');
-                },
-                405: function () {
+            complete: function (xhr, status) {
+                if (xhr.status === 401) {
+                    alertMsg('访问被拒绝！', 'error');
+                } else if (xhr.status === 403) {
+                    router.navigate('/403');
+                } else if (xhr.status === 405) {
                     alertMsg('请求方法被禁用！', 'error');
-                },
-                500: function () {
-                    alertMsg('服务器内部错误！', 'error');
-                },
-                502: function () {
+                } else if (xhr.status === 500) {
+                    router.navigate('/500');
+                } else if (xhr.status === 502) {
                     alertMsg('错误网关！', 'error');
-                },
-                503: function () {
+                } else if (xhr.status === 503) {
                     alertMsg('服务不可用！', 'error');
-                },
-                504: function () {
+                } else if (xhr.status === 504) {
                     alertMsg('网关超时！', 'error');
-                },
-                505: function () {
+                } else if (xhr.status === 505) {
                     alertMsg('HTTP 版本不受支持！', 'error');
                 }
             }
@@ -182,29 +175,22 @@ $(function () {
             error: function (xhr, status, thrown) {
                 alertMsg(thrown, 'error');
             },
-            statusCode: {
-                403: function () {
-                    alertMsg('服务器拒绝请求！', 'error');
-                },
-                404: function () {
-                    alertMsg('页面未找到！', 'error');
-                },
-                405: function () {
+            complete: function (xhr, status) {
+                if (xhr.status === 401) {
+                    alertMsg('访问被拒绝！', 'error');
+                } else if (xhr.status === 403) {
+                    router.navigate('/403');
+                } else if (xhr.status === 405) {
                     alertMsg('请求方法被禁用！', 'error');
-                },
-                500: function () {
-                    alertMsg('服务器内部错误！', 'error');
-                },
-                502: function () {
+                } else if (xhr.status === 500) {
+                    router.navigate('/500');
+                } else if (xhr.status === 502) {
                     alertMsg('错误网关！', 'error');
-                },
-                503: function () {
+                } else if (xhr.status === 503) {
                     alertMsg('服务不可用！', 'error');
-                },
-                504: function () {
+                } else if (xhr.status === 504) {
                     alertMsg('网关超时！', 'error');
-                },
-                505: function () {
+                } else if (xhr.status === 505) {
                     alertMsg('HTTP 版本不受支持！', 'error');
                 }
             }

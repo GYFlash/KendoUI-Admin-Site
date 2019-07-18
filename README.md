@@ -439,16 +439,16 @@ ROOT/·····································�
 
 ## 📁 功能列表 <small>Function List</small>
 
-#### 基础功能 <small>[ Basic ]</small>
+#### 基础功能 <small>[ Basic ]</small> 💯
 
 * [登录 <small>[ Sign In ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/login.html) ✔️
 * [注册 <small>[ Register ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/login.html) ✔️
 * [忘记密码 <small>[ Forget Password ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/login.html) ✔️
 * [框架 <small>[ Admin Layout ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/index.html) ✔️
 * [主页 <small>[ Home ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/home) ✔️
-* 403页 <small>[ 403 ]</small>
+* [403页 <small>[ 403 ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/403) ✔️
 * [404页 <small>[ 404 ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/404) ✔️
-* 500页 <small>[ 500 ]</small>
+* [500页 <small>[ 500 ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/500) ✔️
 * 回到顶部 <small>[ Go Top ]</small> ✔️
 
 #### 顶部菜单 <small>[ Menu ]</small>
