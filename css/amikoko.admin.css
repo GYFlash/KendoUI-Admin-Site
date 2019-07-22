@@ -346,8 +346,7 @@ iframe#section {
     padding: 8px 30px 8px 20px; }
   #navMenu .k-group .k-state-hover > .k-link,
   #navMenu .k-group .k-state-active {
-    background-color: rgba(0, 0, 0, 0.08);
-    border-color: #ccc; }
+    background-color: rgba(0, 0, 0, 0.08); }
   #navMenu > .k-item > .k-state-active {
     background-color: rgba(255, 255, 255, 0.2); }
 
@@ -514,8 +513,7 @@ iframe#section {
 #menuH .k-group .k-state-active,
 #menuV .k-group .k-state-hover > .k-link,
 #menuV .k-group .k-state-active {
-  background-color: rgba(0, 0, 0, 0.08);
-  border-color: #ccc; }
+  background-color: rgba(0, 0, 0, 0.08); }
 #menuH > .k-item > .k-link img,
 #menuV > .k-item > .k-link img {
   margin: 0 2px 0 10px;
@@ -525,17 +523,10 @@ iframe#section {
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.6); }
 #menuH > .k-item > span.k-link,
 #menuV > .k-item > span.k-link {
-  border-color: transparent !important;
   cursor: default; }
 #menuH > .k-item > span.k-state-active,
 #menuV > .k-item > span.k-state-active {
-  border-color: #ccc !important;
   cursor: pointer; }
-#menuH .k-state-hover > .k-link,
-#menuH .k-item > .k-state-active,
-#menuV .k-state-hover > .k-link,
-#menuV .k-item > .k-state-active {
-  border-color: #ccc !important; }
 
 #menuH {
   float: right;
@@ -683,20 +674,20 @@ iframe#section {
     right: 0; }
 
 /* 选项卡 */
-#tab .k-tabstrip-items,
-#hint .k-tabstrip-items {
+#tab > .k-tabstrip-items,
+#hint > .k-tabstrip-items {
   margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid #ccc; }
-  #tab .k-tabstrip-items i,
-  #hint .k-tabstrip-items i {
+  #tab > .k-tabstrip-items i,
+  #hint > .k-tabstrip-items i {
     width: 16px;
     height: 16px;
     font-size: 16px;
     line-height: 16px;
     margin-right: 6px; }
-  #tab .k-tabstrip-items sup,
-  #hint .k-tabstrip-items sup {
+  #tab > .k-tabstrip-items sup,
+  #hint > .k-tabstrip-items sup {
     top: 3px;
     left: 8px;
     display: inline-block;
@@ -706,13 +697,13 @@ iframe#section {
     height: 10px;
     text-indent: -9999px;
     background: #f35800; }
-  #tab .k-tabstrip-items small,
-  #hint .k-tabstrip-items small {
+  #tab > .k-tabstrip-items small,
+  #hint > .k-tabstrip-items small {
     margin-left: 5px;
     font-size: 11px;
     opacity: .5; }
-  #tab .k-tabstrip-items sub,
-  #hint .k-tabstrip-items sub {
+  #tab > .k-tabstrip-items sub,
+  #hint > .k-tabstrip-items sub {
     display: inline-block;
     position: relative;
     top: 0;
@@ -723,27 +714,23 @@ iframe#section {
     font-family: "Microsoft YaHei", tahoma, sans-serif;
     font-size: 12px;
     line-height: 12px; }
-  #tab .k-tabstrip-items .fa-times-circle,
-  #hint .k-tabstrip-items .fa-times-circle {
+  #tab > .k-tabstrip-items .fa-times-circle,
+  #hint > .k-tabstrip-items .fa-times-circle {
     margin-left: 5px;
     margin-right: 0;
     text-align: center; }
-  #tab .k-tabstrip-items .k-item,
-  #hint .k-tabstrip-items .k-item {
+  #tab > .k-tabstrip-items .k-item,
+  #hint > .k-tabstrip-items .k-item {
     margin-right: 5px;
     border-color: #ccc;
     border-radius: 4px;
     color: #999;
     background-color: rgba(255, 255, 255, 0.6); }
-  #tab .k-tabstrip-items .k-link,
-  #hint .k-tabstrip-items .k-link {
+  #tab > .k-tabstrip-items .k-link,
+  #hint > .k-tabstrip-items .k-link {
     white-space: nowrap; }
-  #tab .k-tabstrip-items .k-state-active,
-  #hint .k-tabstrip-items .k-state-active {
-    color: #000;
-    background-color: #fff; }
-#tab .k-content,
-#hint .k-content {
+#tab > .k-content,
+#hint > .k-content {
   border: none;
   padding: 0;
   height: 100%;
