@@ -3,6 +3,15 @@
     "msg": "",
     "data": [
         {
+            "text": "<span class='k-textbox k-space-left'><input id='globalSearch' type='search'><em class='k-icon k-i-search theme-m'></em></span>",
+            "encoded": false,
+            "cssClass": "globalSearch"
+        },
+        {
+            "text": "<hr>",
+            "encoded": false
+        },
+        {
             "text": "<i class='fas fa-sync-alt'></i>刷新",
             "encoded": false,
             "url": "javascript:refresh();"

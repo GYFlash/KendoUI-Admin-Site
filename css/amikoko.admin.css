@@ -462,6 +462,9 @@ iframe#section {
   background: transparent;
   box-shadow: none;
   color: #000; }
+#menuH .k-i-search,
+#menuV .k-i-search {
+  margin-left: 3px; }
 #menuH sup,
 #menuV sup {
   display: inline-block;

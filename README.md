@@ -456,7 +456,7 @@ ROOT/·····································�
 
 * 导航折叠 <small>[ Navigation Drawer ]</small> ✔️
 * 面包屑 <small>[ Breadcrumb ]</small> ✔️
-* 搜索 <small>[ Search ]</small>
+* 全局搜索 <small>[ Global Search ]</small> ✔️
 * 刷新 <small>[ Refresh ]</small> ✔️
 * 全屏 <small>[ Full Screen ]</small> ✔️
 * 锁屏 <small>[ Lock Screen ]</small> ✔️

@@ -614,6 +614,9 @@ iframe#section {
         @include nav-menu-dom;
         color: #000;
     }
+    .k-i-search {
+        margin-left: 3px;
+    }
     sup {
         display: inline-block;
         position: absolute;
