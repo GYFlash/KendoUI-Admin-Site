@@ -3,7 +3,7 @@
     "msg": "",
     "data": [
         {
-            "text": "<span class='k-textbox k-space-left'><input id='globalSearch' type='search'><em class='k-icon k-i-search theme-m'></em></span>",
+            "text": "<abbr><i class='fas fa-search'></i>搜索</abbr><input id='globalSearch' type='search'>",
             "encoded": false,
             "cssClass": "globalSearch"
         },

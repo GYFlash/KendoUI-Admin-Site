@@ -614,8 +614,41 @@ iframe#section {
         @include nav-menu-dom;
         color: #000;
     }
-    .k-i-search {
-        margin-left: 3px;
+    .globalSearch > .k-link {
+        width: 74px;
+        transition: width 500ms ease;
+        &:hover {
+            width: 300px;
+            abbr {
+                display: none;
+            }
+            .k-combobox {
+                display: inline-flex;
+            }
+        }
+    }
+    .k-combobox {
+        display: none;
+        width: 100%;
+        direction: ltr;
+        .k-dropdown-wrap {
+            i {
+                margin: 6px;
+                width: 16px;
+                height: 16px;
+                font-size: 16px;
+                line-height: 16px;
+            }
+            .k-input {
+                padding-left: 0;
+            }
+            .k-clear-value {
+                right: 4px;
+            }
+            .k-select {
+                display: none;
+            }
+        }
     }
     sup {
         display: inline-block;
@@ -818,6 +851,35 @@ iframe#section {
     .k-state-hover > .k-link,
     .k-item > .k-state-active {
         @include nav-menu-bg-dark;
+    }
+    .globalSearch > .k-link {
+        abbr {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+        }
+    }
+}
+
+#globalSearch-list {
+    .k-group-header {
+        padding: 0 !important;
+        height: 24px;
+        & > div {
+            line-height: 24px;
+        }
+    }
+    .k-state-focused {
+        box-shadow: none;
+    }
+    .k-item {
+        i {
+            margin-right: 6px;
+        }
+        small {
+            margin-left: 6px;
+            opacity: .5;
+        }
     }
 }
 

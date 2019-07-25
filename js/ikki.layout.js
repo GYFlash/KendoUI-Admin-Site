@@ -58,10 +58,16 @@ $(function () {
         succeed: function (res) {
             $('#menuV').kendoMenu({
                 orientation: 'vertical',
-                dataSource: res.data
+                dataSource: res.data,
+                dataBound: function () {
+                    globalSearch();
+                }
             });
             $('#menuH').kendoMenu({
-                dataSource: res.data
+                dataSource: res.data,
+                dataBound: function () {
+                    globalSearch();
+                }
             });
         }
     });
@@ -127,6 +133,9 @@ function showPath(hash) {
     $.each($('#navPanelBar, #menuH, #menuV').find('.links-'+ hash).children('.k-link').parents('.k-item'), function (i, doms) {
         $('#path').prepend('<span><i class="fas fa-angle-double-right"></i>' + $(doms).children('.k-link').html() + '</span>');
     });
+    if (hash === 'search') {
+        $('#path').prepend('<span><i class="fas fa-angle-double-right"></i><i class="fas fa-search"></i>搜索结果<small>Search Result</small></span>');
+    }
     if (hash === '404') {
         $('#path').prepend('<span><i class="fas fa-angle-double-right"></i><i class="fas fa-info-circle"></i>404<small>Error</small></span>');
     }
@@ -155,6 +164,59 @@ function showPath(hash) {
             $('#path').html('<a href="' + homePath + '"><i class="fas fa-home"></i>首页<span><small>Home</small></span></a>');
         }
     }
+}
+
+// 全局搜索
+function globalSearch() {
+    $('#globalSearch:visible').kendoComboBox({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxUrl: 'json/search.json',
+                        succeed: function (res) {
+                            options.success(res);
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                data: 'data'
+            },
+            group: {
+                field: 'group',
+                dir: 'desc'
+            }
+        },
+        dataValueField: 'value',
+        dataTextField: 'text',
+        height: 300,
+        filter: 'contains',
+        delay: 300,
+        minLength: 2,
+        fixedGroupTemplate: '<div class="text-center theme-m-bg">当前：<i class="fas fa-folder-open mr-2"></i>#: data #</div>',
+        groupTemplate: '#: data #',
+        template: '<i class="#: icon #"></i>#: text #<small>#: small #</small>',
+        footerTemplate: '<div class="p-1 text-center theme-s-bg"><small>-= 已找到<strong class="mx-1">#: instance.dataSource.total() #</strong>项 =-</small></div>',
+        dataBound: function (e) {
+            if ($(e.sender.wrapper).find('.fa-search').length < 1) {
+                $(e.sender.wrapper).find('.k-dropdown-wrap').prepend('<i class="fas fa-search theme-m"></i>');
+            }
+        },
+        change: function (e) {
+            if (e.sender._old !== '') {
+                if (e.sender._oldIndex !== -1) {
+                    linkTo(this.value().split('|')[0], this.value().split('|')[1]);
+                } else {
+                    linkTo('/', 'search');
+                    $('#path').html('<a href="' + webType + '/#/home"><i class="fas fa-home"></i>首页<span><small>Home</small></span></a><span><i class="fas fa-angle-double-right"></i><i class="fas fa-search"></i>搜索结果<small>Search Result</small></span>');
+                }
+            }
+        }
+    });
 }
 
 // 进入全屏

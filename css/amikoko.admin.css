@@ -462,9 +462,41 @@ iframe#section {
   background: transparent;
   box-shadow: none;
   color: #000; }
-#menuH .k-i-search,
-#menuV .k-i-search {
-  margin-left: 3px; }
+#menuH .globalSearch > .k-link,
+#menuV .globalSearch > .k-link {
+  width: 74px;
+  transition: width 500ms ease; }
+  #menuH .globalSearch > .k-link:hover,
+  #menuV .globalSearch > .k-link:hover {
+    width: 300px; }
+    #menuH .globalSearch > .k-link:hover abbr,
+    #menuV .globalSearch > .k-link:hover abbr {
+      display: none; }
+    #menuH .globalSearch > .k-link:hover .k-combobox,
+    #menuV .globalSearch > .k-link:hover .k-combobox {
+      display: -ms-inline-flexbox;
+      display: inline-flex; }
+#menuH .k-combobox,
+#menuV .k-combobox {
+  display: none;
+  width: 100%;
+  direction: ltr; }
+  #menuH .k-combobox .k-dropdown-wrap i,
+  #menuV .k-combobox .k-dropdown-wrap i {
+    margin: 6px;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    line-height: 16px; }
+  #menuH .k-combobox .k-dropdown-wrap .k-input,
+  #menuV .k-combobox .k-dropdown-wrap .k-input {
+    padding-left: 0; }
+  #menuH .k-combobox .k-dropdown-wrap .k-clear-value,
+  #menuV .k-combobox .k-dropdown-wrap .k-clear-value {
+    right: 4px; }
+  #menuH .k-combobox .k-dropdown-wrap .k-select,
+  #menuV .k-combobox .k-dropdown-wrap .k-select {
+    display: none; }
 #menuH sup,
 #menuV sup {
   display: inline-block;
@@ -662,6 +694,23 @@ iframe#section {
   #menuV .k-state-hover > .k-link,
   #menuV .k-item > .k-state-active {
     background-color: rgba(0, 0, 0, 0.08); }
+  #menuV .globalSearch > .k-link abbr {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px; }
+
+#globalSearch-list .k-group-header {
+  padding: 0 !important;
+  height: 24px; }
+  #globalSearch-list .k-group-header > div {
+    line-height: 24px; }
+#globalSearch-list .k-state-focused {
+  box-shadow: none; }
+#globalSearch-list .k-item i {
+  margin-right: 6px; }
+#globalSearch-list .k-item small {
+  margin-left: 6px;
+  opacity: .5; }
 
 /* 顶部菜单动效 */
 #menuCkb {

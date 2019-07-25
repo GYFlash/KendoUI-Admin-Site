@@ -1,0 +1,377 @@
+{
+    "result": "y",
+    "msg": "",
+    "data": [
+        {
+            "text": "[表单]基础表单元素",
+            "value": "/dashboard/forms/|form_elements",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表单]表单 Post 提交",
+            "value": "/dashboard/forms/|form_post",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表单]表单 Ajax 提交",
+            "value": "/dashboard/forms/|form_ajax",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表单]范围选择",
+            "value": "/dashboard/forms/|form_range",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表单]下拉分组多选级联",
+            "value": "/dashboard/forms/|form_cascade",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表单]地图联动选择",
+            "value": "/dashboard/forms/|form_map",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]全功能搜索及自定义编辑",
+            "value": "/dashboard/grids/|grid_custom",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]弹出框带校验编辑",
+            "value": "/dashboard/grids/|grid_popup",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]行内带校验编辑",
+            "value": "/dashboard/grids/|grid_inline",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]单元格带校验编辑",
+            "value": "/dashboard/grids/|grid_incell",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]复制新增及数据联动编辑",
+            "value": "/dashboard/grids/|grid_copy",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]自定义功能按钮",
+            "value": "/dashboard/grids/|grid_button",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]自定义选择提交",
+            "value": "/dashboard/grids/|grid_select",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]分组合计排序筛选",
+            "value": "/dashboard/grids/|grid_group",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]子表详情及滚动翻页",
+            "value": "/dashboard/grids/|grid_detail",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[表格]合并表头及行内拆分",
+            "value": "/dashboard/grids/|grid_merge",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[树形]全功能拖放及自定义编辑",
+            "value": "/dashboard/trees/|tree_custom",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[树形]节点选择编辑",
+            "value": "/dashboard/trees/|tree_edit",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[树形]自定义图标",
+            "value": "/dashboard/trees/|tree_icon",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[树形]复选框及半选提交",
+            "value": "/dashboard/trees/|tree_checkbox",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[列表]全功能排版及自定义编辑",
+            "value": "/dashboard/lists/|list_custom",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[列表]多模块自定义排版",
+            "value": "/dashboard/lists/|list_layout",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[列表]大图列表切换",
+            "value": "/dashboard/lists/|list_switch",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[列表]间隔项模版及滚动翻页",
+            "value": "/dashboard/lists/|list_alternate",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[分配]表格搜索双击选择",
+            "value": "/dashboard/assigns/|assign_grid",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[分配]树形直接拖放",
+            "value": "/dashboard/assigns/|assign_drag",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[分配]树形同级双击选择",
+            "value": "/dashboard/assigns/|assign_tree",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[分配]列表搜索双击选择",
+            "value": "/dashboard/assigns/|assign_list",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "[分配]穿梭框拖放",
+            "value": "/dashboard/assigns/|assign_listbox",
+            "icon": "fas fa-genderless",
+            "small": "",
+            "group": "综合"
+        },
+        {
+            "text": "全球化",
+            "value": "/framework/|globalization",
+            "icon": "globalizationIcon",
+            "small": "Globalization",
+            "group": "框架"
+        },
+        {
+            "text": "视图模型",
+            "value": "/framework/|mvvm",
+            "icon": "mvvmIcon",
+            "small": "MVVM",
+            "group": "框架"
+        },
+        {
+            "text": "数据源",
+            "value": "/framework/|datasource",
+            "icon": "dataSourceIcon",
+            "small": "DataSource",
+            "group": "框架"
+        },
+        {
+            "text": "模版",
+            "value": "/framework/|templates",
+            "icon": "templatesIcon",
+            "small": "Templates",
+            "group": "框架"
+        },
+        {
+            "text": "绘图",
+            "value": "/framework/|drawing",
+            "icon": "drawingIcon",
+            "small": "Drawing",
+            "group": "框架"
+        },
+        {
+            "text": "单页应用",
+            "value": "/framework/|spa",
+            "icon": "spaIcon",
+            "small": "SPA",
+            "group": "框架"
+        },
+        {
+            "text": "PDF导出",
+            "value": "/framework/|pdf_export",
+            "icon": "pdfIcon",
+            "small": "PDF Export",
+            "group": "框架"
+        },
+        {
+            "text": "PDF查看",
+            "value": "/framework/|pdf_viewer",
+            "icon": "pdfIcon",
+            "small": "PDF Viewer",
+            "group": "框架"
+        },
+        {
+            "text": "触摸事件",
+            "value": "/framework/|touch_events",
+            "icon": "mobileAppIcon",
+            "small": "Touch Events",
+            "group": "框架"
+        },
+        {
+            "text": "整合",
+            "value": "/framework/|integration",
+            "icon": "integrationIcon",
+            "small": "Integration",
+            "group": "框架"
+        },
+        {
+            "text": "页面布局",
+            "value": "/layout/|splitter",
+            "icon": "splitterIcon",
+            "small": "Splitter",
+            "group": "布局"
+        },
+        {
+            "text": "响应面板",
+            "value": "/layout/|responsive_panel",
+            "icon": "responsivePanelIcon",
+            "small": "Responsive Panel",
+            "group": "布局"
+        },
+        {
+            "text": "模态框",
+            "value": "/layout/|window",
+            "icon": "windowIcon",
+            "small": "Window",
+            "group": "布局"
+        },
+        {
+            "text": "对话框",
+            "value": "/layout/|dialog",
+            "icon": "dialogIcon",
+            "small": "Dialog",
+            "group": "布局"
+        },
+        {
+            "text": "通知框",
+            "value": "/layout/|notification",
+            "icon": "notificationIcon",
+            "small": "Notification",
+            "group": "布局"
+        },
+        {
+            "text": "提示框",
+            "value": "/layout/|tooltip",
+            "icon": "tooltipIcon",
+            "small": "Tooltip",
+            "group": "布局"
+        },
+        {
+            "text": "菜单",
+            "value": "/navigation/|menu",
+            "icon": "menuIcon",
+            "small": "Menu",
+            "group": "导航"
+        },
+        {
+            "text": "折叠面板",
+            "value": "/navigation/|panelbar",
+            "icon": "panelBarIcon",
+            "small": "PanelBar",
+            "group": "导航"
+        },
+        {
+            "text": "抽屉",
+            "value": "/navigation/|drawer",
+            "icon": "responsivePanelIcon",
+            "small": "Drawer",
+            "group": "导航"
+        },
+        {
+            "text": "选项卡",
+            "value": "/navigation/|tabstrip",
+            "icon": "tabStripIcon",
+            "small": "TabStrip",
+            "group": "导航"
+        },
+        {
+            "text": "工具栏",
+            "value": "/navigation/|toolbar",
+            "icon": "toolbarIcon",
+            "small": "ToolBar",
+            "group": "导航"
+        },
+        {
+            "text": "树形视图",
+            "value": "/navigation/|treeview",
+            "icon": "treeViewIcon",
+            "small": "TreeView",
+            "group": "导航"
+        },
+        {
+            "text": "按钮",
+            "value": "/navigation/|button",
+            "icon": "buttonIcon",
+            "small": "Button",
+            "group": "导航"
+        },
+        {
+            "text": "按钮组",
+            "value": "/navigation/|buttongroup",
+            "icon": "mobileButtonGroupIcon",
+            "small": "ButtonGroup",
+            "group": "导航"
+        }
+    ]
+}
