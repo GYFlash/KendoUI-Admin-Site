@@ -38,7 +38,7 @@ router.route('(/:lv1)(/:lv2)(/:lv3)(/:lv4)(/:lv5)', function (lv1, lv2, lv3, lv4
     });
     $.get(path + routePath + '.html', function (temp) {
         $('#template').html(temp);
-        layout.showIn('#container', new kendo.View(routeFile + 'Temp', { wrap: false }));
+        layout.showIn('#container', new kendo.View(routeFile + 'Temp', { wrap: false }), 'fade');
         $.getScript(path + routePath + '.js', function () {
             $('#inProgress .progress-bar').removeClass('animated').addClass('w-100');
             $('#inProgress').fadeOut();
@@ -75,7 +75,7 @@ function refresh() {
     tokenAuth();
     $.get(path + webType + '/views' + location.hash.split('#')[1] + '.html', function (temp) {
         $('#template').html(temp);
-        layout.showIn('#container', new kendo.View(location.hash.split('/')[location.hash.split('/').length - 1] + 'Temp', { wrap: false }));
+        layout.showIn('#container', new kendo.View(location.hash.split('/')[location.hash.split('/').length - 1] + 'Temp', { wrap: false }), 'fade');
         $.getScript(path + webType + '/views' + location.hash.split('#')[1] + '.js', function () {
             $('#inProgress .progress-bar').removeClass('animated').addClass('w-100');
             $('#inProgress').fadeOut();
