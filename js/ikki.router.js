@@ -7,8 +7,10 @@
 /* JS for Router | Written by IKKI | 2018-02-03 */
 
 // 路由创建
-var router = new kendo.Router({
+var skeleton = '<li class="media"><figure></figure><div class="media-body"><h5></h5><p></p><p></p><p></p></div></li>',
+    router = new kendo.Router({
         change: function (e) {
+            $('#container').html('<ul id="skeleton">' + new Array(6).join(skeleton) + '</ul>');
             $('#inProgress').css('display', 'flex');
             $('#inProgress .progress-bar').removeClass('w-100').addClass('animated');
             tokenAuth();
@@ -37,6 +39,7 @@ router.route('(/:lv1)(/:lv2)(/:lv3)(/:lv4)(/:lv5)', function (lv1, lv2, lv3, lv4
         }
     });
     $.get(path + routePath + '.html', function (temp) {
+        $('#container').html('');
         $('#template').html(temp);
         layout.showIn('#container', new kendo.View(routeFile + 'Temp', { wrap: false }), 'fade');
         $.getScript(path + routePath + '.js', function () {
@@ -70,10 +73,12 @@ $(function () {
 
 // 路由刷新
 function refresh() {
+    $('#container').html('<ul id="skeleton">' + new Array(6).join(skeleton) + '</ul>');
     $('#inProgress').css('display', 'flex');
     $('#inProgress .progress-bar').removeClass('w-100').addClass('animated');
     tokenAuth();
     $.get(path + webType + '/views' + location.hash.split('#')[1] + '.html', function (temp) {
+        $('#container').html('');
         $('#template').html(temp);
         layout.showIn('#container', new kendo.View(location.hash.split('/')[location.hash.split('/').length - 1] + 'Temp', { wrap: false }), 'fade');
         $.getScript(path + webType + '/views' + location.hash.split('#')[1] + '.js', function () {

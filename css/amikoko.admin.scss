@@ -224,6 +224,54 @@ iframe#section {
     }
 }
 
+#skeleton {
+    margin: 0;
+    padding: 1rem;
+    list-style: none;
+    .media {
+        margin-bottom: 2rem;
+    }
+    figure {
+        align-self: center;
+        margin-right: 2rem;
+        border-radius: $border-radius-round;
+        width: 64px;
+        height: 64px;
+        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+        background-size: 200% 100%;
+        animation: streamer 2s linear infinite;
+    }
+    h5 {
+        margin-bottom: 1.5rem;
+        width: 50%;
+        height: 24px;
+        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+        background-size: 200% 100%;
+        animation: streamer 2s linear infinite;
+        & + p {
+            width: 80%;
+        }
+    }
+    p {
+        height: 16px;
+        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+        background-size: 200% 100%;
+        animation: streamer 2s linear infinite;
+        &:last-child {
+            width: 30%;
+        }
+    }
+}
+
+@keyframes streamer {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
 #loading {
     display: none;
     position: fixed;

@@ -463,6 +463,7 @@ ROOT/·····································�
 * [500页 <small>[ 500 ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/500) ✔️
 * 路由页面加载进度条 <small>[ Router Progress ]</small> ✔️
 * 路由页面动画过渡 <small>[ Animated Transitions ]</small> ✔️
+* 骨架屏 <small>[ Skeleton ]</small> ✔️
 * 回到顶部 <small>[ Go Top ]</small> ✔️
 
 #### 顶部菜单 <small>[ Menu ]</small>
