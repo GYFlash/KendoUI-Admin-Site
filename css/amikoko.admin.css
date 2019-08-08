@@ -821,10 +821,12 @@ iframe#section {
     white-space: nowrap; }
 #tab > .k-content,
 #hint > .k-content {
+  margin-right: -17px;
   border: none;
   padding: 0;
-  height: 100%;
+  height: 10px;
   background: none;
+  overflow-x: hidden;
   overflow-y: auto; }
 
 #contextMenu i {
