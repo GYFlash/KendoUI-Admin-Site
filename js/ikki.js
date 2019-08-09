@@ -53,7 +53,7 @@ $(function () {
                         userId: 'demo'
                     }
                 }),
-                url: 'https://openapi.tuling123.com/openapi/api/v2',
+                url: 'http://openapi.tuling123.com/openapi/api/v2',
                 contentType: 'application/json; charset=UTF-8',
                 dataType: 'json',
                 success: function (res) {
