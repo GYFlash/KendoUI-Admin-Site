@@ -87,71 +87,6 @@ iframe#section {
   background: #eee;
   text-shadow: 1px 1px 0 #fff; }
 
-#inProgress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px; }
-  #inProgress .animated {
-    animation: inProgress 10s ease-in-out forwards; }
-
-@keyframes inProgress {
-  0% {
-    width: 0; }
-  100% {
-    width: 98%; } }
-#skeleton {
-  margin: 0;
-  padding: 1rem;
-  list-style: none; }
-  #skeleton .media {
-    margin-bottom: 2rem; }
-  #skeleton figure {
-    -ms-flex-item-align: center;
-        align-self: center;
-    margin-right: 2rem;
-    border-radius: 50%;
-    width: 64px;
-    height: 64px;
-    background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
-    background-size: 200% 100%;
-    animation: streamer 2s linear infinite; }
-  #skeleton h5 {
-    margin-bottom: 1.5rem;
-    width: 50%;
-    height: 24px;
-    background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
-    background-size: 200% 100%;
-    animation: streamer 2s linear infinite; }
-    #skeleton h5 + p {
-      width: 80%; }
-  #skeleton p {
-    height: 16px;
-    background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
-    background-size: 200% 100%;
-    animation: streamer 2s linear infinite; }
-    #skeleton p:last-child {
-      width: 30%; }
-
-@keyframes streamer {
-  0% {
-    background-position: 0 0; }
-  100% {
-    background-position: -100% 0; } }
-#loading {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.3); }
-  #loading:before, #loading:after {
-    border-width: 3px;
-    box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.3); }
-
-#template {
-  display: none; }
-
 #locking {
   display: -ms-flexbox;
   display: flex;
@@ -411,7 +346,8 @@ iframe#section {
     #navCkb:checked ~ #main #header .fa-bars {
       transform: rotate(-90deg); }
 
-#mask {
+#mask,
+#botMask {
   position: fixed;
   top: 60px;
   left: 0;
@@ -960,8 +896,73 @@ iframe#section {
   color: rgba(255, 255, 255, 0.6); }
 
 /* 主要内容 */
-#goTop {
+#inProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px; }
+  #inProgress .animated {
+    animation: inProgress 10s ease-in-out forwards; }
+
+@keyframes inProgress {
+  0% {
+    width: 0; }
+  100% {
+    width: 98%; } }
+#skeleton {
+  margin: 0;
+  padding: 1rem;
+  list-style: none; }
+  #skeleton .media {
+    margin-bottom: 2rem; }
+  #skeleton figure {
+    -ms-flex-item-align: center;
+        align-self: center;
+    margin-right: 2rem;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+    background-size: 200% 100%;
+    animation: streamer 2s linear infinite; }
+  #skeleton h5 {
+    margin-bottom: 1.5rem;
+    width: 50%;
+    height: 24px;
+    background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+    background-size: 200% 100%;
+    animation: streamer 2s linear infinite; }
+    #skeleton h5 + p {
+      width: 80%; }
+  #skeleton p {
+    height: 16px;
+    background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+    background-size: 200% 100%;
+    animation: streamer 2s linear infinite; }
+    #skeleton p:last-child {
+      width: 30%; }
+
+@keyframes streamer {
+  0% {
+    background-position: 0 0; }
+  100% {
+    background-position: -100% 0; } }
+#loading {
   display: none;
+  position: fixed;
+  z-index: 9999;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3); }
+  #loading:before, #loading:after {
+    border-width: 3px;
+    box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.3); }
+
+#template {
+  display: none; }
+
+#bot,
+#goTop {
   position: fixed;
   right: 32px;
   bottom: 12px;
@@ -972,7 +973,43 @@ iframe#section {
   height: 48px;
   font-size: 24px;
   line-height: 24px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   opacity: .6; }
+  #bot:hover,
+  #goTop:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); }
+  #bot i,
+  #goTop i {
+    cursor: pointer; }
+
+#botChat {
+  overflow: hidden;
+  position: fixed;
+  top: 60px;
+  right: -300px;
+  z-index: 9999;
+  width: 300px;
+  height: calc(100% - 60px);
+  background: #eee;
+  transition: all .3s; }
+
+#botCkb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  opacity: 0; }
+  #botCkb ~ label {
+    position: absolute; }
+  #botCkb:checked ~ label #botMask {
+    z-index: 9998;
+    opacity: 1; }
+  #botCkb:checked ~ #botChat {
+    right: 0; }
+
+#goTop {
+  display: none;
+  bottom: 72px; }
 
 /* 手机端适配 */
 @media only screen and (max-width: 767px) {
@@ -1019,6 +1056,7 @@ iframe#section {
   #locking {
     background-size: auto 100%; }
 
+  #bot,
   #goTop {
     right: 15px; } }
 /* Bootstrap 细节完善 ------------------------------ */

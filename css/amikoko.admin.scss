@@ -204,91 +204,6 @@ iframe#section {
     text-shadow: 1px 1px 0 $header-bg-color;
 }
 
-#inProgress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    .animated {
-        animation: inProgress 10s ease-in-out forwards;
-    }
-}
-
-@keyframes inProgress {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 98%;
-    }
-}
-
-#skeleton {
-    margin: 0;
-    padding: 1rem;
-    list-style: none;
-    .media {
-        margin-bottom: 2rem;
-    }
-    figure {
-        align-self: center;
-        margin-right: 2rem;
-        border-radius: $border-radius-round;
-        width: 64px;
-        height: 64px;
-        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
-        background-size: 200% 100%;
-        animation: streamer 2s linear infinite;
-    }
-    h5 {
-        margin-bottom: 1.5rem;
-        width: 50%;
-        height: 24px;
-        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
-        background-size: 200% 100%;
-        animation: streamer 2s linear infinite;
-        & + p {
-            width: 80%;
-        }
-    }
-    p {
-        height: 16px;
-        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
-        background-size: 200% 100%;
-        animation: streamer 2s linear infinite;
-        &:last-child {
-            width: 30%;
-        }
-    }
-}
-
-@keyframes streamer {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: -100% 0;
-    }
-}
-
-#loading {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    color: $header-bg-color;
-    background: $mask-bg;
-    &:before,
-    &:after {
-        border-width: 3px;
-        box-shadow: 0 0 3px 3px rgba(255, 255, 255, .3);
-    }
-}
-
-#template {
-    display: none;
-}
-
 #locking {
     display: flex;
     flex-direction: column;
@@ -576,7 +491,8 @@ iframe#section {
     }
 }
 
-#mask {
+#mask,
+#botMask {
     position: fixed;
     top: $header-height;
     left: 0;
@@ -1167,8 +1083,93 @@ iframe#section {
 }
 
 /* 主要内容 */
-#goTop {
+#inProgress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    .animated {
+        animation: inProgress 10s ease-in-out forwards;
+    }
+}
+
+@keyframes inProgress {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 98%;
+    }
+}
+
+#skeleton {
+    margin: 0;
+    padding: 1rem;
+    list-style: none;
+    .media {
+        margin-bottom: 2rem;
+    }
+    figure {
+        align-self: center;
+        margin-right: 2rem;
+        border-radius: $border-radius-round;
+        width: 64px;
+        height: 64px;
+        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+        background-size: 200% 100%;
+        animation: streamer 2s linear infinite;
+    }
+    h5 {
+        margin-bottom: 1.5rem;
+        width: 50%;
+        height: 24px;
+        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+        background-size: 200% 100%;
+        animation: streamer 2s linear infinite;
+        & + p {
+            width: 80%;
+        }
+    }
+    p {
+        height: 16px;
+        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+        background-size: 200% 100%;
+        animation: streamer 2s linear infinite;
+        &:last-child {
+            width: 30%;
+        }
+    }
+}
+
+@keyframes streamer {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+#loading {
     display: none;
+    position: fixed;
+    z-index: 9999;
+    color: $header-bg-color;
+    background: $mask-bg;
+    &:before,
+    &:after {
+        border-width: 3px;
+        box-shadow: 0 0 3px 3px rgba(255, 255, 255, .3);
+    }
+}
+
+#template {
+    display: none;
+}
+
+#bot,
+#goTop {
     position: fixed;
     right: 32px;
     bottom: 12px;
@@ -1179,7 +1180,53 @@ iframe#section {
     height: 48px;
     font-size: 24px;
     line-height: 24px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .6);
     opacity: .6;
+    &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+    }
+    i {
+        cursor: pointer;
+    }
+}
+
+#botChat {
+    overflow: hidden;
+    position: fixed;
+    top: $header-height;
+    right: -300px;
+    z-index: 9999;
+    width: 300px;
+    height: calc(100% - #{$header-height});
+    background: $section-bg-color;
+    @include nav-menu-ani;
+}
+
+#botCkb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0;
+    ~ label {
+        position: absolute;
+    }
+    &:checked {
+        ~ label {
+            #botMask {
+                z-index: 9998;
+                opacity: 1;
+            }
+        }
+        ~ #botChat {
+            right: 0;
+        }
+    }
+}
+
+#goTop {
+    display: none;
+    bottom: 72px;
 }
 
 /* 手机端适配 */
@@ -1247,6 +1294,7 @@ iframe#section {
         background-size: auto 100%;
     }
 
+    #bot,
     #goTop {
         right: 15px;
     }

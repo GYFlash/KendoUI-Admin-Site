@@ -31,14 +31,24 @@ $(function () {
             conditionSearch();
         }
     });
+    // 聊天机器人
+    $('body').append('<button class="k-button k-state-selected" id="bot"><label for="botCkb"><i class="fas fa-robot"></i></label></button><input id="botCkb" type="checkbox"><label for="botCkb"><span id="botMask"></span></label><div id="botChat"></div>');
+    tipMsg($('#bot'), '聊天机器人', 'left');
+    $('#botChat').kendoChat({
+        user: {
+            name: 'IKKI',
+            iconUrl: 'img/IKKI.png'
+        }
+    });
     // 回到顶部
-    $('#section').append('<button class="k-button k-state-selected" id="goTop"><i class="fas fa-angle-up"></i></button>').scroll(function () {
+    $('#section').append('<button class="k-button k-state-selected" id="goTop"><i class="fas fa-arrow-up"></i></button>').scroll(function () {
         if ($(this).scrollTop() > 800) {
             $('#goTop').fadeIn();
         } else {
             $('#goTop').fadeOut();
         }
     });
+    tipMsg($('#goTop'), '回到顶部', 'left');
     $('#goTop').click(function () {
         $('#section').animate({ scrollTop: 0 }, 500);
     });
