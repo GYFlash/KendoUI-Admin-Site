@@ -38,6 +38,90 @@ $(function () {
         user: {
             name: 'IKKI',
             iconUrl: 'img/IKKI.png'
+        },
+        post: function (e) {
+            $.ajax({
+                type: 'post',
+                data: JSON.stringify({
+                    perception: {
+                        inputText: {
+                            text: e.text
+                        }
+                    },
+                    userInfo: {
+                        apiKey: '73e3544b57fb47e3a2545ea0b47dc474',
+                        userId: 'demo'
+                    }
+                }),
+                url: 'http://openapi.tuling123.com/openapi/api/v2',
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                success: function (res) {
+                    $.each(res.results, function (i, items) {
+                        if (items.resultType === 'text') {
+                            $('#botChat').data('kendoChat').renderMessage(
+                                {
+                                    type: 'text',
+                                    text: res.results[i].values.text
+                                },
+                                {
+                                    id: kendo.guid(),
+                                    name: '小艾',
+                                    iconUrl: 'img/temp/Esmerarda.png'
+                                }
+                            );
+                        } else if (items.resultType === 'url') {
+                            var urlTemp = kendo.template(
+                                '<div class="card mt-3">' +
+                                    '<div class="card-body">' +
+                                        '<a class="card-link" href="#: url #" target="_blank">#: url #</a>' +
+                                    '</div>' +
+                                '</div>'
+                            );
+                            kendo.chat.registerTemplate('url_card', urlTemp);
+                            $('#botChat').data('kendoChat').renderAttachments(
+                                {
+                                    attachments: [{
+                                        contentType: 'url_card',
+                                        content: {
+                                            url: res.results[i].values.url
+                                        }
+                                    }],
+                                    attachmentLayout: 'list'
+                                },
+                                {
+                                    id: kendo.guid(),
+                                    name: '小艾',
+                                    iconUrl: 'img/temp/Esmerarda.png'
+                                }
+                            );
+                        } else if (items.resultType === 'image') {
+                            var imageTemp = kendo.template(
+                                '<div class="text-center mt-3">' +
+                                    '<img class="img-thumbnail img-fluid" src="#: image #" alt="">' +
+                                '</div>'
+                            );
+                            kendo.chat.registerTemplate('image_card', imageTemp);
+                            $('#botChat').data('kendoChat').renderAttachments(
+                                {
+                                    attachments: [{
+                                        contentType: 'image_card',
+                                        content: {
+                                            image: res.results[i].values.image
+                                        }
+                                    }],
+                                    attachmentLayout: 'list'
+                                },
+                                {
+                                    id: kendo.guid(),
+                                    name: '小艾',
+                                    iconUrl: 'img/temp/Esmerarda.png'
+                                }
+                            );
+                        }
+                    });
+                }
+            });
         }
     });
     // 回到顶部
