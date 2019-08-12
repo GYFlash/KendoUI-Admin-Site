@@ -123,7 +123,17 @@ $(function () {
                 }
             });
         }
-    });
+    }).data('kendoChat').renderMessage(
+        {
+            type: 'text',
+            text: '亲~ 由于GitHub和码云使用的是HTTPS协议~ 而图灵机器人使用的是HTTP协议~ 所以想看对话效果的亲们请部署到本地开启Chrome跨域模式调试~ 谢谢~ ❤️'
+        },
+        {
+            id: kendo.guid(),
+            name: '小艾',
+            iconUrl: 'img/temp/Esmerarda.png'
+        }
+    );
     // 回到顶部
     $('#section').append('<button class="k-button k-state-selected" id="goTop"><i class="fas fa-arrow-up"></i></button>').scroll(function () {
         if ($(this).scrollTop() > 800) {
