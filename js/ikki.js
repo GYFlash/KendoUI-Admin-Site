@@ -66,7 +66,7 @@ $(function () {
                                 },
                                 {
                                     id: kendo.guid(),
-                                    name: '小艾',
+                                    name: '🌸小艾',
                                     iconUrl: 'img/temp/Esmerarda.png'
                                 }
                             );
@@ -91,7 +91,7 @@ $(function () {
                                 },
                                 {
                                     id: kendo.guid(),
-                                    name: '小艾',
+                                    name: '🌸小艾',
                                     iconUrl: 'img/temp/Esmerarda.png'
                                 }
                             );
@@ -114,7 +114,7 @@ $(function () {
                                 },
                                 {
                                     id: kendo.guid(),
-                                    name: '小艾',
+                                    name: '🌸小艾',
                                     iconUrl: 'img/temp/Esmerarda.png'
                                 }
                             );
@@ -130,7 +130,7 @@ $(function () {
         },
         {
             id: kendo.guid(),
-            name: '小艾',
+            name: '🌸小艾',
             iconUrl: 'img/temp/Esmerarda.png'
         }
     );
