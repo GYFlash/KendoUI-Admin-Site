@@ -17,16 +17,7 @@ var path = $('base').attr('href'),
 
 /* 初始化 ****************************************************************************/
 $(function () {
-    // 刷新接管
-    document.onkeydown = function () {
-        var e = window.event || arguments[0];
-        // 屏蔽 F5 和 Ctrl + F5
-        if (e.keyCode === 116 || ((e.ctrlKey) && (e.keyCode === 116))) {
-            refresh();
-            return false;
-        }
-    };
-    // 颜色
+    // 配色
     if (localStorage.hasOwnProperty('colorName')) {
         accentColor = localStorage.getItem('accentColor');
         minorColor = localStorage.getItem('minorColor');
@@ -78,6 +69,15 @@ $(function () {
             showPath(location.hash.split('#')[1].split('/')[location.hash.split('#')[1].split('/').length - 1]);
         }).resize();
     }, 200);
+    // 刷新接管
+    document.onkeydown = function () {
+        var e = window.event || arguments[0];
+        // 屏蔽 F5 和 Ctrl + F5
+        if (e.keyCode === 116 || ((e.ctrlKey) && (e.keyCode === 116))) {
+            refresh();
+            return false;
+        }
+    };
     // 全屏
     $('#header').on('click', '.fullscreen', function () {
         var fullscreenEnabled = document.fullscreenEnabled       ||
@@ -105,6 +105,121 @@ $(function () {
         if(event.keyCode === 13){
             unlockScreen();
         }
+    });
+    // 聊天机器人
+    $('body').append('<button class="k-button k-state-selected" id="bot"><label for="botCkb"><i class="fas fa-robot"></i></label></button><input id="botCkb" type="checkbox"><label for="botCkb"><span id="botMask"></span></label><div id="botChat"></div>');
+    tipMsg($('#bot'), '聊天机器人', 'left');
+    $('#botChat').kendoChat({
+        user: {
+            name: 'IKKI',
+            iconUrl: 'img/IKKI.png'
+        },
+        post: function (e) {
+            $.ajax({
+                type: 'post',
+                data: JSON.stringify({
+                    perception: {
+                        inputText: {
+                            text: e.text
+                        }
+                    },
+                    userInfo: {
+                        apiKey: '73e3544b57fb47e3a2545ea0b47dc474', // 请替换成自己的 Key
+                        userId: 'demo'
+                    }
+                }),
+                url: 'http://openapi.tuling123.com/openapi/api/v2',
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                success: function (res) {
+                    $.each(res.results, function (i, items) {
+                        if (items.resultType === 'text') {
+                            $('#botChat').data('kendoChat').renderMessage(
+                                {
+                                    type: 'text',
+                                    text: res.results[i].values.text
+                                },
+                                {
+                                    id: kendo.guid(),
+                                    name: '🌸小艾',
+                                    iconUrl: 'img/temp/Esmerarda.png'
+                                }
+                            );
+                        } else if (items.resultType === 'url') {
+                            var urlTemp = kendo.template(
+                                '<div class="card mt-3">' +
+                                    '<div class="card-body">' +
+                                        '<a class="card-link" href="#: url #" target="_blank">#: url #</a>' +
+                                    '</div>' +
+                                '</div>'
+                            );
+                            kendo.chat.registerTemplate('url_card', urlTemp);
+                            $('#botChat').data('kendoChat').renderAttachments(
+                                {
+                                    attachments: [{
+                                        contentType: 'url_card',
+                                        content: {
+                                            url: res.results[i].values.url
+                                        }
+                                    }],
+                                    attachmentLayout: 'list'
+                                },
+                                {
+                                    id: kendo.guid(),
+                                    name: '🌸小艾',
+                                    iconUrl: 'img/temp/Esmerarda.png'
+                                }
+                            );
+                        } else if (items.resultType === 'image') {
+                            var imageTemp = kendo.template(
+                                '<div class="text-center mt-3">' +
+                                    '<img class="img-thumbnail img-fluid" src="#: image #" alt="">' +
+                                '</div>'
+                            );
+                            kendo.chat.registerTemplate('image_card', imageTemp);
+                            $('#botChat').data('kendoChat').renderAttachments(
+                                {
+                                    attachments: [{
+                                        contentType: 'image_card',
+                                        content: {
+                                            image: res.results[i].values.image
+                                        }
+                                    }],
+                                    attachmentLayout: 'list'
+                                },
+                                {
+                                    id: kendo.guid(),
+                                    name: '🌸小艾',
+                                    iconUrl: 'img/temp/Esmerarda.png'
+                                }
+                            );
+                        }
+                    });
+                }
+            });
+        }
+    }).data('kendoChat').renderMessage(
+        {
+            type: 'text',
+            text: '亲~ 由于GitHub和码云使用的是HTTPS协议~ 而图灵机器人使用的是HTTP协议~ 所以想看对话效果的亲们请部署到本地开启Chrome跨域模式调试~ 谢谢~ ❤️'
+        },
+        {
+            id: kendo.guid(),
+            name: '🌸小艾',
+            iconUrl: 'img/temp/Esmerarda.png'
+        }
+    );
+    // 回到顶部
+    $('#section').append('<button class="k-button k-state-selected" id="goTop"><i class="fas fa-arrow-up"></i></button>').scroll(function () {
+        if ($(this).scrollTop() > 800) {
+            $('#goTop').fadeIn();
+        } else {
+            $('#goTop').fadeOut();
+        }
+    });
+    tipMsg($('#goTop'), '回到顶部', 'left');
+    $('#goTop').click(function () {
+        $('#section').animate({ scrollTop: 0 }, 500);
     });
 });
 
