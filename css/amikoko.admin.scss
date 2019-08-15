@@ -1080,6 +1080,12 @@ iframe#section {
         text-align: center;
         color: rgba(255, 255, 255, .6);
     }
+    #live2d-widget {
+        bottom: -100px !important;
+        .live2d-widget-dialog-container {
+            height: auto;
+        }
+    }
 }
 
 /* 主要内容 */
@@ -1169,6 +1175,8 @@ iframe#section {
 }
 
 #bot,
+#weather,
+#lunar,
 #goTop {
     position: fixed;
     right: 32px;
@@ -1224,13 +1232,38 @@ iframe#section {
     }
 }
 
+#weather {
+    bottom: 72px;
+}
+
+#lunar {
+    bottom: 132px;
+}
+
 #goTop {
     display: none;
-    bottom: 72px;
+    bottom: 192px;
 }
 
 /* 手机端适配 */
 @media only screen and (max-width: 767px) {
+    #login {
+        #live2d-widget {
+            right: -20px !important;
+            bottom: -60px !important;
+            width: 100px !important;
+            height: 200px !important;
+            .live2d-widget-dialog-container {
+                right: 80px;
+                bottom: 33%;
+            }
+            #live2dcanvas {
+                width: 100px !important;
+                height: 200px !important;
+            }
+        }
+    }
+
     #navCkb:checked ~ #aside #navPanelBar,
     #header h1,
     #header label[for="menuCkb"],

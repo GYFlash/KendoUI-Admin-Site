@@ -147,10 +147,23 @@
         </main>
         <footer>Powered by IKKI &amp; Amikoko &copy; 2018-2019 UED Center</footer>
         <div class="k-loading-image" id="loading"></div>
+        <script src="js/L2Dwidget.min.js"></script>
         <script src="js/jquery.particleground.js"></script>
         <script src="js/jquery.verify.js"></script>
         <script>
             $(function () {
+                // 看板娘
+                L2Dwidget.init({
+                    dialog: {
+                        enable: true, // 开启对话框
+                        script: {
+                            'every idle 10s': '$hitokoto$', // 每空闲 10 秒钟显示一句话
+                            'tap face': '哥~~ ❤️', // 当触摸到角色头部时
+                            'tap body': '哎呀！坏人~', // 当触摸到角色身体时
+                            'hover #avatar': '这是最帅的一辉哥哦~' // 当触摸到头像时
+                        }
+                    }
+                });
                 // 动态背景
                 $('#login').particleground();
                 // 提示
