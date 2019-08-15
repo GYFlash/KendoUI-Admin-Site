@@ -638,9 +638,11 @@ ROOT/·····································�
 * [Ant Design Colors](https://ant.design/docs/spec/colors-cn)
 * [Material Design Colors](https://www.material.io/design/color/the-color-system.html#tools-for-picking-colors)
 * [Flag Icon Css](https://github.com/lipis/flag-icon-css) ( v3.3.0 )
+* [Weather Icons](https://github.com/erikflowers/weather-icons) ( v2.0.10 )
 * [Count Up](https://github.com/inorganik/countUp.js) ( v1.9.3 )
 * [Verify](https://github.com/Hibear/verify) ( v0.1.0 )
 * [Particleground](https://requestlab.fr/) ( v1.1.0 )
+* [Live2D Widget](https://github.com/xiazeyu/live2d-widget.js) ( v3.0.5 )
 
 ## 📷 界面预览 <small>Screenshot</small>
 
