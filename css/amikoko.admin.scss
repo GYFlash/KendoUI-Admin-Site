@@ -1384,10 +1384,17 @@ iframe#section {
             }
         }
     }
+    .k-calendar,
+    .k-calendar-view,
+    .k-calendar-view > table,
+    .k-calendar-view .k-link {
+        width: 100%;
+    }
     .k-calendar {
         height: 400px;
         .k-calendar-view {
             height: 24em;
+            & > table,
             .k-link {
                 height: 100%;
             }
