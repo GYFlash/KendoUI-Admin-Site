@@ -1020,6 +1020,98 @@ iframe#section {
 #weather {
   bottom: 72px; }
 
+#weatherBox .skeleton {
+  display: inline-block;
+  width: 100%;
+  height: 20px;
+  background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+  background-size: 200% 100%;
+  animation: streamer 2s linear infinite;
+  vertical-align: middle; }
+#weatherBox .skeleton-round {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px; }
+#weatherBox .card-header {
+  font-size: 14px;
+  text-align: center; }
+  #weatherBox .card-header .fas {
+    margin-right: .5rem;
+    font-size: 20px;
+    vertical-align: middle; }
+  #weatherBox .card-header .flag-icon {
+    margin-left: .5rem;
+    font-size: 20px;
+    vertical-align: top; }
+  #weatherBox .card-header .loc {
+    display: inline-block;
+    min-width: 60%;
+    height: 20px;
+    vertical-align: middle; }
+#weatherBox .card-body {
+  padding-bottom: .75rem; }
+  #weatherBox .card-body .row .skeleton {
+    width: 60%; }
+  #weatherBox .card-body .row .col-6 {
+    margin-bottom: .5rem; }
+    #weatherBox .card-body .row .col-6 .wi {
+      margin-right: .5rem;
+      width: 20px;
+      text-align: center; }
+  #weatherBox .card-body .row .col-6:last-child {
+    padding-left: 0; }
+  #weatherBox .card-body time {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: 12px;
+    text-align: center;
+    color: #999; }
+  #weatherBox .card-body .tmp {
+    font-family: arial, sans-serif;
+    font-size: 6rem;
+    font-weight: 400;
+    line-height: 1em; }
+  #weatherBox .card-body .wi-celsius {
+    font-size: 4rem; }
+  #weatherBox .card-body .cond_txt {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin-left: -2rem;
+    margin-bottom: .6rem;
+    min-width: 2em;
+    font-size: 1.25rem;
+    font-weight: 300; }
+  #weatherBox .card-body .cond_code {
+    margin-left: auto;
+    font-size: 5rem;
+    line-height: 1.2em; }
+  #weatherBox .card-body .air {
+    margin-bottom: .8rem;
+    text-align: center; }
+    #weatherBox .card-body .air .badge {
+      margin-left: .5rem;
+      font-weight: normal; }
+#weatherBox .card-footer {
+  font-size: 12px; }
+  #weatherBox .card-footer .skeleton {
+    height: 80px; }
+  #weatherBox .card-footer .col-4 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    text-align: center; }
+    #weatherBox .card-footer .col-4 .icon {
+      padding: 1rem 0; }
+    #weatherBox .card-footer .col-4 i.theme-m {
+      margin-right: .25rem;
+      max-width: 36px;
+      font-size: 30px; }
+    #weatherBox .card-footer .col-4 i.theme-s {
+      margin-left: .25rem;
+      max-width: 24px;
+      font-size: 20px; }
+
 #lunar {
   bottom: 132px; }
 
@@ -1085,6 +1177,8 @@ iframe#section {
     background-size: auto 100%; }
 
   #bot,
+  #weather,
+  #lunar,
   #goTop {
     right: 15px; } }
 /* Bootstrap 细节完善 ------------------------------ */
@@ -1425,7 +1519,7 @@ form .searchBtn.row {
   .k-edit-form-container div.k-tooltip-validation {
     -ms-flex-direction: row;
         flex-direction: row;
-    margin: 0.5em 0 0 0 !important; }
+    margin: .5em 0 0 0 !important; }
     .k-edit-form-container div.k-tooltip-validation .k-icon {
       margin-right: 4px; }
 

@@ -209,6 +209,24 @@ $(function () {
             iconUrl: 'img/temp/Esmerarda.png'
         }
     );
+    // 天气预报
+    $('body').append('<button class="k-button k-state-selected" id="weather" onclick="getWeather();"><i class="wi wi-na"></i></button>');
+    tipMsg($('#weather'), '天气预报', 'left');
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                getWeatherIcon(position.coords.latitude + ':' + position.coords.longitude);
+            },
+            function (positionError) {
+                getWeatherIcon('ip');
+            },
+            {
+                enableHighAcuracy: true,
+                maximumAge: 86400000,
+                timeout: 3000
+            }
+        );
+    }
     // 回到顶部
     $('#section').append('<button class="k-button k-state-selected" id="goTop"><i class="fas fa-arrow-up"></i></button>').scroll(function () {
         if ($(this).scrollTop() > 800) {
@@ -464,6 +482,538 @@ function logout() {
         location.href = path + webType + '/login_gitee.html';
     } else {
         location.href = path + webType + '/login.html';
+    }
+}
+
+// 天气预报
+function getWeatherIcon(location) {
+    $.ajax({
+        type: 'get',
+        data: {
+            key: '4r9bergjetiv1tsd', // 请替换成自己的 Key
+            location: location
+        },
+        url: 'https://api.seniverse.com/v3/weather/now.json',
+        dataType: 'json',
+        success: function (res) {
+            var weatherCode = res.results[0].now.code;
+            if (weatherCode === '0') {
+                $('#weather').html('<i class="wi wi-day-sunny"></i>');
+            } else if (weatherCode === '1') {
+                $('#weather').html('<i class="wi wi-night-clear"></i>');
+            } else if (weatherCode === '2') {
+                $('#weather').html('<i class="wi wi-day-sunny"></i>');
+            } else if (weatherCode === '3') {
+                $('#weather').html('<i class="wi wi-night-clear"></i>');
+            } else if (weatherCode === '4') {
+                $('#weather').html('<i class="wi wi-cloudy"></i>');
+            } else if (weatherCode === '5') {
+                $('#weather').html('<i class="wi wi-day-cloudy"></i>');
+            } else if (weatherCode === '6') {
+                $('#weather').html('<i class="wi wi-night-alt-cloudy"></i>');
+            } else if (weatherCode === '7') {
+                $('#weather').html('<i class="wi wi-day-cloudy"></i>');
+            } else if (weatherCode === '8') {
+                $('#weather').html('<i class="wi wi-night-alt-cloudy"></i>');
+            } else if (weatherCode === '9') {
+                $('#weather').html('<i class="wi wi-cloud"></i>');
+            } else if (weatherCode === '10') {
+                $('#weather').html('<i class="wi wi-day-showers"></i>');
+            } else if (weatherCode === '11') {
+                $('#weather').html('<i class="wi wi-day-storm-showers"></i>');
+            } else if (weatherCode === '12') {
+                $('#weather').html('<i class="wi wi-day-sleet-storm"></i>');
+            } else if (weatherCode === '13') {
+                $('#weather').html('<i class="wi wi-day-sprinkle"></i>');
+            } else if (weatherCode === '14') {
+                $('#weather').html('<i class="wi wi-sprinkle"></i>');
+            } else if (weatherCode === '15') {
+                $('#weather').html('<i class="wi wi-showers"></i>');
+            } else if (weatherCode === '16') {
+                $('#weather').html('<i class="wi wi-hail"></i>');
+            } else if (weatherCode === '17') {
+                $('#weather').html('<i class="wi wi-rain-wind"></i>');
+            } else if (weatherCode === '18') {
+                $('#weather').html('<i class="wi wi-rain"></i>');
+            } else if (weatherCode === '19') {
+                $('#weather').html('<i class="wi wi-sleet"></i>');
+            } else if (weatherCode === '20') {
+                $('#weather').html('<i class="wi wi-rain-mix"></i>');
+            } else if (weatherCode === '21') {
+                $('#weather').html('<i class="wi wi-day-snow"></i>');
+            } else if (weatherCode === '22') {
+                $('#weather').html('<i class="wi wi-snow"></i>');
+            } else if (weatherCode === '23') {
+                $('#weather').html('<i class="wi wi-snow"></i>');
+            } else if (weatherCode === '24') {
+                $('#weather').html('<i class="wi wi-snow-wind"></i>');
+            } else if (weatherCode === '25') {
+                $('#weather').html('<i class="wi wi-snow-wind"></i>');
+            } else if (weatherCode === '26') {
+                $('#weather').html('<i class="wi wi-dust"></i>');
+            } else if (weatherCode === '27') {
+                $('#weather').html('<i class="wi wi-dust"></i>');
+            } else if (weatherCode === '28') {
+                $('#weather').html('<i class="wi wi-sandstorm"></i>');
+            } else if (weatherCode === '29') {
+                $('#weather').html('<i class="wi wi-sandstorm"></i>');
+            } else if (weatherCode === '30') {
+                $('#weather').html('<i class="wi wi-day-fog"></i>');
+            } else if (weatherCode === '31') {
+                $('#weather').html('<i class="wi wi-day-haze"></i>');
+            } else if (weatherCode === '32') {
+                $('#weather').html('<i class="wi wi-windy"></i>');
+            } else if (weatherCode === '33') {
+                $('#weather').html('<i class="wi wi-strong-wind"></i>');
+            } else if (weatherCode === '34') {
+                $('#weather').html('<i class="wi wi-hurricane"></i>');
+            } else if (weatherCode === '35') {
+                $('#weather').html('<i class="wi wi-hurricane"></i>');
+            } else if (weatherCode === '36') {
+                $('#weather').html('<i class="wi wi-tornado"></i>');
+            } else if (weatherCode === '37') {
+                $('#weather').html('<i class="wi wi-snowflake-cold"></i>');
+            } else if (weatherCode === '38') {
+                $('#weather').html('<i class="wi wi-hot"></i>');
+            } else if (weatherCode === '99') {
+                $('#weather').html('<i class="wi wi-na"></i>');
+            } else {
+                $('#weather').html('<i class="wi wi-na"></i>');
+            }
+        },
+        error: function (res) {
+            alertMsg('获取天气数据出错！', 'error');
+        }
+    });
+}
+
+function getWeather() {
+    var divWindow = $('<div class="window-box" id="weatherBox"></div>').kendoWindow({
+        animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
+        title: '天气预报',
+        width: 360,
+        modal: true,
+        pinned: true,
+        resizable: false,
+        open: function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        getWeatherInfo(position.coords.longitude + ',' + position.coords.latitude);
+                    },
+                    function (positionError) {
+                        getWeatherInfo('auto_ip');
+                    },
+                    {
+                        enableHighAcuracy: true,
+                        maximumAge: 86400000,
+                        timeout: 3000
+                    }
+                );
+            }
+        },
+        close: function () {
+            divWindow.destroy();
+        }
+    }).data('kendoWindow'),
+        weatherHtml =
+            '<div class="card">' +
+                '<div class="card-header"><i class="fas fa-map-marker-alt theme-m"></i><span class="loc"><span class="skeleton"></span></div>' +
+                '<div class="card-body">' +
+                    '<time><span class="skeleton"></span></time>' +
+                    '<div class="d-flex">' +
+                        '<span class="tmp theme-m"><span class="skeleton skeleton-round"></span></span>' +
+                        '<i class="wi wi-celsius theme-m"></i>' +
+                        '<span class="cond_txt"><span class="skeleton"></span></span>' +
+                        '<i class="cond_code wi wi-na theme-s"></i>' +
+                    '</div>' +
+                    '<hr>' +
+                    '<div class="row">' +
+                        '<div class="col-12 air"><span class="skeleton"></span></div>' +
+                    '</div>' +
+                    '<div class="row">' +
+                        '<div class="col-6 tmp_m"><i class="wi wi-thermometer theme-m"></i><span class="skeleton"></span></div>' +
+                        '<div class="col-6 wind"><i class="wi wi-strong-wind theme-m"></i><span class="skeleton"></span></div>' +
+                    '</div>' +
+                    '<div class="row">' +
+                        '<div class="col-6 hum"><i class="wi wi-humidity theme-m"></i><span class="skeleton"></span></div>' +
+                        '<div class="col-6 uv_index"><i class="wi wi-umbrella theme-m"></i><span class="skeleton"></span></div>' +
+                    '</div>' +
+                    '<div class="row">' +
+                        '<div class="col-6 sr"><i class="wi wi-sunrise theme-m"></i><span class="skeleton"></span></div>' +
+                        '<div class="col-6 ss"><i class="wi wi-sunset theme-m"></i><span class="skeleton"></span></div>' +
+                    '</div>' +
+                    '<div class="row">' +
+                        '<div class="col-6 mr"><i class="wi wi-moonrise theme-m"></i><span class="skeleton"></span></div>' +
+                        '<div class="col-6 ms"><i class="wi wi-moonset theme-m"></i><span class="skeleton"></span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="card-footer">' +
+                    '<div class="row">' +
+                        '<div class="col-4 today"><span>今天</span><span class="skeleton"></span></div>' +
+                        '<div class="col-4 tomorrow"><span>明天</span><span class="skeleton"></span></div>' +
+                        '<div class="col-4 after_tomorrow"><span>后天</span><span class="skeleton"></span></div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+    divWindow.content(weatherHtml).center().open();
+}
+
+function getWeatherInfo(location) {
+    $.ajax({
+        type: 'get',
+        data: {
+            key: 'd2ae781d61744d65a2ef2156eef2cb64', // 请替换成自己的 Key
+            location: location
+        },
+        url: 'https://free-api.heweather.net/s6/weather',
+        dataType: 'json',
+        success: function (res) {
+            var basic = res.HeWeather6[0].basic,
+                now = res.HeWeather6[0].now,
+                daily_forecast = res.HeWeather6[0].daily_forecast,
+                hourly = res.HeWeather6[0].hourly,
+                lifestyle = res.HeWeather6[0].lifestyle,
+                update = res.HeWeather6[0].update,
+                weatherCode = res.HeWeather6[0].now.cond_code;
+            $('#weatherBox .loc').html(basic.cnty + ' - ' + basic.admin_area + ' - ' + basic.parent_city + ' - ' + basic.location + '<i class="flag-icon flag-icon-' + basic.cid.substr(0, 2).toLowerCase() + '"></i>');
+            $('#weatherBox time').html('更新于：' + update.loc);
+            $('#weatherBox .tmp').html(now.tmp);
+            $('#weatherBox .cond_txt').html(now.cond_txt);
+            $('#weatherBox .cond_code').removeClass('wi-na').addClass(getWeatherInfoIcon(kendo.toString(kendo.parseDate(update.loc), 'HH'), weatherCode));
+            if (lifestyle) {
+                $.ajax({
+                    type: 'get',
+                    data: {
+                        key: 'd2ae781d61744d65a2ef2156eef2cb64', // 请替换成自己的 Key
+                        location: basic.parent_city
+                    },
+                    url: 'https://free-api.heweather.net/s6/air/now',
+                    dataType: 'json',
+                    success: function (res) {
+                        var qlty = res.HeWeather6[0].air_now_city.qlty,
+                            qltyColor;
+                        if (qlty === '优') {
+                            qltyColor = 'success';
+                        } else if (qlty === '良') {
+                            qltyColor = 'info';
+                        } else if (qlty === '轻度污染' || qlty === '中度污染') {
+                            qltyColor = 'warning';
+                        } else if (qlty === '重度污染' || qlty === '严重污染') {
+                            qltyColor = 'error';
+                        }
+                        $('#weatherBox .air').html('空气质量：' + res.HeWeather6[0].air_now_city.aqi + '<span class="badge k-notification-' + qltyColor + '">' + qlty + '</span>');
+                    },
+                    error: function (res) {
+                        alertMsg('获取空气质量数据出错！', 'error');
+                    }
+                });
+            } else {
+                $('#weatherBox .air').parent().remove();
+            }
+            $('#weatherBox .tmp_m').html('<i class="wi wi-thermometer theme-m"></i>' + daily_forecast[0].tmp_min + '℃~' + daily_forecast[0].tmp_max + '℃');
+            $('#weatherBox .wind').html('<i class="wi wi-strong-wind theme-m"></i>' + now.wind_dir + now.wind_sc + '级');
+            $('#weatherBox .hum').html('<i class="wi wi-humidity theme-m"></i>湿度：' + daily_forecast[0].hum + '%');
+            if (basic.cnty === '中国') {
+                $('#weatherBox .uv_index').html('<i class="wi wi-umbrella theme-m"></i>紫外线：' + lifestyle[5].brf);
+            } else {
+                $('#weatherBox .uv_index').html('<i class="wi wi-umbrella theme-m"></i>紫外线：' + daily_forecast[0].uv_index + '级');
+            }
+            $('#weatherBox .sr').html('<i class="wi wi-sunrise theme-m"></i>日升：' + daily_forecast[0].sr);
+            $('#weatherBox .ss').html('<i class="wi wi-sunset theme-m"></i>日落：' + daily_forecast[0].ss);
+            $('#weatherBox .mr').html('<i class="wi wi-moonrise theme-m"></i>月升：' + daily_forecast[0].mr);
+            $('#weatherBox .ms').html('<i class="wi wi-moonset theme-m"></i>月落：' + daily_forecast[0].ms);
+            $('#weatherBox .today').html('<span>今天</span><span class="icon"><i class="wi ' + getWeatherInfoIcon(8, daily_forecast[0].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherInfoIcon(20, daily_forecast[0].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[0].tmp_min + '℃ ~ ' + daily_forecast[0].tmp_max + '℃</span><span>日：' + daily_forecast[0].cond_txt_d + '</span><span>夜：' + daily_forecast[0].cond_txt_n + '</span>');
+            $('#weatherBox .tomorrow').html('<span>明天</span><span class="icon"><i class="wi ' + getWeatherInfoIcon(8, daily_forecast[1].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherInfoIcon(20, daily_forecast[1].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[1].tmp_min + '℃ ~ ' + daily_forecast[1].tmp_max + '℃</span><span>日：' + daily_forecast[1].cond_txt_d + '</span><span>夜：' + daily_forecast[1].cond_txt_n + '</span>');
+            $('#weatherBox .after_tomorrow').html('<span>后天</span><span class="icon"><i class="wi ' + getWeatherInfoIcon(8, daily_forecast[2].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherInfoIcon(20, daily_forecast[2].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[2].tmp_min + '℃ ~ ' + daily_forecast[2].tmp_max + '℃</span><span>日：' + daily_forecast[2].cond_txt_d + '</span><span>夜：' + daily_forecast[2].cond_txt_n + '</span>');
+        },
+        error: function (res) {
+            alertMsg('获取天气数据出错！', 'error');
+        }
+    });
+}
+
+function getWeatherInfoIcon(time, weatherCode) {
+    if (time >= 6 && time < 18) {
+        if (weatherCode === '100') {
+            return 'wi-day-sunny';
+        } else if (weatherCode === '101') {
+            return 'wi-cloudy';
+        } else if (weatherCode === '102') {
+            return 'wi-day-sunny-overcast';
+        } else if (weatherCode === '103') {
+            return 'wi-day-cloudy';
+        } else if (weatherCode === '104') {
+            return 'wi-cloud';
+        } else if (weatherCode === '200') {
+            return 'wi-windy';
+        } else if (weatherCode === '201') {
+            return 'wi-day-cloudy-windy';
+        } else if (weatherCode === '202') {
+            return 'wi-cloudy-windy';
+        } else if (weatherCode === '203') {
+            return 'wi-day-cloudy-gusts';
+        } else if (weatherCode === '204') {
+            return 'wi-cloudy-gusts';
+        } else if (weatherCode === '205') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '206') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '207') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '208') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '209') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '210') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '211') {
+            return 'wi-hurricane';
+        } else if (weatherCode === '212') {
+            return 'wi-tornado';
+        } else if (weatherCode === '213') {
+            return 'wi-hurricane';
+        } else if (weatherCode === '300') {
+            return 'wi-day-sprinkle';
+        } else if (weatherCode === '301') {
+            return 'wi-day-showers';
+        } else if (weatherCode === '302') {
+            return 'wi-day-storm-showers';
+        } else if (weatherCode === '303') {
+            return 'wi-storm-showers';
+        } else if (weatherCode === '304') {
+            return 'wi-day-sleet-storm';
+        } else if (weatherCode === '305') {
+            return 'wi-day-rain';
+        } else if (weatherCode === '306') {
+            return 'wi-showers';
+        } else if (weatherCode === '307') {
+            return 'wi-hail';
+        } else if (weatherCode === '308') {
+            return 'wi-rain-wind';
+        } else if (weatherCode === '309') {
+            return 'wi-raindrops';
+        } else if (weatherCode === '310') {
+            return 'wi-rain';
+        } else if (weatherCode === '311') {
+            return 'wi-rain';
+        } else if (weatherCode === '312') {
+            return 'wi-rain';
+        } else if (weatherCode === '313') {
+            return 'wi-sleet';
+        } else if (weatherCode === '314') {
+            return 'wi-showers';
+        } else if (weatherCode === '315') {
+            return 'wi-hail';
+        } else if (weatherCode === '316') {
+            return 'wi-rain';
+        } else if (weatherCode === '317') {
+            return 'wi-rain';
+        } else if (weatherCode === '318') {
+            return 'wi-rain';
+        } else if (weatherCode === '399') {
+            return 'wi-raindrop';
+        } else if (weatherCode === '400') {
+            return 'wi-day-snow-wind';
+        } else if (weatherCode === '401') {
+            return 'wi-snow';
+        } else if (weatherCode === '402') {
+            return 'wi-snow-wind';
+        } else if (weatherCode === '403') {
+            return 'wi-snow-wind';
+        } else if (weatherCode === '404') {
+            return 'wi-rain-mix';
+        } else if (weatherCode === '405') {
+            return 'wi-rain-mix';
+        } else if (weatherCode === '406') {
+            return 'wi-day-snow-thunderstorm';
+        } else if (weatherCode === '407') {
+            return 'wi-day-snow';
+        } else if (weatherCode === '408') {
+            return 'wi-snow';
+        } else if (weatherCode === '409') {
+            return 'wi-snow-wind';
+        } else if (weatherCode === '410') {
+            return 'wi-snow-wind';
+        } else if (weatherCode === '499') {
+            return 'wi-snowflake-cold';
+        } else if (weatherCode === '500') {
+            return 'wi-day-fog';
+        } else if (weatherCode === '501') {
+            return 'wi-day-fog';
+        } else if (weatherCode === '502') {
+            return 'wi-smoke';
+        } else if (weatherCode === '503') {
+            return 'wi-dust';
+        } else if (weatherCode === '504') {
+            return 'wi-dust';
+        } else if (weatherCode === '507') {
+            return 'wi-sandstorm';
+        } else if (weatherCode === '508') {
+            return 'wi-sandstorm';
+        } else if (weatherCode === '509') {
+            return 'wi-fog';
+        } else if (weatherCode === '510') {
+            return 'wi-fog';
+        } else if (weatherCode === '511') {
+            return 'wi-smog';
+        } else if (weatherCode === '512') {
+            return 'wi-smog';
+        } else if (weatherCode === '513') {
+            return 'wi-smog';
+        } else if (weatherCode === '514') {
+            return 'wi-fog';
+        } else if (weatherCode === '515') {
+            return 'wi-fog';
+        } else if (weatherCode === '900') {
+            return 'wi-hot';
+        } else if (weatherCode === '901') {
+            return 'wi-snowflake-cold';
+        } else if (weatherCode === '999') {
+            return 'wi-na';
+        } else {
+            return 'wi-na';
+        }
+    } else {
+        if (weatherCode === '100') {
+            return 'wi-night-clear';
+        } else if (weatherCode === '101') {
+            return 'wi-cloudy';
+        } else if (weatherCode === '102') {
+            return 'wi-night-alt-partly-cloudy';
+        } else if (weatherCode === '103') {
+            return 'wi-night-alt-cloudy';
+        } else if (weatherCode === '104') {
+            return 'wi-cloud';
+        } else if (weatherCode === '200') {
+            return 'wi-windy';
+        } else if (weatherCode === '201') {
+            return 'wi-night-alt-cloudy-windy';
+        } else if (weatherCode === '202') {
+            return 'wi-cloudy-windy';
+        } else if (weatherCode === '203') {
+            return 'wi-night-alt-cloudy-gusts';
+        } else if (weatherCode === '204') {
+            return 'wi-cloudy-gusts';
+        } else if (weatherCode === '205') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '206') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '207') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '208') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '209') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '210') {
+            return 'wi-strong-wind';
+        } else if (weatherCode === '211') {
+            return 'wi-hurricane';
+        } else if (weatherCode === '212') {
+            return 'wi-tornado';
+        } else if (weatherCode === '213') {
+            return 'wi-hurricane';
+        } else if (weatherCode === '300') {
+            return 'wi-night-alt-sprinkle';
+        } else if (weatherCode === '301') {
+            return 'wi-night-alt-showers';
+        } else if (weatherCode === '302') {
+            return 'wi-night-alt-storm-showers';
+        } else if (weatherCode === '303') {
+            return 'wi-storm-showers';
+        } else if (weatherCode === '304') {
+            return 'wi-night-alt-sleet-storm';
+        } else if (weatherCode === '305') {
+            return 'wi-night-alt-rain';
+        } else if (weatherCode === '306') {
+            return 'wi-showers';
+        } else if (weatherCode === '307') {
+            return 'wi-hail';
+        } else if (weatherCode === '308') {
+            return 'wi-rain-wind';
+        } else if (weatherCode === '309') {
+            return 'wi-raindrops';
+        } else if (weatherCode === '310') {
+            return 'wi-rain';
+        } else if (weatherCode === '311') {
+            return 'wi-rain';
+        } else if (weatherCode === '312') {
+            return 'wi-rain';
+        } else if (weatherCode === '313') {
+            return 'wi-sleet';
+        } else if (weatherCode === '314') {
+            return 'wi-showers';
+        } else if (weatherCode === '315') {
+            return 'wi-hail';
+        } else if (weatherCode === '316') {
+            return 'wi-rain';
+        } else if (weatherCode === '317') {
+            return 'wi-rain';
+        } else if (weatherCode === '318') {
+            return 'wi-rain';
+        } else if (weatherCode === '399') {
+            return 'wi-raindrop';
+        } else if (weatherCode === '400') {
+            return 'wi-night-alt-snow-wind';
+        } else if (weatherCode === '401') {
+            return 'wi-snow';
+        } else if (weatherCode === '402') {
+            return 'wi-snow-wind';
+        } else if (weatherCode === '403') {
+            return 'wi-snow-wind';
+        } else if (weatherCode === '404') {
+            return 'wi-rain-mix';
+        } else if (weatherCode === '405') {
+            return 'wi-rain-mix';
+        } else if (weatherCode === '406') {
+            return 'wi-night-alt-snow-thunderstorm';
+        } else if (weatherCode === '407') {
+            return 'wi-night-alt-snow';
+        } else if (weatherCode === '408') {
+            return 'wi-snow';
+        } else if (weatherCode === '409') {
+            return 'wi-snow-wind';
+        } else if (weatherCode === '410') {
+            return 'wi-snow-wind';
+        } else if (weatherCode === '499') {
+            return 'wi-snowflake-cold';
+        } else if (weatherCode === '500') {
+            return 'wi-night-fog';
+        } else if (weatherCode === '501') {
+            return 'wi-night-fog';
+        } else if (weatherCode === '502') {
+            return 'wi-smoke';
+        } else if (weatherCode === '503') {
+            return 'wi-dust';
+        } else if (weatherCode === '504') {
+            return 'wi-dust';
+        } else if (weatherCode === '507') {
+            return 'wi-sandstorm';
+        } else if (weatherCode === '508') {
+            return 'wi-sandstorm';
+        } else if (weatherCode === '509') {
+            return 'wi-fog';
+        } else if (weatherCode === '510') {
+            return 'wi-fog';
+        } else if (weatherCode === '511') {
+            return 'wi-smog';
+        } else if (weatherCode === '512') {
+            return 'wi-smog';
+        } else if (weatherCode === '513') {
+            return 'wi-smog';
+        } else if (weatherCode === '514') {
+            return 'wi-fog';
+        } else if (weatherCode === '515') {
+            return 'wi-fog';
+        } else if (weatherCode === '900') {
+            return 'wi-hot';
+        } else if (weatherCode === '901') {
+            return 'wi-snowflake-cold';
+        } else if (weatherCode === '999') {
+            return 'wi-na';
+        } else {
+            return 'wi-na';
+        }
     }
 }
 

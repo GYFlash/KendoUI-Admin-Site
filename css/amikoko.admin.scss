@@ -355,7 +355,7 @@ iframe#section {
         @include nav-menu-small;
         display: inline-block;
         font-family: tahoma, sans-serif;
-        -webkit-transform: scale(0.916);
+        -webkit-transform: scale(.916);
         -moz-transform: none;
         -ms-transform: none;
     }
@@ -624,7 +624,7 @@ iframe#section {
         font-size: 12px;
         line-height: 20px;
         text-align: center;
-        transform: scale(0.8);
+        transform: scale(.8);
     }
     small {
         @include nav-menu-small;
@@ -1236,6 +1236,123 @@ iframe#section {
     bottom: 72px;
 }
 
+#weatherBox {
+    .skeleton {
+        display: inline-block;
+        width: 100%;
+        height: $font-size-xxl;
+        background-image: linear-gradient(to right, #ddd 0%, #ccc 25%, #ddd 50%, #ccc 75%, #ddd 100%);
+        background-size: 200% 100%;
+        animation: streamer 2s linear infinite;
+        vertical-align: middle;
+    }
+    .skeleton-round {
+        border-radius: $border-radius-round;
+        width: 100px;
+        height: 100px;
+    }
+    .card-header {
+        font-size: $font-size-m;
+        text-align: center;
+        .fas {
+            margin-right: .5rem;
+            font-size: $font-size-xxl;
+            vertical-align: middle;
+        }
+        .flag-icon {
+            margin-left: .5rem;
+            font-size: $font-size-xxl;
+            vertical-align: top;
+        }
+        .loc {
+            display: inline-block;
+            min-width: 60%;
+            height: $font-size-xxl;
+            vertical-align: middle;
+        }
+    }
+    .card-body {
+        padding-bottom: .75rem;
+        .row {
+            .skeleton {
+                width: 60%;
+            }
+            .col-6 {
+                margin-bottom: .5rem;
+                .wi {
+                    margin-right: .5rem;
+                    width: 20px;
+                    text-align: center;
+                }
+            }
+            .col-6:last-child {
+                padding-left: 0;
+            }
+        }
+        time {
+            display: block;
+            margin-bottom: .5rem;
+            font-size: $font-size-s;
+            text-align: center;
+            color: #999;
+        }
+        .tmp {
+            font-family: arial, sans-serif;
+            font-size: 6rem;
+            font-weight: 400;
+            line-height: 1em;
+        }
+        .wi-celsius {
+            font-size: 4rem;
+        }
+        .cond_txt {
+            align-self: flex-end;
+            margin-left: -2rem;
+            margin-bottom: .6rem;
+            min-width: 2em;
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+        .cond_code {
+            margin-left: auto;
+            font-size: 5rem;
+            line-height: 1.2em;
+        }
+        .air {
+            margin-bottom: .8rem;
+            text-align: center;
+            .badge {
+                margin-left: .5rem;
+                font-weight: normal;
+            }
+        }
+    }
+    .card-footer {
+        font-size: $font-size-s;
+        .skeleton {
+            height: 80px;
+        }
+        .col-4 {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            .icon {
+                padding: 1rem 0;
+            }
+            i.theme-m {
+                margin-right: .25rem;
+                max-width: 36px;
+                font-size: 30px;
+            }
+            i.theme-s {
+                margin-left: .25rem;
+                max-width: 24px;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
 #lunar {
     bottom: 132px;
 }
@@ -1328,6 +1445,8 @@ iframe#section {
     }
 
     #bot,
+    #weather,
+    #lunar,
     #goTop {
         right: 15px;
     }
@@ -1790,7 +1909,7 @@ form {
     }
     div.k-tooltip-validation {
         flex-direction: row;
-        margin: 0.5em 0 0 0 !important;
+        margin: .5em 0 0 0 !important;
         .k-icon {
             margin-right: 4px;
         }
