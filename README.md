@@ -469,6 +469,7 @@ ROOT/·····································�
 * 骨架屏 <small>[ Skeleton ]</small> ✔️
 * 聊天机器人 <small>[ Bot ]</small> ✔️
 * 天气预报 <small>[ Weather Forecast ]</small>
+* 万年历 <small>[ Perpetual Calendar ]</small>
 * 回到顶部 <small>[ Go Top ]</small> ✔️
 
 #### 顶部菜单 <small>[ Menu ]</small>

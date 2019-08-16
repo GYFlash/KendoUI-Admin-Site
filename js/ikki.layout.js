@@ -227,6 +227,9 @@ $(function () {
             }
         );
     }
+    // 万年历
+    $('body').append('<button class="k-button k-state-selected" id="lunar" onclick="getLunar();"><i class="fas fa-calendar-alt"></i></button>');
+    tipMsg($('#lunar'), '万年历', 'left');
     // 回到顶部
     $('#section').append('<button class="k-button k-state-selected" id="goTop"><i class="fas fa-arrow-up"></i></button>').scroll(function () {
         if ($(this).scrollTop() > 800) {
@@ -1479,4 +1482,63 @@ function isHoliday(date, dates) {
         }
     }
     return false;
+}
+
+// 万年历
+function getLunar() {
+    var today = new Date(),
+        lunar = lunarData.solar2lunar(today.getFullYear(), (today.getMonth() + 1), today.getDate()),
+        divWindow = $('<div class="window-box" id="lunarBox"></div>').kendoWindow({
+            animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
+            title: '万年历',
+            width: 800,
+            modal: true,
+            pinned: true,
+            resizable: false,
+            open: function () {
+                $('#perpetualCalendar').kendoCalendar({
+                    footer: false,
+                    month: {
+                        content:
+                            '# var lunar = lunarData.solar2lunar(data.date.getFullYear(), (data.date.getMonth() + 1), data.date.getDate()) #' +
+                            '<div class="d-flex flex-column">' +
+                                '#= data.value #' +
+                                '<small class="text-nowrap">' +
+                                '# if (lunar.lunarFestival) { #' +
+                                    '<span class="festival rounded px-1">#= lunar.lunarFestival #</span>' +
+                                '# } else if (lunar.solarFestival) { #' +
+                                    '<span class="festival rounded px-1">#= lunar.solarFestival #</span>' +
+                                '# } else if (lunar.isTerm) { #' +
+                                    '<span class="theme-m-box rounded px-1">#= lunar.term #</span>' +
+                                '# } else if (lunar.lunarDay === 1) { #' +
+                                    '<span class="theme-s-box rounded px-1">#= lunar.lunarMonthCn #</span>' +
+                                '# } else { #' +
+                                    '#= lunar.lunarDayCn #' +
+                                '# } #' +
+                                '</small>' +
+                            '</div>'
+                    },
+                    value: new Date()
+                });
+            },
+            close: function () {
+                divWindow.destroy();
+            }
+        }).data('kendoWindow'),
+        lunarHtml =
+            '<div class="card">' +
+                '<div class="row no-gutters">' +
+                    '<div class="col-md-4 theme-m-bg">' +
+                        '<div>' + kendo.toString(today, "yyyy年MM月 dddd") + '</div>' +
+                        '<div class="today">' + kendo.toString(today, "dd") + '</div>' +
+                        '<div>' + lunar.lunarMonthCn + lunar.lunarDayCn + '</div>' +
+                        '<div>' + lunar.gzYear + '年【' + lunar.zodiac + '年】</div>' +
+                        '<div>' + lunar.gzMonth + '月 ' + lunar.gzDay + '日</div>' +
+                    '</div>' +
+                    '<div class="col-md-8">' +
+                        '<div id="perpetualCalendar"></div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+    divWindow.content(lunarHtml).center().open();
 }

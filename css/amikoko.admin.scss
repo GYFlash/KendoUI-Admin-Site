@@ -1357,6 +1357,49 @@ iframe#section {
     bottom: 132px;
 }
 
+#lunarBox {
+    .card {
+        border: 0;
+        .row {
+            & > div {
+                height: 400px;
+            }
+            & > div:first-child {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                font-size: 1.5rem;
+                & > div {
+                    margin-top: .5rem;
+                    margin-bottom: .5rem;
+                }
+            }
+            .today {
+                font-family: arial, sans-serif;
+                font-size: 10rem;
+                font-weight: 400;
+                line-height: 1em;
+            }
+        }
+    }
+    .k-calendar {
+        height: 400px;
+        .k-calendar-view {
+            height: 24em;
+            .k-link {
+                height: 100%;
+            }
+            .festival {
+                border-color: #f35800;
+                background-color: #fff;
+                color: #f35800;
+            }
+        }
+    }
+}
+
 #goTop {
     display: none;
     bottom: 192px;
