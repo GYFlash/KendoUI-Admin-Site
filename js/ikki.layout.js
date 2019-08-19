@@ -224,45 +224,45 @@ $(function () {
                 weatherTime = res.update_time.substr(0, 2);
             if (weatherTime >= 6 && weatherTime < 18) {
                 if (weatherImg === 'qing') {
-                    $('#weather').html('<i class="wi wi-day-sunny"></i>');
+                    $('#weather').html('<i class="fas fa-sun"></i>');
                 } else if (weatherImg === 'yun') {
-                    $('#weather').html('<i class="wi wi-day-cloudy"></i>');
+                    $('#weather').html('<i class="fas fa-cloud-sun"></i>');
                 } else if (weatherImg === 'yin') {
-                    $('#weather').html('<i class="wi wi-cloud"></i>');
+                    $('#weather').html('<i class="fas fa-cloud"></i>');
                 } else if (weatherImg === 'yu') {
-                    $('#weather').html('<i class="wi wi-day-rain"></i>');
+                    $('#weather').html('<i class="fas fa-cloud-sun-rain"></i>');
                 } else if (weatherImg === 'lei') {
-                    $('#weather').html('<i class="wi wi-day-lightning"></i>');
+                    $('#weather').html('<i class="fas fa-bolt"></i>');
                 } else if (weatherImg === 'bingbao') {
-                    $('#weather').html('<i class="wi wi-day-hail"></i>');
+                    $('#weather').html('<i class="fas fa-cloud-meatball"></i>');
                 } else if (weatherImg === 'xue') {
-                    $('#weather').html('<i class="wi wi-day-snow"></i>');
+                    $('#weather').html('<i class="fas fa-snowflake"></i>');
                 } else if (weatherImg === 'wu') {
-                    $('#weather').html('<i class="wi wi-day-fog"></i>');
+                    $('#weather').html('<i class="fas fa-smog"></i>');
                 } else if (weatherImg === 'shachen') {
-                    $('#weather').html('<i class="wi wi-sandstorm"></i>');
+                    $('#weather').html('<i class="fas fa-wind"></i>');
                 } else {
                     $('#weather').html('<i class="wi wi-na"></i>');
                 }
             } else {
                 if (weatherImg === 'qing') {
-                    $('#weather').html('<i class="wi wi-night-clear"></i>');
+                    $('#weather').html('<i class="fas fa-moon"></i>');
                 } else if (weatherImg === 'yun') {
-                    $('#weather').html('<i class="wi wi-night-alt-cloudy"></i>');
+                    $('#weather').html('<i class="fas fa-cloud-moon"></i>');
                 } else if (weatherImg === 'yin') {
-                    $('#weather').html('<i class="wi wi-cloud"></i>');
+                    $('#weather').html('<i class="fas fa-cloud"></i>');
                 } else if (weatherImg === 'yu') {
-                    $('#weather').html('<i class="wi wi-night-alt-rain"></i>');
+                    $('#weather').html('<i class="fas fa-cloud-moon-rain"></i>');
                 } else if (weatherImg === 'lei') {
-                    $('#weather').html('<i class="wi wi-night-alt-lightning"></i>');
+                    $('#weather').html('<i class="fas fa-bolt"></i>');
                 } else if (weatherImg === 'bingbao') {
-                    $('#weather').html('<i class="wi wi-night-alt-hail"></i>');
+                    $('#weather').html('<i class="fas fa-cloud-meatball"></i>');
                 } else if (weatherImg === 'xue') {
-                    $('#weather').html('<i class="wi wi-night-alt-snow"></i>');
+                    $('#weather').html('<i class="fas fa-snowflake"></i>');
                 } else if (weatherImg === 'wu') {
-                    $('#weather').html('<i class="wi wi-night-fog"></i>');
+                    $('#weather').html('<i class="fas fa-smog"></i>');
                 } else if (weatherImg === 'shachen') {
-                    $('#weather').html('<i class="wi wi-sandstorm"></i>');
+                    $('#weather').html('<i class="fas fa-wind"></i>');
                 } else {
                     $('#weather').html('<i class="wi wi-na"></i>');
                 }
