@@ -212,21 +212,66 @@ $(function () {
     // 天气预报
     $('body').append('<button class="k-button k-state-selected" id="weather" onclick="getWeather();"><i class="wi wi-na"></i></button>');
     tipMsg($('#weather'), '天气预报', 'left');
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                getWeatherIcon(position.coords.latitude + ':' + position.coords.longitude);
-            },
-            function (positionError) {
-                getWeatherIcon('ip');
-            },
-            {
-                enableHighAcuracy: true,
-                maximumAge: 86400000,
-                timeout: 3000
+    $.ajax({
+        type: 'get',
+        data: {
+            version: 'v6'
+        },
+        url: 'https://www.tianqiapi.com/api/',
+        dataType: 'json',
+        success: function (res) {
+            var weatherImg = res.wea_img,
+                weatherTime = res.update_time.substr(0, 2);
+            if (weatherTime >= 6 && weatherTime < 18) {
+                if (weatherImg === 'qing') {
+                    $('#weather').html('<i class="wi wi-day-sunny"></i>');
+                } else if (weatherImg === 'yun') {
+                    $('#weather').html('<i class="wi wi-day-cloudy"></i>');
+                } else if (weatherImg === 'yin') {
+                    $('#weather').html('<i class="wi wi-cloud"></i>');
+                } else if (weatherImg === 'yu') {
+                    $('#weather').html('<i class="wi wi-day-rain"></i>');
+                } else if (weatherImg === 'lei') {
+                    $('#weather').html('<i class="wi wi-day-lightning"></i>');
+                } else if (weatherImg === 'bingbao') {
+                    $('#weather').html('<i class="wi wi-day-hail"></i>');
+                } else if (weatherImg === 'xue') {
+                    $('#weather').html('<i class="wi wi-day-snow"></i>');
+                } else if (weatherImg === 'wu') {
+                    $('#weather').html('<i class="wi wi-day-fog"></i>');
+                } else if (weatherImg === 'shachen') {
+                    $('#weather').html('<i class="wi wi-sandstorm"></i>');
+                } else {
+                    $('#weather').html('<i class="wi wi-na"></i>');
+                }
+            } else {
+                if (weatherImg === 'qing') {
+                    $('#weather').html('<i class="wi wi-night-clear"></i>');
+                } else if (weatherImg === 'yun') {
+                    $('#weather').html('<i class="wi wi-night-alt-cloudy"></i>');
+                } else if (weatherImg === 'yin') {
+                    $('#weather').html('<i class="wi wi-cloud"></i>');
+                } else if (weatherImg === 'yu') {
+                    $('#weather').html('<i class="wi wi-night-alt-rain"></i>');
+                } else if (weatherImg === 'lei') {
+                    $('#weather').html('<i class="wi wi-night-alt-lightning"></i>');
+                } else if (weatherImg === 'bingbao') {
+                    $('#weather').html('<i class="wi wi-night-alt-hail"></i>');
+                } else if (weatherImg === 'xue') {
+                    $('#weather').html('<i class="wi wi-night-alt-snow"></i>');
+                } else if (weatherImg === 'wu') {
+                    $('#weather').html('<i class="wi wi-night-fog"></i>');
+                } else if (weatherImg === 'shachen') {
+                    $('#weather').html('<i class="wi wi-sandstorm"></i>');
+                } else {
+                    $('#weather').html('<i class="wi wi-na"></i>');
+                }
             }
-        );
-    }
+        },
+        error: function (res) {
+            alertMsg('获取天气数据出错！', 'error');
+        }
+    });
     // 万年历
     $('body').append('<button class="k-button k-state-selected" id="lunar" onclick="getLunar();"><i class="fas fa-calendar-alt"></i></button>');
     tipMsg($('#lunar'), '万年历', 'left');
@@ -489,107 +534,6 @@ function logout() {
 }
 
 // 天气预报
-function getWeatherIcon(location) {
-    $.ajax({
-        type: 'get',
-        data: {
-            key: '4r9bergjetiv1tsd', // 请替换成自己的 Key
-            location: location
-        },
-        url: 'https://api.seniverse.com/v3/weather/now.json',
-        dataType: 'json',
-        success: function (res) {
-            var weatherCode = res.results[0].now.code;
-            if (weatherCode === '0') {
-                $('#weather').html('<i class="wi wi-day-sunny"></i>');
-            } else if (weatherCode === '1') {
-                $('#weather').html('<i class="wi wi-night-clear"></i>');
-            } else if (weatherCode === '2') {
-                $('#weather').html('<i class="wi wi-day-sunny"></i>');
-            } else if (weatherCode === '3') {
-                $('#weather').html('<i class="wi wi-night-clear"></i>');
-            } else if (weatherCode === '4') {
-                $('#weather').html('<i class="wi wi-cloudy"></i>');
-            } else if (weatherCode === '5') {
-                $('#weather').html('<i class="wi wi-day-cloudy"></i>');
-            } else if (weatherCode === '6') {
-                $('#weather').html('<i class="wi wi-night-alt-cloudy"></i>');
-            } else if (weatherCode === '7') {
-                $('#weather').html('<i class="wi wi-day-cloudy"></i>');
-            } else if (weatherCode === '8') {
-                $('#weather').html('<i class="wi wi-night-alt-cloudy"></i>');
-            } else if (weatherCode === '9') {
-                $('#weather').html('<i class="wi wi-cloud"></i>');
-            } else if (weatherCode === '10') {
-                $('#weather').html('<i class="wi wi-day-showers"></i>');
-            } else if (weatherCode === '11') {
-                $('#weather').html('<i class="wi wi-day-storm-showers"></i>');
-            } else if (weatherCode === '12') {
-                $('#weather').html('<i class="wi wi-day-sleet-storm"></i>');
-            } else if (weatherCode === '13') {
-                $('#weather').html('<i class="wi wi-day-sprinkle"></i>');
-            } else if (weatherCode === '14') {
-                $('#weather').html('<i class="wi wi-sprinkle"></i>');
-            } else if (weatherCode === '15') {
-                $('#weather').html('<i class="wi wi-showers"></i>');
-            } else if (weatherCode === '16') {
-                $('#weather').html('<i class="wi wi-hail"></i>');
-            } else if (weatherCode === '17') {
-                $('#weather').html('<i class="wi wi-rain-wind"></i>');
-            } else if (weatherCode === '18') {
-                $('#weather').html('<i class="wi wi-rain"></i>');
-            } else if (weatherCode === '19') {
-                $('#weather').html('<i class="wi wi-sleet"></i>');
-            } else if (weatherCode === '20') {
-                $('#weather').html('<i class="wi wi-rain-mix"></i>');
-            } else if (weatherCode === '21') {
-                $('#weather').html('<i class="wi wi-day-snow"></i>');
-            } else if (weatherCode === '22') {
-                $('#weather').html('<i class="wi wi-snow"></i>');
-            } else if (weatherCode === '23') {
-                $('#weather').html('<i class="wi wi-snow"></i>');
-            } else if (weatherCode === '24') {
-                $('#weather').html('<i class="wi wi-snow-wind"></i>');
-            } else if (weatherCode === '25') {
-                $('#weather').html('<i class="wi wi-snow-wind"></i>');
-            } else if (weatherCode === '26') {
-                $('#weather').html('<i class="wi wi-dust"></i>');
-            } else if (weatherCode === '27') {
-                $('#weather').html('<i class="wi wi-dust"></i>');
-            } else if (weatherCode === '28') {
-                $('#weather').html('<i class="wi wi-sandstorm"></i>');
-            } else if (weatherCode === '29') {
-                $('#weather').html('<i class="wi wi-sandstorm"></i>');
-            } else if (weatherCode === '30') {
-                $('#weather').html('<i class="wi wi-day-fog"></i>');
-            } else if (weatherCode === '31') {
-                $('#weather').html('<i class="wi wi-day-haze"></i>');
-            } else if (weatherCode === '32') {
-                $('#weather').html('<i class="wi wi-windy"></i>');
-            } else if (weatherCode === '33') {
-                $('#weather').html('<i class="wi wi-strong-wind"></i>');
-            } else if (weatherCode === '34') {
-                $('#weather').html('<i class="wi wi-hurricane"></i>');
-            } else if (weatherCode === '35') {
-                $('#weather').html('<i class="wi wi-hurricane"></i>');
-            } else if (weatherCode === '36') {
-                $('#weather').html('<i class="wi wi-tornado"></i>');
-            } else if (weatherCode === '37') {
-                $('#weather').html('<i class="wi wi-snowflake-cold"></i>');
-            } else if (weatherCode === '38') {
-                $('#weather').html('<i class="wi wi-hot"></i>');
-            } else if (weatherCode === '99') {
-                $('#weather').html('<i class="wi wi-na"></i>');
-            } else {
-                $('#weather').html('<i class="wi wi-na"></i>');
-            }
-        },
-        error: function (res) {
-            alertMsg('获取天气数据出错！', 'error');
-        }
-    });
-}
-
 function getWeather() {
     var divWindow = $('<div class="window-box" id="weatherBox"></div>').kendoWindow({
         animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
@@ -683,7 +627,7 @@ function getWeatherInfo(location) {
             $('#weatherBox time').html('更新于：' + update.loc);
             $('#weatherBox .tmp').html(now.tmp);
             $('#weatherBox .cond_txt').html(now.cond_txt);
-            $('#weatherBox .cond_code').removeClass('wi-na').addClass(getWeatherInfoIcon(kendo.toString(kendo.parseDate(update.loc), 'HH'), weatherCode));
+            $('#weatherBox .cond_code').removeClass('wi-na').addClass(getWeatherIcon(kendo.toString(kendo.parseDate(update.loc), 'HH'), weatherCode));
             if (lifestyle) {
                 $.ajax({
                     type: 'get',
@@ -726,9 +670,9 @@ function getWeatherInfo(location) {
             $('#weatherBox .ss').html('<i class="wi wi-sunset theme-m"></i>日落：' + daily_forecast[0].ss);
             $('#weatherBox .mr').html('<i class="wi wi-moonrise theme-m"></i>月升：' + daily_forecast[0].mr);
             $('#weatherBox .ms').html('<i class="wi wi-moonset theme-m"></i>月落：' + daily_forecast[0].ms);
-            $('#weatherBox .today').html('<span>今天</span><span class="icon"><i class="wi ' + getWeatherInfoIcon(8, daily_forecast[0].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherInfoIcon(20, daily_forecast[0].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[0].tmp_min + '℃ ~ ' + daily_forecast[0].tmp_max + '℃</span><span>日：' + daily_forecast[0].cond_txt_d + '</span><span>夜：' + daily_forecast[0].cond_txt_n + '</span>');
-            $('#weatherBox .tomorrow').html('<span>明天</span><span class="icon"><i class="wi ' + getWeatherInfoIcon(8, daily_forecast[1].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherInfoIcon(20, daily_forecast[1].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[1].tmp_min + '℃ ~ ' + daily_forecast[1].tmp_max + '℃</span><span>日：' + daily_forecast[1].cond_txt_d + '</span><span>夜：' + daily_forecast[1].cond_txt_n + '</span>');
-            $('#weatherBox .after_tomorrow').html('<span>后天</span><span class="icon"><i class="wi ' + getWeatherInfoIcon(8, daily_forecast[2].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherInfoIcon(20, daily_forecast[2].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[2].tmp_min + '℃ ~ ' + daily_forecast[2].tmp_max + '℃</span><span>日：' + daily_forecast[2].cond_txt_d + '</span><span>夜：' + daily_forecast[2].cond_txt_n + '</span>');
+            $('#weatherBox .today').html('<span>今天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[0].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[0].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[0].tmp_min + '℃ ~ ' + daily_forecast[0].tmp_max + '℃</span><span>日：' + daily_forecast[0].cond_txt_d + '</span><span>夜：' + daily_forecast[0].cond_txt_n + '</span>');
+            $('#weatherBox .tomorrow').html('<span>明天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[1].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[1].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[1].tmp_min + '℃ ~ ' + daily_forecast[1].tmp_max + '℃</span><span>日：' + daily_forecast[1].cond_txt_d + '</span><span>夜：' + daily_forecast[1].cond_txt_n + '</span>');
+            $('#weatherBox .after_tomorrow').html('<span>后天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[2].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[2].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[2].tmp_min + '℃ ~ ' + daily_forecast[2].tmp_max + '℃</span><span>日：' + daily_forecast[2].cond_txt_d + '</span><span>夜：' + daily_forecast[2].cond_txt_n + '</span>');
         },
         error: function (res) {
             alertMsg('获取天气数据出错！', 'error');
@@ -736,7 +680,7 @@ function getWeatherInfo(location) {
     });
 }
 
-function getWeatherInfoIcon(time, weatherCode) {
+function getWeatherIcon(time, weatherCode) {
     if (time >= 6 && time < 18) {
         if (weatherCode === '100') {
             return 'wi-day-sunny';
