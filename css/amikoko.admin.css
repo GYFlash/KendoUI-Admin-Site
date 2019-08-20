@@ -1118,7 +1118,7 @@ iframe#section {
 #lunarBox .card {
   border: 0; }
   #lunarBox .card .row > div {
-    height: 400px; }
+    height: 408px; }
   #lunarBox .card .row > div:first-child {
     display: -ms-flexbox;
     display: flex;
@@ -1133,18 +1133,27 @@ iframe#section {
     #lunarBox .card .row > div:first-child > div {
       margin-top: .5rem;
       margin-bottom: .5rem; }
-  #lunarBox .card .row .today {
-    font-family: arial, sans-serif;
-    font-size: 10rem;
-    font-weight: 400;
-    line-height: 1em; }
+      #lunarBox .card .row > div:first-child > div span {
+        display: inline-block;
+        margin: 0 .5rem; }
+    #lunarBox .card .row > div:first-child .day {
+      border-radius: 10px;
+      padding: 0 1rem .5rem 1rem;
+      font-family: verdana, sans-serif;
+      font-size: 10rem;
+      font-weight: 400;
+      line-height: 1em; }
+    #lunarBox .card .row > div:first-child .week,
+    #lunarBox .card .row > div:first-child .festival,
+    #lunarBox .card .row > div:first-child .lunarYear {
+      font-size: 1.2rem; }
 #lunarBox .k-calendar,
 #lunarBox .k-calendar-view,
 #lunarBox .k-calendar-view > table,
 #lunarBox .k-calendar-view .k-link {
   width: 100%; }
 #lunarBox .k-calendar {
-  height: 400px; }
+  height: 408px; }
   #lunarBox .k-calendar .k-calendar-view {
     height: 24em; }
     #lunarBox .k-calendar .k-calendar-view > table,
@@ -1220,7 +1229,25 @@ iframe#section {
   #weather,
   #lunar,
   #goTop {
-    right: 15px; } }
+    right: 15px; }
+
+  #lunarBox .card .row > div:first-child {
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    height: 80px;
+    font-size: 1rem; }
+    #lunarBox .card .row > div:first-child > div {
+      margin: 0 .5rem; }
+    #lunarBox .card .row > div:first-child .day {
+      border-radius: 4px;
+      padding: .1rem .5rem;
+      font-size: 1.5rem; }
+    #lunarBox .card .row > div:first-child .week,
+    #lunarBox .card .row > div:first-child .festival,
+    #lunarBox .card .row > div:first-child .lunarYear {
+      font-size: 1rem; } }
 /* Bootstrap 细节完善 ------------------------------ */
 .k-ie10 .hide,
 .k-ie11 .hide,

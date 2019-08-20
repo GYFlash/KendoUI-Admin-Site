@@ -1430,18 +1430,17 @@ function isHoliday(date, dates) {
 
 // 万年历
 function getLunar() {
-    var today = new Date(),
-        lunar = lunarData.solar2lunar(today.getFullYear(), (today.getMonth() + 1), today.getDate()),
-        divWindow = $('<div class="window-box" id="lunarBox"></div>').kendoWindow({
+    var divWindow = $('<div class="window-box" id="lunarBox"></div>').kendoWindow({
             animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
             title: '万年历',
-            width: 800,
+            width: '90%',
+            maxWidth: 800,
             modal: true,
             pinned: true,
             resizable: false,
             open: function () {
                 $('#perpetualCalendar').kendoCalendar({
-                    footer: false,
+                    footer: '今天：#= kendo.toString(data, "yyyy年MM月dd日") #',
                     month: {
                         content:
                             '# var lunar = lunarData.solar2lunar(data.date.getFullYear(), (data.date.getMonth() + 1), data.date.getDate()) #' +
@@ -1462,8 +1461,12 @@ function getLunar() {
                                 '</small>' +
                             '</div>'
                     },
-                    value: new Date()
+                    value: new Date(),
+                    change: function () {
+                        setLunar(this.value());
+                    }
                 });
+                setLunar($('#perpetualCalendar').data('kendoCalendar').value());
             },
             close: function () {
                 divWindow.destroy();
@@ -1472,12 +1475,13 @@ function getLunar() {
         lunarHtml =
             '<div class="card">' +
                 '<div class="row no-gutters">' +
-                    '<div class="col-md-4 theme-m-bg">' +
-                        '<div>' + kendo.toString(today, "yyyy年MM月 dddd") + '</div>' +
-                        '<div class="today">' + kendo.toString(today, "dd") + '</div>' +
-                        '<div>' + lunar.lunarMonthCn + lunar.lunarDayCn + '</div>' +
-                        '<div>' + lunar.gzYear + '年【' + lunar.zodiac + '年】</div>' +
-                        '<div>' + lunar.gzMonth + '月 ' + lunar.gzDay + '日</div>' +
+                    '<div class="col-md-4 theme-m-bg" id="lunarShow">' +
+                        '<div class="month"></div>' +
+                        '<div class="day theme-s-bg"></div>' +
+                        '<div class="week"></div>' +
+                        '<div class="lunarDay"></div>' +
+                        '<div class="festival"></div>' +
+                        '<div class="lunarYear"></div>' +
                     '</div>' +
                     '<div class="col-md-8">' +
                         '<div id="perpetualCalendar"></div>' +
@@ -1485,4 +1489,28 @@ function getLunar() {
                 '</div>' +
             '</div>';
     divWindow.content(lunarHtml).center().open();
+}
+
+function setLunar(date) {
+    var lunar = lunarData.solar2lunar(date.getFullYear(), (date.getMonth() + 1), date.getDate());
+    $('#lunarShow .month').html(kendo.toString(date, "yyyy年MM月"));
+    $('#lunarShow .day').html(kendo.toString(date, "dd"));
+    if (lunar.isTerm) {
+        $('#lunarShow .week').html(kendo.toString(date, "dddd") + '【' + lunar.term + '】');
+    } else {
+        $('#lunarShow .week').html(kendo.toString(date, "dddd"));
+    }
+    $('#lunarShow .lunarDay').html(lunar.zodiac + '年：' + lunar.lunarMonthCn + lunar.lunarDayCn);
+    $('#lunarShow .festival').html('');
+    if (lunar.lunarFestival) {
+        $('#lunarShow .festival').show().append('<span>' + lunar.lunarFestival + '</span>');
+    }
+    if (lunar.solarFestival) {
+        $('#lunarShow .festival').show().append('<span>' + lunar.solarFestival + '</span>');
+    }
+    $('#lunarShow .festival').prepend('--=').append('=--');
+    if (!(lunar.lunarFestival) && !(lunar.solarFestival)) {
+        $('#lunarShow .festival').hide();
+    }
+    $('#lunarShow .lunarYear').html('<span>' + lunar.gzYear + '年</span><span>' + lunar.gzMonth + '月</span><span>' + lunar.gzDay + '日</span>');
 }
