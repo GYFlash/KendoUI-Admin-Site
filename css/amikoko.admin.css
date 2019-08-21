@@ -1091,6 +1091,11 @@ iframe#section {
     #weatherBox .card-body .air .badge {
       margin-left: .5rem;
       font-weight: normal; }
+  #weatherBox .card-body #weatherChart {
+    margin-left: -15px;
+    margin-right: -15px; }
+    #weatherBox .card-body #weatherChart .skeleton {
+      height: 100px; }
 #weatherBox .card-footer {
   font-size: 12px; }
   #weatherBox .card-footer .skeleton {

@@ -1326,6 +1326,13 @@ iframe#section {
                 font-weight: normal;
             }
         }
+        #weatherChart {
+            margin-left: -15px;
+            margin-right: -15px;
+            .skeleton {
+                height: 100px;
+            }
+        }
     }
     .card-footer {
         font-size: $font-size-s;

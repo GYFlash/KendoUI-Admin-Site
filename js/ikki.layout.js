@@ -594,6 +594,7 @@ function getWeather() {
                         '<div class="col-6 mr"><i class="wi wi-moonrise theme-m"></i><span class="skeleton"></span></div>' +
                         '<div class="col-6 ms"><i class="wi wi-moonset theme-m"></i><span class="skeleton"></span></div>' +
                     '</div>' +
+                    '<div id="weatherChart"><div class="px-3"><span class="skeleton"></span></div></div>' +
                 '</div>' +
                 '<div class="card-footer">' +
                     '<div class="row">' +
@@ -670,6 +671,68 @@ function getWeatherInfo(location) {
             $('#weatherBox .ss').html('<i class="wi wi-sunset theme-m"></i>日落：' + daily_forecast[0].ss);
             $('#weatherBox .mr').html('<i class="wi wi-moonrise theme-m"></i>月升：' + daily_forecast[0].mr);
             $('#weatherBox .ms').html('<i class="wi wi-moonset theme-m"></i>月落：' + daily_forecast[0].ms);
+            $('#weatherChart').kendoChart({
+                theme: 'sass',
+                chartArea: {
+                    height: 100
+                },
+                dataSource: {
+                    data: hourly,
+                    schema: {
+                        model: {
+                            fields: {
+                                time: { type: 'string' },
+                                tmp: { type: 'number' }
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    visible: false
+                },
+                seriesDefaults: {
+                    type: 'area',
+                    area: {
+                        line: {
+                            width: 1,
+                            style: 'smooth'
+                        }
+                    },
+                    markers: {
+                        visible: true,
+                        size: 5
+                    }
+                },
+                series: [
+                    {
+                        field: 'tmp'
+                    }
+                ],
+                categoryAxis: {
+                    field: 'time',
+                    majorGridLines: {
+                        visible: false
+                    },
+                    labels: {
+                        template: '#: kendo.toString(kendo.parseDate(value), "HH点") #'
+                    }
+                },
+                valueAxis: {
+                    majorGridLines: {
+                        step: 2
+                    },
+                    labels: {
+                        format: '{0}℃',
+                        font: '9px arial, helvetica, sans-serif',
+                        color: '#999',
+                        step: 2
+                    }
+                },
+                tooltip: {
+                    visible: true,
+                    template: '#= value #℃'
+                }
+            });
             $('#weatherBox .today').html('<span>今天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[0].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[0].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[0].tmp_min + '℃ ~ ' + daily_forecast[0].tmp_max + '℃</span><span>日：' + daily_forecast[0].cond_txt_d + '</span><span>夜：' + daily_forecast[0].cond_txt_n + '</span>');
             $('#weatherBox .tomorrow').html('<span>明天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[1].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[1].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[1].tmp_min + '℃ ~ ' + daily_forecast[1].tmp_max + '℃</span><span>日：' + daily_forecast[1].cond_txt_d + '</span><span>夜：' + daily_forecast[1].cond_txt_n + '</span>');
             $('#weatherBox .after_tomorrow').html('<span>后天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[2].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[2].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[2].tmp_min + '℃ ~ ' + daily_forecast[2].tmp_max + '℃</span><span>日：' + daily_forecast[2].cond_txt_d + '</span><span>夜：' + daily_forecast[2].cond_txt_n + '</span>');
