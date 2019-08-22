@@ -275,6 +275,9 @@ $(function () {
     // 万年历
     $('body').append('<button class="k-button k-state-selected" id="lunar" onclick="getLunar();"><i class="fas fa-calendar-alt"></i></button>');
     tipMsg($('#lunar'), '万年历', 'left');
+    // 便签
+    $('body').append('<button class="k-button k-state-selected" id="note" onclick="getNote();"><i class="fas fa-sticky-note"></i></button>');
+    tipMsg($('#note'), '便签', 'left');
     // 回到顶部
     $('#section').append('<button class="k-button k-state-selected" id="goTop"><i class="fas fa-arrow-up"></i></button>').scroll(function () {
         if ($(this).scrollTop() > 800) {
@@ -1576,4 +1579,183 @@ function setLunar(date) {
         $('#lunarShow .festival').hide();
     }
     $('#lunarShow .lunarYear').html('<span>' + lunar.gzYear + '年</span><span>' + lunar.gzMonth + '月</span><span>' + lunar.gzDay + '日</span>');
+}
+
+// 便签
+function getNote() {
+    if (window.indexedDB) {
+        var req = window.indexedDB.open('noteDB'),
+            db,
+            objectStore,
+            divWindow = $('<div class="window-box" id="noteBox"></div>').kendoWindow({
+                animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
+                title: '便签',
+                width: '90%',
+                maxWidth: 360,
+                height: 540,
+                modal: true,
+                pinned: true,
+                resizable: false,
+                open: function () {
+                    $('#noteListView').kendoListView({
+                        dataSource: {
+                            transport: {
+                                create: function (options) {
+                                    delete options.data.id;
+                                    objectStore = db.transaction(['list'], 'readwrite').objectStore('list');
+                                    var createResult = objectStore.add(options.data);
+                                    createResult.onsuccess = function (e) {
+                                        e.preventDefault();
+                                        options.success(e.target.result);
+                                        $('#noteListView').data('kendoListView').dataSource.read();
+                                        alertMsg('便签新增成功！', 'success');
+                                    };
+                                    createResult.onerror = function () {
+                                        alertMsg('便签新增出错！', 'error');
+                                    };
+                                },
+                                destroy: function (options) {
+                                    objectStore = db.transaction(['list'], 'readwrite').objectStore('list');
+                                    var destroyResult = objectStore.delete(options.data.id);
+                                    destroyResult.onsuccess = function (e) {
+                                        e.preventDefault();
+                                        options.success(e.target.result);
+                                        $('#noteListView').data('kendoListView').dataSource.read();
+                                        alertMsg('便签删除成功！', 'success');
+                                    };
+                                    destroyResult.onerror = function () {
+                                        alertMsg('便签删除出错！', 'error');
+                                    };
+                                },
+                                update: function (options) {
+                                    objectStore = db.transaction(['list'], 'readwrite').objectStore('list');
+                                    var updateResult = objectStore.put(options.data);
+                                    updateResult.onsuccess = function (e) {
+                                        e.preventDefault();
+                                        options.success(e.target.result);
+                                        $('#noteListView').data('kendoListView').dataSource.read();
+                                        alertMsg('便签编辑成功！', 'success');
+                                    };
+                                    updateResult.onerror = function () {
+                                        alertMsg('便签编辑出错！', 'error');
+                                    };
+                                },
+                                read: function (options) {
+                                    objectStore = db.transaction(['list']).objectStore('list');
+                                    var readResult = objectStore.getAll();
+                                    readResult.onsuccess = function (e) {
+                                        e.preventDefault();
+                                        console.log(e.target.result);
+                                        if (e.target.result) {
+                                            if (e.target.result.length === 0) {
+                                                $('#noteListView').html('<div class="blank"><p class="lead">无便签</p></div>');
+                                            } else {
+                                                options.success(e.target.result);
+                                            }
+                                        } else {
+                                            options.success([]);
+                                            $('#noteListView').html('<div class="blank"><p class="lead">无便签</p></div>');
+                                        }
+                                    };
+                                    readResult.onerror = function () {
+                                        alertMsg('便签查询出错！', 'error');
+                                    };
+                                }
+                            },
+                            schema: {
+                                model: {
+                                    id: 'id',
+                                    fields: {
+                                        noteContent: { type: 'string' },
+                                        noteTime: { type: 'string' }
+                                    }
+                                }
+                            },
+                            pageSize: 5
+                        },
+                        height: 400,
+                        scrollable: 'endless',
+                        template: kendo.template($('#noteListTemplate').html()),
+                        editTemplate: kendo.template($('#noteEditTemplate').html()),
+                        save: function (e) {
+                            e.model.set('noteTime', kendo.toString(new Date(), 'yyyy-MM-dd HH:mm:ss'));
+                        },
+                        dataBound: function () {
+                            $('#noteListView .alert:nth-child(6n+1)').addClass('alert-primary');
+                            $('#noteListView .alert:nth-child(6n+2)').addClass('alert-secondary');
+                            $('#noteListView .alert:nth-child(6n+3)').addClass('alert-success');
+                            $('#noteListView .alert:nth-child(6n+4)').addClass('alert-danger');
+                            $('#noteListView .alert:nth-child(6n+5)').addClass('alert-warning');
+                            $('#noteListView .alert:nth-child(6n+6)').addClass('alert-info');
+                        }
+                    });
+                    $('#noteBox .k-add-button').click(function (e) {
+                        e.preventDefault();
+                        $('#noteListView').data('kendoListView').add();
+                    });
+                    $('#noteSearch').keyup(function () {
+                        $('#noteListView').data('kendoListView').dataSource.filter({
+                            logic: 'or',
+                            filters: [
+                                { field: 'noteContent', operator: 'contains', value: $(this).val() },
+                                { field: 'noteTime', operator: 'contains', value: $(this).val() }
+                            ]
+                        });
+                    });
+                },
+                close: function () {
+                    db.close();
+                    divWindow.destroy();
+                }
+            }).data('kendoWindow'),
+            noteHtml =
+                '<div class="noteTools">' +
+                    '<span class="k-textbox"><i class="fas fa-search theme-m"></i><input id="noteSearch" type="text"></span>' +
+                '</div>' +
+                '<div id="noteListView"></div>' +
+                '<div class="noteTools">' +
+                    '<a class="k-button theme-m-box k-add-button" href="javascript:;" title="新增"><span class="k-icon k-i-add"></span></a>' +
+                '</div>' +
+                '<script id="noteListTemplate" type="text/x-kendo-template">' +
+                    '<div class="alert">' +
+                        '<p>#= noteContent #</p>' +
+                        '<hr>' +
+                        '<time>' +
+                            '<small>#= noteTime #</small>' +
+                            '<span>' +
+                                '<a class="k-button theme-m-box k-edit-button" href="javascript:;" title="编辑"><span class="k-icon k-i-edit"></span></a>' +
+                                '<a class="k-button k-delete-button" href="javascript:;" title="删除"><span class="k-icon k-i-x"></span></a>' +
+                            '</span>' +
+                        '</time>' +
+                    '</div>' +
+                '</script>' +
+                '<script id="noteEditTemplate" type="text/x-kendo-template">' +
+                    '<div class="alert">' +
+                        '<textarea class="k-textarea w-100" name="noteContent"></textarea>' +
+                        '<hr>' +
+                        '<time>' +
+                            '<small>#= kendo.toString(new Date(), "yyyy-MM-dd HH:mm:ss") #</small>' +
+                            '<span>' +
+                                '<a class="k-button theme-m-box k-update-button" href="javascript:;" title="更新"><span class="k-icon k-i-check"></span></a>' +
+                                '<a class="k-button k-cancel-button" href="javascript:;" title="取消"><span class="k-icon k-i-cancel"></span></a>' +
+                            '</span>' +
+                        '</time>' +
+                    '</div>' +
+                '</script>';
+        req.onupgradeneeded = function (e) {
+            db = e.target.result;
+            if (!db.objectStoreNames.contains('list')) {
+                objectStore = db.createObjectStore('list', { keyPath: 'id', autoIncrement: true });
+            }
+        };
+        req.onsuccess = function (e) {
+            db = req.result;
+            divWindow.content(noteHtml).center().open();
+        };
+        req.onerror = function (e) {
+            alertMsg('获取便签数据出错！', 'error');
+        };
+    } else {
+        alertMsg('您的浏览器不支持便签功能！', 'error');
+    }
 }

@@ -968,6 +968,7 @@ iframe#section {
 #bot,
 #weather,
 #lunar,
+#note,
 #goTop {
   position: fixed;
   right: 32px;
@@ -984,11 +985,13 @@ iframe#section {
   #bot:hover,
   #weather:hover,
   #lunar:hover,
+  #note:hover,
   #goTop:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); }
   #bot i,
   #weather i,
   #lunar i,
+  #note i,
   #goTop i {
     cursor: pointer; }
 
@@ -1169,9 +1172,89 @@ iframe#section {
       background-color: #fff;
       color: #f35800; }
 
+#note {
+  bottom: 192px; }
+
+#noteBox {
+  position: relative;
+  overflow-x: hidden; }
+  #noteBox .noteTools {
+    padding-top: 10px;
+    text-align: center; }
+    #noteBox .noteTools:first-child {
+      padding-bottom: 10px; }
+      #noteBox .noteTools:first-child .k-textbox {
+        padding-left: 0;
+        width: 100%; }
+        #noteBox .noteTools:first-child .k-textbox i {
+          margin: 2px 6px;
+          width: 16px;
+          height: 16px;
+          font-size: 16px;
+          line-height: 16px; }
+    #noteBox .noteTools .k-button {
+      border-radius: 50%;
+      width: 48px;
+      height: 48px; }
+      #noteBox .noteTools .k-button .k-icon {
+        font-size: 30px; }
+  #noteBox #noteListView {
+    margin-right: -35px;
+    border: 0;
+    padding-right: 18px; }
+    #noteBox #noteListView .blank {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: center;
+          justify-content: center;
+      -ms-flex-align: center;
+          align-items: center;
+      position: absolute;
+      padding-right: 18px;
+      width: 100%;
+      height: 100%; }
+    #noteBox #noteListView .alert {
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: .5rem .75rem 0 .75rem; }
+      #noteBox #noteListView .alert p {
+        margin: 0; }
+      #noteBox #noteListView .alert hr {
+        margin-top: .5rem;
+        margin-bottom: .5rem; }
+      #noteBox #noteListView .alert time {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+        #noteBox #noteListView .alert time small {
+          display: inline-block;
+          height: 24px;
+          opacity: .5; }
+        #noteBox #noteListView .alert time .k-button {
+          margin-top: -6px;
+          margin-left: 6px;
+          border-radius: 50%;
+          padding: 0;
+          width: 24px;
+          height: 24px;
+          line-height: 24px; }
+    #noteBox #noteListView .alert-primary {
+      border-color: #b8daff; }
+    #noteBox #noteListView .alert-secondary {
+      border-color: #d6d8db; }
+    #noteBox #noteListView .alert-success {
+      border-color: #c3e6cb; }
+    #noteBox #noteListView .alert-danger {
+      border-color: #f5c6cb; }
+    #noteBox #noteListView .alert-warning {
+      border-color: #ffeeba; }
+    #noteBox #noteListView .alert-info {
+      border-color: #bee5eb; }
+
 #goTop {
   display: none;
-  bottom: 192px; }
+  bottom: 252px; }
 
 /* 手机端适配 */
 @media only screen and (max-width: 767px) {
@@ -1233,6 +1316,7 @@ iframe#section {
   #bot,
   #weather,
   #lunar,
+  #note,
   #goTop {
     right: 15px; }
 
