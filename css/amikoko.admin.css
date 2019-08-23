@@ -1182,16 +1182,28 @@ iframe#section {
     padding-top: 10px;
     text-align: center; }
     #noteBox .noteTools:first-child {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
       padding-bottom: 10px; }
       #noteBox .noteTools:first-child .k-textbox {
         padding-left: 0;
-        width: 100%; }
+        width: 78%; }
         #noteBox .noteTools:first-child .k-textbox i {
           margin: 2px 6px;
           width: 16px;
           height: 16px;
           font-size: 16px;
           line-height: 16px; }
+      #noteBox .noteTools:first-child .k-refresh-button,
+      #noteBox .noteTools:first-child .k-clear-button {
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px; }
     #noteBox .noteTools .k-button {
       border-radius: 50%;
       width: 48px;

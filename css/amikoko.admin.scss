@@ -1437,10 +1437,12 @@ iframe#section {
         padding-top: 10px;
         text-align: center;
         &:first-child {
+            display: flex;
+            justify-content: space-between;
             padding-bottom: 10px;
             .k-textbox {
                 padding-left: 0;
-                width: 100%;
+                width: 78%;
                 i {
                     margin: 2px 6px;
                     width: 16px;
@@ -1448,6 +1450,15 @@ iframe#section {
                     font-size: 16px;
                     line-height: 16px;
                 }
+            }
+            .k-refresh-button,
+            .k-clear-button {
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: $border-radius;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
             }
         }
         .k-button {

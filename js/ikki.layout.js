@@ -1600,9 +1600,7 @@ function getNote() {
                         dataSource: {
                             transport: {
                                 create: function (options) {
-                                    if (options.data.id === '') {
-                                        delete options.data.id;
-                                    }
+                                    delete options.data.id;
                                     var createResult = db.transaction(['list'], 'readwrite').objectStore('list').add(options.data);
                                     createResult.onsuccess = function (e) {
                                         options.success(e.target);
@@ -1686,6 +1684,15 @@ function getNote() {
                             ]
                         });
                     });
+                    $('#noteBox .k-refresh-button').click(function (e) {
+                        refreshNote();
+                    });
+                    $('#noteBox .k-clear-button').click(function (e) {
+                        confirmMsg('清空确认', '你确定要清空便签吗？', 'question', function () {
+                            db.transaction(['list'], 'readwrite').objectStore('list').clear();
+                            refreshNote();
+                        });
+                    });
                 },
                 close: function () {
                     db.close();
@@ -1695,6 +1702,8 @@ function getNote() {
             noteHtml =
                 '<div class="noteTools">' +
                     '<span class="k-textbox"><i class="fas fa-search theme-m"></i><input id="noteSearch" type="text"></span>' +
+                    '<a class="k-link k-refresh-button" href="javascript:;" title="刷新"><i class="fas fa-redo-alt"></i></a>' +
+                    '<a class="k-link k-clear-button" href="javascript:;" title="清空"><i class="fas fa-trash-alt"></i></a>' +
                 '</div>' +
                 '<div id="noteListView"></div>' +
                 '<div class="noteTools">' +
