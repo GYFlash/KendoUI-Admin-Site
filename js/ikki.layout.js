@@ -1586,7 +1586,6 @@ function getNote() {
     if (window.indexedDB) {
         var req = window.indexedDB.open('noteDB'),
             db,
-            objectStore,
             divWindow = $('<div class="window-box" id="noteBox"></div>').kendoWindow({
                 animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
                 title: '便签',
@@ -1601,59 +1600,43 @@ function getNote() {
                         dataSource: {
                             transport: {
                                 create: function (options) {
-                                    delete options.data.id;
-                                    objectStore = db.transaction(['list'], 'readwrite').objectStore('list');
-                                    var createResult = objectStore.add(options.data);
+                                    if (options.data.id === '') {
+                                        delete options.data.id;
+                                    }
+                                    var createResult = db.transaction(['list'], 'readwrite').objectStore('list').add(options.data);
                                     createResult.onsuccess = function (e) {
-                                        e.preventDefault();
-                                        options.success(e.target.result);
-                                        $('#noteListView').data('kendoListView').dataSource.read();
-                                        alertMsg('便签新增成功！', 'success');
+                                        options.success(e.target);
+                                        refreshNote();
                                     };
                                     createResult.onerror = function () {
                                         alertMsg('便签新增出错！', 'error');
                                     };
                                 },
                                 destroy: function (options) {
-                                    objectStore = db.transaction(['list'], 'readwrite').objectStore('list');
-                                    var destroyResult = objectStore.delete(options.data.id);
+                                    var destroyResult = db.transaction(['list'], 'readwrite').objectStore('list').delete(options.data.id);
                                     destroyResult.onsuccess = function (e) {
-                                        e.preventDefault();
-                                        options.success(e.target.result);
-                                        $('#noteListView').data('kendoListView').dataSource.read();
-                                        alertMsg('便签删除成功！', 'success');
+                                        options.success(e.target);
+                                        refreshNote();
                                     };
                                     destroyResult.onerror = function () {
                                         alertMsg('便签删除出错！', 'error');
                                     };
                                 },
                                 update: function (options) {
-                                    objectStore = db.transaction(['list'], 'readwrite').objectStore('list');
-                                    var updateResult = objectStore.put(options.data);
+                                    var updateResult = db.transaction(['list'], 'readwrite').objectStore('list').put(options.data);
                                     updateResult.onsuccess = function (e) {
-                                        e.preventDefault();
-                                        options.success(e.target.result);
-                                        $('#noteListView').data('kendoListView').dataSource.read();
-                                        alertMsg('便签编辑成功！', 'success');
+                                        options.success(e.target);
+                                        refreshNote();
                                     };
                                     updateResult.onerror = function () {
                                         alertMsg('便签编辑出错！', 'error');
                                     };
                                 },
                                 read: function (options) {
-                                    objectStore = db.transaction(['list']).objectStore('list');
-                                    var readResult = objectStore.getAll();
+                                    var readResult = db.transaction(['list']).objectStore('list').getAll();
                                     readResult.onsuccess = function (e) {
-                                        e.preventDefault();
-                                        console.log(e.target.result);
-                                        if (e.target.result) {
-                                            if (e.target.result.length === 0) {
-                                                $('#noteListView').html('<div class="blank"><p class="lead">无便签</p></div>');
-                                            } else {
-                                                options.success(e.target.result);
-                                            }
-                                        } else {
-                                            options.success([]);
+                                        options.success(e.target);
+                                        if (e.target.result.length === 0) {
                                             $('#noteListView').html('<div class="blank"><p class="lead">无便签</p></div>');
                                         }
                                     };
@@ -1663,6 +1646,7 @@ function getNote() {
                                 }
                             },
                             schema: {
+                                data: 'result',
                                 model: {
                                     id: 'id',
                                     fields: {
@@ -1690,8 +1674,8 @@ function getNote() {
                         }
                     });
                     $('#noteBox .k-add-button').click(function (e) {
-                        e.preventDefault();
                         $('#noteListView').data('kendoListView').add();
+                        e.preventDefault();
                     });
                     $('#noteSearch').keyup(function () {
                         $('#noteListView').data('kendoListView').dataSource.filter({
@@ -1745,7 +1729,7 @@ function getNote() {
         req.onupgradeneeded = function (e) {
             db = e.target.result;
             if (!db.objectStoreNames.contains('list')) {
-                objectStore = db.createObjectStore('list', { keyPath: 'id', autoIncrement: true });
+                db.createObjectStore('list', { keyPath: 'id', autoIncrement: true });
             }
         };
         req.onsuccess = function (e) {
@@ -1758,4 +1742,8 @@ function getNote() {
     } else {
         alertMsg('您的浏览器不支持便签功能！', 'error');
     }
+}
+
+function refreshNote() {
+    $('#noteListView').data('kendoListView').dataSource.read();
 }
