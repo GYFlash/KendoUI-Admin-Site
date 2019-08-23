@@ -1644,6 +1644,9 @@ function getNote() {
                                 }
                             },
                             schema: {
+                                total: function(res) {
+                                    return res.result.length;
+                                },
                                 data: 'result',
                                 model: {
                                     id: 'id',
