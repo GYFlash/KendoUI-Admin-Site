@@ -1687,9 +1687,6 @@ function getNote() {
                             ]
                         });
                     });
-                    $('#noteBox .k-refresh-button').click(function (e) {
-                        refreshNote();
-                    });
                     $('#noteBox .k-clear-button').click(function (e) {
                         confirmMsg('清空确认', '你确定要清空便签吗？', 'question', function () {
                             db.transaction(['list'], 'readwrite').objectStore('list').clear();
@@ -1705,7 +1702,8 @@ function getNote() {
             noteHtml =
                 '<div class="noteTools">' +
                     '<span class="k-textbox"><i class="fas fa-search theme-m"></i><input id="noteSearch" type="text"></span>' +
-                    '<a class="k-link k-refresh-button" href="javascript:;" title="刷新"><i class="fas fa-redo-alt"></i></a>' +
+                    '<a class="k-link k-order-button" href="javascript:;" title="降序" onclick="orderNote(\'desc\');"><i class="fas fa-sort-amount-down"></i></a>' +
+                    '<a class="k-link k-order-button" href="javascript:;" title="升序" onclick="orderNote(\'asc\');"><i class="fas fa-sort-amount-up-alt"></i></a>' +
                     '<a class="k-link k-clear-button" href="javascript:;" title="清空"><i class="fas fa-trash-alt"></i></a>' +
                 '</div>' +
                 '<div id="noteListView"></div>' +
@@ -1758,4 +1756,12 @@ function getNote() {
 
 function refreshNote() {
     $('#noteListView').data('kendoListView').dataSource.read();
+}
+
+function orderNote(dir) {
+    $('#noteListView').data('kendoListView').dataSource.sort({
+        field: 'id',
+        dir: dir
+    });
+    $('#noteBox .k-order-button').toggle();
 }

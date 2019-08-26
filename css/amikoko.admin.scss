@@ -1451,7 +1451,7 @@ iframe#section {
                     line-height: 16px;
                 }
             }
-            .k-refresh-button,
+            .k-order-button,
             .k-clear-button {
                 display: inline-block;
                 border: 1px solid #ccc;
@@ -1459,6 +1459,9 @@ iframe#section {
                 width: 30px;
                 height: 30px;
                 line-height: 30px;
+            }
+            .k-order-button:nth-child(odd) {
+                display: none;
             }
         }
         .k-button {
