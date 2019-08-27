@@ -106,11 +106,13 @@ $(function () {
             unlockScreen();
         }
     });
-    // 聊天机器人
+    // 聊天机器人图标
     $('body').append('<button class="k-button k-state-selected" id="bot"><label for="botCkb"><i class="fas fa-robot"></i></label></button><input id="botCkb" type="checkbox"><label for="botCkb"><span id="botMask"></span></label><div id="botChat"></div>');
+    // 聊天机器人提示
     tipMsg($('#bot'), '聊天机器人', 'left');
+    // 聊天机器人
     $('#botChat').kendoChat({
-        user: {
+        user: { // 用户名称及头像
             name: 'IKKI',
             iconUrl: 'img/IKKI.png'
         },
@@ -133,7 +135,7 @@ $(function () {
                 dataType: 'json',
                 success: function (res) {
                     $.each(res.results, function (i, items) {
-                        if (items.resultType === 'text') {
+                        if (items.resultType === 'text') { // 文本
                             $('#botChat').data('kendoChat').renderMessage(
                                 {
                                     type: 'text',
@@ -145,7 +147,7 @@ $(function () {
                                     iconUrl: 'img/temp/Esmerarda.png'
                                 }
                             );
-                        } else if (items.resultType === 'url') {
+                        } else if (items.resultType === 'url') { // 链接
                             var urlTemp = kendo.template(
                                 '<div class="card mt-3">' +
                                     '<div class="card-body">' +
@@ -170,7 +172,7 @@ $(function () {
                                     iconUrl: 'img/temp/Esmerarda.png'
                                 }
                             );
-                        } else if (items.resultType === 'image') {
+                        } else if (items.resultType === 'image') { // 图片
                             var imageTemp = kendo.template(
                                 '<div class="text-center mt-3">' +
                                     '<img class="img-thumbnail img-fluid" src="#: image #" alt="">' +
@@ -198,7 +200,7 @@ $(function () {
                 }
             });
         }
-    }).data('kendoChat').renderMessage(
+    }).data('kendoChat').renderMessage( // 初始化对话
         {
             type: 'text',
             text: '亲~ 由于GitHub和码云使用的是HTTPS协议~ 而图灵机器人使用的是HTTP协议~ 所以想看对话效果的亲们请部署到本地开启Chrome跨域模式调试~ 谢谢~ ❤️'
@@ -209,9 +211,11 @@ $(function () {
             iconUrl: 'img/temp/Esmerarda.png'
         }
     );
-    // 天气预报
+    // 天气预报图标
     $('body').append('<button class="k-button k-state-selected" id="weather" onclick="getWeather();"><i class="wi wi-na"></i></button>');
+    // 天气预报提示
     tipMsg($('#weather'), '天气预报', 'left');
+    // 天气预报动态图标
     $.ajax({
         type: 'get',
         data: {
@@ -223,45 +227,47 @@ $(function () {
             var weatherImg = res.wea_img,
                 weatherTime = res.update_time.substr(0, 2);
             if (weatherTime >= 6 && weatherTime < 18) {
-                if (weatherImg === 'qing') {
+                // 白天
+                if (weatherImg === 'qing') { // 晴
                     $('#weather').html('<i class="fas fa-sun"></i>');
-                } else if (weatherImg === 'yun') {
+                } else if (weatherImg === 'yun') { // 多云
                     $('#weather').html('<i class="fas fa-cloud-sun"></i>');
-                } else if (weatherImg === 'yin') {
+                } else if (weatherImg === 'yin') { // 阴
                     $('#weather').html('<i class="fas fa-cloud"></i>');
-                } else if (weatherImg === 'yu') {
+                } else if (weatherImg === 'yu') { // 雨
                     $('#weather').html('<i class="fas fa-cloud-sun-rain"></i>');
-                } else if (weatherImg === 'lei') {
+                } else if (weatherImg === 'lei') { // 雷
                     $('#weather').html('<i class="fas fa-bolt"></i>');
-                } else if (weatherImg === 'bingbao') {
+                } else if (weatherImg === 'bingbao') { // 冰雹
                     $('#weather').html('<i class="fas fa-cloud-meatball"></i>');
-                } else if (weatherImg === 'xue') {
+                } else if (weatherImg === 'xue') { // 雪
                     $('#weather').html('<i class="fas fa-snowflake"></i>');
-                } else if (weatherImg === 'wu') {
+                } else if (weatherImg === 'wu') { // 雾
                     $('#weather').html('<i class="fas fa-smog"></i>');
-                } else if (weatherImg === 'shachen') {
+                } else if (weatherImg === 'shachen') { // 沙尘
                     $('#weather').html('<i class="fas fa-wind"></i>');
                 } else {
                     $('#weather').html('<i class="wi wi-na"></i>');
                 }
             } else {
-                if (weatherImg === 'qing') {
+                // 黑夜
+                if (weatherImg === 'qing') { // 晴
                     $('#weather').html('<i class="fas fa-moon"></i>');
-                } else if (weatherImg === 'yun') {
+                } else if (weatherImg === 'yun') { // 多云
                     $('#weather').html('<i class="fas fa-cloud-moon"></i>');
-                } else if (weatherImg === 'yin') {
+                } else if (weatherImg === 'yin') { // 阴
                     $('#weather').html('<i class="fas fa-cloud"></i>');
-                } else if (weatherImg === 'yu') {
+                } else if (weatherImg === 'yu') { // 雨
                     $('#weather').html('<i class="fas fa-cloud-moon-rain"></i>');
-                } else if (weatherImg === 'lei') {
+                } else if (weatherImg === 'lei') { // 雷
                     $('#weather').html('<i class="fas fa-bolt"></i>');
-                } else if (weatherImg === 'bingbao') {
+                } else if (weatherImg === 'bingbao') { // 冰雹
                     $('#weather').html('<i class="fas fa-cloud-meatball"></i>');
-                } else if (weatherImg === 'xue') {
+                } else if (weatherImg === 'xue') { // 雪
                     $('#weather').html('<i class="fas fa-snowflake"></i>');
-                } else if (weatherImg === 'wu') {
+                } else if (weatherImg === 'wu') { // 雾
                     $('#weather').html('<i class="fas fa-smog"></i>');
-                } else if (weatherImg === 'shachen') {
+                } else if (weatherImg === 'shachen') { // 沙尘
                     $('#weather').html('<i class="fas fa-wind"></i>');
                 } else {
                     $('#weather').html('<i class="wi wi-na"></i>');
@@ -272,13 +278,15 @@ $(function () {
             alertMsg('获取天气数据出错！', 'error');
         }
     });
-    // 万年历
+    // 万年历图标
     $('body').append('<button class="k-button k-state-selected" id="lunar" onclick="getLunar();"><i class="fas fa-calendar-alt"></i></button>');
+    // 万年历提示
     tipMsg($('#lunar'), '万年历', 'left');
-    // 便签
+    // 便签图标
     $('body').append('<button class="k-button k-state-selected" id="note" onclick="getNote();"><i class="fas fa-sticky-note"></i></button>');
+    // 便签提示
     tipMsg($('#note'), '便签', 'left');
-    // 回到顶部
+    // 回到顶部图标
     $('#section').append('<button class="k-button k-state-selected" id="goTop"><i class="fas fa-arrow-up"></i></button>').scroll(function () {
         if ($(this).scrollTop() > 800) {
             $('#goTop').fadeIn();
@@ -286,7 +294,9 @@ $(function () {
             $('#goTop').fadeOut();
         }
     });
+    // 回到顶部提示
     tipMsg($('#goTop'), '回到顶部', 'left');
+    // 回到顶部动画
     $('#goTop').click(function () {
         $('#section').animate({ scrollTop: 0 }, 500);
     });
@@ -536,7 +546,7 @@ function logout() {
     }
 }
 
-// 天气预报
+// 天气预报弹窗
 function getWeather() {
     var divWindow = $('<div class="window-box" id="weatherBox"></div>').kendoWindow({
         animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
@@ -546,13 +556,14 @@ function getWeather() {
         pinned: true,
         resizable: false,
         open: function () {
+            // 获取定位信息
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function (position) {
-                        getWeatherInfo(position.coords.longitude + ',' + position.coords.latitude);
+                        getWeatherInfo(position.coords.longitude + ',' + position.coords.latitude); // 经纬度定位
                     },
                     function (positionError) {
-                        getWeatherInfo('auto_ip');
+                        getWeatherInfo('auto_ip'); // 自动 IP 定位
                     },
                     {
                         enableHighAcuracy: true,
@@ -610,6 +621,7 @@ function getWeather() {
     divWindow.content(weatherHtml).center().open();
 }
 
+// 天气预报信息
 function getWeatherInfo(location) {
     $.ajax({
         type: 'get',
@@ -620,18 +632,24 @@ function getWeatherInfo(location) {
         url: 'https://free-api.heweather.net/s6/weather',
         dataType: 'json',
         success: function (res) {
-            var basic = res.HeWeather6[0].basic,
-                now = res.HeWeather6[0].now,
-                daily_forecast = res.HeWeather6[0].daily_forecast,
-                hourly = res.HeWeather6[0].hourly,
-                lifestyle = res.HeWeather6[0].lifestyle,
-                update = res.HeWeather6[0].update,
-                weatherCode = res.HeWeather6[0].now.cond_code;
+            var basic = res.HeWeather6[0].basic, // 基础信息
+                now = res.HeWeather6[0].now, // 实况天气
+                daily_forecast = res.HeWeather6[0].daily_forecast, // 3-10天天气预报
+                hourly = res.HeWeather6[0].hourly, // 逐小时预报
+                lifestyle = res.HeWeather6[0].lifestyle, // 生活指数
+                update = res.HeWeather6[0].update, // 更新时间
+                weatherCode = res.HeWeather6[0].now.cond_code; // 天气状况代码
+            // 位置信息
             $('#weatherBox .loc').html(basic.cnty + ' - ' + basic.admin_area + ' - ' + basic.parent_city + ' - ' + basic.location + '<i class="flag-icon flag-icon-' + basic.cid.substr(0, 2).toLowerCase() + '"></i>');
+            // 更新时间
             $('#weatherBox time').html('更新于：' + update.loc);
+            // 温度
             $('#weatherBox .tmp').html(now.tmp);
+            // 天气描述
             $('#weatherBox .cond_txt').html(now.cond_txt);
+            // 天气图标
             $('#weatherBox .cond_code').removeClass('wi-na').addClass(getWeatherIcon(kendo.toString(kendo.parseDate(update.loc), 'HH'), weatherCode));
+            // 空气质量
             if (lifestyle) {
                 $.ajax({
                     type: 'get',
@@ -662,18 +680,29 @@ function getWeatherInfo(location) {
             } else {
                 $('#weatherBox .air').parent().remove();
             }
+            // 温度区间
             $('#weatherBox .tmp_m').html('<i class="wi wi-thermometer theme-m"></i>' + daily_forecast[0].tmp_min + '℃~' + daily_forecast[0].tmp_max + '℃');
+            // 风向风力
             $('#weatherBox .wind').html('<i class="wi wi-strong-wind theme-m"></i>' + now.wind_dir + now.wind_sc + '级');
+            // 相对湿度
             $('#weatherBox .hum').html('<i class="wi wi-humidity theme-m"></i>湿度：' + daily_forecast[0].hum + '%');
+            // 紫外线强度
             if (basic.cnty === '中国') {
+                // 国内
                 $('#weatherBox .uv_index').html('<i class="wi wi-umbrella theme-m"></i>紫外线：' + lifestyle[5].brf);
             } else {
+                // 国外
                 $('#weatherBox .uv_index').html('<i class="wi wi-umbrella theme-m"></i>紫外线：' + daily_forecast[0].uv_index + '级');
             }
+            // 日升时间
             $('#weatherBox .sr').html('<i class="wi wi-sunrise theme-m"></i>日升：' + daily_forecast[0].sr);
+            // 日落时间
             $('#weatherBox .ss').html('<i class="wi wi-sunset theme-m"></i>日落：' + daily_forecast[0].ss);
+            // 月升时间
             $('#weatherBox .mr').html('<i class="wi wi-moonrise theme-m"></i>月升：' + daily_forecast[0].mr);
+            // 月落时间
             $('#weatherBox .ms').html('<i class="wi wi-moonset theme-m"></i>月落：' + daily_forecast[0].ms);
+            // 未来 24 小时温度曲线
             $('#weatherChart').kendoChart({
                 theme: 'sass',
                 chartArea: {
@@ -736,8 +765,11 @@ function getWeatherInfo(location) {
                     template: '#= value #℃'
                 }
             });
+            // 今天天气
             $('#weatherBox .today').html('<span>今天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[0].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[0].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[0].tmp_min + '℃ ~ ' + daily_forecast[0].tmp_max + '℃</span><span>日：' + daily_forecast[0].cond_txt_d + '</span><span>夜：' + daily_forecast[0].cond_txt_n + '</span>');
+            // 明天天气
             $('#weatherBox .tomorrow').html('<span>明天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[1].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[1].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[1].tmp_min + '℃ ~ ' + daily_forecast[1].tmp_max + '℃</span><span>日：' + daily_forecast[1].cond_txt_d + '</span><span>夜：' + daily_forecast[1].cond_txt_n + '</span>');
+            // 后天天气
             $('#weatherBox .after_tomorrow').html('<span>后天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[2].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[2].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[2].tmp_min + '℃ ~ ' + daily_forecast[2].tmp_max + '℃</span><span>日：' + daily_forecast[2].cond_txt_d + '</span><span>夜：' + daily_forecast[2].cond_txt_n + '</span>');
         },
         error: function (res) {
@@ -746,283 +778,284 @@ function getWeatherInfo(location) {
     });
 }
 
+// 天气图标
 function getWeatherIcon(time, weatherCode) {
     if (time >= 6 && time < 18) {
-        if (weatherCode === '100') {
+        if (weatherCode === '100') { // 日间晴
             return 'wi-day-sunny';
-        } else if (weatherCode === '101') {
+        } else if (weatherCode === '101') { // 日间多云
             return 'wi-cloudy';
-        } else if (weatherCode === '102') {
+        } else if (weatherCode === '102') { // 日间少云
             return 'wi-day-sunny-overcast';
-        } else if (weatherCode === '103') {
+        } else if (weatherCode === '103') { // 日间晴间多云
             return 'wi-day-cloudy';
-        } else if (weatherCode === '104') {
+        } else if (weatherCode === '104') { // 日间阴
             return 'wi-cloud';
-        } else if (weatherCode === '200') {
+        } else if (weatherCode === '200') { // 日间有风
             return 'wi-windy';
-        } else if (weatherCode === '201') {
+        } else if (weatherCode === '201') { // 日间平静
             return 'wi-day-cloudy-windy';
-        } else if (weatherCode === '202') {
+        } else if (weatherCode === '202') { // 日间微风
             return 'wi-cloudy-windy';
-        } else if (weatherCode === '203') {
+        } else if (weatherCode === '203') { // 日间和风
             return 'wi-day-cloudy-gusts';
-        } else if (weatherCode === '204') {
+        } else if (weatherCode === '204') { // 日间清风
             return 'wi-cloudy-gusts';
-        } else if (weatherCode === '205') {
+        } else if (weatherCode === '205') { // 日间强风/劲风
             return 'wi-strong-wind';
-        } else if (weatherCode === '206') {
+        } else if (weatherCode === '206') { // 日间疾风
             return 'wi-strong-wind';
-        } else if (weatherCode === '207') {
+        } else if (weatherCode === '207') { // 日间大风
             return 'wi-strong-wind';
-        } else if (weatherCode === '208') {
+        } else if (weatherCode === '208') { // 日间烈风
             return 'wi-strong-wind';
-        } else if (weatherCode === '209') {
+        } else if (weatherCode === '209') { // 日间风暴
             return 'wi-strong-wind';
-        } else if (weatherCode === '210') {
+        } else if (weatherCode === '210') { // 日间狂爆风
             return 'wi-strong-wind';
-        } else if (weatherCode === '211') {
+        } else if (weatherCode === '211') { // 日间飓风
             return 'wi-hurricane';
-        } else if (weatherCode === '212') {
+        } else if (weatherCode === '212') { // 日间龙卷风
             return 'wi-tornado';
-        } else if (weatherCode === '213') {
+        } else if (weatherCode === '213') { // 日间热带风暴
             return 'wi-hurricane';
-        } else if (weatherCode === '300') {
+        } else if (weatherCode === '300') { // 日间阵雨
             return 'wi-day-sprinkle';
-        } else if (weatherCode === '301') {
+        } else if (weatherCode === '301') { // 日间强阵雨
             return 'wi-day-showers';
-        } else if (weatherCode === '302') {
+        } else if (weatherCode === '302') { // 日间雷阵雨
             return 'wi-day-storm-showers';
-        } else if (weatherCode === '303') {
+        } else if (weatherCode === '303') { // 日间强雷阵雨
             return 'wi-storm-showers';
-        } else if (weatherCode === '304') {
+        } else if (weatherCode === '304') { // 日间雷阵雨伴有冰雹
             return 'wi-day-sleet-storm';
-        } else if (weatherCode === '305') {
+        } else if (weatherCode === '305') { // 日间小雨
             return 'wi-day-rain';
-        } else if (weatherCode === '306') {
+        } else if (weatherCode === '306') { // 日间中雨
             return 'wi-showers';
-        } else if (weatherCode === '307') {
+        } else if (weatherCode === '307') { // 日间大雨
             return 'wi-hail';
-        } else if (weatherCode === '308') {
+        } else if (weatherCode === '308') { // 日间极端降雨
             return 'wi-rain-wind';
-        } else if (weatherCode === '309') {
+        } else if (weatherCode === '309') { // 日间毛毛雨/细雨
             return 'wi-raindrops';
-        } else if (weatherCode === '310') {
+        } else if (weatherCode === '310') { // 日间暴雨
             return 'wi-rain';
-        } else if (weatherCode === '311') {
+        } else if (weatherCode === '311') { // 日间大暴雨
             return 'wi-rain';
-        } else if (weatherCode === '312') {
+        } else if (weatherCode === '312') { // 日间特大暴雨
             return 'wi-rain';
-        } else if (weatherCode === '313') {
+        } else if (weatherCode === '313') { // 日间冻雨
             return 'wi-sleet';
-        } else if (weatherCode === '314') {
+        } else if (weatherCode === '314') { // 日间小到中雨
             return 'wi-showers';
-        } else if (weatherCode === '315') {
+        } else if (weatherCode === '315') { // 日间中到大雨
             return 'wi-hail';
-        } else if (weatherCode === '316') {
+        } else if (weatherCode === '316') { // 日间大到暴雨
             return 'wi-rain';
-        } else if (weatherCode === '317') {
+        } else if (weatherCode === '317') { // 日间暴雨到大暴雨
             return 'wi-rain';
-        } else if (weatherCode === '318') {
+        } else if (weatherCode === '318') { // 日间大暴雨到特大暴雨
             return 'wi-rain';
-        } else if (weatherCode === '399') {
+        } else if (weatherCode === '399') { // 日间雨
             return 'wi-raindrop';
-        } else if (weatherCode === '400') {
+        } else if (weatherCode === '400') { // 日间小雪
             return 'wi-day-snow-wind';
-        } else if (weatherCode === '401') {
+        } else if (weatherCode === '401') { // 日间中雪
             return 'wi-snow';
-        } else if (weatherCode === '402') {
+        } else if (weatherCode === '402') { // 日间大雪
             return 'wi-snow-wind';
-        } else if (weatherCode === '403') {
+        } else if (weatherCode === '403') { // 日间暴雪
             return 'wi-snow-wind';
-        } else if (weatherCode === '404') {
+        } else if (weatherCode === '404') { // 日间雨夹雪
             return 'wi-rain-mix';
-        } else if (weatherCode === '405') {
+        } else if (weatherCode === '405') { // 日间雨雪天气
             return 'wi-rain-mix';
-        } else if (weatherCode === '406') {
+        } else if (weatherCode === '406') { // 日间阵雨夹雪
             return 'wi-day-snow-thunderstorm';
-        } else if (weatherCode === '407') {
+        } else if (weatherCode === '407') { // 日间阵雪
             return 'wi-day-snow';
-        } else if (weatherCode === '408') {
+        } else if (weatherCode === '408') { // 日间小到中雪
             return 'wi-snow';
-        } else if (weatherCode === '409') {
+        } else if (weatherCode === '409') { // 日间中到大雪
             return 'wi-snow-wind';
-        } else if (weatherCode === '410') {
+        } else if (weatherCode === '410') { // 日间大到暴雪
             return 'wi-snow-wind';
-        } else if (weatherCode === '499') {
+        } else if (weatherCode === '499') { // 日间雪
             return 'wi-snowflake-cold';
-        } else if (weatherCode === '500') {
+        } else if (weatherCode === '500') { // 日间薄雾
             return 'wi-day-fog';
-        } else if (weatherCode === '501') {
+        } else if (weatherCode === '501') { // 日间雾
             return 'wi-day-fog';
-        } else if (weatherCode === '502') {
+        } else if (weatherCode === '502') { // 日间霾
             return 'wi-smoke';
-        } else if (weatherCode === '503') {
+        } else if (weatherCode === '503') { // 日间扬沙
             return 'wi-dust';
-        } else if (weatherCode === '504') {
+        } else if (weatherCode === '504') { // 日间浮尘
             return 'wi-dust';
-        } else if (weatherCode === '507') {
+        } else if (weatherCode === '507') { // 日间沙尘暴
             return 'wi-sandstorm';
-        } else if (weatherCode === '508') {
+        } else if (weatherCode === '508') { // 日间强沙尘暴
             return 'wi-sandstorm';
-        } else if (weatherCode === '509') {
+        } else if (weatherCode === '509') { // 日间浓雾
             return 'wi-fog';
-        } else if (weatherCode === '510') {
+        } else if (weatherCode === '510') { // 日间强浓雾
             return 'wi-fog';
-        } else if (weatherCode === '511') {
+        } else if (weatherCode === '511') { // 日间中度霾
             return 'wi-smog';
-        } else if (weatherCode === '512') {
+        } else if (weatherCode === '512') { // 日间重度霾
             return 'wi-smog';
-        } else if (weatherCode === '513') {
+        } else if (weatherCode === '513') { // 日间严重霾
             return 'wi-smog';
-        } else if (weatherCode === '514') {
+        } else if (weatherCode === '514') { // 日间大雾
             return 'wi-fog';
-        } else if (weatherCode === '515') {
+        } else if (weatherCode === '515') { // 日间特强浓雾
             return 'wi-fog';
-        } else if (weatherCode === '900') {
+        } else if (weatherCode === '900') { // 日间热
             return 'wi-hot';
-        } else if (weatherCode === '901') {
+        } else if (weatherCode === '901') { // 日间冷
             return 'wi-snowflake-cold';
-        } else if (weatherCode === '999') {
+        } else if (weatherCode === '999') { // 日间未知
             return 'wi-na';
         } else {
             return 'wi-na';
         }
     } else {
-        if (weatherCode === '100') {
+        if (weatherCode === '100') { // 夜间晴
             return 'wi-night-clear';
-        } else if (weatherCode === '101') {
+        } else if (weatherCode === '101') { // 夜间多云
             return 'wi-cloudy';
-        } else if (weatherCode === '102') {
+        } else if (weatherCode === '102') { // 夜间少云
             return 'wi-night-alt-partly-cloudy';
-        } else if (weatherCode === '103') {
+        } else if (weatherCode === '103') { // 夜间晴间多云
             return 'wi-night-alt-cloudy';
-        } else if (weatherCode === '104') {
+        } else if (weatherCode === '104') { // 夜间阴
             return 'wi-cloud';
-        } else if (weatherCode === '200') {
+        } else if (weatherCode === '200') { // 夜间有风
             return 'wi-windy';
-        } else if (weatherCode === '201') {
+        } else if (weatherCode === '201') { // 夜间平静
             return 'wi-night-alt-cloudy-windy';
-        } else if (weatherCode === '202') {
+        } else if (weatherCode === '202') { // 夜间微风
             return 'wi-cloudy-windy';
-        } else if (weatherCode === '203') {
+        } else if (weatherCode === '203') { // 夜间和风
             return 'wi-night-alt-cloudy-gusts';
-        } else if (weatherCode === '204') {
+        } else if (weatherCode === '204') { // 夜间清风
             return 'wi-cloudy-gusts';
-        } else if (weatherCode === '205') {
+        } else if (weatherCode === '205') { // 夜间强风/劲风
             return 'wi-strong-wind';
-        } else if (weatherCode === '206') {
+        } else if (weatherCode === '206') { // 夜间疾风
             return 'wi-strong-wind';
-        } else if (weatherCode === '207') {
+        } else if (weatherCode === '207') { // 夜间大风
             return 'wi-strong-wind';
-        } else if (weatherCode === '208') {
+        } else if (weatherCode === '208') { // 夜间烈风
             return 'wi-strong-wind';
-        } else if (weatherCode === '209') {
+        } else if (weatherCode === '209') { // 夜间风暴
             return 'wi-strong-wind';
-        } else if (weatherCode === '210') {
+        } else if (weatherCode === '210') { // 夜间狂爆风
             return 'wi-strong-wind';
-        } else if (weatherCode === '211') {
+        } else if (weatherCode === '211') { // 夜间飓风
             return 'wi-hurricane';
-        } else if (weatherCode === '212') {
+        } else if (weatherCode === '212') { // 夜间龙卷风
             return 'wi-tornado';
-        } else if (weatherCode === '213') {
+        } else if (weatherCode === '213') { // 夜间热带风暴
             return 'wi-hurricane';
-        } else if (weatherCode === '300') {
+        } else if (weatherCode === '300') { // 夜间阵雨
             return 'wi-night-alt-sprinkle';
-        } else if (weatherCode === '301') {
+        } else if (weatherCode === '301') { // 夜间强阵雨
             return 'wi-night-alt-showers';
-        } else if (weatherCode === '302') {
+        } else if (weatherCode === '302') { // 夜间雷阵雨
             return 'wi-night-alt-storm-showers';
-        } else if (weatherCode === '303') {
+        } else if (weatherCode === '303') { // 夜间强雷阵雨
             return 'wi-storm-showers';
-        } else if (weatherCode === '304') {
+        } else if (weatherCode === '304') { // 夜间雷阵雨伴有冰雹
             return 'wi-night-alt-sleet-storm';
-        } else if (weatherCode === '305') {
+        } else if (weatherCode === '305') { // 夜间小雨
             return 'wi-night-alt-rain';
-        } else if (weatherCode === '306') {
+        } else if (weatherCode === '306') { // 夜间中雨
             return 'wi-showers';
-        } else if (weatherCode === '307') {
+        } else if (weatherCode === '307') { // 夜间大雨
             return 'wi-hail';
-        } else if (weatherCode === '308') {
+        } else if (weatherCode === '308') { // 夜间极端降雨
             return 'wi-rain-wind';
-        } else if (weatherCode === '309') {
+        } else if (weatherCode === '309') { // 夜间毛毛雨/细雨
             return 'wi-raindrops';
-        } else if (weatherCode === '310') {
+        } else if (weatherCode === '310') { // 夜间暴雨
             return 'wi-rain';
-        } else if (weatherCode === '311') {
+        } else if (weatherCode === '311') { // 夜间大暴雨
             return 'wi-rain';
-        } else if (weatherCode === '312') {
+        } else if (weatherCode === '312') { // 夜间特大暴雨
             return 'wi-rain';
-        } else if (weatherCode === '313') {
+        } else if (weatherCode === '313') { // 夜间冻雨
             return 'wi-sleet';
-        } else if (weatherCode === '314') {
+        } else if (weatherCode === '314') { // 夜间小到中雨
             return 'wi-showers';
-        } else if (weatherCode === '315') {
+        } else if (weatherCode === '315') { // 夜间中到大雨
             return 'wi-hail';
-        } else if (weatherCode === '316') {
+        } else if (weatherCode === '316') { // 夜间大到暴雨
             return 'wi-rain';
-        } else if (weatherCode === '317') {
+        } else if (weatherCode === '317') { // 夜间暴雨到大暴雨
             return 'wi-rain';
-        } else if (weatherCode === '318') {
+        } else if (weatherCode === '318') { // 夜间大暴雨到特大暴雨
             return 'wi-rain';
-        } else if (weatherCode === '399') {
+        } else if (weatherCode === '399') { // 夜间雨
             return 'wi-raindrop';
-        } else if (weatherCode === '400') {
+        } else if (weatherCode === '400') { // 夜间小雪
             return 'wi-night-alt-snow-wind';
-        } else if (weatherCode === '401') {
+        } else if (weatherCode === '401') { // 夜间中雪
             return 'wi-snow';
-        } else if (weatherCode === '402') {
+        } else if (weatherCode === '402') { // 夜间大雪
             return 'wi-snow-wind';
-        } else if (weatherCode === '403') {
+        } else if (weatherCode === '403') { // 夜间暴雪
             return 'wi-snow-wind';
-        } else if (weatherCode === '404') {
+        } else if (weatherCode === '404') { // 夜间雨夹雪
             return 'wi-rain-mix';
-        } else if (weatherCode === '405') {
+        } else if (weatherCode === '405') { // 夜间雨雪天气
             return 'wi-rain-mix';
-        } else if (weatherCode === '406') {
+        } else if (weatherCode === '406') { // 夜间阵雨夹雪
             return 'wi-night-alt-snow-thunderstorm';
-        } else if (weatherCode === '407') {
+        } else if (weatherCode === '407') { // 夜间阵雪
             return 'wi-night-alt-snow';
-        } else if (weatherCode === '408') {
+        } else if (weatherCode === '408') { // 夜间小到中雪
             return 'wi-snow';
-        } else if (weatherCode === '409') {
+        } else if (weatherCode === '409') { // 夜间中到大雪
             return 'wi-snow-wind';
-        } else if (weatherCode === '410') {
+        } else if (weatherCode === '410') { // 夜间大到暴雪
             return 'wi-snow-wind';
-        } else if (weatherCode === '499') {
+        } else if (weatherCode === '499') { // 夜间雪
             return 'wi-snowflake-cold';
-        } else if (weatherCode === '500') {
+        } else if (weatherCode === '500') { // 夜间薄雾
             return 'wi-night-fog';
-        } else if (weatherCode === '501') {
+        } else if (weatherCode === '501') { // 夜间雾
             return 'wi-night-fog';
-        } else if (weatherCode === '502') {
+        } else if (weatherCode === '502') { // 夜间霾
             return 'wi-smoke';
-        } else if (weatherCode === '503') {
+        } else if (weatherCode === '503') { // 夜间扬沙
             return 'wi-dust';
-        } else if (weatherCode === '504') {
+        } else if (weatherCode === '504') { // 夜间浮尘
             return 'wi-dust';
-        } else if (weatherCode === '507') {
+        } else if (weatherCode === '507') { // 夜间沙尘暴
             return 'wi-sandstorm';
-        } else if (weatherCode === '508') {
+        } else if (weatherCode === '508') { // 夜间强沙尘暴
             return 'wi-sandstorm';
-        } else if (weatherCode === '509') {
+        } else if (weatherCode === '509') { // 夜间浓雾
             return 'wi-fog';
-        } else if (weatherCode === '510') {
+        } else if (weatherCode === '510') { // 夜间强浓雾
             return 'wi-fog';
-        } else if (weatherCode === '511') {
+        } else if (weatherCode === '511') { // 夜间中度霾
             return 'wi-smog';
-        } else if (weatherCode === '512') {
+        } else if (weatherCode === '512') { // 夜间重度霾
             return 'wi-smog';
-        } else if (weatherCode === '513') {
+        } else if (weatherCode === '513') { // 夜间严重霾
             return 'wi-smog';
-        } else if (weatherCode === '514') {
+        } else if (weatherCode === '514') { // 夜间大雾
             return 'wi-fog';
-        } else if (weatherCode === '515') {
+        } else if (weatherCode === '515') { // 夜间特强浓雾
             return 'wi-fog';
-        } else if (weatherCode === '900') {
+        } else if (weatherCode === '900') { // 夜间热
             return 'wi-hot';
-        } else if (weatherCode === '901') {
+        } else if (weatherCode === '901') { // 夜间冷
             return 'wi-snowflake-cold';
-        } else if (weatherCode === '999') {
+        } else if (weatherCode === '999') { // 夜间未知
             return 'wi-na';
         } else {
             return 'wi-na';
@@ -1030,7 +1063,7 @@ function getWeatherIcon(time, weatherCode) {
     }
 }
 
-// 农历数据
+// 农历基础数据
 var lunarData = {
     lunarInfo: [
         0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2,
@@ -1494,7 +1527,7 @@ function isHoliday(date, dates) {
     return false;
 }
 
-// 万年历
+// 万年历弹窗
 function getLunar() {
     var divWindow = $('<div class="window-box" id="lunarBox"></div>').kendoWindow({
             animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
@@ -1558,21 +1591,30 @@ function getLunar() {
     divWindow.content(lunarHtml).center().open();
 }
 
+// 万年历显示
 function setLunar(date) {
     var lunar = lunarData.solar2lunar(date.getFullYear(), (date.getMonth() + 1), date.getDate());
+    // 年月
     $('#lunarShow .month').html(kendo.toString(date, "yyyy年MM月"));
+    // 日
     $('#lunarShow .day').html(kendo.toString(date, "dd"));
+    // 星期、节气
     if (lunar.isTerm) {
         $('#lunarShow .week').html(kendo.toString(date, "dddd") + '【' + lunar.term + '】');
     } else {
         $('#lunarShow .week').html(kendo.toString(date, "dddd"));
     }
+    // 农历年月日
     $('#lunarShow .lunarDay').html(lunar.zodiac + '年：' + lunar.lunarMonthCn + lunar.lunarDayCn);
+    // 月相
     $('#lunarShow .moonPhase').html(getMoonIcon(lunar.lunarDay));
+    // 节假日
     $('#lunarShow .festival').html('');
+    // 农历节假日
     if (lunar.lunarFestival) {
         $('#lunarShow .festival').show().append('<span>' + lunar.lunarFestival + '</span>');
     }
+    // 公历节假日
     if (lunar.solarFestival) {
         $('#lunarShow .festival').show().append('<span>' + lunar.solarFestival + '</span>');
     }
@@ -1580,9 +1622,11 @@ function setLunar(date) {
     if (!(lunar.lunarFestival) && !(lunar.solarFestival)) {
         $('#lunarShow .festival').hide();
     }
+    // 天干地支年月日
     $('#lunarShow .lunarYear').html('<span>' + lunar.gzYear + '年</span><span>' + lunar.gzMonth + '月</span><span>' + lunar.gzDay + '日</span>');
 }
 
+// 月相图标及名称
 function getMoonIcon(lunarDay) {
     if (lunarDay === 1) {
         return '<i class="wi wi-moon-new"></i>朔月';
@@ -1647,7 +1691,7 @@ function getMoonIcon(lunarDay) {
     }
 }
 
-// 便签
+// 便签弹窗
 function getNote() {
     if (window.indexedDB) {
         var req = window.indexedDB.open('noteDB'),
@@ -1729,9 +1773,11 @@ function getNote() {
                         template: kendo.template($('#noteListTemplate').html()),
                         editTemplate: kendo.template($('#noteEditTemplate').html()),
                         save: function (e) {
+                            // 自动生成时间
                             e.model.set('noteTime', kendo.toString(new Date(), 'yyyy-MM-dd HH:mm:ss'));
                         },
                         dataBound: function () {
+                            // 便签颜色
                             $('#noteListView .alert:nth-child(6n+1)').addClass('alert-primary');
                             $('#noteListView .alert:nth-child(6n+2)').addClass('alert-secondary');
                             $('#noteListView .alert:nth-child(6n+3)').addClass('alert-success');
@@ -1740,10 +1786,12 @@ function getNote() {
                             $('#noteListView .alert:nth-child(6n+6)').addClass('alert-info');
                         }
                     });
+                    // 便签新增
                     $('#noteBox .k-add-button').click(function (e) {
                         $('#noteListView').data('kendoListView').add();
                         e.preventDefault();
                     });
+                    // 便签查找
                     $('#noteSearch').keyup(function () {
                         $('#noteListView').data('kendoListView').dataSource.filter({
                             logic: 'or',
@@ -1753,6 +1801,7 @@ function getNote() {
                             ]
                         });
                     });
+                    // 便签清空
                     $('#noteBox .k-clear-button').click(function (e) {
                         confirmMsg('清空确认', '你确定要清空便签吗？', 'question', function () {
                             db.transaction(['list'], 'readwrite').objectStore('list').clear();
@@ -1802,16 +1851,19 @@ function getNote() {
                         '</time>' +
                     '</div>' +
                 '</script>';
+        // 本地数据库新建
         req.onupgradeneeded = function (e) {
             db = e.target.result;
             if (!db.objectStoreNames.contains('list')) {
                 db.createObjectStore('list', { keyPath: 'id', autoIncrement: true });
             }
         };
+        // 本地数据库读取
         req.onsuccess = function (e) {
             db = req.result;
             divWindow.content(noteHtml).center().open();
         };
+        // 本地数据库出错
         req.onerror = function (e) {
             alertMsg('获取便签数据出错！', 'error');
         };
@@ -1820,10 +1872,12 @@ function getNote() {
     }
 }
 
+// 刷新便签
 function refreshNote() {
     $('#noteListView').data('kendoListView').dataSource.read();
 }
 
+// 排序便签
 function orderNote(dir) {
     $('#noteListView').data('kendoListView').dataSource.sort({
         field: 'id',
