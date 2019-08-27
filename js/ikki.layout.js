@@ -1587,21 +1587,21 @@ function getMoonIcon(lunarDay) {
     if (lunarDay === 1) {
         return '<i class="wi wi-moon-new"></i>朔月';
     } else if (lunarDay === 2) {
-        return '<i class="wi wi-moon-waxing-crescent-1"></i>既朔月';
+        return '<i class="wi wi-moon-waxing-crescent-1"></i>既朔';
     } else if (lunarDay === 3) {
-        return '<i class="wi wi-moon-waxing-crescent-2"></i>蛾眉新月';
+        return '<i class="wi wi-moon-waxing-crescent-2"></i>眉月';
     } else if (lunarDay === 4) {
-        return '<i class="wi wi-moon-waxing-crescent-3"></i>蛾眉新月';
+        return '<i class="wi wi-moon-waxing-crescent-3"></i>眉月';
     } else if (lunarDay === 5) {
-        return '<i class="wi wi-moon-waxing-crescent-4"></i>蛾眉月';
+        return '<i class="wi wi-moon-waxing-crescent-4"></i>盈眉';
     } else if (lunarDay === 6) {
         return '<i class="wi wi-moon-waxing-crescent-5"></i>夕月';
     } else if (lunarDay === 7) {
-        return '<i class="wi wi-moon-waxing-crescent-6"></i>上弦月';
+        return '<i class="wi wi-moon-waxing-crescent-6"></i>上弦';
     } else if (lunarDay === 8) {
-        return '<i class="wi wi-moon-first-quarter"></i>上弦月';
+        return '<i class="wi wi-moon-first-quarter"></i>上弦';
     } else if (lunarDay === 9) {
-        return '<i class="wi wi-moon-waxing-gibbous-1"></i>九夜月';
+        return '<i class="wi wi-moon-waxing-gibbous-1"></i>九夜';
     } else if (lunarDay === 10) {
         return '<i class="wi wi-moon-waxing-gibbous-2"></i>宵月';
     } else if (lunarDay === 11) {
@@ -1609,35 +1609,35 @@ function getMoonIcon(lunarDay) {
     } else if (lunarDay === 12) {
         return '<i class="wi wi-moon-waxing-gibbous-4"></i>宵月';
     } else if (lunarDay === 13) {
-        return '<i class="wi wi-moon-waxing-gibbous-5"></i>渐盈凸月';
+        return '<i class="wi wi-moon-waxing-gibbous-5"></i>盈凸';
     } else if (lunarDay === 14) {
-        return '<i class="wi wi-moon-waxing-gibbous-6"></i>小望月';
+        return '<i class="wi wi-moon-waxing-gibbous-6"></i>小望';
     } else if (lunarDay === 15) {
         return '<i class="wi wi-moon-full"></i>望月';
     } else if (lunarDay === 16) {
-        return '<i class="wi wi-moon-full"></i>既望月';
+        return '<i class="wi wi-moon-full"></i>既望';
     } else if (lunarDay === 17) {
-        return '<i class="wi wi-moon-waning-gibbous-1"></i>立待月';
+        return '<i class="wi wi-moon-waning-gibbous-1"></i>立待';
     } else if (lunarDay === 18) {
-        return '<i class="wi wi-moon-waning-gibbous-2"></i>居待月';
+        return '<i class="wi wi-moon-waning-gibbous-2"></i>居待';
     } else if (lunarDay === 19) {
-        return '<i class="wi wi-moon-waning-gibbous-3"></i>寝待月';
+        return '<i class="wi wi-moon-waning-gibbous-3"></i>寝待';
     } else if (lunarDay === 20) {
-        return '<i class="wi wi-moon-waning-gibbous-4"></i>更待月';
+        return '<i class="wi wi-moon-waning-gibbous-4"></i>更待';
     } else if (lunarDay === 21) {
-        return '<i class="wi wi-moon-waning-gibbous-5"></i>渐亏凸月';
+        return '<i class="wi wi-moon-waning-gibbous-5"></i>亏凸';
     } else if (lunarDay === 22) {
-        return '<i class="wi wi-moon-waning-gibbous-6"></i>下弦月';
+        return '<i class="wi wi-moon-waning-gibbous-6"></i>下弦';
     } else if (lunarDay === 23) {
-        return '<i class="wi wi-moon-third-quarter"></i>下弦月';
+        return '<i class="wi wi-moon-third-quarter"></i>下弦';
     } else if (lunarDay === 24) {
-        return '<i class="wi wi-moon-waning-crescent-1"></i>有明月';
+        return '<i class="wi wi-moon-waning-crescent-1"></i>有明';
     } else if (lunarDay === 25) {
-        return '<i class="wi wi-moon-waning-crescent-2"></i>有明月';
+        return '<i class="wi wi-moon-waning-crescent-2"></i>有明';
     } else if (lunarDay === 26) {
-        return '<i class="wi wi-moon-waning-crescent-3"></i>蛾眉残月';
+        return '<i class="wi wi-moon-waning-crescent-3"></i>亏眉';
     } else if (lunarDay === 27) {
-        return '<i class="wi wi-moon-waning-crescent-4"></i>蛾眉残月';
+        return '<i class="wi wi-moon-waning-crescent-4"></i>亏眉';
     } else if (lunarDay === 28) {
         return '<i class="wi wi-moon-waning-crescent-5"></i>残月';
     } else if (lunarDay === 29) {
