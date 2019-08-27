@@ -1395,7 +1395,15 @@ iframe#section {
                     font-weight: 400;
                     line-height: 1em;
                 }
+                .moonPhase {
+                    i {
+                        margin-right: 8px;
+                        font-size: 1.6rem;
+                        vertical-align: bottom;
+                    }
+                }
                 .week,
+                .moonPhase,
                 .festival,
                 .lunarYear {
                     font-size: 1.2rem;
@@ -1648,7 +1656,13 @@ iframe#section {
                         padding: .1rem .5rem;
                         font-size: 1.5rem;
                     }
+                    .moonPhase {
+                        i {
+                            font-size: 1.3rem;
+                        }
+                    }
                     .week,
+                    .moonPhase,
                     .festival,
                     .lunarYear {
                         font-size: 1rem;

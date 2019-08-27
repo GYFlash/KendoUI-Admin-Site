@@ -1151,7 +1151,12 @@ iframe#section {
       font-size: 10rem;
       font-weight: 400;
       line-height: 1em; }
+    #lunarBox .card .row > div:first-child .moonPhase i {
+      margin-right: 8px;
+      font-size: 1.6rem;
+      vertical-align: bottom; }
     #lunarBox .card .row > div:first-child .week,
+    #lunarBox .card .row > div:first-child .moonPhase,
     #lunarBox .card .row > div:first-child .festival,
     #lunarBox .card .row > div:first-child .lunarYear {
       font-size: 1.2rem; }
@@ -1347,7 +1352,10 @@ iframe#section {
       border-radius: 4px;
       padding: .1rem .5rem;
       font-size: 1.5rem; }
+    #lunarBox .card .row > div:first-child .moonPhase i {
+      font-size: 1.3rem; }
     #lunarBox .card .row > div:first-child .week,
+    #lunarBox .card .row > div:first-child .moonPhase,
     #lunarBox .card .row > div:first-child .festival,
     #lunarBox .card .row > div:first-child .lunarYear {
       font-size: 1rem; } }
