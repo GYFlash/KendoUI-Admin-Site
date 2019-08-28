@@ -1598,11 +1598,11 @@ function setLunar(date) {
     $('#lunarShow .month').html(kendo.toString(date, "yyyy年MM月"));
     // 日
     $('#lunarShow .day').html(kendo.toString(date, "dd"));
-    // 星期、节气
+    // 时间、星期、节气
     if (lunar.isTerm) {
-        $('#lunarShow .week').html(kendo.toString(date, "dddd") + '【' + lunar.term + '】');
+        $('#lunarShow .week').html('<i class="wi wi-time-' + kendo.toString(date, "h") + '"></i>' + kendo.toString(date, "dddd") + '【' + lunar.term + '】');
     } else {
-        $('#lunarShow .week').html(kendo.toString(date, "dddd"));
+        $('#lunarShow .week').html('<i class="wi wi-time-' + kendo.toString(date, "h") + '"></i>' + kendo.toString(date, "dddd"));
     }
     // 农历年月日
     $('#lunarShow .lunarDay').html(lunar.zodiac + '年：' + lunar.lunarMonthCn + lunar.lunarDayCn);
