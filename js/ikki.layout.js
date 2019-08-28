@@ -219,7 +219,9 @@ $(function () {
     $.ajax({
         type: 'get',
         data: {
-            version: 'v6'
+            version: 'v6',
+            appid: '97987729', // 请替换成自己的 ID
+            appsecret: 'f2Wfm53j' // 请替换成自己的 Key
         },
         url: 'https://www.tianqiapi.com/api/',
         dataType: 'json',
@@ -1545,6 +1547,7 @@ function getLunar() {
                             '# var lunar = lunarData.solar2lunar(data.date.getFullYear(), (data.date.getMonth() + 1), data.date.getDate()) #' +
                             '<div class="d-flex flex-column">' +
                                 '#= data.value #' +
+                                '#= getMoonIcon(lunar.lunarDay).substr(0, getMoonIcon(lunar.lunarDay).length - 2) #' +
                                 '<small class="text-nowrap">' +
                                 '# if (lunar.lunarFestival) { #' +
                                     '<span class="festival rounded px-1">#= lunar.lunarFestival #</span>' +

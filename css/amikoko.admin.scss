@@ -1395,6 +1395,7 @@ iframe#section {
                     font-weight: 400;
                     line-height: 1em;
                 }
+                .week,
                 .moonPhase {
                     i {
                         margin-right: 8px;
@@ -1423,7 +1424,13 @@ iframe#section {
             height: 24em;
             & > table,
             .k-link {
+                position: relative;
                 height: 100%;
+            }
+            i.wi {
+                position: absolute;
+                top: 6px;
+                right: 12px;
             }
             .festival {
                 border-color: #f35800;
@@ -1656,6 +1663,7 @@ iframe#section {
                         padding: .1rem .5rem;
                         font-size: 1.5rem;
                     }
+                    .week,
                     .moonPhase {
                         i {
                             font-size: 1.3rem;
@@ -1667,6 +1675,14 @@ iframe#section {
                     .lunarYear {
                         font-size: 1rem;
                     }
+                }
+            }
+        }
+        .k-calendar {
+            .k-calendar-view {
+                i.wi {
+                    top: 4px;
+                    right: 2px;
                 }
             }
         }
