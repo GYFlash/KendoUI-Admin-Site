@@ -106,8 +106,11 @@ $(function () {
             unlockScreen();
         }
     });
+    // 工具箱图标
+    $('body').append('<div id="toolBox"><button class="k-button k-state-selected" id="tools"><i class="fas fa-tools"></i></button></div>');
     // 聊天机器人图标
-    $('body').append('<button class="k-button k-state-selected" id="bot"><label for="botCkb"><i class="fas fa-robot"></i></label></button><input id="botCkb" type="checkbox"><label for="botCkb"><span id="botMask"></span></label><div id="botChat"></div>');
+    $('#toolBox').append('<button class="k-button k-state-selected" id="bot"><label for="botCkb"><i class="fas fa-robot"></i></label></button>');
+    $('body').append('<input id="botCkb" type="checkbox"><label for="botCkb"><span id="botMask"></span></label><div id="botChat"></div>');
     // 聊天机器人提示
     tipMsg($('#bot'), '聊天机器人', 'left');
     // 聊天机器人
@@ -212,7 +215,7 @@ $(function () {
         }
     );
     // 天气预报图标
-    $('body').append('<button class="k-button k-state-selected" id="weather" onclick="getWeather();"><i class="wi wi-na"></i></button>');
+    $('#toolBox').append('<button class="k-button k-state-selected" id="weather" onclick="getWeather();"><i class="wi wi-na"></i></button>');
     // 天气预报提示
     tipMsg($('#weather'), '天气预报', 'left');
     // 天气预报动态图标
@@ -281,11 +284,11 @@ $(function () {
         }
     });
     // 万年历图标
-    $('body').append('<button class="k-button k-state-selected" id="lunar" onclick="getLunar();"><i class="fas fa-calendar-alt"></i></button>');
+    $('#toolBox').append('<button class="k-button k-state-selected" id="lunar" onclick="getLunar();"><i class="fas fa-calendar-alt"></i></button>');
     // 万年历提示
     tipMsg($('#lunar'), '万年历', 'left');
     // 便签图标
-    $('body').append('<button class="k-button k-state-selected" id="note" onclick="getNote();"><i class="fas fa-sticky-note"></i></button>');
+    $('#toolBox').append('<button class="k-button k-state-selected" id="note" onclick="getNote();"><i class="fas fa-sticky-note"></i></button>');
     // 便签提示
     tipMsg($('#note'), '便签', 'left');
     // 回到顶部图标

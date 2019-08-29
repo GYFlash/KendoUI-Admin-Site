@@ -1174,23 +1174,67 @@ iframe#section {
     display: none;
 }
 
-#bot,
-#weather,
-#lunar,
-#note,
+#toolBox,
 #goTop {
     position: fixed;
     right: 32px;
-    bottom: 12px;
     z-index: 999;
+}
+
+#toolBox {
+    display: flex;
+    flex-direction: column-reverse;
+    bottom: 72px;
+    width: 48px;
+    height: 60px;
+    button {
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        @include nav-menu-ani;
+    }
+    #tools {
+        opacity: .6;
+    }
+    &:hover {
+        height: 240px;
+        button {
+            opacity: .6;
+        }
+        #tools {
+            display: none;
+        }
+        #bot {
+            bottom: 0;
+        }
+        #weather {
+            bottom: 60px;
+        }
+        #lunar {
+            bottom: 120px;
+        }
+        #note {
+            bottom: 180px;
+        }
+    }
+}
+
+#goTop {
+    display: none;
+    bottom: 12px;
+    opacity: .6;
+}
+
+#toolBox > button,
+#goTop {
     border-radius: $border-radius-round;
+    margin-top: 12px;
     padding: 0;
     width: 48px;
     height: 48px;
     font-size: 24px;
     line-height: 24px;
     box-shadow: 0 0 8px rgba(0, 0, 0, .6);
-    opacity: .6;
     &:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, .8);
     }
@@ -1231,10 +1275,6 @@ iframe#section {
             right: 0;
         }
     }
-}
-
-#weather {
-    bottom: 72px;
 }
 
 #weatherBox {
@@ -1361,10 +1401,6 @@ iframe#section {
     }
 }
 
-#lunar {
-    bottom: 132px;
-}
-
 #lunarBox {
     .card {
         border: 0;
@@ -1439,10 +1475,6 @@ iframe#section {
             }
         }
     }
-}
-
-#note {
-    bottom: 192px;
 }
 
 #noteBox {
@@ -1552,11 +1584,6 @@ iframe#section {
     }
 }
 
-#goTop {
-    display: none;
-    bottom: 252px;
-}
-
 /* 手机端适配 */
 @media only screen and (max-width: 767px) {
     #login {
@@ -1639,12 +1666,40 @@ iframe#section {
         background-size: auto 100%;
     }
 
-    #bot,
-    #weather,
-    #lunar,
-    #note,
+    #toolBox,
     #goTop {
-        right: 15px;
+        right: 16px;
+    }
+
+    #toolBox {
+        bottom: 48px;
+        width: 32px;
+        height: 40px;
+        &:hover {
+            height: 160px;
+            #weather {
+                bottom: 40px;
+            }
+            #lunar {
+                bottom: 80px;
+            }
+            #note {
+                bottom: 120px;
+            }
+        }
+    }
+
+    #goTop {
+        bottom: 8px;
+    }
+
+    #toolBox > button,
+    #goTop {
+        margin-top: 8px;
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        line-height: 16px;
     }
 
     #lunarBox {
@@ -1685,6 +1740,13 @@ iframe#section {
                     right: 2px;
                 }
             }
+        }
+    }
+
+    #noteBox {
+        #noteListView {
+            margin-right: -15px;
+            padding-right: 16px;
         }
     }
 }

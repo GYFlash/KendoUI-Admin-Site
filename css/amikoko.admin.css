@@ -965,33 +965,61 @@ iframe#section {
 #template {
   display: none; }
 
-#bot,
-#weather,
-#lunar,
-#note,
+#toolBox,
 #goTop {
   position: fixed;
   right: 32px;
+  z-index: 999; }
+
+#toolBox {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column-reverse;
+      flex-direction: column-reverse;
+  bottom: 72px;
+  width: 48px;
+  height: 60px; }
+  #toolBox button {
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    transition: all .3s; }
+  #toolBox #tools {
+    opacity: .6; }
+  #toolBox:hover {
+    height: 240px; }
+    #toolBox:hover button {
+      opacity: .6; }
+    #toolBox:hover #tools {
+      display: none; }
+    #toolBox:hover #bot {
+      bottom: 0; }
+    #toolBox:hover #weather {
+      bottom: 60px; }
+    #toolBox:hover #lunar {
+      bottom: 120px; }
+    #toolBox:hover #note {
+      bottom: 180px; }
+
+#goTop {
+  display: none;
   bottom: 12px;
-  z-index: 999;
+  opacity: .6; }
+
+#toolBox > button,
+#goTop {
   border-radius: 50%;
+  margin-top: 12px;
   padding: 0;
   width: 48px;
   height: 48px;
   font-size: 24px;
   line-height: 24px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-  opacity: .6; }
-  #bot:hover,
-  #weather:hover,
-  #lunar:hover,
-  #note:hover,
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6); }
+  #toolBox > button:hover,
   #goTop:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); }
-  #bot i,
-  #weather i,
-  #lunar i,
-  #note i,
+  #toolBox > button i,
   #goTop i {
     cursor: pointer; }
 
@@ -1019,9 +1047,6 @@ iframe#section {
     opacity: 1; }
   #botCkb:checked ~ #botChat {
     right: 0; }
-
-#weather {
-  bottom: 72px; }
 
 #weatherBox .skeleton {
   display: inline-block;
@@ -1120,9 +1145,6 @@ iframe#section {
       max-width: 24px;
       font-size: 20px; }
 
-#lunar {
-  bottom: 132px; }
-
 #lunarBox .card {
   border: 0; }
   #lunarBox .card .row > div {
@@ -1182,9 +1204,6 @@ iframe#section {
       border-color: #f35800;
       background-color: #fff;
       color: #f35800; }
-
-#note {
-  bottom: 192px; }
 
 #noteBox {
   position: relative;
@@ -1277,10 +1296,6 @@ iframe#section {
     #noteBox #noteListView .alert-info {
       border-color: #bee5eb; }
 
-#goTop {
-  display: none;
-  bottom: 252px; }
-
 /* 手机端适配 */
 @media only screen and (max-width: 767px) {
   #login #live2d-widget {
@@ -1338,12 +1353,33 @@ iframe#section {
   #locking {
     background-size: auto 100%; }
 
-  #bot,
-  #weather,
-  #lunar,
-  #note,
+  #toolBox,
   #goTop {
-    right: 15px; }
+    right: 16px; }
+
+  #toolBox {
+    bottom: 48px;
+    width: 32px;
+    height: 40px; }
+    #toolBox:hover {
+      height: 160px; }
+      #toolBox:hover #weather {
+        bottom: 40px; }
+      #toolBox:hover #lunar {
+        bottom: 80px; }
+      #toolBox:hover #note {
+        bottom: 120px; }
+
+  #goTop {
+    bottom: 8px; }
+
+  #toolBox > button,
+  #goTop {
+    margin-top: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 16px; }
 
   #lunarBox .card .row > div:first-child {
     -ms-flex-direction: row;
@@ -1368,7 +1404,11 @@ iframe#section {
       font-size: 1rem; }
   #lunarBox .k-calendar .k-calendar-view i.wi {
     top: 4px;
-    right: 2px; } }
+    right: 2px; }
+
+  #noteBox #noteListView {
+    margin-right: -15px;
+    padding-right: 16px; } }
 /* Bootstrap 细节完善 ------------------------------ */
 .k-ie10 .hide,
 .k-ie11 .hide,
