@@ -972,10 +972,6 @@ iframe#section {
   z-index: 999; }
 
 #toolBox {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column-reverse;
-      flex-direction: column-reverse;
   bottom: 72px;
   width: 48px;
   height: 60px; }
