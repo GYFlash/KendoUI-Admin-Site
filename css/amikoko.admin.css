@@ -982,16 +982,19 @@ iframe#section {
   #toolBox button {
     position: absolute;
     bottom: 0;
+    z-index: 6;
     opacity: 0;
     transition: all .3s; }
   #toolBox #tools {
+    z-index: 8;
     opacity: .6; }
   #toolBox:hover {
     height: 240px; }
     #toolBox:hover button {
       opacity: .6; }
     #toolBox:hover #tools {
-      display: none; }
+      z-index: 4;
+      opacity: 0; }
     #toolBox:hover #bot {
       bottom: 0; }
     #toolBox:hover #weather {
