@@ -463,13 +463,13 @@
             "encoded": false
         },
         {
-            "text": "<i class='fas fa-envelope'></i><sup class='theme-m-bg'>9</sup>消息",
+            "text": "<i class='fas fa-envelope'></i>消息",
             "encoded": false,
             "cssClass": "links-message",
             "url": "javascript:linkTo(\"/users/\", \"message\");"
         },
         {
-            "text": "<i class='fas fa-bell'></i><sup class='theme-m-bg'>8</sup>提醒",
+            "text": "<i class='fas fa-bell'></i>提醒",
             "encoded": false,
             "cssClass": "links-notice",
             "url": "javascript:linkTo(\"/users/\", \"notice\");"

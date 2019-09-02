@@ -15,6 +15,8 @@ var tabText = '',
             $('#inProgress .progress-bar').removeClass('w-100').addClass('animated');
             tokenAuth();
             showPath(e.url.split('/')[e.url.split('/').length - 1]);
+            getMessage();
+            getNotice();
         },
         routeMissing: function () {
             error404();

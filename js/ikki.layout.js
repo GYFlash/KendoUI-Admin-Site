@@ -13,7 +13,10 @@ var path = $('base').attr('href'),
     minorColor,
     tokenUrl = 'json/logout.json',
     navUrl = 'json/nav.json',
-    menuUrl = 'json/menu.json';
+    menuUrl = 'json/menu.json',
+    searchUrl = 'json/search.json',
+    messageUrl = 'json/message.json',
+    noticeUrl = 'json/notice.json';
 
 /* 初始化 ****************************************************************************/
 $(function () {
@@ -106,6 +109,15 @@ $(function () {
             unlockScreen();
         }
     });
+    // 新消息数量
+    getMessage();
+    // 新提醒数量
+    getNotice();
+    // 每半分钟获取一次
+    setInterval(function () {
+        getMessage();
+        getNotice();
+    }, 30000);
     // 工具箱图标
     $('body').append('<div id="toolBox"><button class="k-button k-state-selected" id="tools"><i class="fas fa-tools"></i></button></div>');
     // 聊天机器人图标
@@ -372,7 +384,7 @@ function globalSearch() {
             transport: {
                 read: function (options) {
                     $.fn.ajaxPost({
-                        ajaxUrl: 'json/search.json',
+                        ajaxUrl: searchUrl,
                         succeed: function (res) {
                             options.success(res);
                         },
@@ -538,6 +550,32 @@ function changeLang(lang) {
     $.getScript('js/global/kendo.' + lang + '.js', function () {
         kendo.culture(lang);
         refresh();
+    });
+}
+
+// 消息
+function getMessage() {
+    $.fn.ajaxPost({
+        ajaxUrl: messageUrl,
+        succeed: function (res) {
+            $('#menuH, #menuV').find('.links-message sup').remove();
+            if (res.total > 0) {
+                $('#menuH, #menuV').find('.links-message .fa-envelope').after('<sup class="theme-m-bg">' + res.total + '</sup>');
+            }
+        }
+    });
+}
+
+// 提醒
+function getNotice() {
+    $.fn.ajaxPost({
+        ajaxUrl: noticeUrl,
+        succeed: function (res) {
+            $('#menuH, #menuV').find('.links-notice sup').remove();
+            if (res.total > 0) {
+                $('#menuH, #menuV').find('.links-notice .fa-bell').after('<sup class="theme-m-bg">' + res.total + '</sup>');
+            }
+        }
     });
 }
 
