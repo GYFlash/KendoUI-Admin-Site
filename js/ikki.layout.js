@@ -559,8 +559,10 @@ function getMessage() {
         ajaxUrl: messageUrl,
         succeed: function (res) {
             $('#menuH, #menuV').find('.links-message sup').remove();
-            if (res.total > 0) {
+            if (res.total > 0 && res.total < 100) {
                 $('#menuH, #menuV').find('.links-message .fa-envelope').after('<sup class="theme-m-bg">' + res.total + '</sup>');
+            } else if (res.total >= 100) {
+                $('#menuH, #menuV').find('.links-message .fa-envelope').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
             }
         }
     });
@@ -572,8 +574,10 @@ function getNotice() {
         ajaxUrl: noticeUrl,
         succeed: function (res) {
             $('#menuH, #menuV').find('.links-notice sup').remove();
-            if (res.total > 0) {
+            if (res.total > 0 && res.total < 100) {
                 $('#menuH, #menuV').find('.links-notice .fa-bell').after('<sup class="theme-m-bg">' + res.total + '</sup>');
+            } else if (res.total >= 100) {
+                $('#menuH, #menuV').find('.links-notice .fa-bell').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
             }
         }
     });
