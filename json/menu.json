@@ -472,7 +472,11 @@
             "text": "<i class='fas fa-bell'></i>提醒",
             "encoded": false,
             "cssClass": "links-notice",
-            "url": "javascript:linkTo(\"/users/\", \"notice\");"
+            "url": "javascript:linkTo(\"/users/\", \"notice\");",
+            "content": "<div id=\"noticeBox\"></div>",
+            "contentAttr": {
+                "style": "width: 400px;"
+            }
         },
         {
             "text": "<hr>",

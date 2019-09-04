@@ -55,9 +55,11 @@ $(function () {
                 dataSource: res.data,
                 dataBound: function () {
                     globalSearch();
+                    $('#menuV .links-message, #menuV .links-notice').find('div.k-content, span.k-menu-expand-arrow').remove();
                 }
             });
             $('#menuH').kendoMenu({
+                closeOnClick: false,
                 dataSource: res.data,
                 dataBound: function () {
                     globalSearch();
@@ -555,32 +557,75 @@ function changeLang(lang) {
 
 // 消息
 function getMessage() {
-    $.fn.ajaxPost({
-        ajaxUrl: messageUrl,
-        succeed: function (res) {
-            $('#menuH, #menuV').find('.links-message sup').remove();
-            if (res.total > 0 && res.total < 100) {
-                $('#menuH, #menuV').find('.links-message .fa-envelope').after('<sup class="theme-m-bg">' + res.total + '</sup>');
-            } else if (res.total >= 100) {
-                $('#menuH, #menuV').find('.links-message .fa-envelope').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
+    if ($('#menuH div.k-animation-container[aria-hidden=false]').length === 0) {
+        $.fn.ajaxPost({
+            ajaxUrl: messageUrl,
+            succeed: function (res) {
+                $('#menuH, #menuV').find('.links-message sup').remove();
+                if (res.total > 0 && res.total < 100) {
+                    $('#menuH, #menuV').find('.links-message .fa-envelope').after('<sup class="theme-m-bg">' + res.total + '</sup>');
+                } else if (res.total >= 100) {
+                    $('#menuH, #menuV').find('.links-message .fa-envelope').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 // 提醒
 function getNotice() {
-    $.fn.ajaxPost({
-        ajaxUrl: noticeUrl,
-        succeed: function (res) {
-            $('#menuH, #menuV').find('.links-notice sup').remove();
-            if (res.total > 0 && res.total < 100) {
-                $('#menuH, #menuV').find('.links-notice .fa-bell').after('<sup class="theme-m-bg">' + res.total + '</sup>');
-            } else if (res.total >= 100) {
-                $('#menuH, #menuV').find('.links-notice .fa-bell').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
+    if ($('#menuH div.k-animation-container[aria-hidden=false]').length === 0) {
+        $.fn.ajaxPost({
+            ajaxUrl: noticeUrl,
+            succeed: function (res) {
+                $('#menuH, #menuV').find('.links-notice sup').remove();
+                if (res.total > 0 && res.total < 100) {
+                    $('#menuH, #menuV').find('.links-notice .fa-bell').after('<sup class="theme-m-bg">' + res.total + '</sup>');
+                } else if (res.total >= 100) {
+                    $('#menuH, #menuV').find('.links-notice .fa-bell').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
+                }
+                var noticeHTML =
+                    '<div id="noticeTabStrip">' +
+                        '<ul>' +
+                            '<li class="k-state-active"><i class="fas fa-bullhorn"></i>通知<span class="badge theme-s-bg">9</span></li>' +
+                            '<li><i class="fas fa-user-clock"></i>动态<span class="badge theme-s-bg">8</span></li>' +
+                            '<li><i class="fas fa-calendar-check"></i>待办<span class="badge theme-s-bg">6</span></li>' +
+                        '</ul>' +
+                        '<div>' +
+                            '<div id="systemNoticeListView">' +
+                                '<div class="blank">暂时没有新的系统通知~</div>' +
+                            '</div>' +
+                            '<div class="noticeTools">' +
+                                '<a href="javascript:;"><i class="fas fa-eye"></i>查看全部</a>' +
+                                '<a href="javascript:;"><i class="fas fa-trash-alt"></i>清空通知</a>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div>' +
+                            '<div id="dynamicNoticeListView">' +
+                                '<div class="blank">暂时没有新的个人动态~</div>' +
+                            '</div>' +
+                            '<div class="noticeTools">' +
+                                '<a href="javascript:;"><i class="fas fa-eye"></i>查看全部</a>' +
+                                '<a href="javascript:;"><i class="fas fa-trash-alt"></i>清空动态</a>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div>' +
+                            '<div id="todoNoticeListView">' +
+                                '<div class="blank">暂时没有新的待办事项~</div>' +
+                            '</div>' +
+                            '<div class="noticeTools">' +
+                                '<a href="javascript:;"><i class="fas fa-eye"></i>查看全部</a>' +
+                                '<a href="javascript:;"><i class="fas fa-trash-alt"></i>清空待办</a>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                $('#noticeBox').html(noticeHTML);
+                $('#noticeTabStrip').kendoTabStrip({
+                    animation: false
+                });
             }
-        }
-    });
+        });
+    }
 }
 
 // 退出登录

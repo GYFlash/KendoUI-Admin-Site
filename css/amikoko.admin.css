@@ -536,6 +536,83 @@ iframe#section {
 #menuH > .k-item > span.k-state-active,
 #menuV > .k-item > span.k-state-active {
   cursor: pointer; }
+#menuH #messageBox .card,
+#menuV #messageBox .card {
+  border: 0; }
+  #menuH #messageBox .card .card-header,
+  #menuV #messageBox .card .card-header {
+    padding: .5rem; }
+    #menuH #messageBox .card .card-header i,
+    #menuV #messageBox .card .card-header i {
+      margin-right: 0; }
+    #menuH #messageBox .card .card-header strong,
+    #menuV #messageBox .card .card-header strong {
+      margin-left: 10px;
+      font-size: 15px;
+      vertical-align: middle; }
+  #menuH #messageBox .card .card-body,
+  #menuV #messageBox .card .card-body {
+    padding: 0; }
+    #menuH #messageBox .card .card-body #messageDrawer,
+    #menuV #messageBox .card .card-body #messageDrawer {
+      border: 0; }
+      #menuH #messageBox .card .card-body #messageDrawer .k-drawer-item,
+      #menuV #messageBox .card .card-body #messageDrawer .k-drawer-item {
+        font-size: 14px; }
+        #menuH #messageBox .card .card-body #messageDrawer .k-drawer-item i,
+        #menuV #messageBox .card .card-body #messageDrawer .k-drawer-item i {
+          margin: 0 12px 0 4px; }
+#menuH #noticeBox .k-tabstrip-items,
+#menuV #noticeBox .k-tabstrip-items {
+  -ms-flex-pack: distribute;
+      justify-content: space-around; }
+  #menuH #noticeBox .k-tabstrip-items .k-state-active,
+  #menuV #noticeBox .k-tabstrip-items .k-state-active {
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-radius: 0;
+    background: transparent; }
+  #menuH #noticeBox .k-tabstrip-items .k-state-hover .k-link,
+  #menuV #noticeBox .k-tabstrip-items .k-state-hover .k-link {
+    background: transparent; }
+  #menuH #noticeBox .k-tabstrip-items .k-link,
+  #menuV #noticeBox .k-tabstrip-items .k-link {
+    border: 0;
+    padding: 10px 20px; }
+    #menuH #noticeBox .k-tabstrip-items .k-link .badge,
+    #menuV #noticeBox .k-tabstrip-items .k-link .badge {
+      margin-left: 6px;
+      font-weight: 100; }
+#menuH #noticeBox .k-content,
+#menuV #noticeBox .k-content {
+  border: 0;
+  border-radius: 0;
+  padding: 0; }
+  #menuH #noticeBox .k-content.k-state-active,
+  #menuV #noticeBox .k-content.k-state-active {
+    background: #fff; }
+  #menuH #noticeBox .k-content .blank,
+  #menuV #noticeBox .k-content .blank {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
+    height: 160px; }
+  #menuH #noticeBox .k-content .noticeTools,
+  #menuV #noticeBox .k-content .noticeTools {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    border-top: 1px solid #ccc;
+    padding: 8px 10px;
+    background-color: rgba(0, 0, 0, 0.03); }
+    #menuH #noticeBox .k-content .noticeTools a,
+    #menuV #noticeBox .k-content .noticeTools a {
+      color: #999;
+      text-decoration: none; }
 
 #menuH {
   float: right;
