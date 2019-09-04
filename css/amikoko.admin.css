@@ -600,6 +600,9 @@ iframe#section {
     -ms-flex-align: center;
         align-items: center;
     height: 160px; }
+    #menuH #noticeBox .k-content .blank .k-i-loading,
+    #menuV #noticeBox .k-content .blank .k-i-loading {
+      margin-right: 6px; }
   #menuH #noticeBox .k-content .noticeTools,
   #menuV #noticeBox .k-content .noticeTools {
     display: -ms-flexbox;
@@ -673,6 +676,11 @@ iframe#section {
         z-index: 888;
         border-width: 10px;
         border-bottom-color: #ccc; }
+  #menuH .globalSearch {
+    width: 74px; }
+    #menuH .globalSearch > .k-link {
+      position: absolute;
+      right: 0; }
 
 #menuV {
   display: none;

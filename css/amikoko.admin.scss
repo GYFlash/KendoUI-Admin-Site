@@ -732,6 +732,9 @@ iframe#section {
                 justify-content: center;
                 align-items: center;
                 height: 160px;
+                .k-i-loading {
+                    margin-right: 6px;
+                }
             }
             .noticeTools {
                 display: flex;
@@ -807,6 +810,13 @@ iframe#section {
                     border-bottom-color: $line-color;
                 }
             }
+        }
+    }
+    .globalSearch {
+        width: 74px;
+        > .k-link {
+            position: absolute;
+            right: 0;
         }
     }
 }
