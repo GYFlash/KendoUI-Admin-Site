@@ -705,15 +705,20 @@ iframe#section {
                 border-bottom-style: solid;
                 border-radius: 0;
                 background: transparent;
+                .k-link {
+                    color: #000;
+                }
             }
             .k-state-hover {
                 .k-link {
+                    color: #000;
                     background: transparent;
                 }
             }
             .k-link {
                 border: 0;
                 padding: 10px 20px;
+                color: #656565;
                 .badge {
                     margin-left: 6px;
                     font-weight: 100;
@@ -727,11 +732,69 @@ iframe#section {
             &.k-state-active {
                 background: #fff;
             }
+            .k-listview {
+                border: 0;
+                .media {
+                    padding: 15px 20px;
+                    figure {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0 15px 0 0;
+                        border-radius: 50%;
+                        width: 32px;
+                        height: 32px;
+                        i {
+                            margin: 0;
+                        }
+                    }
+                    img {
+                        margin: 0 15px 0 0;
+                        border-radius: 50%;
+                        width: 32px;
+                        height: 32px;
+                    }
+                    h5 {
+                        margin-bottom: 10px;
+                        font-size: $font-size-m;
+                        color: #ccc;
+                        white-space: normal;
+                    }
+                    p {
+                        margin-bottom: 3px;
+                        font-size: $font-size-s;
+                        color: #ccc;
+                        white-space: normal;
+                    }
+                    time {
+                        font-size: $font-size-s;
+                        color: #ccc;
+                    }
+                    .unread {
+                        h5 {
+                            color: #000;
+                        }
+                        p {
+                            color: #666;
+                        }
+                        time {
+                            color: #999;
+                        }
+                    }
+                }
+                .k-state-selected {
+                    h5,
+                    p,
+                    time {
+                        color: #000;
+                    }
+                }
+            }
             .blank {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 160px;
+                height: 500px;
                 .k-i-loading {
                     margin-right: 6px;
                 }
@@ -741,10 +804,14 @@ iframe#section {
                 justify-content: space-between;
                 border-top: 1px solid $line-color;
                 padding: 8px 10px;
+                font-size: $font-size-s;
                 background-color: rgba(0, 0, 0, .03);
                 a {
                     color: #999;
                     text-decoration: none;
+                    &:hover {
+                        color: #666;
+                    }
                 }
             }
         }

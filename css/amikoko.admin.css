@@ -572,13 +572,18 @@ iframe#section {
     border-bottom-style: solid;
     border-radius: 0;
     background: transparent; }
+    #menuH #noticeBox .k-tabstrip-items .k-state-active .k-link,
+    #menuV #noticeBox .k-tabstrip-items .k-state-active .k-link {
+      color: #000; }
   #menuH #noticeBox .k-tabstrip-items .k-state-hover .k-link,
   #menuV #noticeBox .k-tabstrip-items .k-state-hover .k-link {
+    color: #000;
     background: transparent; }
   #menuH #noticeBox .k-tabstrip-items .k-link,
   #menuV #noticeBox .k-tabstrip-items .k-link {
     border: 0;
-    padding: 10px 20px; }
+    padding: 10px 20px;
+    color: #656565; }
     #menuH #noticeBox .k-tabstrip-items .k-link .badge,
     #menuV #noticeBox .k-tabstrip-items .k-link .badge {
       margin-left: 6px;
@@ -591,6 +596,65 @@ iframe#section {
   #menuH #noticeBox .k-content.k-state-active,
   #menuV #noticeBox .k-content.k-state-active {
     background: #fff; }
+  #menuH #noticeBox .k-content .k-listview,
+  #menuV #noticeBox .k-content .k-listview {
+    border: 0; }
+    #menuH #noticeBox .k-content .k-listview .media,
+    #menuV #noticeBox .k-content .k-listview .media {
+      padding: 15px 20px; }
+      #menuH #noticeBox .k-content .k-listview .media figure,
+      #menuV #noticeBox .k-content .k-listview .media figure {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+            justify-content: center;
+        -ms-flex-align: center;
+            align-items: center;
+        margin: 0 15px 0 0;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px; }
+        #menuH #noticeBox .k-content .k-listview .media figure i,
+        #menuV #noticeBox .k-content .k-listview .media figure i {
+          margin: 0; }
+      #menuH #noticeBox .k-content .k-listview .media img,
+      #menuV #noticeBox .k-content .k-listview .media img {
+        margin: 0 15px 0 0;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px; }
+      #menuH #noticeBox .k-content .k-listview .media h5,
+      #menuV #noticeBox .k-content .k-listview .media h5 {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #ccc;
+        white-space: normal; }
+      #menuH #noticeBox .k-content .k-listview .media p,
+      #menuV #noticeBox .k-content .k-listview .media p {
+        margin-bottom: 3px;
+        font-size: 12px;
+        color: #ccc;
+        white-space: normal; }
+      #menuH #noticeBox .k-content .k-listview .media time,
+      #menuV #noticeBox .k-content .k-listview .media time {
+        font-size: 12px;
+        color: #ccc; }
+      #menuH #noticeBox .k-content .k-listview .media .unread h5,
+      #menuV #noticeBox .k-content .k-listview .media .unread h5 {
+        color: #000; }
+      #menuH #noticeBox .k-content .k-listview .media .unread p,
+      #menuV #noticeBox .k-content .k-listview .media .unread p {
+        color: #666; }
+      #menuH #noticeBox .k-content .k-listview .media .unread time,
+      #menuV #noticeBox .k-content .k-listview .media .unread time {
+        color: #999; }
+    #menuH #noticeBox .k-content .k-listview .k-state-selected h5,
+    #menuH #noticeBox .k-content .k-listview .k-state-selected p,
+    #menuH #noticeBox .k-content .k-listview .k-state-selected time,
+    #menuV #noticeBox .k-content .k-listview .k-state-selected h5,
+    #menuV #noticeBox .k-content .k-listview .k-state-selected p,
+    #menuV #noticeBox .k-content .k-listview .k-state-selected time {
+      color: #000; }
   #menuH #noticeBox .k-content .blank,
   #menuV #noticeBox .k-content .blank {
     display: -ms-flexbox;
@@ -599,7 +663,7 @@ iframe#section {
         justify-content: center;
     -ms-flex-align: center;
         align-items: center;
-    height: 160px; }
+    height: 500px; }
     #menuH #noticeBox .k-content .blank .k-i-loading,
     #menuV #noticeBox .k-content .blank .k-i-loading {
       margin-right: 6px; }
@@ -611,11 +675,15 @@ iframe#section {
         justify-content: space-between;
     border-top: 1px solid #ccc;
     padding: 8px 10px;
+    font-size: 12px;
     background-color: rgba(0, 0, 0, 0.03); }
     #menuH #noticeBox .k-content .noticeTools a,
     #menuV #noticeBox .k-content .noticeTools a {
       color: #999;
       text-decoration: none; }
+      #menuH #noticeBox .k-content .noticeTools a:hover,
+      #menuV #noticeBox .k-content .noticeTools a:hover {
+        color: #666; }
 
 #menuH {
   float: right;

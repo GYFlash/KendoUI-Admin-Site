@@ -583,7 +583,7 @@ function initNotice() {
     var noticeHTML =
         '<div id="noticeTabStrip">' +
             '<ul>' +
-                '<li><i class="fas fa-bullhorn"></i>通知</li>' +
+                '<li><i class="fas fa-volume-up"></i>通知</li>' +
                 '<li><i class="fas fa-user-clock"></i>动态</li>' +
                 '<li><i class="fas fa-calendar-check"></i>待办</li>' +
             '</ul>' +
@@ -592,32 +592,74 @@ function initNotice() {
                     '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
                 '</div>' +
                 '<div class="noticeTools">' +
-                    '<a href="javascript:;"><i class="fas fa-eye"></i>查看全部</a>' +
-                    '<a href="javascript:;"><i class="fas fa-trash-alt"></i>清空通知</a>' +
+                    '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
+                    '<a href="javascript:noticeReadAll(\'systemNotification\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
+                '<script id="systemNotificationTemplate" type="text/x-kendo-template">' +
+                    '<div class="media">' +
+                        '<input type="hidden" value="#= id #">' +
+                        '<figure class="theme-m-bg"><i class="fab fa-#= avatar #"></i></figure>' +
+                        '<div class="media-body# if (unread) { # unread# } #">' +
+                            '<h5>#= title #</h5>' +
+                            '<p>#= content #</p>' +
+                            '<time>#= time #</time>' +
+                        '</div>' +
+                    '</div>' +
+                '</script>' +
             '</div>' +
             '<div>' +
                 '<div id="userUpdating">' +
                     '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
                 '</div>' +
                 '<div class="noticeTools">' +
-                    '<a href="javascript:;"><i class="fas fa-eye"></i>查看全部</a>' +
-                    '<a href="javascript:;"><i class="fas fa-trash-alt"></i>清空动态</a>' +
+                    '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
+                    '<a href="javascript:noticeReadAll(\'userUpdating\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
+                '<script id="userUpdatingTemplate" type="text/x-kendo-template">' +
+                    '<div class="media">' +
+                        '<input type="hidden" value="#= id #">' +
+                        '<img src="#= avatar #" alt="#= nickName #">' +
+                        '<div class="media-body# if (unread) { # unread# } #">' +
+                            '<h5>#= title #</h5>' +
+                            '<p>#= content #</p>' +
+                            '<time>#= time #</time>' +
+                        '</div>' +
+                    '</div>' +
+                '</script>' +
             '</div>' +
             '<div>' +
                 '<div id="toDoItems">' +
                     '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
                 '</div>' +
                 '<div class="noticeTools">' +
-                    '<a href="javascript:;"><i class="fas fa-eye"></i>查看全部</a>' +
-                    '<a href="javascript:;"><i class="fas fa-trash-alt"></i>清空待办</a>' +
+                    '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
+                    '<a href="javascript:noticeReadAll(\'toDoItems\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
+                '<script id="toDoItemsTemplate" type="text/x-kendo-template">' +
+                    '<div class="media">' +
+                        '<input type="hidden" value="#= id #">' +
+                        '<div class="media-body# if (unread) { # unread# } #">' +
+                            '<h5><em class="k-notification-# if (stateType === \'1\') { #success# } else if (stateType === \'2\') { #info# } else if (stateType === \'3\') { #warning# } else if (stateType === \'4\') { #error# } #">#= state #</em>#= title #</h5>' +
+                            '<p>#= content #</p>' +
+                            '<time>#= time #</time>' +
+                        '</div>' +
+                    '</div>' +
+                '</script>' +
             '</div>' +
         '</div>';
     $('#noticeBox').html(noticeHTML);
     $('#noticeTabStrip').kendoTabStrip({
-        animation: false
+        animation: false,
+        select: function (e) {
+            var noticeType = $(e.contentElement).find('div').first().attr('id');
+            if (noticeType === 'systemNotification') {
+                getSystemNotification(e.item);
+            } else if (noticeType === 'userUpdating') {
+                getUserUpdating(e.item);
+            } else if (noticeType === 'toDoItems') {
+                getToDoItems(e.item);
+            }
+        }
     }).data('kendoTabStrip').select(0);
 }
 
@@ -632,6 +674,222 @@ function getNotice() {
             } else if (res.total >= 100) {
                 $('#menuH, #menuV').find('.links-notice > .k-link .fa-bell').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
             }
+        }
+    });
+}
+
+// 系统通知获取
+function getSystemNotification(dom) {
+    $('#systemNotification').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'systemNotification'
+                        },
+                        ajaxUrl: systemNotificationUrl,
+                        succeed: function (res) {
+                            options.success(res);
+                            $(dom).find('.badge').remove();
+                            if (res.systemNotification.length > 0) {
+                                $(dom).find('.k-link').append('<span class="badge theme-s-bg">' + res.systemNotification.length + '</span>');
+                            } else {
+                                $('#systemNotification').html('<div class="blank">暂时没有新的系统通知~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.systemNotification.length;
+                },
+                data: 'systemNotification',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        title: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' },
+                        unread: { type: 'boolean' }
+                    }
+                }
+            },
+            pageSize: 6
+        },
+        height: 500,
+        scrollable: 'endless',
+        selectable: true,
+        template: kendo.template($('#systemNotificationTemplate').html()),
+        change: function (e) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: $(e.sender.select()).find('input').val(),
+                    type: 'systemNotification'
+                },
+                ajaxUrl: noticeReadUrl,
+                succeed: function () {
+                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
+}
+
+// 个人动态获取
+function getUserUpdating(dom) {
+    $('#userUpdating').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'userUpdating'
+                        },
+                        ajaxUrl: userUpdatingUrl,
+                        succeed: function (res) {
+                            options.success(res);
+                            $(dom).find('.badge').remove();
+                            if (res.userUpdating.length > 0) {
+                                $(dom).find('.k-link').append('<span class="badge theme-s-bg">' + res.userUpdating.length + '</span>');
+                            } else {
+                                $('#userUpdating').html('<div class="blank">暂时没有新的个人动态~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.userUpdating.length;
+                },
+                data: 'userUpdating',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        nickName: { type: 'string' },
+                        title: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' },
+                        unread: { type: 'boolean' }
+                    }
+                }
+            },
+            pageSize: 6
+        },
+        height: 500,
+        scrollable: 'endless',
+        selectable: true,
+        template: kendo.template($('#userUpdatingTemplate').html()),
+        change: function (e) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: $(e.sender.select()).find('input').val(),
+                    type: 'userUpdating'
+                },
+                ajaxUrl: noticeReadUrl,
+                succeed: function () {
+                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
+}
+
+// 待办事项获取
+function getToDoItems(dom) {
+    $('#toDoItems').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'toDoItems'
+                        },
+                        ajaxUrl: toDoItemsUrl,
+                        succeed: function (res) {
+                            options.success(res);
+                            $(dom).find('.badge').remove();
+                            if (res.toDoItems.length > 0) {
+                                $(dom).find('.k-link').append('<span class="badge theme-s-bg">' + res.toDoItems.length + '</span>');
+                            } else {
+                                $('#toDoItems').html('<div class="blank">暂时没有新的待办事项~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.toDoItems.length;
+                },
+                data: 'toDoItems',
+                model: {
+                    id: 'id',
+                    fields: {
+                        state: { type: 'string' },
+                        stateType: { type: 'string' },
+                        title: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' },
+                        unread: { type: 'boolean' }
+                    }
+                }
+            },
+            pageSize: 6
+        },
+        height: 500,
+        scrollable: 'endless',
+        selectable: true,
+        template: kendo.template($('#toDoItemsTemplate').html()),
+        change: function (e) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: $(e.sender.select()).find('input').val(),
+                    type: 'toDoItems'
+                },
+                ajaxUrl: noticeReadUrl,
+                succeed: function () {
+                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
+}
+
+// 提醒全部已读
+function noticeReadAll(type) {
+    $.fn.ajaxPost({
+        ajaxData: {
+            type: type
+        },
+        ajaxUrl: noticeReadAllUrl,
+        succeed: function () {
+            $('#' + type).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+        },
+        failed: function () {
+            alertMsg('标记全部已读出错！', 'error');
         }
     });
 }
