@@ -629,6 +629,21 @@ iframe#section {
         font-size: 14px;
         color: #ccc;
         white-space: normal; }
+        #menuH #noticeBox .k-content .k-listview .media h5 em,
+        #menuV #noticeBox .k-content .k-listview .media h5 em {
+          float: right;
+          margin-left: 10px;
+          border-width: 1px;
+          border-style: solid;
+          border-radius: 4px;
+          padding: 3px 8px;
+          font-size: 12px;
+          font-style: normal; }
+        #menuH #noticeBox .k-content .k-listview .media h5 .k-notification-normal,
+        #menuV #noticeBox .k-content .k-listview .media h5 .k-notification-normal {
+          border-color: #ccc;
+          color: #656565;
+          background: #f6f6f6; }
       #menuH #noticeBox .k-content .k-listview .media p,
       #menuV #noticeBox .k-content .k-listview .media p {
         margin-bottom: 3px;

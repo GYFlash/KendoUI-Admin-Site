@@ -759,6 +759,21 @@ iframe#section {
                         font-size: $font-size-m;
                         color: #ccc;
                         white-space: normal;
+                        em {
+                            float: right;
+                            margin-left: 10px;
+                            border-width: 1px;
+                            border-style: solid;
+                            border-radius: $border-radius;
+                            padding: 3px 8px;
+                            font-size: $font-size-s;
+                            font-style: normal;
+                        }
+                        .k-notification-normal {
+                            border-color: $line-color;
+                            color: #656565;
+                            background: #f6f6f6;
+                        }
                     }
                     p {
                         margin-bottom: 3px;

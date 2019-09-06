@@ -639,7 +639,7 @@ function initNotice() {
                     '<div class="media">' +
                         '<input type="hidden" value="#= id #">' +
                         '<div class="media-body# if (unread) { # unread# } #">' +
-                            '<h5><em class="k-notification-# if (stateType === \'1\') { #success# } else if (stateType === \'2\') { #info# } else if (stateType === \'3\') { #warning# } else if (stateType === \'4\') { #error# } #">#= state #</em>#= title #</h5>' +
+                            '<h5><em class="k-notification-# if (stateType === \'1\') { #success# } else if (stateType === \'2\') { #info# } else if (stateType === \'3\') { #warning# } else if (stateType === \'4\') { #error# } else { #normal# } #">#= state #</em>#= title #</h5>' +
                             '<p>#= content #</p>' +
                             '<time>#= time #</time>' +
                         '</div>' +
