@@ -11,12 +11,17 @@ var path = $('base').attr('href'),
     webType = $('base').attr('type'),
     accentColor,
     minorColor,
-    tokenUrl = 'json/logout.json',
-    navUrl = 'json/nav.json',
-    menuUrl = 'json/menu.json',
-    searchUrl = 'json/search.json',
-    messageUrl = 'json/message.json',
-    noticeUrl = 'json/notice.json';
+    tokenUrl = 'json/logout.json', // Token 验证接口
+    navUrl = 'json/nav.json', // 左侧导航数据接口
+    menuUrl = 'json/menu.json', // 顶部菜单数据接口
+    searchUrl = 'json/search.json', // 全局搜索自动填充数据接口
+    messageUrl = 'json/message.json', // 新消息数量获取接口
+    noticeUrl = 'json/notice.json', // 新提醒数量获取接口
+    systemNotificationUrl = 'json/notice.json', // 系统通知列表获取接口
+    userUpdatingUrl = 'json/notice.json', // 个人动态列表获取接口
+    toDoItemsUrl = 'json/notice.json', // 待办事项列表获取接口
+    noticeReadUrl = 'json/response.json', // 提醒单条已读标记接口
+    noticeReadAllUrl = 'json/response.json'; // 提醒全部已读标记接口
 
 /* 初始化 ****************************************************************************/
 $(function () {
