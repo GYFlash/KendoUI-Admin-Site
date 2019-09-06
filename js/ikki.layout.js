@@ -669,13 +669,33 @@ function getNotice() {
         ajaxUrl: noticeUrl,
         succeed: function (res) {
             $('#menuH, #menuV').find('.links-notice sup').remove();
-            if (res.total > 0 && res.total < 100) {
-                $('#menuH, #menuV').find('.links-notice > .k-link .fa-bell').after('<sup class="theme-m-bg">' + res.total + '</sup>');
-            } else if (res.total >= 100) {
+            $('#noticeTabStrip').find('.k-tabstrip-items .badge').remove();
+            var total = res.systemNotificationTotal + res.userUpdatingTotal + res.toDoItemsTotal;
+            if (total > 0 && total < 100) {
+                $('#menuH, #menuV').find('.links-notice > .k-link .fa-bell').after('<sup class="theme-m-bg">' + total + '</sup>');
+            } else if (total >= 100) {
                 $('#menuH, #menuV').find('.links-notice > .k-link .fa-bell').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
+            }
+            if (res.systemNotificationTotal > 0) {
+                $('#noticeTabStrip').find('.fa-volume-up').parent().append('<span class="badge theme-s-bg">' + res.systemNotificationTotal + '</span>');
+            }
+            if (res.userUpdatingTotal > 0) {
+                $('#noticeTabStrip').find('.fa-user-clock').parent().append('<span class="badge theme-s-bg">' + res.userUpdatingTotal + '</span>');
+            }
+            if (res.toDoItemsTotal > 0) {
+                $('#noticeTabStrip').find('.fa-calendar-check').parent().append('<span class="badge theme-s-bg">' + res.toDoItemsTotal + '</span>');
             }
         }
     });
+}
+
+// 新提醒数量计算
+function getNoticeNum() {
+    var noticeNum = 0;
+    $.each($('#noticeTabStrip').find('.k-tabstrip-items .badge'), function () {
+        noticeNum += Number($(this).text());
+    });
+    $('#menuH, #menuV').find('.links-notice sup').text(noticeNum);
 }
 
 // 系统通知获取
@@ -694,6 +714,7 @@ function getSystemNotification(dom) {
                             $(dom).find('.badge').remove();
                             if (res.systemNotification.length > 0) {
                                 $(dom).find('.k-link').append('<span class="badge theme-s-bg">' + res.systemNotification.length + '</span>');
+                                getNoticeNum();
                             } else {
                                 $('#systemNotification').html('<div class="blank">暂时没有新的系统通知~</div>');
                             }
@@ -760,6 +781,7 @@ function getUserUpdating(dom) {
                             $(dom).find('.badge').remove();
                             if (res.userUpdating.length > 0) {
                                 $(dom).find('.k-link').append('<span class="badge theme-s-bg">' + res.userUpdating.length + '</span>');
+                                getNoticeNum();
                             } else {
                                 $('#userUpdating').html('<div class="blank">暂时没有新的个人动态~</div>');
                             }
@@ -827,6 +849,7 @@ function getToDoItems(dom) {
                             $(dom).find('.badge').remove();
                             if (res.toDoItems.length > 0) {
                                 $(dom).find('.k-link').append('<span class="badge theme-s-bg">' + res.toDoItems.length + '</span>');
+                                getNoticeNum();
                             } else {
                                 $('#toDoItems').html('<div class="blank">暂时没有新的待办事项~</div>');
                             }

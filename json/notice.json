@@ -1,7 +1,9 @@
 {
     "result": "y",
     "msg": "数据获取错误，请重试！",
-    "total": 23,
+    "systemNotificationTotal": 9,
+    "userUpdatingTotal": 6,
+    "toDoItemsTotal": 8,
     "systemNotification": [
         {
             "id": "sn009",
