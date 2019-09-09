@@ -760,26 +760,28 @@ function getSystemNotification() {
         selectable: true,
         template: kendo.template($('#systemNotificationTemplate').html()),
         change: function (e) {
-            $.fn.ajaxPost({
-                ajaxData: {
-                    id: $(e.sender.select()).find('input').val(),
-                    type: 'systemNotification'
-                },
-                ajaxUrl: noticeReadUrl,
-                succeed: function () {
-                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                    var badgeDom = $('#notificationTab').find('.badge');
-                    if (badgeDom.text() === '1') {
-                        badgeDom.remove();
-                    } else {
-                        badgeDom.text(Number(badgeDom.text()) - 1);
+            if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
+                $.fn.ajaxPost({
+                    ajaxData: {
+                        id: $(e.sender.select()).find('input').val(),
+                        type: 'systemNotification'
+                    },
+                    ajaxUrl: noticeReadUrl,
+                    succeed: function () {
+                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                        var badgeDom = $('#notificationTab').find('.badge');
+                        if (badgeDom.text() === '1') {
+                            badgeDom.remove();
+                        } else {
+                            badgeDom.text(Number(badgeDom.text()) - 1);
+                        }
+                        getNoticeNum();
+                    },
+                    failed: function () {
+                        alertMsg('标记已读出错！', 'error');
                     }
-                    getNoticeNum();
-                },
-                failed: function () {
-                    alertMsg('标记已读出错！', 'error');
-                }
-            });
+                });
+            }
         }
     });
 }
@@ -838,26 +840,28 @@ function getUserUpdating() {
         selectable: true,
         template: kendo.template($('#userUpdatingTemplate').html()),
         change: function (e) {
-            $.fn.ajaxPost({
-                ajaxData: {
-                    id: $(e.sender.select()).find('input').val(),
-                    type: 'userUpdating'
-                },
-                ajaxUrl: noticeReadUrl,
-                succeed: function () {
-                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                    var badgeDom = $('#updatingTab').find('.badge');
-                    if (badgeDom.text() === '1') {
-                        badgeDom.remove();
-                    } else {
-                        badgeDom.text(Number(badgeDom.text()) - 1);
+            if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
+                $.fn.ajaxPost({
+                    ajaxData: {
+                        id: $(e.sender.select()).find('input').val(),
+                        type: 'userUpdating'
+                    },
+                    ajaxUrl: noticeReadUrl,
+                    succeed: function () {
+                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                        var badgeDom = $('#updatingTab').find('.badge');
+                        if (badgeDom.text() === '1') {
+                            badgeDom.remove();
+                        } else {
+                            badgeDom.text(Number(badgeDom.text()) - 1);
+                        }
+                        getNoticeNum();
+                    },
+                    failed: function () {
+                        alertMsg('标记已读出错！', 'error');
                     }
-                    getNoticeNum();
-                },
-                failed: function () {
-                    alertMsg('标记已读出错！', 'error');
-                }
-            });
+                });
+            }
         }
     });
 }
@@ -916,26 +920,28 @@ function getToDoItems() {
         selectable: true,
         template: kendo.template($('#toDoItemsTemplate').html()),
         change: function (e) {
-            $.fn.ajaxPost({
-                ajaxData: {
-                    id: $(e.sender.select()).find('input').val(),
-                    type: 'toDoItems'
-                },
-                ajaxUrl: noticeReadUrl,
-                succeed: function () {
-                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                    var badgeDom = $('#toDoTab').find('.badge');
-                    if (badgeDom.text() === '1') {
-                        badgeDom.remove();
-                    } else {
-                        badgeDom.text(Number(badgeDom.text()) - 1);
+            if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
+                $.fn.ajaxPost({
+                    ajaxData: {
+                        id: $(e.sender.select()).find('input').val(),
+                        type: 'toDoItems'
+                    },
+                    ajaxUrl: noticeReadUrl,
+                    succeed: function () {
+                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                        var badgeDom = $('#toDoTab').find('.badge');
+                        if (badgeDom.text() === '1') {
+                            badgeDom.remove();
+                        } else {
+                            badgeDom.text(Number(badgeDom.text()) - 1);
+                        }
+                        getNoticeNum();
+                    },
+                    failed: function () {
+                        alertMsg('标记已读出错！', 'error');
                     }
-                    getNoticeNum();
-                },
-                failed: function () {
-                    alertMsg('标记已读出错！', 'error');
-                }
-            });
+                });
+            }
         }
     });
 }
