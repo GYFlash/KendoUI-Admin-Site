@@ -710,237 +710,234 @@ function getNoticeNum() {
 // 系统通知获取
 function getSystemNotification() {
     if ($('#systemNotification').data('kendoListView')) {
-        $('#systemNotification').data('kendoListView').dataSource.read();
-    } else {
-        $('#systemNotification').kendoListView({
-            dataSource: {
-                transport: {
-                    read: function (options) {
-                        $.fn.ajaxPost({
-                            ajaxData: {
-                                type: 'systemNotification'
-                            },
-                            ajaxUrl: systemNotificationUrl,
-                            succeed: function (res) {
-                                $('#notificationTab').find('.badge').remove();
-                                options.success(res);
-                                if (res.systemNotification.length > 0) {
-                                    $('#notificationTab > .k-link').append('<span class="badge theme-s-bg">' + res.systemNotification.length + '</span>');
-                                    getNoticeNum();
-                                } else {
-                                    $('#systemNotification').html('<div class="blank">暂时没有新的系统通知~</div>');
-                                }
-                            },
-                            failed: function (res) {
-                                options.error(res);
-                            }
-                        });
-                    }
-                },
-                schema: {
-                    total: function(res) {
-                        return res.systemNotification.length;
-                    },
-                    data: 'systemNotification',
-                    model: {
-                        id: 'id',
-                        fields: {
-                            avatar: { type: 'string' },
-                            title: { type: 'string' },
-                            content: { type: 'string' },
-                            time: { type: 'string' },
-                            unread: { type: 'boolean' }
-                        }
-                    }
-                },
-                pageSize: 6
-            },
-            height: 500,
-            scrollable: 'endless',
-            selectable: true,
-            template: kendo.template($('#systemNotificationTemplate').html()),
-            change: function (e) {
-                $.fn.ajaxPost({
-                    ajaxData: {
-                        id: $(e.sender.select()).find('input').val(),
-                        type: 'systemNotification'
-                    },
-                    ajaxUrl: noticeReadUrl,
-                    succeed: function () {
-                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#notificationTab').find('.badge');
-                        if (badgeDom.text() === '1') {
-                            badgeDom.remove();
-                        } else {
-                            badgeDom.text(Number(badgeDom.text()) - 1);
-                        }
-                        getNoticeNum();
-                    },
-                    failed: function () {
-                        alertMsg('标记已读出错！', 'error');
-                    }
-                });
-            }
-        });
+        $('#systemNotification').data('kendoListView').destroy();
     }
+    $('#systemNotification').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'systemNotification'
+                        },
+                        ajaxUrl: systemNotificationUrl,
+                        succeed: function (res) {
+                            $('#notificationTab').find('.badge').remove();
+                            options.success(res);
+                            if (res.systemNotification.length > 0) {
+                                $('#notificationTab > .k-link').append('<span class="badge theme-s-bg">' + res.systemNotification.length + '</span>');
+                                getNoticeNum();
+                            } else {
+                                $('#systemNotification').html('<div class="blank">暂时没有新的系统通知~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.systemNotification.length;
+                },
+                data: 'systemNotification',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        title: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' },
+                        unread: { type: 'boolean' }
+                    }
+                }
+            },
+            pageSize: 6
+        },
+        height: 500,
+        scrollable: 'endless',
+        selectable: true,
+        template: kendo.template($('#systemNotificationTemplate').html()),
+        change: function (e) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: $(e.sender.select()).find('input').val(),
+                    type: 'systemNotification'
+                },
+                ajaxUrl: noticeReadUrl,
+                succeed: function () {
+                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                    var badgeDom = $('#notificationTab').find('.badge');
+                    if (badgeDom.text() === '1') {
+                        badgeDom.remove();
+                    } else {
+                        badgeDom.text(Number(badgeDom.text()) - 1);
+                    }
+                    getNoticeNum();
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
 }
 
 // 个人动态获取
 function getUserUpdating() {
     if ($('#userUpdating').data('kendoListView')) {
-        $('#userUpdating').data('kendoListView').dataSource.read();
-    } else {
-        $('#userUpdating').kendoListView({
-            dataSource: {
-                transport: {
-                    read: function (options) {
-                        $.fn.ajaxPost({
-                            ajaxData: {
-                                type: 'userUpdating'
-                            },
-                            ajaxUrl: userUpdatingUrl,
-                            succeed: function (res) {
-                                $('#updatingTab').find('.badge').remove();
-                                options.success(res);
-                                if (res.userUpdating.length > 0) {
-                                    $('#updatingTab > .k-link').append('<span class="badge theme-s-bg">' + res.userUpdating.length + '</span>');
-                                    getNoticeNum();
-                                } else {
-                                    $('#userUpdating').html('<div class="blank">暂时没有新的个人动态~</div>');
-                                }
-                            },
-                            failed: function (res) {
-                                options.error(res);
-                            }
-                        });
-                    }
-                },
-                schema: {
-                    total: function(res) {
-                        return res.userUpdating.length;
-                    },
-                    data: 'userUpdating',
-                    model: {
-                        id: 'id',
-                        fields: {
-                            avatar: { type: 'string' },
-                            nickName: { type: 'string' },
-                            title: { type: 'string' },
-                            content: { type: 'string' },
-                            time: { type: 'string' },
-                            unread: { type: 'boolean' }
-                        }
-                    }
-                },
-                pageSize: 6
-            },
-            height: 500,
-            scrollable: 'endless',
-            selectable: true,
-            template: kendo.template($('#userUpdatingTemplate').html()),
-            change: function (e) {
-                $.fn.ajaxPost({
-                    ajaxData: {
-                        id: $(e.sender.select()).find('input').val(),
-                        type: 'userUpdating'
-                    },
-                    ajaxUrl: noticeReadUrl,
-                    succeed: function () {
-                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#updatingTab').find('.badge');
-                        if (badgeDom.text() === '1') {
-                            badgeDom.remove();
-                        } else {
-                            badgeDom.text(Number(badgeDom.text()) - 1);
-                        }
-                        getNoticeNum();
-                    },
-                    failed: function () {
-                        alertMsg('标记已读出错！', 'error');
-                    }
-                });
-            }
-        });
+        $('#userUpdating').data('kendoListView').destroy();
     }
+    $('#userUpdating').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'userUpdating'
+                        },
+                        ajaxUrl: userUpdatingUrl,
+                        succeed: function (res) {
+                            $('#updatingTab').find('.badge').remove();
+                            options.success(res);
+                            if (res.userUpdating.length > 0) {
+                                $('#updatingTab > .k-link').append('<span class="badge theme-s-bg">' + res.userUpdating.length + '</span>');
+                                getNoticeNum();
+                            } else {
+                                $('#userUpdating').html('<div class="blank">暂时没有新的个人动态~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.userUpdating.length;
+                },
+                data: 'userUpdating',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        nickName: { type: 'string' },
+                        title: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' },
+                        unread: { type: 'boolean' }
+                    }
+                }
+            },
+            pageSize: 6
+        },
+        height: 500,
+        scrollable: 'endless',
+        selectable: true,
+        template: kendo.template($('#userUpdatingTemplate').html()),
+        change: function (e) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: $(e.sender.select()).find('input').val(),
+                    type: 'userUpdating'
+                },
+                ajaxUrl: noticeReadUrl,
+                succeed: function () {
+                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                    var badgeDom = $('#updatingTab').find('.badge');
+                    if (badgeDom.text() === '1') {
+                        badgeDom.remove();
+                    } else {
+                        badgeDom.text(Number(badgeDom.text()) - 1);
+                    }
+                    getNoticeNum();
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
 }
 
 // 待办事项获取
 function getToDoItems() {
     if ($('#toDoItems').data('kendoListView')) {
-        $('#toDoItems').data('kendoListView').dataSource.read();
-    } else {
-        $('#toDoItems').kendoListView({
-            dataSource: {
-                transport: {
-                    read: function (options) {
-                        $.fn.ajaxPost({
-                            ajaxData: {
-                                type: 'toDoItems'
-                            },
-                            ajaxUrl: toDoItemsUrl,
-                            succeed: function (res) {
-                                $('#toDoTab').find('.badge').remove();
-                                options.success(res);
-                                if (res.toDoItems.length > 0) {
-                                    $('#toDoTab > .k-link').append('<span class="badge theme-s-bg">' + res.toDoItems.length + '</span>');
-                                    getNoticeNum();
-                                } else {
-                                    $('#toDoItems').html('<div class="blank">暂时没有新的待办事项~</div>');
-                                }
-                            },
-                            failed: function (res) {
-                                options.error(res);
-                            }
-                        });
-                    }
-                },
-                schema: {
-                    total: function(res) {
-                        return res.toDoItems.length;
-                    },
-                    data: 'toDoItems',
-                    model: {
-                        id: 'id',
-                        fields: {
-                            state: { type: 'string' },
-                            stateType: { type: 'string' },
-                            title: { type: 'string' },
-                            content: { type: 'string' },
-                            time: { type: 'string' },
-                            unread: { type: 'boolean' }
-                        }
-                    }
-                },
-                pageSize: 6
-            },
-            height: 500,
-            scrollable: 'endless',
-            selectable: true,
-            template: kendo.template($('#toDoItemsTemplate').html()),
-            change: function (e) {
-                $.fn.ajaxPost({
-                    ajaxData: {
-                        id: $(e.sender.select()).find('input').val(),
-                        type: 'toDoItems'
-                    },
-                    ajaxUrl: noticeReadUrl,
-                    succeed: function () {
-                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#toDoTab').find('.badge');
-                        if (badgeDom.text() === '1') {
-                            badgeDom.remove();
-                        } else {
-                            badgeDom.text(Number(badgeDom.text()) - 1);
-                        }
-                        getNoticeNum();
-                    },
-                    failed: function () {
-                        alertMsg('标记已读出错！', 'error');
-                    }
-                });
-            }
-        });
+        $('#toDoItems').data('kendoListView').destroy();
     }
+    $('#toDoItems').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'toDoItems'
+                        },
+                        ajaxUrl: toDoItemsUrl,
+                        succeed: function (res) {
+                            $('#toDoTab').find('.badge').remove();
+                            options.success(res);
+                            if (res.toDoItems.length > 0) {
+                                $('#toDoTab > .k-link').append('<span class="badge theme-s-bg">' + res.toDoItems.length + '</span>');
+                                getNoticeNum();
+                            } else {
+                                $('#toDoItems').html('<div class="blank">暂时没有新的待办事项~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.toDoItems.length;
+                },
+                data: 'toDoItems',
+                model: {
+                    id: 'id',
+                    fields: {
+                        state: { type: 'string' },
+                        stateType: { type: 'string' },
+                        title: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' },
+                        unread: { type: 'boolean' }
+                    }
+                }
+            },
+            pageSize: 6
+        },
+        height: 500,
+        scrollable: 'endless',
+        selectable: true,
+        template: kendo.template($('#toDoItemsTemplate').html()),
+        change: function (e) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: $(e.sender.select()).find('input').val(),
+                    type: 'toDoItems'
+                },
+                ajaxUrl: noticeReadUrl,
+                succeed: function () {
+                    $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                    var badgeDom = $('#toDoTab').find('.badge');
+                    if (badgeDom.text() === '1') {
+                        badgeDom.remove();
+                    } else {
+                        badgeDom.text(Number(badgeDom.text()) - 1);
+                    }
+                    getNoticeNum();
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
 }
 
 // 提醒全部已读
