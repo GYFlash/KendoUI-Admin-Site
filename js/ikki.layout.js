@@ -826,7 +826,6 @@ function getSystemNotification() {
         selectable: true,
         template:
             '<div class="media">' +
-                '<input type="hidden" value="#= id #">' +
                 '<figure class="theme-m-bg">' +
                     '<i class="fab fa-#= avatar #"></i>' +
                 '</figure>' +
@@ -840,7 +839,7 @@ function getSystemNotification() {
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
                     ajaxData: {
-                        id: $(e.sender.select()).find('input').val(),
+                        id: e.sender.dataItem(e.sender.select()).id,
                         type: 'systemNotification'
                     },
                     ajaxUrl: noticeReadUrl,
@@ -917,7 +916,6 @@ function getUserUpdating() {
         selectable: true,
         template:
             '<div class="media">' +
-                '<input type="hidden" value="#= id #">' +
                 '<img src="#= avatar #" alt="#= nickName #">' +
                 '<div class="media-body# if (unread) { # unread# } #">' +
                     '<h5>#= title #</h5>' +
@@ -929,7 +927,7 @@ function getUserUpdating() {
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
                     ajaxData: {
-                        id: $(e.sender.select()).find('input').val(),
+                        id: e.sender.dataItem(e.sender.select()).id,
                         type: 'userUpdating'
                     },
                     ajaxUrl: noticeReadUrl,
@@ -1006,7 +1004,6 @@ function getToDoItems() {
         selectable: true,
         template:
             '<div class="media">' +
-                '<input type="hidden" value="#= id #">' +
                 '<div class="media-body# if (unread) { # unread# } #">' +
                     '<h5><em class="k-notification-# if (stateType === \'1\') { #success# } else if (stateType === \'2\') { #info# } else if (stateType === \'3\') { #warning# } else if (stateType === \'4\') { #error# } else { #normal# } #">#= state #</em>#= title #</h5>' +
                     '<p>#= content #</p>' +
@@ -1017,7 +1014,7 @@ function getToDoItems() {
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
                     ajaxData: {
-                        id: $(e.sender.select()).find('input').val(),
+                        id: e.sender.dataItem(e.sender.select()).id,
                         type: 'toDoItems'
                     },
                     ajaxUrl: noticeReadUrl,
