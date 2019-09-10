@@ -687,10 +687,28 @@ iframe#section {
                 padding: 0;
                 #messageDrawer {
                     border: 0;
-                    .k-drawer-item {
-                        font-size: $font-size-m;
-                        i {
-                            margin: 0 12px 0 4px;
+                    .k-drawer-container {
+                        background: #e6e6e6;
+                        .k-drawer-item {
+                            font-size: $font-size-m;
+                            i {
+                                margin: 0 12px 0 4px;
+                            }
+                        }
+                    }
+                    .row > div {
+                        &:first-child {
+                            background: #eee;
+                            box-shadow: 1px 0 2px rgba(0, 0, 0, .2);
+                        }
+                        .blank {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 600px;
+                            .k-i-loading {
+                                margin-right: 6px;
+                            }
                         }
                     }
                 }

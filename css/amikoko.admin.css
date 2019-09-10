@@ -556,12 +556,31 @@ iframe#section {
     #menuH #messageBox .card .card-body #messageDrawer,
     #menuV #messageBox .card .card-body #messageDrawer {
       border: 0; }
-      #menuH #messageBox .card .card-body #messageDrawer .k-drawer-item,
-      #menuV #messageBox .card .card-body #messageDrawer .k-drawer-item {
-        font-size: 14px; }
-        #menuH #messageBox .card .card-body #messageDrawer .k-drawer-item i,
-        #menuV #messageBox .card .card-body #messageDrawer .k-drawer-item i {
-          margin: 0 12px 0 4px; }
+      #menuH #messageBox .card .card-body #messageDrawer .k-drawer-container,
+      #menuV #messageBox .card .card-body #messageDrawer .k-drawer-container {
+        background: #e6e6e6; }
+        #menuH #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item,
+        #menuV #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item {
+          font-size: 14px; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item i,
+          #menuV #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item i {
+            margin: 0 12px 0 4px; }
+      #menuH #messageBox .card .card-body #messageDrawer .row > div:first-child,
+      #menuV #messageBox .card .card-body #messageDrawer .row > div:first-child {
+        background: #eee;
+        box-shadow: 1px 0 2px rgba(0, 0, 0, 0.2); }
+      #menuH #messageBox .card .card-body #messageDrawer .row > div .blank,
+      #menuV #messageBox .card .card-body #messageDrawer .row > div .blank {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+            justify-content: center;
+        -ms-flex-align: center;
+            align-items: center;
+        height: 600px; }
+        #menuH #messageBox .card .card-body #messageDrawer .row > div .blank .k-i-loading,
+        #menuV #messageBox .card .card-body #messageDrawer .row > div .blank .k-i-loading {
+          margin-right: 6px; }
 #menuH #noticeBox .k-tabstrip-items,
 #menuV #noticeBox .k-tabstrip-items {
   -ms-flex-pack: distribute;

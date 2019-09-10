@@ -466,7 +466,11 @@
             "text": "<i class='fas fa-envelope'></i>消息",
             "encoded": false,
             "cssClass": "links-message",
-            "url": "javascript:linkTo(\"/users/\", \"message\");"
+            "url": "javascript:linkTo(\"/users/\", \"message\");",
+            "content": "<div id=\"messageBox\"></div>",
+            "contentAttr": {
+                "style": "width: 640px;"
+            }
         },
         {
             "text": "<i class='fas fa-bell'></i>提醒",

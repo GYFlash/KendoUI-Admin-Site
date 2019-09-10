@@ -68,6 +68,7 @@ $(function () {
                 dataSource: res.data,
                 dataBound: function () {
                     globalSearch();
+                    initMessage();
                     initNotice();
                 }
             });
@@ -560,6 +561,109 @@ function changeLang(lang) {
     $.getScript('js/global/kendo.' + lang + '.js', function () {
         kendo.culture(lang);
         refresh();
+    });
+}
+
+// 消息初始化
+function initMessage() {
+    var messageHTML =
+        '<div class="card">' +
+            '<div class="card-header">' +
+                '<button class="k-button" id="messageDrawerBtn" type="button"><i class="fas fa-indent"></i></button>' +
+                '<strong>站内信及短信息</strong>' +
+            '</div>' +
+            '<div class="card-body">' +
+                '<div id="messageDrawer">' +
+                    '<div id="messageDrawerContent">' +
+                        '<div id="inbox">' +
+                            '<div class="row no-gutters">' +
+                                '<div class="col-4">' +
+                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
+                                '</div>' +
+                                '<div class="col-8">' +
+                                    '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="hide" id="writeMail">' +
+                            '<div class="row no-gutters">' +
+                                '<div class="col-12">' +
+                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="hide" id="outbox">' +
+                            '<div class="row no-gutters">' +
+                                '<div class="col-4">' +
+                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
+                                '</div>' +
+                                '<div class="col-8">' +
+                                    '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="hide"></div>' +
+                        '<div class="hide" id="sms">' +
+                            '<div class="row no-gutters">' +
+                                '<div class="col-4">' +
+                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
+                                '</div>' +
+                                '<div class="col-8">' +
+                                    '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="hide"></div>' +
+                        '<div class="hide" id="addressBook">' +
+                            '<div class="row no-gutters">' +
+                                '<div class="col-4">' +
+                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
+                                '</div>' +
+                                '<div class="col-8">' +
+                                    '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>';
+    $('#messageBox').html(messageHTML);
+    $('#messageDrawer').kendoDrawer({
+        mode: 'push',
+        template:
+            '<ul>' +
+                '<li class="k-state-selected" data-role="drawer-item"><i class="fas fa-inbox" title="收件箱"></i>收件箱</li>' +
+                '<li data-role="drawer-item"><i class="fas fa-feather" title="写邮件"></i>写邮件</li>' +
+                '<li data-role="drawer-item"><i class="fas fa-envelope" title="发件箱"></i>发件箱</li>' +
+                '<li data-role="drawer-separator"></li>' +
+                '<li data-role="drawer-item"><i class="fas fa-comments" title="短信息"></i>短信息</li>' +
+                '<li data-role="drawer-separator"></li>' +
+                '<li data-role="drawer-item"><i class="fas fa-address-book" title="通讯录"></i>通讯录</li>' +
+            '</ul>',
+        mini: {
+            width: 40
+        },
+        width: 120,
+        show: function(e) {
+            $('#messageDrawerBtn i').removeClass('fa-indent').addClass('fa-outdent');
+        },
+        hide: function(e) {
+            $('#messageDrawerBtn i').removeClass('fa-outdent').addClass('fa-indent');
+        },
+        itemClick: function (e) {
+            $('#messageDrawerContent > div').addClass('hide');
+            $('#messageDrawerContent > div').eq(e.item.index()).removeClass('hide');
+        }
+    });
+    $('#messageDrawerBtn').click(function () {
+        if ($('#messageDrawer').data('kendoDrawer').drawerContainer.hasClass('k-drawer-expanded')) {
+            $('#messageDrawer').data('kendoDrawer').hide();
+            $('#messageDrawerBtn i').removeClass('fa-outdent').addClass('fa-indent');
+        } else {
+            $('#messageDrawer').data('kendoDrawer').show();
+            $('#messageDrawerBtn i').removeClass('fa-indent').addClass('fa-outdent');
+        }
     });
 }
 
