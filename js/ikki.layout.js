@@ -692,63 +692,25 @@ function initNotice() {
                 '<li id="toDoTab"><i class="fas fa-calendar-check"></i>待办</li>' +
             '</ul>' +
             '<div>' +
-                '<div id="systemNotification">' +
-                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
-                '</div>' +
+                '<div id="systemNotification"></div>' +
                 '<div class="noticeTools">' +
                     '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'systemNotification\', \'notificationTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
-                '<script id="systemNotificationTemplate" type="text/x-kendo-template">' +
-                    '<div class="media">' +
-                        '<input type="hidden" value="#= id #">' +
-                        '<figure class="theme-m-bg"><i class="fab fa-#= avatar #"></i></figure>' +
-                        '<div class="media-body# if (unread) { # unread# } #">' +
-                            '<h5>#= title #</h5>' +
-                            '<p>#= content #</p>' +
-                            '<time>#= time #</time>' +
-                        '</div>' +
-                    '</div>' +
-                '</script>' +
             '</div>' +
             '<div>' +
-                '<div id="userUpdating">' +
-                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
-                '</div>' +
+                '<div id="userUpdating"></div>' +
                 '<div class="noticeTools">' +
                     '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'userUpdating\', \'updatingTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
-                '<script id="userUpdatingTemplate" type="text/x-kendo-template">' +
-                    '<div class="media">' +
-                        '<input type="hidden" value="#= id #">' +
-                        '<img src="#= avatar #" alt="#= nickName #">' +
-                        '<div class="media-body# if (unread) { # unread# } #">' +
-                            '<h5>#= title #</h5>' +
-                            '<p>#= content #</p>' +
-                            '<time>#= time #</time>' +
-                        '</div>' +
-                    '</div>' +
-                '</script>' +
             '</div>' +
             '<div>' +
-                '<div id="toDoItems">' +
-                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
-                '</div>' +
+                '<div id="toDoItems"></div>' +
                 '<div class="noticeTools">' +
                     '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'toDoItems\', \'toDoTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
-                '<script id="toDoItemsTemplate" type="text/x-kendo-template">' +
-                    '<div class="media">' +
-                        '<input type="hidden" value="#= id #">' +
-                        '<div class="media-body# if (unread) { # unread# } #">' +
-                            '<h5><em class="k-notification-# if (stateType === \'1\') { #success# } else if (stateType === \'2\') { #info# } else if (stateType === \'3\') { #warning# } else if (stateType === \'4\') { #error# } else { #normal# } #">#= state #</em>#= title #</h5>' +
-                            '<p>#= content #</p>' +
-                            '<time>#= time #</time>' +
-                        '</div>' +
-                    '</div>' +
-                '</script>' +
             '</div>' +
         '</div>';
     $('#noticeBox').html(noticeHTML);
@@ -862,7 +824,18 @@ function getSystemNotification() {
         height: 500,
         scrollable: 'endless',
         selectable: true,
-        template: kendo.template($('#systemNotificationTemplate').html()),
+        template:
+            '<div class="media">' +
+                '<input type="hidden" value="#= id #">' +
+                '<figure class="theme-m-bg">' +
+                    '<i class="fab fa-#= avatar #"></i>' +
+                '</figure>' +
+                '<div class="media-body# if (unread) { # unread# } #">' +
+                    '<h5>#= title #</h5>' +
+                    '<p>#= content #</p>' +
+                    '<time>#= time #</time>' +
+                '</div>' +
+            '</div>',
         change: function (e) {
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
@@ -942,7 +915,16 @@ function getUserUpdating() {
         height: 500,
         scrollable: 'endless',
         selectable: true,
-        template: kendo.template($('#userUpdatingTemplate').html()),
+        template:
+            '<div class="media">' +
+                '<input type="hidden" value="#= id #">' +
+                '<img src="#= avatar #" alt="#= nickName #">' +
+                '<div class="media-body# if (unread) { # unread# } #">' +
+                    '<h5>#= title #</h5>' +
+                    '<p>#= content #</p>' +
+                    '<time>#= time #</time>' +
+                '</div>' +
+            '</div>',
         change: function (e) {
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
@@ -1022,7 +1004,15 @@ function getToDoItems() {
         height: 500,
         scrollable: 'endless',
         selectable: true,
-        template: kendo.template($('#toDoItemsTemplate').html()),
+        template:
+            '<div class="media">' +
+                '<input type="hidden" value="#= id #">' +
+                '<div class="media-body# if (unread) { # unread# } #">' +
+                    '<h5><em class="k-notification-# if (stateType === \'1\') { #success# } else if (stateType === \'2\') { #info# } else if (stateType === \'3\') { #warning# } else if (stateType === \'4\') { #error# } else { #normal# } #">#= state #</em>#= title #</h5>' +
+                    '<p>#= content #</p>' +
+                    '<time>#= time #</time>' +
+                '</div>' +
+            '</div>',
         change: function (e) {
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
