@@ -66,6 +66,14 @@ $(function () {
             $('#menuH').kendoMenu({
                 closeOnClick: false,
                 dataSource: res.data,
+                open: function (e) {
+                    if ($(e.item).hasClass('links-message')) {
+                        getMessage();
+                    }
+                    if ($(e.item).hasClass('links-notice')) {
+                        getNotice();
+                    }
+                },
                 dataBound: function () {
                     globalSearch();
                     initMessage();
