@@ -16,6 +16,11 @@ var path = $('base').attr('href'),
     menuUrl = 'json/menu.json', // 顶部菜单数据接口
     searchUrl = 'json/search.json', // 全局搜索自动填充数据接口
     messageUrl = 'json/message.json', // 新消息数量获取接口
+    inboxUrl = 'json/message.json', // 收件箱列表获取接口
+    outboxUrl = 'json/message.json', // 发件箱列表获取接口
+    smsUrl = 'json/message.json', // 短信息列表获取接口
+    addressBookUrl = 'json/message.json', // 通讯录列表获取接口
+    messageReadUrl = 'json/response.json', // 消息单条已读标记接口
     noticeUrl = 'json/notice.json', // 新提醒数量获取接口
     systemNotificationUrl = 'json/notice.json', // 系统通知列表获取接口
     userUpdatingUrl = 'json/notice.json', // 个人动态列表获取接口
@@ -579,54 +584,47 @@ function initMessage() {
             '<div class="card-header">' +
                 '<button class="k-button" id="messageDrawerBtn" type="button"><i class="fas fa-indent"></i></button>' +
                 '<strong>站内信及短信息</strong>' +
+                '<a href="javascript:linkTo(\'users\', \'message\');">更多<i class="fas fa-angle-double-right"></i></a>' +
             '</div>' +
             '<div class="card-body">' +
                 '<div id="messageDrawer">' +
                     '<div id="messageDrawerContent">' +
-                        '<div id="inbox">' +
+                        '<div>' +
                             '<div class="row no-gutters">' +
-                                '<div class="col-4">' +
-                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
-                                '</div>' +
+                                '<div class="col-4" id="inbox"></div>' +
                                 '<div class="col-8">' +
                                     '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
-                        '<div class="hide" id="writeMail">' +
+                        '<div class="hide">' +
                             '<div class="row no-gutters">' +
-                                '<div class="col-12">' +
+                                '<div class="col-12" id="writeMail">' +
                                     '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
-                        '<div class="hide" id="outbox">' +
+                        '<div class="hide">' +
                             '<div class="row no-gutters">' +
-                                '<div class="col-4">' +
-                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
-                                '</div>' +
-                                '<div class="col-8">' +
-                                    '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="hide"></div>' +
-                        '<div class="hide" id="sms">' +
-                            '<div class="row no-gutters">' +
-                                '<div class="col-4">' +
-                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
-                                '</div>' +
+                                '<div class="col-4" id="outbox"></div>' +
                                 '<div class="col-8">' +
                                     '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
                         '<div class="hide"></div>' +
-                        '<div class="hide" id="addressBook">' +
+                        '<div class="hide">' +
                             '<div class="row no-gutters">' +
-                                '<div class="col-4">' +
-                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
+                                '<div class="col-4" id="sms"></div>' +
+                                '<div class="col-8">' +
+                                    '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
                                 '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="hide"></div>' +
+                        '<div class="hide">' +
+                            '<div class="row no-gutters">' +
+                                '<div class="col-4" id="addressBook"></div>' +
                                 '<div class="col-8">' +
                                     '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
                                 '</div>' +
@@ -641,11 +639,11 @@ function initMessage() {
         mode: 'push',
         template:
             '<ul>' +
-                '<li class="k-state-selected" data-role="drawer-item"><i class="fas fa-inbox" title="收件箱"></i>收件箱</li>' +
+                '<li class="k-state-selected" id="inboxDrawer" data-role="drawer-item"><i class="fas fa-inbox" title="收件箱"></i>收件箱</li>' +
                 '<li data-role="drawer-item"><i class="fas fa-feather" title="写邮件"></i>写邮件</li>' +
                 '<li data-role="drawer-item"><i class="fas fa-envelope" title="发件箱"></i>发件箱</li>' +
                 '<li data-role="drawer-separator"></li>' +
-                '<li data-role="drawer-item"><i class="fas fa-comments" title="短信息"></i>短信息</li>' +
+                '<li data-role="drawer-item" id="smsDrawer"><i class="fas fa-comments" title="短信息"></i>短信息</li>' +
                 '<li data-role="drawer-separator"></li>' +
                 '<li data-role="drawer-item"><i class="fas fa-address-book" title="通讯录"></i>通讯录</li>' +
             '</ul>',
@@ -655,9 +653,13 @@ function initMessage() {
         width: 120,
         show: function(e) {
             $('#messageDrawerBtn i').removeClass('fa-indent').addClass('fa-outdent');
+            $('#messageBox sup').hide();
+            $('#messageBox .badge').show();
         },
         hide: function(e) {
             $('#messageDrawerBtn i').removeClass('fa-outdent').addClass('fa-indent');
+            $('#messageBox .badge').hide();
+            $('#messageBox sup').show();
         },
         itemClick: function (e) {
             $('#messageDrawerContent > div').addClass('hide');
@@ -668,9 +670,111 @@ function initMessage() {
         if ($('#messageDrawer').data('kendoDrawer').drawerContainer.hasClass('k-drawer-expanded')) {
             $('#messageDrawer').data('kendoDrawer').hide();
             $('#messageDrawerBtn i').removeClass('fa-outdent').addClass('fa-indent');
+            $('#messageBox .badge').hide();
+            $('#messageBox sup').show();
         } else {
             $('#messageDrawer').data('kendoDrawer').show();
             $('#messageDrawerBtn i').removeClass('fa-indent').addClass('fa-outdent');
+            $('#messageBox sup').hide();
+            $('#messageBox .badge').show();
+        }
+    });
+    // 收件箱列表
+    $('#inbox').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'inbox'
+                        },
+                        ajaxUrl: inboxUrl,
+                        succeed: function (res) {
+                            options.success(res);
+                            if (res.inbox.length === 0) {
+                                $('#inbox').html('<div class="blank">您的收件箱是空的~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.inbox.length;
+                },
+                data: 'inbox',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        nickName: { type: 'string' },
+                        email: { type: 'string' },
+                        to: { type: 'object',
+                            defaultValue: []
+                        },
+                        title: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' },
+                        unread: { type: 'boolean' }
+                    }
+                }
+            },
+            pageSize: 10
+        },
+        height: 600,
+        scrollable: 'endless',
+        selectable: true,
+        template:
+            '<div class="mail-list# if (unread) { # unread# } #">' +
+                '<h5><img src="#= avatar #" alt="#= email #">#= nickName #</h5>' +
+                '<p>#= title #</p>' +
+                '<time>#= time #</time>' +
+            '</div>',
+        change: function (e) {
+            var dataItem = e.sender.dataItem(e.sender.select()),
+                content =
+                    '<div class="mail-content">' +
+                        '<dl class="row no-gutters">' +
+                            '<dt class="col-2">发件人：</dt>' +
+                            '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<span>&lt;' + dataItem.email + '&gt;</span></dd>' +
+                            '<dt class="col-2">收件人：</dt>' +
+                            '<dd class="col-10">';
+            for (var i = 0; i < dataItem.to.length; i++) {
+                content += '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<span>&lt;' + dataItem.to[i].email + '&gt;;</span><br>';
+            }
+                content +=  '</dd>' +
+                            '<dt class="col-2">时间：</dt>' +
+                            '<dd class="col-10">' + kendo.toString(kendo.parseDate(dataItem.time), 'yyyy-MM-dd（ddd）HH:mm') + '</dd>' +
+                        '</dl>' +
+                        '<div class="content">' + dataItem.content + '</div>' +
+                    '</div>';
+            $('#inbox').next().html(content);
+            if ($(e.sender.select()).hasClass('unread')) {
+                $.fn.ajaxPost({
+                    ajaxData: {
+                        id: dataItem.id,
+                        type: 'inbox'
+                    },
+                    ajaxUrl: messageReadUrl,
+                    succeed: function () {
+                        $(e.sender.select()).removeClass('unread');
+                        var badgeDom = $('#inboxDrawer').find('.badge');
+                        if (badgeDom.text() === '1') {
+                            badgeDom.remove();
+                            $('#inboxDrawer').find('sup').remove();
+                        } else {
+                            badgeDom.text(Number(badgeDom.text()) - 1);
+                        }
+                        getMessageNum();
+                    },
+                    failed: function () {
+                        alertMsg('标记已读出错！', 'error');
+                    }
+                });
+            }
         }
     });
 }
@@ -681,13 +785,39 @@ function getMessage() {
         ajaxUrl: messageUrl,
         succeed: function (res) {
             $('#menuH, #menuV').find('.links-message sup').remove();
-            if (res.total > 0 && res.total < 100) {
-                $('#menuH, #menuV').find('.links-message > .k-link .fa-envelope').after('<sup class="theme-m-bg">' + res.total + '</sup>');
-            } else if (res.total >= 100) {
+            $('#menuH, #menuV').find('.links-message .badge').remove();
+            var total = res.inboxTotal + res.smsTotal;
+            if (total > 0 && total < 100) {
+                $('#menuH, #menuV').find('.links-message > .k-link .fa-envelope').after('<sup class="theme-m-bg">' + total + '</sup>');
+            } else if (total >= 100) {
                 $('#menuH, #menuV').find('.links-message > .k-link .fa-envelope').after('<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>');
+            }
+            if (res.inboxTotal > 0) {
+                $('#inboxDrawer').append('<span class="badge theme-s-bg">' + res.inboxTotal + '</span><sup></sup>');
+            }
+            if (res.smsTotal > 0) {
+                $('#smsDrawer').append('<span class="badge theme-s-bg">' + res.smsTotal + '</span><sup></sup>');
             }
         }
     });
+}
+
+// 新消息数量计算
+function getMessageNum() {
+    var messageNum = 0;
+    $.each($('#messageDrawer').find('.k-drawer-items .badge'), function () {
+        messageNum += Number($(this).text());
+    });
+    if ($('#menuH, #menuV').find('.links-message > .k-link sup').length === 0) {
+        $('#menuH, #menuV').find('.links-message > .k-link .fa-envelope').after('<sup class="theme-m-bg"></sup>');
+    }
+    if (messageNum > 0 && messageNum < 100) {
+        $('#menuH, #menuV').find('.links-message > .k-link sup').removeClass('font-weight-bold').text(messageNum);
+    } else if (messageNum >= 100) {
+        $('#menuH, #menuV').find('.links-message > .k-link sup').addClass('font-weight-bold').text('&middot;&middot;&middot;');
+    } else {
+        $('#menuH, #menuV').find('.links-message > .k-link sup').remove();
+    }
 }
 
 // 提醒初始化
@@ -701,21 +831,21 @@ function initNotice() {
             '</ul>' +
             '<div>' +
                 '<div id="systemNotification"></div>' +
-                '<div class="noticeTools">' +
+                '<div class="notice-tools">' +
                     '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'systemNotification\', \'notificationTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
             '</div>' +
             '<div>' +
                 '<div id="userUpdating"></div>' +
-                '<div class="noticeTools">' +
+                '<div class="notice-tools">' +
                     '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'userUpdating\', \'updatingTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
             '</div>' +
             '<div>' +
                 '<div id="toDoItems"></div>' +
-                '<div class="noticeTools">' +
+                '<div class="notice-tools">' +
                     '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'toDoItems\', \'toDoTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
@@ -1112,20 +1242,20 @@ function getWeather() {
                     '<div class="d-flex">' +
                         '<span class="tmp theme-m"><span class="skeleton skeleton-round"></span></span>' +
                         '<i class="wi wi-celsius theme-m"></i>' +
-                        '<span class="cond_txt"><span class="skeleton"></span></span>' +
-                        '<i class="cond_code wi wi-na theme-s"></i>' +
+                        '<span class="cond-txt"><span class="skeleton"></span></span>' +
+                        '<i class="cond-code wi wi-na theme-s"></i>' +
                     '</div>' +
                     '<hr>' +
                     '<div class="row">' +
                         '<div class="col-12 air"><span class="skeleton"></span></div>' +
                     '</div>' +
                     '<div class="row">' +
-                        '<div class="col-6 tmp_m"><i class="wi wi-thermometer theme-m"></i><span class="skeleton"></span></div>' +
+                        '<div class="col-6 tmp-m"><i class="wi wi-thermometer theme-m"></i><span class="skeleton"></span></div>' +
                         '<div class="col-6 wind"><i class="wi wi-strong-wind theme-m"></i><span class="skeleton"></span></div>' +
                     '</div>' +
                     '<div class="row">' +
                         '<div class="col-6 hum"><i class="wi wi-humidity theme-m"></i><span class="skeleton"></span></div>' +
-                        '<div class="col-6 uv_index"><i class="wi wi-umbrella theme-m"></i><span class="skeleton"></span></div>' +
+                        '<div class="col-6 uv-index"><i class="wi wi-umbrella theme-m"></i><span class="skeleton"></span></div>' +
                     '</div>' +
                     '<div class="row">' +
                         '<div class="col-6 sr"><i class="wi wi-sunrise theme-m"></i><span class="skeleton"></span></div>' +
@@ -1141,7 +1271,7 @@ function getWeather() {
                     '<div class="row">' +
                         '<div class="col-4 today"><span>今天</span><span class="skeleton"></span></div>' +
                         '<div class="col-4 tomorrow"><span>明天</span><span class="skeleton"></span></div>' +
-                        '<div class="col-4 after_tomorrow"><span>后天</span><span class="skeleton"></span></div>' +
+                        '<div class="col-4 after-tomorrow"><span>后天</span><span class="skeleton"></span></div>' +
                     '</div>' +
                 '</div>' +
             '</div>';
@@ -1173,9 +1303,9 @@ function getWeatherInfo(location) {
             // 温度
             $('#weatherBox .tmp').html(now.tmp);
             // 天气描述
-            $('#weatherBox .cond_txt').html(now.cond_txt);
+            $('#weatherBox .cond-txt').html(now.cond_txt);
             // 天气图标
-            $('#weatherBox .cond_code').removeClass('wi-na').addClass(getWeatherIcon(kendo.toString(kendo.parseDate(update.loc), 'HH'), weatherCode));
+            $('#weatherBox .cond-code').removeClass('wi-na').addClass(getWeatherIcon(kendo.toString(kendo.parseDate(update.loc), 'HH'), weatherCode));
             // 空气质量
             if (lifestyle) {
                 $.ajax({
@@ -1208,7 +1338,7 @@ function getWeatherInfo(location) {
                 $('#weatherBox .air').parent().remove();
             }
             // 温度区间
-            $('#weatherBox .tmp_m').html('<i class="wi wi-thermometer theme-m"></i>' + daily_forecast[0].tmp_min + '℃~' + daily_forecast[0].tmp_max + '℃');
+            $('#weatherBox .tmp-m').html('<i class="wi wi-thermometer theme-m"></i>' + daily_forecast[0].tmp_min + '℃~' + daily_forecast[0].tmp_max + '℃');
             // 风向风力
             $('#weatherBox .wind').html('<i class="wi wi-strong-wind theme-m"></i>' + now.wind_dir + now.wind_sc + '级');
             // 相对湿度
@@ -1216,10 +1346,10 @@ function getWeatherInfo(location) {
             // 紫外线强度
             if (basic.cnty === '中国') {
                 // 国内
-                $('#weatherBox .uv_index').html('<i class="wi wi-umbrella theme-m"></i>紫外线：' + lifestyle[5].brf);
+                $('#weatherBox .uv-index').html('<i class="wi wi-umbrella theme-m"></i>紫外线：' + lifestyle[5].brf);
             } else {
                 // 国外
-                $('#weatherBox .uv_index').html('<i class="wi wi-umbrella theme-m"></i>紫外线：' + daily_forecast[0].uv_index + '级');
+                $('#weatherBox .uv-index').html('<i class="wi wi-umbrella theme-m"></i>紫外线：' + daily_forecast[0].uv_index + '级');
             }
             // 日升时间
             $('#weatherBox .sr').html('<i class="wi wi-sunrise theme-m"></i>日升：' + daily_forecast[0].sr);
@@ -1297,7 +1427,7 @@ function getWeatherInfo(location) {
             // 明天天气
             $('#weatherBox .tomorrow').html('<span>明天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[1].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[1].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[1].tmp_min + '℃ ~ ' + daily_forecast[1].tmp_max + '℃</span><span>日：' + daily_forecast[1].cond_txt_d + '</span><span>夜：' + daily_forecast[1].cond_txt_n + '</span>');
             // 后天天气
-            $('#weatherBox .after_tomorrow').html('<span>后天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[2].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[2].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[2].tmp_min + '℃ ~ ' + daily_forecast[2].tmp_max + '℃</span><span>日：' + daily_forecast[2].cond_txt_d + '</span><span>夜：' + daily_forecast[2].cond_txt_n + '</span>');
+            $('#weatherBox .after-tomorrow').html('<span>后天</span><span class="icon"><i class="wi ' + getWeatherIcon(8, daily_forecast[2].cond_code_d) + ' theme-m"></i><i class="wi ' + getWeatherIcon(20, daily_forecast[2].cond_code_n) + ' theme-s"></i></span><span>' + daily_forecast[2].tmp_min + '℃ ~ ' + daily_forecast[2].tmp_max + '℃</span><span>日：' + daily_forecast[2].cond_txt_d + '</span><span>夜：' + daily_forecast[2].cond_txt_n + '</span>');
         },
         error: function (res) {
             alertMsg('获取天气数据出错！', 'error');
@@ -2106,10 +2236,10 @@ function getLunar() {
                         '<div class="month"></div>' +
                         '<div class="day theme-s-bg"></div>' +
                         '<div class="week"></div>' +
-                        '<div class="lunarDay"></div>' +
-                        '<div class="moonPhase"></div>' +
+                        '<div class="lunar-day"></div>' +
+                        '<div class="moon-phase"></div>' +
                         '<div class="festival"></div>' +
-                        '<div class="lunarYear"></div>' +
+                        '<div class="lunar-year"></div>' +
                     '</div>' +
                     '<div class="col-md-8">' +
                         '<div id="perpetualCalendar"></div>' +
@@ -2133,9 +2263,9 @@ function setLunar(date) {
         $('#lunarShow .week').html('<i class="wi wi-time-' + kendo.toString(date, "h") + '"></i>' + kendo.toString(date, "dddd"));
     }
     // 农历年月日
-    $('#lunarShow .lunarDay').html(lunar.zodiac + '年：' + lunar.lunarMonthCn + lunar.lunarDayCn);
+    $('#lunarShow .lunar-day').html(lunar.zodiac + '年：' + lunar.lunarMonthCn + lunar.lunarDayCn);
     // 月相
-    $('#lunarShow .moonPhase').html(getMoonIcon(lunar.lunarDay));
+    $('#lunarShow .moon-phase').html(getMoonIcon(lunar.lunarDay));
     // 节假日
     $('#lunarShow .festival').html('');
     // 农历节假日
@@ -2151,7 +2281,7 @@ function setLunar(date) {
         $('#lunarShow .festival').hide();
     }
     // 天干地支年月日
-    $('#lunarShow .lunarYear').html('<span>' + lunar.gzYear + '年</span><span>' + lunar.gzMonth + '月</span><span>' + lunar.gzDay + '日</span>');
+    $('#lunarShow .lunar-year').html('<span>' + lunar.gzYear + '年</span><span>' + lunar.gzMonth + '月</span><span>' + lunar.gzDay + '日</span>');
 }
 
 // 月相图标及名称
@@ -2343,14 +2473,14 @@ function getNote() {
                 }
             }).data('kendoWindow'),
             noteHtml =
-                '<div class="noteTools">' +
+                '<div class="note-tools">' +
                     '<span class="k-textbox"><i class="fas fa-search theme-m"></i><input id="noteSearch" type="text"></span>' +
                     '<a class="k-link k-order-button" href="javascript:;" title="降序" onclick="orderNote(\'desc\');"><i class="fas fa-sort-amount-down"></i></a>' +
                     '<a class="k-link k-order-button" href="javascript:;" title="升序" onclick="orderNote(\'asc\');"><i class="fas fa-sort-amount-up-alt"></i></a>' +
                     '<a class="k-link k-clear-button" href="javascript:;" title="清空"><i class="fas fa-trash-alt"></i></a>' +
                 '</div>' +
                 '<div id="noteListView"></div>' +
-                '<div class="noteTools">' +
+                '<div class="note-tools">' +
                     '<a class="k-button theme-m-box k-add-button" href="javascript:;" title="新增"><span class="k-icon k-i-add"></span></a>' +
                 '</div>' +
                 '<script id="noteListTemplate" type="text/x-kendo-template">' +

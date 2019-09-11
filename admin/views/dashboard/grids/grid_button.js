@@ -722,7 +722,7 @@ function sendEmail() {
         $.each($('#grid').data('kendoGrid').selectedKeyNames(), function (i, items) {
             emails += $('#grid').data('kendoGrid').dataSource.get(items).email + ';';
         });
-        emails.substring(0, emails.length-1);
+        emails.substring(0, emails.length - 1);
         var subject = encodeURIComponent('欢迎Star：Kendo UI Admin and Site~'),
             body = encodeURIComponent('<p><a href="https://ikki2000.github.io/KendoUI-Admin-Site/">https://ikki2000.github.io/KendoUI-Admin-Site/</a></p><p>Kendo UI Admin and Site base on Kendo UI for jQuery and Bootstrap 4.</p>');
         location.href = 'mailto:' + emails + '?cc=ikki2002@qq.com&subject=' + subject + '&body=' + body;

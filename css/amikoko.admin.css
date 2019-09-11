@@ -436,18 +436,18 @@ iframe#section {
   background: transparent;
   box-shadow: none;
   color: #000; }
-#menuH .globalSearch > .k-link,
-#menuV .globalSearch > .k-link {
+#menuH .global-search > .k-link,
+#menuV .global-search > .k-link {
   width: 74px;
   transition: width 500ms ease; }
-  #menuH .globalSearch > .k-link:hover,
-  #menuV .globalSearch > .k-link:hover {
+  #menuH .global-search > .k-link:hover,
+  #menuV .global-search > .k-link:hover {
     width: 300px; }
-    #menuH .globalSearch > .k-link:hover abbr,
-    #menuV .globalSearch > .k-link:hover abbr {
+    #menuH .global-search > .k-link:hover abbr,
+    #menuV .global-search > .k-link:hover abbr {
       display: none; }
-    #menuH .globalSearch > .k-link:hover .k-combobox,
-    #menuV .globalSearch > .k-link:hover .k-combobox {
+    #menuH .global-search > .k-link:hover .k-combobox,
+    #menuV .global-search > .k-link:hover .k-combobox {
       display: -ms-inline-flexbox;
       display: inline-flex; }
 #menuH .k-combobox,
@@ -550,6 +550,20 @@ iframe#section {
       margin-left: 10px;
       font-size: 15px;
       vertical-align: middle; }
+    #menuH #messageBox .card .card-header a,
+    #menuV #messageBox .card .card-header a {
+      float: right;
+      margin-top: 3px;
+      font-size: 12px;
+      color: #999;
+      text-decoration: none; }
+      #menuH #messageBox .card .card-header a:hover,
+      #menuV #messageBox .card .card-header a:hover {
+        color: #666; }
+      #menuH #messageBox .card .card-header a i,
+      #menuV #messageBox .card .card-header a i {
+        margin-left: 3px;
+        vertical-align: -10%; }
   #menuH #messageBox .card .card-body,
   #menuV #messageBox .card .card-body {
     padding: 0; }
@@ -561,16 +575,70 @@ iframe#section {
         background: #e6e6e6; }
         #menuH #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item,
         #menuV #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item {
+          position: relative;
           font-size: 14px; }
           #menuH #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item i,
           #menuV #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item i {
             margin: 0 12px 0 4px; }
-      #menuH #messageBox .card .card-body #messageDrawer .row > div:first-child,
-      #menuV #messageBox .card .card-body #messageDrawer .row > div:first-child {
+          #menuH #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item .badge,
+          #menuV #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item .badge {
+            margin-left: 6px;
+            font-weight: 100; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item sup,
+          #menuV #messageBox .card .card-body #messageDrawer .k-drawer-container .k-drawer-item sup {
+            top: 8px;
+            left: 8px;
+            width: 10px;
+            height: 10px;
+            background: #f35800; }
+      #menuH #messageBox .card .card-body #messageDrawer .k-listview,
+      #menuV #messageBox .card .card-body #messageDrawer .k-listview {
+        border: 0;
         background: #eee;
-        box-shadow: 1px 0 2px rgba(0, 0, 0, 0.2); }
-      #menuH #messageBox .card .card-body #messageDrawer .row > div .blank,
-      #menuV #messageBox .card .card-body #messageDrawer .row > div .blank {
+        box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1); }
+        #menuH #messageBox .card .card-body #messageDrawer .k-listview .mail-list,
+        #menuV #messageBox .card .card-body #messageDrawer .k-listview .mail-list {
+          padding: 8px 12px; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-listview .mail-list img,
+          #menuV #messageBox .card .card-body #messageDrawer .k-listview .mail-list img {
+            margin: 0 6px 0 0;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-listview .mail-list h5,
+          #menuV #messageBox .card .card-body #messageDrawer .k-listview .mail-list h5 {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #bababa;
+            white-space: normal; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-listview .mail-list p,
+          #menuV #messageBox .card .card-body #messageDrawer .k-listview .mail-list p {
+            margin-bottom: 3px;
+            font-size: 12px;
+            color: #bababa;
+            white-space: normal; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-listview .mail-list time,
+          #menuV #messageBox .card .card-body #messageDrawer .k-listview .mail-list time {
+            font-size: 12px;
+            color: #bababa; }
+        #menuH #messageBox .card .card-body #messageDrawer .k-listview .unread h5,
+        #menuV #messageBox .card .card-body #messageDrawer .k-listview .unread h5 {
+          color: #000; }
+        #menuH #messageBox .card .card-body #messageDrawer .k-listview .unread p,
+        #menuV #messageBox .card .card-body #messageDrawer .k-listview .unread p {
+          color: #666; }
+        #menuH #messageBox .card .card-body #messageDrawer .k-listview .unread time,
+        #menuV #messageBox .card .card-body #messageDrawer .k-listview .unread time {
+          color: #999; }
+        #menuH #messageBox .card .card-body #messageDrawer .k-listview .k-state-selected h5,
+        #menuH #messageBox .card .card-body #messageDrawer .k-listview .k-state-selected p,
+        #menuH #messageBox .card .card-body #messageDrawer .k-listview .k-state-selected time,
+        #menuV #messageBox .card .card-body #messageDrawer .k-listview .k-state-selected h5,
+        #menuV #messageBox .card .card-body #messageDrawer .k-listview .k-state-selected p,
+        #menuV #messageBox .card .card-body #messageDrawer .k-listview .k-state-selected time {
+          color: #000; }
+      #menuH #messageBox .card .card-body #messageDrawer .blank,
+      #menuV #messageBox .card .card-body #messageDrawer .blank {
         display: -ms-flexbox;
         display: flex;
         -ms-flex-pack: center;
@@ -578,9 +646,41 @@ iframe#section {
         -ms-flex-align: center;
             align-items: center;
         height: 600px; }
-        #menuH #messageBox .card .card-body #messageDrawer .row > div .blank .k-i-loading,
-        #menuV #messageBox .card .card-body #messageDrawer .row > div .blank .k-i-loading {
+        #menuH #messageBox .card .card-body #messageDrawer .blank .k-i-loading,
+        #menuV #messageBox .card .card-body #messageDrawer .blank .k-i-loading {
           margin-right: 6px; }
+      #menuH #messageBox .card .card-body #messageDrawer .mail-content,
+      #menuV #messageBox .card .card-body #messageDrawer .mail-content {
+        overflow: auto;
+        padding: 10px 20px;
+        height: 600px; }
+        #menuH #messageBox .card .card-body #messageDrawer .mail-content dl,
+        #menuV #messageBox .card .card-body #messageDrawer .mail-content dl {
+          margin-bottom: 10px;
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 5px;
+          font-size: 12px; }
+          #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dt,
+          #menuV #messageBox .card .card-body #messageDrawer .mail-content dl dt {
+            font-weight: normal;
+            color: #999;
+            text-align: right; }
+          #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dd,
+          #menuV #messageBox .card .card-body #messageDrawer .mail-content dl dd {
+            white-space: normal; }
+            #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dd img,
+            #menuV #messageBox .card .card-body #messageDrawer .mail-content dl dd img {
+              margin-right: 3px;
+              border-radius: 50%;
+              width: 12px;
+              height: 12px;
+              vertical-align: -10%; }
+            #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dd span,
+            #menuV #messageBox .card .card-body #messageDrawer .mail-content dl dd span {
+              color: #ccc; }
+        #menuH #messageBox .card .card-body #messageDrawer .mail-content .content,
+        #menuV #messageBox .card .card-body #messageDrawer .mail-content .content {
+          white-space: normal; }
 #menuH #noticeBox .k-tabstrip-items,
 #menuV #noticeBox .k-tabstrip-items {
   -ms-flex-pack: distribute;
@@ -701,8 +801,8 @@ iframe#section {
     #menuH #noticeBox .k-content .blank .k-i-loading,
     #menuV #noticeBox .k-content .blank .k-i-loading {
       margin-right: 6px; }
-  #menuH #noticeBox .k-content .noticeTools,
-  #menuV #noticeBox .k-content .noticeTools {
+  #menuH #noticeBox .k-content .notice-tools,
+  #menuV #noticeBox .k-content .notice-tools {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: justify;
@@ -711,12 +811,12 @@ iframe#section {
     padding: 8px 10px;
     font-size: 12px;
     background-color: rgba(0, 0, 0, 0.03); }
-    #menuH #noticeBox .k-content .noticeTools a,
-    #menuV #noticeBox .k-content .noticeTools a {
+    #menuH #noticeBox .k-content .notice-tools a,
+    #menuV #noticeBox .k-content .notice-tools a {
       color: #999;
       text-decoration: none; }
-      #menuH #noticeBox .k-content .noticeTools a:hover,
-      #menuV #noticeBox .k-content .noticeTools a:hover {
+      #menuH #noticeBox .k-content .notice-tools a:hover,
+      #menuV #noticeBox .k-content .notice-tools a:hover {
         color: #666; }
 
 #menuH {
@@ -778,9 +878,9 @@ iframe#section {
         z-index: 888;
         border-width: 10px;
         border-bottom-color: #ccc; }
-  #menuH .globalSearch {
+  #menuH .global-search {
     width: 74px; }
-    #menuH .globalSearch > .k-link {
+    #menuH .global-search > .k-link {
       position: absolute;
       right: 0; }
 
@@ -855,7 +955,7 @@ iframe#section {
   #menuV .k-state-hover > .k-link,
   #menuV .k-item > .k-state-active {
     background-color: rgba(0, 0, 0, 0.08); }
-  #menuV .globalSearch > .k-link abbr {
+  #menuV .global-search > .k-link abbr {
     display: inline-block;
     height: 30px;
     line-height: 30px; }
@@ -1287,7 +1387,7 @@ iframe#section {
     line-height: 1em; }
   #weatherBox .card-body .wi-celsius {
     font-size: 4rem; }
-  #weatherBox .card-body .cond_txt {
+  #weatherBox .card-body .cond-txt {
     -ms-flex-item-align: end;
         align-self: flex-end;
     margin-left: -2rem;
@@ -1295,7 +1395,7 @@ iframe#section {
     min-width: 2em;
     font-size: 1.25rem;
     font-weight: 300; }
-  #weatherBox .card-body .cond_code {
+  #weatherBox .card-body .cond-code {
     margin-left: auto;
     font-size: 5rem;
     line-height: 1.2em; }
@@ -1360,14 +1460,14 @@ iframe#section {
       font-weight: 400;
       line-height: 1em; }
     #lunarBox .card .row > div:first-child .week i,
-    #lunarBox .card .row > div:first-child .moonPhase i {
+    #lunarBox .card .row > div:first-child .moon-phase i {
       margin-right: 8px;
       font-size: 1.6rem;
       vertical-align: bottom; }
     #lunarBox .card .row > div:first-child .week,
-    #lunarBox .card .row > div:first-child .moonPhase,
+    #lunarBox .card .row > div:first-child .moon-phase,
     #lunarBox .card .row > div:first-child .festival,
-    #lunarBox .card .row > div:first-child .lunarYear {
+    #lunarBox .card .row > div:first-child .lunar-year {
       font-size: 1.2rem; }
 #lunarBox .k-calendar,
 #lunarBox .k-calendar-view,
@@ -1394,39 +1494,39 @@ iframe#section {
 #noteBox {
   position: relative;
   overflow-x: hidden; }
-  #noteBox .noteTools {
+  #noteBox .note-tools {
     padding-top: 10px;
     text-align: center; }
-    #noteBox .noteTools:first-child {
+    #noteBox .note-tools:first-child {
       display: -ms-flexbox;
       display: flex;
       -ms-flex-pack: justify;
           justify-content: space-between;
       padding-bottom: 10px; }
-      #noteBox .noteTools:first-child .k-textbox {
+      #noteBox .note-tools:first-child .k-textbox {
         padding-left: 0;
         width: 78%; }
-        #noteBox .noteTools:first-child .k-textbox i {
+        #noteBox .note-tools:first-child .k-textbox i {
           margin: 2px 6px;
           width: 16px;
           height: 16px;
           font-size: 16px;
           line-height: 16px; }
-      #noteBox .noteTools:first-child .k-order-button,
-      #noteBox .noteTools:first-child .k-clear-button {
+      #noteBox .note-tools:first-child .k-order-button,
+      #noteBox .note-tools:first-child .k-clear-button {
         display: inline-block;
         border: 1px solid #ccc;
         border-radius: 4px;
         width: 30px;
         height: 30px;
         line-height: 30px; }
-      #noteBox .noteTools:first-child .k-order-button:nth-child(odd) {
+      #noteBox .note-tools:first-child .k-order-button:nth-child(odd) {
         display: none; }
-    #noteBox .noteTools .k-button {
+    #noteBox .note-tools .k-button {
       border-radius: 50%;
       width: 48px;
       height: 48px; }
-      #noteBox .noteTools .k-button .k-icon {
+      #noteBox .note-tools .k-button .k-icon {
         font-size: 30px; }
   #noteBox #noteListView {
     margin-right: -35px;
@@ -1581,12 +1681,12 @@ iframe#section {
       padding: .1rem .5rem;
       font-size: 1.5rem; }
     #lunarBox .card .row > div:first-child .week i,
-    #lunarBox .card .row > div:first-child .moonPhase i {
+    #lunarBox .card .row > div:first-child .moon-phase i {
       font-size: 1.3rem; }
     #lunarBox .card .row > div:first-child .week,
-    #lunarBox .card .row > div:first-child .moonPhase,
+    #lunarBox .card .row > div:first-child .moon-phase,
     #lunarBox .card .row > div:first-child .festival,
-    #lunarBox .card .row > div:first-child .lunarYear {
+    #lunarBox .card .row > div:first-child .lunar-year {
       font-size: 1rem; }
   #lunarBox .k-calendar .k-calendar-view i.wi {
     top: 4px;

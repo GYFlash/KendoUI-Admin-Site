@@ -578,7 +578,7 @@ iframe#section {
         @include nav-menu-dom;
         color: #000;
     }
-    .globalSearch > .k-link {
+    .global-search > .k-link {
         width: 74px;
         transition: width 500ms ease;
         &:hover {
@@ -682,6 +682,20 @@ iframe#section {
                     font-size: 15px;
                     vertical-align: middle;
                 }
+                a {
+                    float: right;
+                    margin-top: 3px;
+                    font-size: $font-size-s;
+                    color: #999;
+                    text-decoration: none;
+                    &:hover {
+                        color: #666;
+                    }
+                    i {
+                        margin-left: 3px;
+                        vertical-align: -10%;
+                    }
+                }
             }
             .card-body {
                 padding: 0;
@@ -690,25 +704,111 @@ iframe#section {
                     .k-drawer-container {
                         background: #e6e6e6;
                         .k-drawer-item {
+                            position: relative;
                             font-size: $font-size-m;
                             i {
                                 margin: 0 12px 0 4px;
                             }
+                            .badge {
+                                margin-left: 6px;
+                                font-weight: 100;
+                            }
+                            sup {
+                                top: 8px;
+                                left: 8px;
+                                width: 10px;
+                                height: 10px;
+                                background: #f35800;
+                            }
                         }
                     }
-                    .row > div {
-                        &:first-child {
-                            background: #eee;
-                            box-shadow: 1px 0 2px rgba(0, 0, 0, .2);
-                        }
-                        .blank {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            height: 600px;
-                            .k-i-loading {
-                                margin-right: 6px;
+                    .k-listview {
+                        border: 0;
+                        background: #eee;
+                        box-shadow: 1px 0 2px rgba(0, 0, 0, .1);
+                        .mail-list {
+                            padding: 8px 12px;
+                            img {
+                                margin: 0 6px 0 0;
+                                border-radius: $border-radius-round;
+                                width: 20px;
+                                height: 20px;
                             }
+                            h5 {
+                                margin-bottom: 5px;
+                                font-size: $font-size-m;
+                                color: #bababa;
+                                white-space: normal;
+                            }
+                            p {
+                                margin-bottom: 3px;
+                                font-size: $font-size-s;
+                                color: #bababa;
+                                white-space: normal;
+                            }
+                            time {
+                                font-size: $font-size-s;
+                                color: #bababa;
+                            }
+                        }
+                        .unread {
+                            h5 {
+                                color: #000;
+                            }
+                            p {
+                                color: #666;
+                            }
+                            time {
+                                color: #999;
+                            }
+                        }
+                        .k-state-selected {
+                            h5,
+                            p,
+                            time {
+                                color: #000;
+                            }
+                        }
+                    }
+                    .blank {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 600px;
+                        .k-i-loading {
+                            margin-right: 6px;
+                        }
+                    }
+                    .mail-content {
+                        overflow: auto;
+                        padding: 10px 20px;
+                        height: 600px;
+                        dl {
+                            margin-bottom: 10px;
+                            border-bottom: 1px solid $line-color;
+                            padding-bottom: 5px;
+                            font-size: $font-size-s;
+                            dt {
+                                font-weight: normal;
+                                color: #999;
+                                text-align: right;
+                            }
+                            dd {
+                                white-space: normal;
+                                img {
+                                    margin-right: 3px;
+                                    border-radius: $border-radius-round;
+                                    width: 12px;
+                                    height: 12px;
+                                    vertical-align: -10%;
+                                }
+                                span {
+                                    color: #ccc;
+                                }
+                            }
+                        }
+                        .content {
+                            white-space: normal;
                         }
                     }
                 }
@@ -759,7 +859,7 @@ iframe#section {
                         justify-content: center;
                         align-items: center;
                         margin: 0 15px 0 0;
-                        border-radius: 50%;
+                        border-radius: $border-radius-round;
                         width: 32px;
                         height: 32px;
                         i {
@@ -768,7 +868,7 @@ iframe#section {
                     }
                     img {
                         margin: 0 15px 0 0;
-                        border-radius: 50%;
+                        border-radius: $border-radius-round;
                         width: 32px;
                         height: 32px;
                     }
@@ -832,7 +932,7 @@ iframe#section {
                     margin-right: 6px;
                 }
             }
-            .noticeTools {
+            .notice-tools {
                 display: flex;
                 justify-content: space-between;
                 border-top: 1px solid $line-color;
@@ -912,7 +1012,7 @@ iframe#section {
             }
         }
     }
-    .globalSearch {
+    .global-search {
         width: 74px;
         > .k-link {
             position: absolute;
@@ -1003,7 +1103,7 @@ iframe#section {
     .k-item > .k-state-active {
         @include nav-menu-bg-dark;
     }
-    .globalSearch > .k-link {
+    .global-search > .k-link {
         abbr {
             display: inline-block;
             height: 30px;
@@ -1247,7 +1347,7 @@ iframe#section {
             }
         }
         .k-progressbar {
-            border-radius: 4px;
+            border-radius: $border-radius;
             width: 100%;
             .k-progress-status-wrap {
                 justify-content: center;
@@ -1534,7 +1634,7 @@ iframe#section {
         .wi-celsius {
             font-size: 4rem;
         }
-        .cond_txt {
+        .cond-txt {
             align-self: flex-end;
             margin-left: -2rem;
             margin-bottom: .6rem;
@@ -1542,7 +1642,7 @@ iframe#section {
             font-size: 1.25rem;
             font-weight: 300;
         }
-        .cond_code {
+        .cond-code {
             margin-left: auto;
             font-size: 5rem;
             line-height: 1.2em;
@@ -1620,7 +1720,7 @@ iframe#section {
                     line-height: 1em;
                 }
                 .week,
-                .moonPhase {
+                .moon-phase {
                     i {
                         margin-right: 8px;
                         font-size: 1.6rem;
@@ -1628,9 +1728,9 @@ iframe#section {
                     }
                 }
                 .week,
-                .moonPhase,
+                .moon-phase,
                 .festival,
-                .lunarYear {
+                .lunar-year {
                     font-size: 1.2rem;
                 }
             }
@@ -1668,7 +1768,7 @@ iframe#section {
 #noteBox {
     position: relative;
     overflow-x: hidden;
-    .noteTools {
+    .note-tools {
         padding-top: 10px;
         text-align: center;
         &:first-child {
@@ -1902,20 +2002,20 @@ iframe#section {
                         margin: 0 .5rem;
                     }
                     .day {
-                        border-radius: 4px;
+                        border-radius: $border-radius;
                         padding: .1rem .5rem;
                         font-size: 1.5rem;
                     }
                     .week,
-                    .moonPhase {
+                    .moon-phase {
                         i {
                             font-size: 1.3rem;
                         }
                     }
                     .week,
-                    .moonPhase,
+                    .moon-phase,
                     .festival,
-                    .lunarYear {
+                    .lunar-year {
                         font-size: 1rem;
                     }
                 }
@@ -2581,7 +2681,7 @@ form {
 /* 步骤条 */
 .k-step {
     border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: 4px;
+    border-radius: $border-radius;
     background: #fff;
     .k-tabstrip-items {
         justify-content: space-between;
@@ -2614,7 +2714,7 @@ form {
                         margin-bottom: 6px;
                         border-width: 1px;
                         border-style: solid;
-                        border-radius: 50%;
+                        border-radius: $border-radius-round;
                         width: 28px;
                         height: 28px;
                         line-height: 28px;
@@ -2644,7 +2744,7 @@ form {
     .k-content {
         margin: 0 20px 20px 20px;
         border: 1px solid rgba(0, 0, 0, .125);
-        border-radius: 4px;
+        border-radius: $border-radius;
         padding: 20px 20px 10px 20px;
         .k-step-btns {
             margin-top: 20px;
@@ -2693,7 +2793,7 @@ form {
         &:after {
             position: absolute;
             z-index: 10;
-            border-radius: 50%;
+            border-radius: $border-radius-round;
             content: '';
         }
         &:before {
@@ -2747,7 +2847,7 @@ form {
 .dot-color {
     display: inline-block;
     border: 1px solid;
-    border-radius: 50%;
+    border-radius: $border-radius-round;
     width: 10px;
     height: 10px;
 }
