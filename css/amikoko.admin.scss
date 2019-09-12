@@ -795,23 +795,68 @@ iframe#section {
                             }
                             dd {
                                 white-space: normal;
-                                img {
+                                > img {
                                     margin-right: 3px;
                                     border-radius: $border-radius-round;
                                     width: 12px;
                                     height: 12px;
                                     vertical-align: -10%;
                                 }
-                                span {
-                                    color: #ccc;
-                                }
                             }
                         }
                         .content {
                             white-space: normal;
                         }
+                        .btns {
+                            margin-top: 10px;
+                            border-top: 1px solid $line-color;
+                            padding: 10px;
+                            text-align: center;
+                            button {
+                                margin: 0 10px;
+                            }
+                        }
+                    }
+                    #writeMail {
+                        .mail-content {
+                            padding: 20px;
+                            .k-multiselect-wrap {
+                                img {
+                                    margin-right: 6px;
+                                    border: 1px solid $line-color;
+                                    border-radius: $border-radius-round;
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                            textarea {
+                                height: 360px;
+                            }
+                            .btns {
+                                margin-top: 0;
+                                border-top: 0;
+                            }
+                        }
                     }
                 }
+            }
+        }
+    }
+    #msgReceiver-list,
+    #msgCC-list {
+        li.k-item {
+            img {
+                margin-right: 6px;
+                border: 1px solid $line-color;
+                border-radius: $border-radius-round;
+                width: 20px;
+                height: 20px;
+            }
+            &.k-state-hover {
+                background: #eee;
+            }
+            &.k-state-selected {
+                background: #ddd;
             }
         }
     }

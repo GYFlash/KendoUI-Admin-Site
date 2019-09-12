@@ -589,18 +589,26 @@ function initMessage() {
             '<div class="card-body">' +
                 '<div id="messageDrawer">' +
                     '<div id="messageDrawerContent">' +
+                        '<div class="hide">' +
+                            '<div class="row no-gutters">' +
+                                '<div class="col-12" id="writeMail">' +
+                                    '<form class="mail-content">' +
+                                        '<p><select class="w-100" id="msgReceiver" name="receiver" multiple></select></p>' +
+                                        '<p><select class="w-100" id="msgCC" name="cc" multiple></select></p>' +
+                                        '<p><input class="k-textbox w-100" name="subject" type="text" placeholder="主题"></p>' +
+                                        '<p><textarea class="k-textarea w-100" name="content" placeholder="正文内容"></textarea></p>' +
+                                        '<div class="btns">' +
+                                            '<button class="k-button k-button-icontext k-state-selected" type="button"><i class="fas fa-paper-plane"></i>发送</button>' +
+                                        '</div>' +
+                                    '</form>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
                         '<div>' +
                             '<div class="row no-gutters">' +
                                 '<div class="col-4" id="inbox"></div>' +
                                 '<div class="col-8">' +
                                     '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="hide">' +
-                            '<div class="row no-gutters">' +
-                                '<div class="col-12" id="writeMail">' +
-                                    '<div class="blank"><span class="k-icon k-i-loading"></span>载入中······</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
@@ -639,8 +647,8 @@ function initMessage() {
         mode: 'push',
         template:
             '<ul>' +
-                '<li class="k-state-selected" id="inboxDrawer" data-role="drawer-item"><i class="fas fa-inbox" title="收件箱"></i>收件箱</li>' +
                 '<li data-role="drawer-item"><i class="fas fa-feather" title="写邮件"></i>写邮件</li>' +
+                '<li class="k-state-selected" id="inboxDrawer" data-role="drawer-item"><i class="fas fa-inbox" title="收件箱"></i>收件箱</li>' +
                 '<li data-role="drawer-item"><i class="fas fa-envelope" title="发件箱"></i>发件箱</li>' +
                 '<li data-role="drawer-separator"></li>' +
                 '<li data-role="drawer-item" id="smsDrawer"><i class="fas fa-comments" title="短信息"></i>短信息</li>' +
@@ -678,6 +686,63 @@ function initMessage() {
             $('#messageBox sup').hide();
             $('#messageBox .badge').show();
         }
+    });
+    // 通讯录数据源
+    var addressBookDataSource = new kendo.data.DataSource({
+        transport: {
+            read: function (options) {
+                $.fn.ajaxPost({
+                    ajaxUrl: addressBookUrl,
+                    succeed: function (res) {
+                        options.success(res);
+                    },
+                    failed: function (res) {
+                        options.error(res);
+                    }
+                });
+            }
+        },
+        schema: {
+            total: function(res) {
+                return res.addressBook.length;
+            },
+            data: 'addressBook',
+            model: {
+                id: 'id',
+                fields: {
+                    avatar: { type: 'string' },
+                    realName: { type: 'string' },
+                    nickName: { type: 'string' },
+                    email: { type: 'string' }
+                }
+            }
+        }
+    });
+    // 收件人
+    $('#msgReceiver').kendoMultiSelect({
+        dataSource: addressBookDataSource,
+        placeholder: '收件人',
+        dataValueField: 'email',
+        dataTextField: 'nickName',
+        height: 400,
+        autoClose: false,
+        filter: 'contains',
+        delay: 300,
+        itemTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #<small>&lt;#: email #&gt;</small>',
+        tagTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #'
+    });
+    // 抄送
+    $('#msgCC').kendoMultiSelect({
+        dataSource: addressBookDataSource,
+        placeholder: '抄送',
+        dataValueField: 'email',
+        dataTextField: 'nickName',
+        height: 400,
+        autoClose: false,
+        filter: 'contains',
+        delay: 300,
+        itemTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #<small>&lt;#: email #&gt;</small>',
+        tagTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #'
     });
     // 收件箱列表
     $('#inbox').kendoListView({
@@ -739,18 +804,18 @@ function initMessage() {
                     '<div class="mail-content">' +
                         '<dl class="row no-gutters">' +
                             '<dt class="col-2">发件人：</dt>' +
-                            '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<span>&lt;' + dataItem.email + '&gt;</span></dd>' +
+                            '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<small>&lt;' + dataItem.email + '&gt;</small></dd>' +
                             '<dt class="col-2">收件人：</dt>' +
                             '<dd class="col-10">';
             for (var i = 0; i < dataItem.to.length; i++) {
-                content +=      '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<span>&lt;' + dataItem.to[i].email + '&gt;;</span><br>';
+                content +=      '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<small>&lt;' + dataItem.to[i].email + '&gt;;</small><br>';
             }
                 content +=  '</dd>';
             if (dataItem.cc.length > 0) {
                 content +=  '<dt class="col-2">抄送：</dt>' +
                             '<dd class="col-10">';
                 for (var k = 0; k < dataItem.cc.length; k++) {
-                    content +=  '<img src="' + dataItem.cc[k].avatar + '" alt="' + dataItem.cc[k].nickName + '">' + dataItem.cc[k].nickName + '<span>&lt;' + dataItem.cc[k].email + '&gt;;</span><br>';
+                    content +=  '<img src="' + dataItem.cc[k].avatar + '" alt="' + dataItem.cc[k].nickName + '">' + dataItem.cc[k].nickName + '<small>&lt;' + dataItem.cc[k].email + '&gt;;</small><br>';
                 }
                 content +=  '</dd>';
             }

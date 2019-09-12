@@ -668,19 +668,61 @@ iframe#section {
           #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dd,
           #menuV #messageBox .card .card-body #messageDrawer .mail-content dl dd {
             white-space: normal; }
-            #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dd img,
-            #menuV #messageBox .card .card-body #messageDrawer .mail-content dl dd img {
+            #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dd > img,
+            #menuV #messageBox .card .card-body #messageDrawer .mail-content dl dd > img {
               margin-right: 3px;
               border-radius: 50%;
               width: 12px;
               height: 12px;
               vertical-align: -10%; }
-            #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dd span,
-            #menuV #messageBox .card .card-body #messageDrawer .mail-content dl dd span {
-              color: #ccc; }
         #menuH #messageBox .card .card-body #messageDrawer .mail-content .content,
         #menuV #messageBox .card .card-body #messageDrawer .mail-content .content {
           white-space: normal; }
+        #menuH #messageBox .card .card-body #messageDrawer .mail-content .btns,
+        #menuV #messageBox .card .card-body #messageDrawer .mail-content .btns {
+          margin-top: 10px;
+          border-top: 1px solid #ccc;
+          padding: 10px;
+          text-align: center; }
+          #menuH #messageBox .card .card-body #messageDrawer .mail-content .btns button,
+          #menuV #messageBox .card .card-body #messageDrawer .mail-content .btns button {
+            margin: 0 10px; }
+      #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content,
+      #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content {
+        padding: 20px; }
+        #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content .k-multiselect-wrap img,
+        #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content .k-multiselect-wrap img {
+          margin-right: 6px;
+          border: 1px solid #ccc;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px; }
+        #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content textarea,
+        #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content textarea {
+          height: 360px; }
+        #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content .btns,
+        #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content .btns {
+          margin-top: 0;
+          border-top: 0; }
+#menuH #msgReceiver-list li.k-item img,
+#menuH #msgCC-list li.k-item img,
+#menuV #msgReceiver-list li.k-item img,
+#menuV #msgCC-list li.k-item img {
+  margin-right: 6px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px; }
+#menuH #msgReceiver-list li.k-item.k-state-hover,
+#menuH #msgCC-list li.k-item.k-state-hover,
+#menuV #msgReceiver-list li.k-item.k-state-hover,
+#menuV #msgCC-list li.k-item.k-state-hover {
+  background: #eee; }
+#menuH #msgReceiver-list li.k-item.k-state-selected,
+#menuH #msgCC-list li.k-item.k-state-selected,
+#menuV #msgReceiver-list li.k-item.k-state-selected,
+#menuV #msgCC-list li.k-item.k-state-selected {
+  background: #ddd; }
 #menuH #noticeBox .k-tabstrip-items,
 #menuV #noticeBox .k-tabstrip-items {
   -ms-flex-pack: distribute;
