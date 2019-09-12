@@ -743,10 +743,18 @@ function initMessage() {
                             '<dt class="col-2">收件人：</dt>' +
                             '<dd class="col-10">';
             for (var i = 0; i < dataItem.to.length; i++) {
-                content += '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<span>&lt;' + dataItem.to[i].email + '&gt;;</span><br>';
+                content +=      '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<span>&lt;' + dataItem.to[i].email + '&gt;;</span><br>';
             }
-                content +=  '</dd>' +
-                            '<dt class="col-2">时间：</dt>' +
+                content +=  '</dd>';
+            if (dataItem.cc.length > 0) {
+                content +=  '<dt class="col-2">抄送：</dt>' +
+                            '<dd class="col-10">';
+                for (var k = 0; k < dataItem.cc.length; k++) {
+                    content +=  '<img src="' + dataItem.cc[k].avatar + '" alt="' + dataItem.cc[k].nickName + '">' + dataItem.cc[k].nickName + '<span>&lt;' + dataItem.cc[k].email + '&gt;;</span><br>';
+                }
+                content +=  '</dd>';
+            }
+                content +=  '<dt class="col-2">时间：</dt>' +
                             '<dd class="col-10">' + kendo.toString(kendo.parseDate(dataItem.time), 'yyyy-MM-dd（ddd）HH:mm') + '</dd>' +
                         '</dl>' +
                         '<div class="content">' + dataItem.content + '</div>' +
