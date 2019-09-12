@@ -4,11 +4,11 @@ $(function () {
         intervalID = setInterval(function () {
             if (sec > 1) {
                 sec = sec - 1;
-                $('time').text(sec);
+                $('#countdown').text(sec);
             } else {
                 clearInterval(intervalID);
                 linkTo('/', 'home');
             }
         }, 1000);
-    $('time').text(sec);
+    $('#countdown').text(sec);
 });
