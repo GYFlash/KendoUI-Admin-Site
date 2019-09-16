@@ -21,6 +21,7 @@ var path = $('base').attr('href'),
     smsUrl = 'json/message.json', // 短信息列表获取接口
     addressBookUrl = 'json/message.json', // 通讯录列表获取接口
     messageReadUrl = 'json/response.json', // 消息单条已读标记接口
+    messageSendUrl = 'json/response.json', // 消息发送接口
     noticeUrl = 'json/notice.json', // 新提醒数量获取接口
     systemNotificationUrl = 'json/notice.json', // 系统通知列表获取接口
     userUpdatingUrl = 'json/notice.json', // 个人动态列表获取接口
@@ -598,7 +599,7 @@ function initMessage() {
                                         '<p><input class="k-textbox w-100" name="subject" type="text" placeholder="主题"></p>' +
                                         '<p><textarea class="k-textarea w-100" name="content" placeholder="正文内容"></textarea></p>' +
                                         '<div class="btns">' +
-                                            '<button class="k-button k-button-icontext k-state-selected" type="button"><i class="fas fa-paper-plane"></i>发送</button>' +
+                                            '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="sendMail();"><i class="fas fa-paper-plane"></i>发送</button>' +
                                         '</div>' +
                                     '</form>' +
                                 '</div>' +
@@ -891,6 +892,18 @@ function getMessageNum() {
     } else {
         $('#menuH, #menuV').find('.links-message > .k-link sup').remove();
     }
+}
+
+// 发送站内信
+function sendMail() {
+    $.fn.ajaxPost({
+        ajaxData: $('#writeMail form').serializeObject(),
+        ajaxUrl: messageSendUrl,
+        succeed: function (res) {
+            $('#writeMail form')[0].reset();
+        },
+        isMsg: true
+    });
 }
 
 // 提醒初始化
