@@ -680,8 +680,7 @@ function initMessage() {
             $('#messageBox sup').show();
         },
         itemClick: function (e) {
-            $('#messageDrawerContent > div').addClass('hide');
-            $('#messageDrawerContent > div').eq(e.item.index()).removeClass('hide');
+            $('#messageDrawerContent > div').addClass('hide').eq(e.item.index()).removeClass('hide');
         }
     });
     $('#messageDrawerBtn').click(function () {
@@ -790,7 +789,10 @@ function initMessage() {
                         to: { type: 'object',
                             defaultValue: []
                         },
-                        title: { type: 'string' },
+                        cc: { type: 'object',
+                            defaultValue: []
+                        },
+                        subject: { type: 'string' },
                         content: { type: 'string' },
                         time: { type: 'string' },
                         unread: { type: 'boolean' }
@@ -805,11 +807,13 @@ function initMessage() {
         template:
             '<div class="mail-list# if (unread) { # unread# } #">' +
                 '<h5><img src="#= avatar #" alt="#= email #">#= nickName #</h5>' +
-                '<p>#= title #</p>' +
+                '<p>#= subject #</p>' +
                 '<time>#= time #</time>' +
             '</div>',
         change: function (e) {
             var dataItem = e.sender.dataItem(e.sender.select()),
+                toList = [dataItem.email],
+                ccList = [],
                 content =
                     '<div class="mail-content">' +
                         '<dl class="row no-gutters">' +
@@ -819,6 +823,7 @@ function initMessage() {
                             '<dd class="col-10">';
             for (var i = 0; i < dataItem.to.length; i++) {
                 content +=      '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<small>&lt;' + dataItem.to[i].email + '&gt;;</small><br>';
+                toList.push(dataItem.to[i].email);
             }
                 content +=  '</dd>';
             if (dataItem.cc.length > 0) {
@@ -826,6 +831,7 @@ function initMessage() {
                             '<dd class="col-10">';
                 for (var k = 0; k < dataItem.cc.length; k++) {
                     content +=  '<img src="' + dataItem.cc[k].avatar + '" alt="' + dataItem.cc[k].nickName + '">' + dataItem.cc[k].nickName + '<small>&lt;' + dataItem.cc[k].email + '&gt;;</small><br>';
+                    ccList.push(dataItem.cc[k].email);
                 }
                 content +=  '</dd>';
             }
@@ -833,6 +839,11 @@ function initMessage() {
                             '<dd class="col-10">' + kendo.toString(kendo.parseDate(dataItem.time), 'yyyy-MM-dd（ddd）HH:mm') + '</dd>' +
                         '</dl>' +
                         '<div class="content">' + dataItem.content + '</div>' +
+                        '<div class="btns">' +
+                            '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="funcMail(\'reply\', \'' + dataItem.email + '\', \'\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-reply"></i>回复</button>' +
+                            '<button class="k-button k-button-icontext theme-m-box" type="button" onclick="funcMail(\'replyAll\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-reply-all"></i>回复全部</button>' +
+                            '<button class="k-button k-button-icontext theme-s-bg" type="button" onclick="funcMail(\'forward\', \'\', \'\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-share"></i>转发</button>' +
+                        '</div>' +
                     '</div>';
             $('#inbox').next().html(content);
             if ($(e.sender.select()).hasClass('unread')) {
@@ -915,6 +926,20 @@ function sendMail() {
             isMsg: true
         });
     }
+}
+
+// 回复和转发站内信
+function funcMail(type, toList, ccList, subject, content) {
+    $('#msgReceiver').data('kendoMultiSelect').value(toList.split(','));
+    $('#msgCC').data('kendoMultiSelect').value(ccList.split(','));
+    if (type === 'reply' || type === 'replyAll') {
+        $('#writeMail input[name=subject]').val('回复：' + subject);
+    } else if (type === 'forward') {
+        $('#writeMail input[name=subject]').val('转发：' + subject);
+    }
+    $('#writeMail textarea[name=content]').val('\n------------------------------------------------------------\n' + content.replace(/<br>/g, '\n'));
+    $('#messageDrawer .k-drawer-item').removeClass('k-state-selected').first().addClass('k-state-selected');
+    $('#messageDrawerContent > div').addClass('hide').eq(0).removeClass('hide');
 }
 
 // 提醒初始化

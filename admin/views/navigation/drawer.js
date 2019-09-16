@@ -21,8 +21,7 @@ $(function () {
         },
         width: 180,
         itemClick: function (e) {
-            $('#leftDrawerContent > div').addClass('hide');
-            $('#leftDrawerContent > div').eq(e.item.index()).removeClass('hide');
+            $('#leftDrawerContent > div').addClass('hide').eq(e.item.index()).removeClass('hide');
         }
     });
     $('#leftDrawerBtn').click(function () {
@@ -55,8 +54,7 @@ $(function () {
         },
         width: 180,
         itemClick: function (e) {
-            $('#rightDrawerContent > div').addClass('hide');
-            $('#rightDrawerContent > div').eq(e.item.index()).removeClass('hide');
+            $('#rightDrawerContent > div').addClass('hide').eq(e.item.index()).removeClass('hide');
         }
     });
     $('#rightDrawerBtn').click(function () {
@@ -121,8 +119,7 @@ $(function () {
         },
         width: 180,
         itemClick: function (e) {
-            $('#miniDrawerContent > div').addClass('hide');
-            $('#miniDrawerContent > div').eq(e.item.index()).removeClass('hide');
+            $('#miniDrawerContent > div').addClass('hide').eq(e.item.index()).removeClass('hide');
         }
     });
     $('#miniDrawerBtn').click(function () {
