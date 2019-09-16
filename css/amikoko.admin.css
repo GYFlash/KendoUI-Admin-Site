@@ -700,6 +700,11 @@ iframe#section {
         #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content textarea,
         #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content textarea {
           height: 360px; }
+        #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content .k-invalid-msg,
+        #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content .k-invalid-msg {
+          margin: 0;
+          padding-left: 0;
+          padding-right: 0; }
         #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content .btns,
         #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content .btns {
           margin-top: 0;

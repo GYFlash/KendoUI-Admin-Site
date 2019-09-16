@@ -594,10 +594,19 @@ function initMessage() {
                             '<div class="row no-gutters">' +
                                 '<div class="col-12" id="writeMail">' +
                                     '<form class="mail-content">' +
-                                        '<p><select class="w-100" id="msgReceiver" name="receiver" multiple></select></p>' +
-                                        '<p><select class="w-100" id="msgCC" name="cc" multiple></select></p>' +
-                                        '<p><input class="k-textbox w-100" name="subject" type="text" placeholder="主题"></p>' +
-                                        '<p><textarea class="k-textarea w-100" name="content" placeholder="正文内容"></textarea></p>' +
+                                        '<p>' +
+                                            '<select class="w-100" id="msgReceiver" name="receiver" multiple required data-required-msg="请选择收件人！"></select>' +
+                                            '<span class="k-invalid-msg" data-for="receiver"></span>' +
+                                        '</p>' +
+                                        '<p>' +
+                                            '<select class="w-100" id="msgCC" name="cc" multiple></select>' +
+                                        '</p>' +
+                                        '<p>' +
+                                            '<input class="k-textbox w-100" name="subject" type="text" placeholder="主题（必填）" required data-required-msg="请输入主题！">' +
+                                        '</p>' +
+                                        '<p>' +
+                                            '<textarea class="k-textarea w-100" name="content" placeholder="正文内容"></textarea>' +
+                                        '</p>' +
                                         '<div class="btns">' +
                                             '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="sendMail();"><i class="fas fa-paper-plane"></i>发送</button>' +
                                         '</div>' +
@@ -722,7 +731,7 @@ function initMessage() {
     // 收件人
     $('#msgReceiver').kendoMultiSelect({
         dataSource: addressBookDataSource,
-        placeholder: '收件人',
+        placeholder: '收件人（必填）',
         dataValueField: 'email',
         dataTextField: 'nickName',
         height: 400,
@@ -896,14 +905,16 @@ function getMessageNum() {
 
 // 发送站内信
 function sendMail() {
-    $.fn.ajaxPost({
-        ajaxData: $('#writeMail form').serializeObject(),
-        ajaxUrl: messageSendUrl,
-        succeed: function (res) {
-            $('#writeMail form')[0].reset();
-        },
-        isMsg: true
-    });
+    if ($('#writeMail form').kendoValidator().data('kendoValidator').validate()) {
+        $.fn.ajaxPost({
+            ajaxData: $('#writeMail form').serializeObject(),
+            ajaxUrl: messageSendUrl,
+            succeed: function (res) {
+                $('#writeMail form')[0].reset();
+            },
+            isMsg: true
+        });
+    }
 }
 
 // 提醒初始化
