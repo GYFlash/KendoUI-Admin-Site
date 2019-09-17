@@ -770,18 +770,31 @@ iframe#section {
                             }
                         }
                         .address-book-list {
-                            padding: 8px 12px;
+                            padding: 8px 0;
+                            h4 {
+                                padding: 0 12px;
+                                font-size: $font-size-m;
+                                color: #999;
+                            }
+                            h5 {
+                                margin-bottom: 0;
+                                padding: 5px 12px;
+                                font-size: $font-size-m;
+                                color: #000;
+                                white-space: normal;
+                                &:hover {
+                                    background: #ddd;
+                                    cursor: pointer;
+                                }
+                                &.k-state-selected {
+                                    background: #ccc;
+                                }
+                            }
                             img {
                                 margin: 0 6px 0 0;
                                 border-radius: $border-radius-round;
                                 width: 30px;
                                 height: 30px;
-                            }
-                            h5 {
-                                margin-bottom: 0;
-                                font-size: $font-size-m;
-                                color: #000;
-                                white-space: normal;
                             }
                         }
                     }

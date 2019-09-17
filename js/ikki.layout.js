@@ -728,6 +728,10 @@ function initMessage() {
                     email: { type: 'string' }
                 }
             }
+        },
+        group: {
+            field: 'group',
+            dir: 'asc'
         }
     });
     // 收件人
@@ -843,9 +847,9 @@ function initMessage() {
                         '</dl>' +
                         '<div class="content">' + dataItem.content + '</div>' +
                         '<div class="btns">' +
-                            '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="funcMail(\'reply\', \'' + dataItem.email + '\', \'\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-reply"></i>回复</button>' +
-                            '<button class="k-button k-button-icontext theme-m-box" type="button" onclick="funcMail(\'replyAll\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-reply-all"></i>回复全部</button>' +
-                            '<button class="k-button k-button-icontext theme-s-bg" type="button" onclick="funcMail(\'forward\', \'\', \'\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-share"></i>转发</button>' +
+                            '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="postMail(\'reply\', \'' + dataItem.email + '\', \'\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-reply"></i>回复</button>' +
+                            '<button class="k-button k-button-icontext theme-m-box" type="button" onclick="postMail(\'replyAll\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-reply-all"></i>回复全部</button>' +
+                            '<button class="k-button k-button-icontext theme-s-bg" type="button" onclick="postMail(\'forward\', \'\', \'\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-share"></i>转发</button>' +
                         '</div>' +
                     '</div>';
             $('#inbox').next().html(content);
@@ -964,7 +968,7 @@ function initMessage() {
                         '</dl>' +
                         '<div class="content">' + dataItem.content + '</div>' +
                         '<div class="btns">' +
-                            '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="funcMail(\'reedit\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-edit"></i>再次编辑</button>' +
+                            '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="postMail(\'reedit\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-edit"></i>再次编辑</button>' +
                         '</div>' +
                     '</div>';
             $('#outbox').next().html(content);
@@ -975,45 +979,14 @@ function initMessage() {
         dataSource: addressBookDataSource,
         height: 550,
         scrollable: 'endless',
-        selectable: true,
-        template:
-            '<div class="address-book-list">' +
-                '<h5><img src="#= avatar #" alt="#= nickName #">#= realName #</h5>' +
-            '</div>',
-        change: function (e) {
-            var dataItem = e.sender.dataItem(e.sender.select()),
-                toList = [],
-                ccList = [],
-                content =
-                    '<div class="mail-content">' +
-                    '<dl class="row no-gutters">' +
-                    '<dt class="col-2">发件人：</dt>' +
-                    '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<small>&lt;' + dataItem.email + '&gt;</small></dd>' +
-                    '<dt class="col-2">收件人：</dt>' +
-                    '<dd class="col-10">';
-            for (var i = 0; i < dataItem.to.length; i++) {
-                content +=      '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<small>&lt;' + dataItem.to[i].email + '&gt;;</small><br>';
-                toList.push(dataItem.to[i].email);
+        template: function (e) {
+            var group = '<div class="address-book-list">' +
+                            '<h4>' + e.value + '</h4>';
+            for (var i = 0; i < e.items.length; i++) {
+                group +=    '<h5><img src="' + e.items[i].avatar + '" alt="' + e.items[i].nickName + '">' + e.items[i].realName + '</h5>';
             }
-            content +=  '</dd>';
-            if (dataItem.cc.length > 0) {
-                content +=  '<dt class="col-2">抄送：</dt>' +
-                    '<dd class="col-10">';
-                for (var k = 0; k < dataItem.cc.length; k++) {
-                    content +=  '<img src="' + dataItem.cc[k].avatar + '" alt="' + dataItem.cc[k].nickName + '">' + dataItem.cc[k].nickName + '<small>&lt;' + dataItem.cc[k].email + '&gt;;</small><br>';
-                    ccList.push(dataItem.cc[k].email);
-                }
-                content +=  '</dd>';
-            }
-            content +=  '<dt class="col-2">时间：</dt>' +
-                '<dd class="col-10">' + kendo.toString(kendo.parseDate(dataItem.time), 'yyyy-MM-dd（ddd）HH:mm') + '</dd>' +
-                '</dl>' +
-                '<div class="content">' + dataItem.content + '</div>' +
-                '<div class="btns">' +
-                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="funcMail(\'reedit\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-edit"></i>再次编辑</button>' +
-                '</div>' +
-                '</div>';
-            $('#outbox').next().html(content);
+                group += '</div>';
+            return group;
         }
     });
     // 通讯录搜索
@@ -1023,7 +996,8 @@ function initMessage() {
             filters: [
                 { field: 'realName', operator: 'contains', value: $(this).val() },
                 { field: 'nickName', operator: 'contains', value: $(this).val() },
-                { field: 'email', operator: 'contains', value: $(this).val() }
+                { field: 'email', operator: 'contains', value: $(this).val() },
+                { field: 'group', operator: 'contains', value: $(this).val() }
             ]
         });
     });
@@ -1085,7 +1059,7 @@ function sendMail() {
 }
 
 // 回复和转发站内信
-function funcMail(type, toList, ccList, subject, content) {
+function postMail(type, toList, ccList, subject, content) {
     $('#msgReceiver').data('kendoMultiSelect').value(toList.split(','));
     $('#msgCC').data('kendoMultiSelect').value(ccList.split(','));
     if (type === 'reply' || type === 'replyAll') {

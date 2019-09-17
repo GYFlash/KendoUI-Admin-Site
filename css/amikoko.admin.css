@@ -639,19 +639,32 @@ iframe#section {
           color: #000; }
         #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list,
         #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list {
-          padding: 8px 12px; }
+          padding: 8px 0; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h4,
+          #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h4 {
+            padding: 0 12px;
+            font-size: 14px;
+            color: #999; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5,
+          #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5 {
+            margin-bottom: 0;
+            padding: 5px 12px;
+            font-size: 14px;
+            color: #000;
+            white-space: normal; }
+            #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5:hover,
+            #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5:hover {
+              background: #ddd;
+              cursor: pointer; }
+            #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5.k-state-selected,
+            #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5.k-state-selected {
+              background: #ccc; }
           #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list img,
           #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list img {
             margin: 0 6px 0 0;
             border-radius: 50%;
             width: 30px;
             height: 30px; }
-          #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5,
-          #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5 {
-            margin-bottom: 0;
-            font-size: 14px;
-            color: #000;
-            white-space: normal; }
       #menuH #messageBox .card .card-body #messageDrawer .blank,
       #menuV #messageBox .card .card-body #messageDrawer .blank {
         display: -ms-flexbox;
