@@ -562,7 +562,230 @@
         }
     ],
     "outbox": [
-
+        {
+            "id": "ob003",
+            "avatar": "img/avatar.png",
+            "nickName": "IKKI2000",
+            "email": "ikki2000@saint.com",
+            "to": [
+                {
+                    "avatar": "img/temp/Pegasus.png",
+                    "nickName": "Seiya",
+                    "email": "seiya@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Dragon.png",
+                    "nickName": "Shiryu",
+                    "email": "shiryu@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Cygnus.png",
+                    "nickName": "Hyoga",
+                    "email": "hyoga@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Andromeda.png",
+                    "nickName": "Shun",
+                    "email": "shun@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Phoenix.png",
+                    "nickName": "Ikki",
+                    "email": "ikki@saint.com"
+                }
+            ],
+            "cc": [
+                {
+                    "avatar": "img/temp/Goddess.png",
+                    "nickName": "Athena",
+                    "email": "athena@saint.com"
+                }
+            ],
+            "subject": "重要证件一定要保管好~ 不用带现金~",
+            "content": "青铜圣斗士们：<br>　　到了中国以后~ 不要贪玩~ 护照千万别弄丢了哦~",
+            "time": "2019-10-01 08:15"
+        },
+        {
+            "id": "ob002",
+            "avatar": "img/avatar.png",
+            "nickName": "IKKI2000",
+            "email": "ikki2000@saint.com",
+            "to": [
+                {
+                    "avatar": "img/temp/Aries.png",
+                    "nickName": "Mu",
+                    "email": "mu@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Taurus.png",
+                    "nickName": "Aldebaran",
+                    "email": "aldebaran@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Gemini.png",
+                    "nickName": "Saga",
+                    "email": "saga@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Cancer.png",
+                    "nickName": "Death Mask",
+                    "email": "deathmask@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Leo.png",
+                    "nickName": "Aiolia",
+                    "email": "aiolia@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Virgo.png",
+                    "nickName": "Shaka",
+                    "email": "shaka@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Libra.png",
+                    "nickName": "Dohko",
+                    "email": "dohko@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Scorpion.png",
+                    "nickName": "Milo",
+                    "email": "milo@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Sagittarius.png",
+                    "nickName": "Aiolos",
+                    "email": "aiolos@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Capricorn.png",
+                    "nickName": "Shura",
+                    "email": "shura@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Aquarius.png",
+                    "nickName": "Camus",
+                    "email": "camus@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Picses.png",
+                    "nickName": "Aphrodite",
+                    "email": "aphrodite@saint.com"
+                }
+            ],
+            "cc": [
+                {
+                    "avatar": "img/temp/Goddess.png",
+                    "nickName": "Athena",
+                    "email": "athena@saint.com"
+                }
+            ],
+            "subject": "别忘了拍合照哦~",
+            "content": "黄金圣斗士们：<br>　　每一个景点游览完毕以后~ 别忘了拍合照~ 你们女神要拿去做宣传海报的~",
+            "time": "2019-10-01 08:15"
+        },
+        {
+            "id": "ob001",
+            "avatar": "img/avatar.png",
+            "nickName": "IKKI2000",
+            "email": "ikki2000@saint.com",
+            "to": [
+                {
+                    "avatar": "img/temp/Aries.png",
+                    "nickName": "Mu",
+                    "email": "mu@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Taurus.png",
+                    "nickName": "Aldebaran",
+                    "email": "aldebaran@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Gemini.png",
+                    "nickName": "Saga",
+                    "email": "saga@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Cancer.png",
+                    "nickName": "Death Mask",
+                    "email": "deathmask@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Leo.png",
+                    "nickName": "Aiolia",
+                    "email": "aiolia@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Virgo.png",
+                    "nickName": "Shaka",
+                    "email": "shaka@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Libra.png",
+                    "nickName": "Dohko",
+                    "email": "dohko@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Scorpion.png",
+                    "nickName": "Milo",
+                    "email": "milo@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Sagittarius.png",
+                    "nickName": "Aiolos",
+                    "email": "aiolos@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Capricorn.png",
+                    "nickName": "Shura",
+                    "email": "shura@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Aquarius.png",
+                    "nickName": "Camus",
+                    "email": "camus@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Picses.png",
+                    "nickName": "Aphrodite",
+                    "email": "aphrodite@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Pegasus.png",
+                    "nickName": "Seiya",
+                    "email": "seiya@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Dragon.png",
+                    "nickName": "Shiryu",
+                    "email": "shiryu@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Cygnus.png",
+                    "nickName": "Hyoga",
+                    "email": "hyoga@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Andromeda.png",
+                    "nickName": "Shun",
+                    "email": "shun@saint.com"
+                },
+                {
+                    "avatar": "img/temp/Phoenix.png",
+                    "nickName": "Ikki",
+                    "email": "ikki@saint.com"
+                }
+            ],
+            "cc": [
+                {
+                    "avatar": "img/temp/Goddess.png",
+                    "nickName": "Athena",
+                    "email": "athena@saint.com"
+                }
+            ],
+            "subject": "欢迎大家来到中国~",
+            "content": "女神和各位圣斗士们：<br>　　欢迎大家来中国旅游~ 祝你们玩得开心~",
+            "time": "2019-10-01 08:15"
+        }
     ],
     "sms": [
 

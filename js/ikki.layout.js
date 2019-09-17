@@ -871,6 +871,102 @@ function initMessage() {
             }
         }
     });
+    // 发件箱列表
+    $('#outbox').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'outbox'
+                        },
+                        ajaxUrl: outboxUrl,
+                        succeed: function (res) {
+                            options.success(res);
+                            if (res.outbox.length === 0) {
+                                $('#outbox').html('<div class="blank">您的发件箱是空的~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.outbox.length;
+                },
+                data: 'outbox',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        nickName: { type: 'string' },
+                        email: { type: 'string' },
+                        to: { type: 'object',
+                            defaultValue: []
+                        },
+                        cc: { type: 'object',
+                            defaultValue: []
+                        },
+                        subject: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' }
+                    }
+                }
+            },
+            pageSize: 10
+        },
+        height: 600,
+        scrollable: 'endless',
+        selectable: true,
+        template:
+            '<div class="mail-list unread">' +
+                '<h5>' +
+                    '# for (var i = 0; i < to.length; i++) { #' +
+                        '<img src="#= to[i].avatar #" alt="#= to[i].email #" title="#= to[i].nickName #">' +
+                    '# } #' +
+                '</h5>' +
+                '<p>#= subject #</p>' +
+                '<time>#= time #</time>' +
+            '</div>',
+        change: function (e) {
+            var dataItem = e.sender.dataItem(e.sender.select()),
+                toList = [],
+                ccList = [],
+                content =
+                    '<div class="mail-content">' +
+                        '<dl class="row no-gutters">' +
+                            '<dt class="col-2">发件人：</dt>' +
+                            '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<small>&lt;' + dataItem.email + '&gt;</small></dd>' +
+                            '<dt class="col-2">收件人：</dt>' +
+                            '<dd class="col-10">';
+            for (var i = 0; i < dataItem.to.length; i++) {
+                content +=      '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<small>&lt;' + dataItem.to[i].email + '&gt;;</small><br>';
+                toList.push(dataItem.to[i].email);
+            }
+                content +=  '</dd>';
+            if (dataItem.cc.length > 0) {
+                content +=  '<dt class="col-2">抄送：</dt>' +
+                            '<dd class="col-10">';
+                for (var k = 0; k < dataItem.cc.length; k++) {
+                    content +=  '<img src="' + dataItem.cc[k].avatar + '" alt="' + dataItem.cc[k].nickName + '">' + dataItem.cc[k].nickName + '<small>&lt;' + dataItem.cc[k].email + '&gt;;</small><br>';
+                    ccList.push(dataItem.cc[k].email);
+                }
+                content +=  '</dd>';
+            }
+                content +=  '<dt class="col-2">时间：</dt>' +
+                            '<dd class="col-10">' + kendo.toString(kendo.parseDate(dataItem.time), 'yyyy-MM-dd（ddd）HH:mm') + '</dd>' +
+                        '</dl>' +
+                        '<div class="content">' + dataItem.content + '</div>' +
+                        '<div class="btns">' +
+                            '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="funcMail(\'reedit\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-edit"></i>再次编辑</button>' +
+                        '</div>' +
+                    '</div>';
+            $('#outbox').next().html(content);
+        }
+    });
 }
 
 // 消息获取
@@ -936,8 +1032,14 @@ function funcMail(type, toList, ccList, subject, content) {
         $('#writeMail input[name=subject]').val('回复：' + subject);
     } else if (type === 'forward') {
         $('#writeMail input[name=subject]').val('转发：' + subject);
+    } else {
+        $('#writeMail input[name=subject]').val(subject);
     }
-    $('#writeMail textarea[name=content]').val('\n------------------------------------------------------------\n' + content.replace(/<br>/g, '\n'));
+    if (type === 'reedit') {
+        $('#writeMail textarea[name=content]').val(content.replace(/<br>/g, '\n'));
+    } else {
+        $('#writeMail textarea[name=content]').val('\n------------------------------------------------------------\n' + content.replace(/<br>/g, '\n'));
+    }
     $('#messageDrawer .k-drawer-item').removeClass('k-state-selected').first().addClass('k-state-selected');
     $('#messageDrawerContent > div').addClass('hide').eq(0).removeClass('hide');
 }
