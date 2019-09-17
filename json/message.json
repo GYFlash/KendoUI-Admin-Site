@@ -796,6 +796,7 @@
             "avatar": "img/temp/Goddess.png",
             "realName": "雅典娜",
             "nickName": "Athena",
+            "gender": "2",
             "email": "athena@saint.com",
             "group": "Y"
         },
@@ -804,6 +805,7 @@
             "avatar": "img/temp/Pegasus.png",
             "realName": "星矢",
             "nickName": "Seiya",
+            "gender": "1",
             "email": "seiya@saint.com",
             "group": "X"
         },
@@ -812,6 +814,7 @@
             "avatar": "img/temp/Dragon.png",
             "realName": "紫龙",
             "nickName": "Shiryu",
+            "gender": "1",
             "email": "shiryu@saint.com",
             "group": "Z"
         },
@@ -820,6 +823,7 @@
             "avatar": "img/temp/Cygnus.png",
             "realName": "冰河",
             "nickName": "Hyoga",
+            "gender": "1",
             "email": "hyoga@saint.com",
             "group": "B"
         },
@@ -828,6 +832,7 @@
             "avatar": "img/temp/Andromeda.png",
             "realName": "瞬",
             "nickName": "Shun",
+            "gender": "1",
             "email": "shun@saint.com",
             "group": "S"
         },
@@ -836,6 +841,7 @@
             "avatar": "img/temp/Phoenix.png",
             "realName": "一辉",
             "nickName": "Ikki",
+            "gender": "1",
             "email": "ikki@saint.com",
             "group": "Y"
         },
@@ -844,6 +850,7 @@
             "avatar": "img/temp/Aries.png",
             "realName": "穆",
             "nickName": "Mu",
+            "gender": "1",
             "email": "mu@saint.com",
             "group": "M"
         },
@@ -852,6 +859,7 @@
             "avatar": "img/temp/Taurus.png",
             "realName": "阿鲁迪巴",
             "nickName": "Aldebaran",
+            "gender": "1",
             "email": "aldebaran@saint.com",
             "group": "A"
         },
@@ -860,6 +868,7 @@
             "avatar": "img/temp/Gemini.png",
             "realName": "撒加",
             "nickName": "Saga",
+            "gender": "1",
             "email": "saga@saint.com",
             "group": "S"
         },
@@ -868,6 +877,7 @@
             "avatar": "img/temp/Cancer.png",
             "realName": "迪斯马斯克",
             "nickName": "Death Mask",
+            "gender": "1",
             "email": "deathmask@saint.com",
             "group": "D"
         },
@@ -876,6 +886,7 @@
             "avatar": "img/temp/Leo.png",
             "realName": "艾欧里亚",
             "nickName": "Aiolia",
+            "gender": "1",
             "email": "aiolia@saint.com",
             "group": "A"
         },
@@ -884,6 +895,7 @@
             "avatar": "img/temp/Virgo.png",
             "realName": "沙加",
             "nickName": "Shaka",
+            "gender": "1",
             "email": "shaka@saint.com",
             "group": "S"
         },
@@ -892,6 +904,7 @@
             "avatar": "img/temp/Libra.png",
             "realName": "童虎",
             "nickName": "Dohko",
+            "gender": "1",
             "email": "dohko@saint.com",
             "group": "T"
         },
@@ -900,6 +913,7 @@
             "avatar": "img/temp/Scorpion.png",
             "realName": "米罗",
             "nickName": "Milo",
+            "gender": "1",
             "email": "milo@saint.com",
             "group": "M"
         },
@@ -908,6 +922,7 @@
             "avatar": "img/temp/Sagittarius.png",
             "realName": "艾俄洛斯",
             "nickName": "Aiolos",
+            "gender": "1",
             "email": "aiolos@saint.com",
             "group": "A"
         },
@@ -916,6 +931,7 @@
             "avatar": "img/temp/Capricorn.png",
             "realName": "修罗",
             "nickName": "Shura",
+            "gender": "1",
             "email": "shura@saint.com",
             "group": "X"
         },
@@ -924,6 +940,7 @@
             "avatar": "img/temp/Aquarius.png",
             "realName": "卡妙",
             "nickName": "Camus",
+            "gender": "1",
             "email": "camus@saint.com",
             "group": "K"
         },
@@ -932,6 +949,7 @@
             "avatar": "img/temp/Picses.png",
             "realName": "阿布罗狄",
             "nickName": "Aphrodite",
+            "gender": "1",
             "email": "aphrodite@saint.com",
             "group": "A"
         }

@@ -742,6 +742,74 @@ iframe#section {
         padding: 10px;
         background: #eee;
         box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1); }
+      #menuH #messageBox .card .card-body #messageDrawer .address-book-content,
+      #menuV #messageBox .card .card-body #messageDrawer .address-book-content {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+            flex-direction: column;
+        -ms-flex-pack: center;
+            justify-content: center;
+        -ms-flex-align: center;
+            align-items: center;
+        height: 600px;
+        color: #fff; }
+        #menuH #messageBox .card .card-body #messageDrawer .address-book-content figure,
+        #menuV #messageBox .card .card-body #messageDrawer .address-book-content figure {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          filter: blur(50px);
+          opacity: .8; }
+        #menuH #messageBox .card .card-body #messageDrawer .address-book-content img,
+        #menuV #messageBox .card .card-body #messageDrawer .address-book-content img {
+          position: relative;
+          margin-bottom: 30px;
+          width: 160px;
+          height: 160px; }
+        #menuH #messageBox .card .card-body #messageDrawer .address-book-content h5,
+        #menuV #messageBox .card .card-body #messageDrawer .address-book-content h5 {
+          position: relative;
+          margin-bottom: 15px;
+          font-size: 30px;
+          font-weight: 100;
+          opacity: .8; }
+          #menuH #messageBox .card .card-body #messageDrawer .address-book-content h5 i,
+          #menuV #messageBox .card .card-body #messageDrawer .address-book-content h5 i {
+            margin: 0;
+            width: 30px;
+            height: 30px;
+            font-size: 30px;
+            line-height: 30px;
+            vertical-align: -4%; }
+        #menuH #messageBox .card .card-body #messageDrawer .address-book-content h6,
+        #menuV #messageBox .card .card-body #messageDrawer .address-book-content h6 {
+          position: relative;
+          margin-bottom: 15px;
+          font-size: 20px;
+          font-weight: 100;
+          opacity: .8; }
+        #menuH #messageBox .card .card-body #messageDrawer .address-book-content p,
+        #menuV #messageBox .card .card-body #messageDrawer .address-book-content p {
+          position: relative;
+          margin-bottom: 30px;
+          font-size: 16px;
+          font-weight: 100;
+          opacity: .8; }
+        #menuH #messageBox .card .card-body #messageDrawer .address-book-content .btns,
+        #menuV #messageBox .card .card-body #messageDrawer .address-book-content .btns {
+          position: relative;
+          border-top: 1px solid rgba(255, 255, 255, 0.4);
+          padding-top: 30px;
+          width: 80%;
+          text-align: center; }
+          #menuH #messageBox .card .card-body #messageDrawer .address-book-content .btns button,
+          #menuV #messageBox .card .card-body #messageDrawer .address-book-content .btns button {
+            margin: 0 10px; }
 #menuH #msgReceiver-list li.k-item img,
 #menuH #msgCC-list li.k-item img,
 #menuV #msgReceiver-list li.k-item img,

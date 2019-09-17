@@ -725,7 +725,9 @@ function initMessage() {
                     avatar: { type: 'string' },
                     realName: { type: 'string' },
                     nickName: { type: 'string' },
-                    email: { type: 'string' }
+                    gender: { type: 'string' },
+                    email: { type: 'string' },
+                    group: { type: 'string' }
                 }
             }
         },
@@ -983,7 +985,7 @@ function initMessage() {
             var group = '<div class="address-book-list">' +
                             '<h4>' + e.value + '</h4>';
             for (var i = 0; i < e.items.length; i++) {
-                group +=    '<h5><img src="' + e.items[i].avatar + '" alt="' + e.items[i].nickName + '">' + e.items[i].realName + '</h5>';
+                group +=    '<h5 onclick="addressBookInfo(this, \'' + e.items[i].gender + '\', \'' + e.items[i].email + '\');"><img src="' + e.items[i].avatar + '" alt="' + e.items[i].nickName + '">' + e.items[i].realName + '</h5>';
             }
                 group += '</div>';
             return group;
@@ -1069,13 +1071,39 @@ function postMail(type, toList, ccList, subject, content) {
     } else {
         $('#writeMail input[name=subject]').val(subject);
     }
-    if (type === 'reedit') {
+    if (type === 'reedit' || type === 'newPost') {
         $('#writeMail textarea[name=content]').val(content.replace(/<br>/g, '\n'));
     } else {
         $('#writeMail textarea[name=content]').val('\n------------------------------------------------------------\n' + content.replace(/<br>/g, '\n'));
     }
     $('#messageDrawer .k-drawer-item').removeClass('k-state-selected').first().addClass('k-state-selected');
     $('#messageDrawerContent > div').addClass('hide').eq(0).removeClass('hide');
+}
+
+// 通讯录明细
+function addressBookInfo(dom, gender, email) {
+    $('#addressBook h5').removeClass('k-state-selected');
+    $(dom).addClass('k-state-selected');
+    var content =
+        '<div class="address-book-content">' +
+            '<figure style="background-image: url(' + $(dom).find('img').attr('src') + ');"></figure>' +
+            '<img src="' + $(dom).find('img').attr('src') + '" alt="' + $(dom).find('img').attr('alt') + '">' +
+            '<h5>' +
+            $(dom).text();
+    if (gender === '1') {
+        content += '<i class="fas fa-male mars"></i>';
+    } else if (gender === '2') {
+        content += '<i class="fas fa-female venus"></i>';
+    }
+        content += '</h5>' +
+            '<h6>' + $(dom).find('img').attr('alt') + '</h6>' +
+            '<p>' + email + '</p>' +
+            '<div class="btns">' +
+                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="postMail(\'newPost\', \'' + email + '\', \'\', \'\', \'\');"><i class="fas fa-envelope"></i>发站内信</button>' +
+                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick=""><i class="fas fa-comments"></i>发短信息</button>' +
+            '</div>' +
+        '</div>';
+    $('#addressBook').parent().next().html(content);
 }
 
 // 提醒初始化
