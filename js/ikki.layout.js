@@ -642,7 +642,10 @@ function initMessage() {
                         '<div class="hide"></div>' +
                         '<div class="hide">' +
                             '<div class="row no-gutters">' +
-                                '<div class="col-4" id="addressBook"></div>' +
+                                '<div class="col-4">' +
+                                    '<div id="addressBookSearch"><span class="k-textbox k-space-left w-100"><input type="text" placeholder="搜索"><a class="k-icon k-i-search k-required ml-1" href="javascript:;"></a></span></div>' +
+                                    '<div id="addressBook"></div>' +
+                                '</div>' +
                                 '<div class="col-8">' +
                                     '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
                                 '</div>' +
@@ -966,6 +969,63 @@ function initMessage() {
                     '</div>';
             $('#outbox').next().html(content);
         }
+    });
+    // 通讯录列表
+    $('#addressBook').kendoListView({
+        dataSource: addressBookDataSource,
+        height: 550,
+        scrollable: 'endless',
+        selectable: true,
+        template:
+            '<div class="address-book-list">' +
+                '<h5><img src="#= avatar #" alt="#= nickName #">#= realName #</h5>' +
+            '</div>',
+        change: function (e) {
+            var dataItem = e.sender.dataItem(e.sender.select()),
+                toList = [],
+                ccList = [],
+                content =
+                    '<div class="mail-content">' +
+                    '<dl class="row no-gutters">' +
+                    '<dt class="col-2">发件人：</dt>' +
+                    '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<small>&lt;' + dataItem.email + '&gt;</small></dd>' +
+                    '<dt class="col-2">收件人：</dt>' +
+                    '<dd class="col-10">';
+            for (var i = 0; i < dataItem.to.length; i++) {
+                content +=      '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<small>&lt;' + dataItem.to[i].email + '&gt;;</small><br>';
+                toList.push(dataItem.to[i].email);
+            }
+            content +=  '</dd>';
+            if (dataItem.cc.length > 0) {
+                content +=  '<dt class="col-2">抄送：</dt>' +
+                    '<dd class="col-10">';
+                for (var k = 0; k < dataItem.cc.length; k++) {
+                    content +=  '<img src="' + dataItem.cc[k].avatar + '" alt="' + dataItem.cc[k].nickName + '">' + dataItem.cc[k].nickName + '<small>&lt;' + dataItem.cc[k].email + '&gt;;</small><br>';
+                    ccList.push(dataItem.cc[k].email);
+                }
+                content +=  '</dd>';
+            }
+            content +=  '<dt class="col-2">时间：</dt>' +
+                '<dd class="col-10">' + kendo.toString(kendo.parseDate(dataItem.time), 'yyyy-MM-dd（ddd）HH:mm') + '</dd>' +
+                '</dl>' +
+                '<div class="content">' + dataItem.content + '</div>' +
+                '<div class="btns">' +
+                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="funcMail(\'reedit\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-edit"></i>再次编辑</button>' +
+                '</div>' +
+                '</div>';
+            $('#outbox').next().html(content);
+        }
+    });
+    // 通讯录搜索
+    $('#addressBookSearch input').keyup(function () {
+        $('#addressBook').data('kendoListView').dataSource.filter({
+            logic: 'or',
+            filters: [
+                { field: 'realName', operator: 'contains', value: $(this).val() },
+                { field: 'nickName', operator: 'contains', value: $(this).val() },
+                { field: 'email', operator: 'contains', value: $(this).val() }
+            ]
+        });
     });
 }
 

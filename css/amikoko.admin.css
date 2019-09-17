@@ -601,13 +601,13 @@ iframe#section {
           padding: 8px 12px; }
           #menuH #messageBox .card .card-body #messageDrawer .k-listview .mail-list img,
           #menuV #messageBox .card .card-body #messageDrawer .k-listview .mail-list img {
-            margin: 0 6px 0 0;
+            margin: 0 6px 5px 0;
             border-radius: 50%;
             width: 20px;
             height: 20px; }
           #menuH #messageBox .card .card-body #messageDrawer .k-listview .mail-list h5,
           #menuV #messageBox .card .card-body #messageDrawer .k-listview .mail-list h5 {
-            margin-bottom: 5px;
+            margin-bottom: 0;
             font-size: 14px;
             color: #bababa;
             white-space: normal; }
@@ -637,6 +637,21 @@ iframe#section {
         #menuV #messageBox .card .card-body #messageDrawer .k-listview .k-state-selected p,
         #menuV #messageBox .card .card-body #messageDrawer .k-listview .k-state-selected time {
           color: #000; }
+        #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list,
+        #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list {
+          padding: 8px 12px; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list img,
+          #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list img {
+            margin: 0 6px 0 0;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px; }
+          #menuH #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5,
+          #menuV #messageBox .card .card-body #messageDrawer .k-listview .address-book-list h5 {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #000;
+            white-space: normal; }
       #menuH #messageBox .card .card-body #messageDrawer .blank,
       #menuV #messageBox .card .card-body #messageDrawer .blank {
         display: -ms-flexbox;
@@ -699,7 +714,7 @@ iframe#section {
           height: 20px; }
         #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content textarea,
         #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content textarea {
-          height: 360px; }
+          height: 320px; }
         #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content .k-invalid-msg,
         #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content .k-invalid-msg {
           margin: 0;
@@ -709,6 +724,11 @@ iframe#section {
         #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content .btns {
           margin-top: 0;
           border-top: 0; }
+      #menuH #messageBox .card .card-body #messageDrawer #addressBookSearch,
+      #menuV #messageBox .card .card-body #messageDrawer #addressBookSearch {
+        padding: 10px;
+        background: #eee;
+        box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1); }
 #menuH #msgReceiver-list li.k-item img,
 #menuH #msgCC-list li.k-item img,
 #menuV #msgReceiver-list li.k-item img,

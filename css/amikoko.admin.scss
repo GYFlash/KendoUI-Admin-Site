@@ -729,13 +729,13 @@ iframe#section {
                         .mail-list {
                             padding: 8px 12px;
                             img {
-                                margin: 0 6px 0 0;
+                                margin: 0 6px 5px 0;
                                 border-radius: $border-radius-round;
                                 width: 20px;
                                 height: 20px;
                             }
                             h5 {
-                                margin-bottom: 5px;
+                                margin-bottom: 0;
                                 font-size: $font-size-m;
                                 color: #bababa;
                                 white-space: normal;
@@ -767,6 +767,21 @@ iframe#section {
                             p,
                             time {
                                 color: #000;
+                            }
+                        }
+                        .address-book-list {
+                            padding: 8px 12px;
+                            img {
+                                margin: 0 6px 0 0;
+                                border-radius: $border-radius-round;
+                                width: 30px;
+                                height: 30px;
+                            }
+                            h5 {
+                                margin-bottom: 0;
+                                font-size: $font-size-m;
+                                color: #000;
+                                white-space: normal;
                             }
                         }
                     }
@@ -830,7 +845,7 @@ iframe#section {
                                 }
                             }
                             textarea {
-                                height: 360px;
+                                height: 320px;
                             }
                             .k-invalid-msg {
                                 margin: 0;
@@ -842,6 +857,11 @@ iframe#section {
                                 border-top: 0;
                             }
                         }
+                    }
+                    #addressBookSearch {
+                        padding: 10px;
+                        background: #eee;
+                        box-shadow: 1px 0 2px rgba(0, 0, 0, .1);
                     }
                 }
             }
