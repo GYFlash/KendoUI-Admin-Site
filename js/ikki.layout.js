@@ -20,8 +20,10 @@ var path = $('base').attr('href'),
     outboxUrl = 'json/message.json', // 发件箱列表获取接口
     smsUrl = 'json/message.json', // 短信息列表获取接口
     addressBookUrl = 'json/message.json', // 通讯录列表获取接口
-    messageReadUrl = 'json/response.json', // 消息单条已读标记接口
-    messageSendUrl = 'json/response.json', // 消息发送接口
+    mailReadUrl = 'json/response.json', // 站内信单条已读标记接口
+    mailSendUrl = 'json/response.json', // 站内信发送接口
+    smsReadUrl = 'json/response.json', // 短信息已读标记接口
+    smsSendUrl = 'json/response.json', // 短信息发送接口
     noticeUrl = 'json/notice.json', // 新提醒数量获取接口
     systemNotificationUrl = 'json/notice.json', // 系统通知列表获取接口
     userUpdatingUrl = 'json/notice.json', // 个人动态列表获取接口
@@ -826,6 +828,7 @@ function initMessage() {
                 '<time>#= time #</time>' +
             '</div>',
         change: function (e) {
+            // 收件箱明细
             var dataItem = e.sender.dataItem(e.sender.select()),
                 toList = [dataItem.email],
                 ccList = [],
@@ -861,13 +864,14 @@ function initMessage() {
                         '</div>' +
                     '</div>';
             $('#inbox').next().html(content);
+            // 收件箱已读
             if ($(e.sender.select()).hasClass('unread')) {
                 $.fn.ajaxPost({
                     ajaxData: {
                         id: dataItem.id,
                         type: 'inbox'
                     },
-                    ajaxUrl: messageReadUrl,
+                    ajaxUrl: mailReadUrl,
                     succeed: function () {
                         $(e.sender.select()).removeClass('unread');
                         var badgeDom = $('#inboxDrawer').find('.badge');
@@ -947,6 +951,7 @@ function initMessage() {
                 '<time>#= time #</time>' +
             '</div>',
         change: function (e) {
+            // 发件箱明细
             var dataItem = e.sender.dataItem(e.sender.select()),
                 toList = [],
                 ccList = [],
@@ -1052,13 +1057,15 @@ function initMessage() {
                 '</div>' +
             '</div>',
         change: function (e) {
+            // 短信息明细
             var dataItem = e.sender.dataItem(e.sender.select());
+            // 短信息已读
             $.fn.ajaxPost({
                 ajaxData: {
                     id: dataItem.id,
                     type: 'sms'
                 },
-                ajaxUrl: messageReadUrl,
+                ajaxUrl: smsReadUrl,
                 succeed: function () {
                     $(e.sender.select()).find('sup').remove();
                     var badgeDom = $('#smsDrawer').find('.badge');
@@ -1162,7 +1169,7 @@ function sendMail() {
     if ($('#writeMail form').kendoValidator().data('kendoValidator').validate()) {
         $.fn.ajaxPost({
             ajaxData: $('#writeMail form').serializeObject(),
-            ajaxUrl: messageSendUrl,
+            ajaxUrl: mailSendUrl,
             succeed: function (res) {
                 $('#writeMail form')[0].reset();
             },
@@ -1371,6 +1378,7 @@ function getSystemNotification() {
                 '</div>' +
             '</div>',
         change: function (e) {
+            // 系统通知已读
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
                     ajaxData: {
@@ -1459,6 +1467,7 @@ function getUserUpdating() {
                 '</div>' +
             '</div>',
         change: function (e) {
+            // 个人动态已读
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
                     ajaxData: {
@@ -1546,6 +1555,7 @@ function getToDoItems() {
                 '</div>' +
             '</div>',
         change: function (e) {
+            // 待办事项已读
             if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
                 $.fn.ajaxPost({
                     ajaxData: {
