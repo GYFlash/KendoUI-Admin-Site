@@ -633,7 +633,10 @@ function initMessage() {
                         '<div class="hide"></div>' +
                         '<div class="hide">' +
                             '<div class="row no-gutters">' +
-                                '<div class="col-4" id="sms"></div>' +
+                                '<div class="col-4">' +
+                                    '<div id="smsSearch"><span class="k-textbox k-space-left w-100"><input type="text" placeholder="搜索"><a class="k-icon k-i-search k-required ml-1" href="javascript:;"></a></span></div>' +
+                                    '<div id="sms"></div>' +
+                                '</div>' +
                                 '<div class="col-8">' +
                                     '<div class="blank"><i class="fas fa-couch"></i>空空如也</div>' +
                                 '</div>' +
@@ -674,13 +677,13 @@ function initMessage() {
         width: 120,
         show: function(e) {
             $('#messageDrawerBtn i').removeClass('fa-indent').addClass('fa-outdent');
-            $('#messageBox sup').hide();
-            $('#messageBox .badge').show();
+            $('#messageBox .k-drawer-items sup').hide();
+            $('#messageBox .k-drawer-items .badge').show();
         },
         hide: function(e) {
             $('#messageDrawerBtn i').removeClass('fa-outdent').addClass('fa-indent');
-            $('#messageBox .badge').hide();
-            $('#messageBox sup').show();
+            $('#messageBox .k-drawer-items .badge').hide();
+            $('#messageBox .k-drawer-items sup').show();
         },
         itemClick: function (e) {
             $('#messageDrawerContent > div').addClass('hide').eq(e.item.index()).removeClass('hide');
@@ -690,13 +693,13 @@ function initMessage() {
         if ($('#messageDrawer').data('kendoDrawer').drawerContainer.hasClass('k-drawer-expanded')) {
             $('#messageDrawer').data('kendoDrawer').hide();
             $('#messageDrawerBtn i').removeClass('fa-outdent').addClass('fa-indent');
-            $('#messageBox .badge').hide();
-            $('#messageBox sup').show();
+            $('#messageBox .k-drawer-items .badge').hide();
+            $('#messageBox .k-drawer-items sup').show();
         } else {
             $('#messageDrawer').data('kendoDrawer').show();
             $('#messageDrawerBtn i').removeClass('fa-indent').addClass('fa-outdent');
-            $('#messageBox sup').hide();
-            $('#messageBox .badge').show();
+            $('#messageBox .k-drawer-items sup').hide();
+            $('#messageBox .k-drawer-items .badge').show();
         }
     });
     // 通讯录数据源
@@ -704,6 +707,9 @@ function initMessage() {
         transport: {
             read: function (options) {
                 $.fn.ajaxPost({
+                    ajaxData: {
+                        type: 'addressBook'
+                    },
                     ajaxUrl: addressBookUrl,
                     succeed: function (res) {
                         options.success(res);
@@ -976,6 +982,110 @@ function initMessage() {
             $('#outbox').next().html(content);
         }
     });
+    // 短信息列表
+    $('#sms').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'sms'
+                        },
+                        ajaxUrl: smsUrl,
+                        succeed: function (res) {
+                            options.success(res);
+                            if (res.sms.length === 0) {
+                                $('#sms').html('<div class="blank">您还没有短信息~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.sms.length;
+                },
+                data: 'sms',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        realName: { type: 'string' },
+                        nickName: { type: 'string' },
+                        chat: { type: 'object',
+                            defaultValue: []
+                        },
+                        unread: { type: 'number' }
+                    }
+                }
+            },
+            pageSize: 12
+        },
+        height: 550,
+        scrollable: 'endless',
+        selectable: true,
+        template:
+            '<div class="sms-list">' +
+                '<figure>' +
+                    '# if (unread > 0 && unread < 100) { #' +
+                        '<sup class="theme-m-bg">#= unread #</sup>' +
+                    '# } else if (unread >= 100) { #' +
+                        '<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>' +
+                    '# } #' +
+                    '<img src="#= avatar #" alt="#= nickName #">' +
+                '</figure>' +
+                '<div>' +
+                    '<h5>' +
+                        '<strong>#= realName #</strong>' +
+                        '<time>' +
+                            '# if (kendo.toString(kendo.parseDate(chat[0].time), "yyyy-MM-dd") === kendo.toString(kendo.parseDate(new Date()), "yyyy-MM-dd")) { #' +
+                                '#= kendo.toString(kendo.parseDate(chat[0].time), "HH:mm") #' +
+                            '# } else { #' +
+                                '#= kendo.toString(kendo.parseDate(chat[0].time), "MM-dd") #' +
+                            '# } #' +
+                        '</time>' +
+                    '</h5>' +
+                    '<p>#= chat[0].text #</p>' +
+                '</div>' +
+            '</div>',
+        change: function (e) {
+            var dataItem = e.sender.dataItem(e.sender.select());
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: dataItem.id,
+                    type: 'sms'
+                },
+                ajaxUrl: messageReadUrl,
+                succeed: function () {
+                    $(e.sender.select()).find('sup').remove();
+                    var badgeDom = $('#smsDrawer').find('.badge');
+                    if ($('#sms sup').length === 0) {
+                        badgeDom.remove();
+                        $('#smsDrawer').find('sup').remove();
+                    } else {
+                        badgeDom.text(Number(badgeDom.text()) - dataItem.unread);
+                    }
+                    getMessageNum();
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
+    // 短信息搜索
+    $('#smsSearch input').keyup(function () {
+        $('#sms').data('kendoListView').dataSource.filter({
+            logic: 'or',
+            filters: [
+                { field: 'realName', operator: 'contains', value: $(this).val() },
+                { field: 'nickName', operator: 'contains', value: $(this).val() }
+            ]
+        });
+    });
     // 通讯录列表
     $('#addressBook').kendoListView({
         dataSource: addressBookDataSource,
@@ -1010,8 +1120,9 @@ function getMessage() {
     $.fn.ajaxPost({
         ajaxUrl: messageUrl,
         succeed: function (res) {
-            $('#menuH, #menuV').find('.links-message sup').remove();
-            $('#menuH, #menuV').find('.links-message .badge').remove();
+            $('#menuH, #menuV').find('.links-message > .k-link sup').remove();
+            $('#menuH, #menuV').find('.links-message .k-drawer-items sup').remove();
+            $('#menuH, #menuV').find('.links-message .k-drawer-items .badge').remove();
             var total = res.inboxTotal + res.smsTotal;
             if (total > 0 && total < 100) {
                 $('#menuH, #menuV').find('.links-message > .k-link .fa-envelope').after('<sup class="theme-m-bg">' + total + '</sup>');
