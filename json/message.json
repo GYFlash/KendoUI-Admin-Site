@@ -791,6 +791,7 @@
         {
             "id": "sms018",
             "avatar": "img/temp/Goddess.png",
+            "userId": "uid018",
             "realName": "雅典娜",
             "nickName": "Athena",
             "chat": [
@@ -818,6 +819,7 @@
         {
             "id": "sms017",
             "avatar": "img/temp/Pegasus.png",
+            "userId": "uid013",
             "realName": "星矢",
             "nickName": "Seiya",
             "chat": [
@@ -833,6 +835,7 @@
         {
             "id": "sms016",
             "avatar": "img/temp/Dragon.png",
+            "userId": "uid014",
             "realName": "紫龙",
             "nickName": "Shiryu",
             "chat": [
@@ -848,6 +851,7 @@
         {
             "id": "sms015",
             "avatar": "img/temp/Cygnus.png",
+            "userId": "uid015",
             "realName": "冰河",
             "nickName": "Hyoga",
             "chat": [
@@ -863,6 +867,7 @@
         {
             "id": "sms014",
             "avatar": "img/temp/Andromeda.png",
+            "userId": "uid016",
             "realName": "瞬",
             "nickName": "Shun",
             "chat": [
@@ -878,6 +883,7 @@
         {
             "id": "sms013",
             "avatar": "img/temp/Phoenix.png",
+            "userId": "uid017",
             "realName": "一辉",
             "nickName": "Ikki",
             "chat": [
@@ -893,6 +899,7 @@
         {
             "id": "sms012",
             "avatar": "img/temp/Aries.png",
+            "userId": "uid001",
             "realName": "穆",
             "nickName": "Mu",
             "chat": [
@@ -908,6 +915,7 @@
         {
             "id": "sms011",
             "avatar": "img/temp/Taurus.png",
+            "userId": "uid002",
             "realName": "阿鲁迪巴",
             "nickName": "Aldebaran",
             "chat": [
@@ -923,6 +931,7 @@
         {
             "id": "sms010",
             "avatar": "img/temp/Gemini.png",
+            "userId": "uid003",
             "realName": "撒加",
             "nickName": "Saga",
             "chat": [
@@ -938,6 +947,7 @@
         {
             "id": "sms009",
             "avatar": "img/temp/Cancer.png",
+            "userId": "uid004",
             "realName": "迪斯马斯克",
             "nickName": "Death Mask",
             "chat": [
@@ -953,6 +963,7 @@
         {
             "id": "sms008",
             "avatar": "img/temp/Leo.png",
+            "userId": "uid005",
             "realName": "艾欧里亚",
             "nickName": "Aiolia",
             "chat": [
@@ -968,6 +979,7 @@
         {
             "id": "sms007",
             "avatar": "img/temp/Virgo.png",
+            "userId": "uid006",
             "realName": "沙加",
             "nickName": "Shaka",
             "chat": [
@@ -983,6 +995,7 @@
         {
             "id": "sms006",
             "avatar": "img/temp/Libra.png",
+            "userId": "uid007",
             "realName": "童虎",
             "nickName": "Dohko",
             "chat": [
@@ -998,6 +1011,7 @@
         {
             "id": "sms005",
             "avatar": "img/temp/Scorpion.png",
+            "userId": "uid008",
             "realName": "米罗",
             "nickName": "Milo",
             "chat": [
@@ -1013,6 +1027,7 @@
         {
             "id": "sms004",
             "avatar": "img/temp/Sagittarius.png",
+            "userId": "uid009",
             "realName": "艾俄洛斯",
             "nickName": "Aiolos",
             "chat": [
@@ -1028,6 +1043,7 @@
         {
             "id": "sms003",
             "avatar": "img/temp/Capricorn.png",
+            "userId": "uid010",
             "realName": "修罗",
             "nickName": "Shura",
             "chat": [
@@ -1043,6 +1059,7 @@
         {
             "id": "sms002",
             "avatar": "img/temp/Aquarius.png",
+            "userId": "uid011",
             "realName": "卡妙",
             "nickName": "Camus",
             "chat": [
@@ -1058,6 +1075,7 @@
         {
             "id": "sms001",
             "avatar": "img/temp/Picses.png",
+            "userId": "uid012",
             "realName": "阿布罗狄",
             "nickName": "Aphrodite",
             "chat": [
@@ -1073,61 +1091,7 @@
     ],
     "addressBook": [
         {
-            "id": "ab001",
-            "avatar": "img/temp/Goddess.png",
-            "realName": "雅典娜",
-            "nickName": "Athena",
-            "gender": "2",
-            "email": "athena@saint.com",
-            "group": "Y"
-        },
-        {
-            "id": "ab002",
-            "avatar": "img/temp/Pegasus.png",
-            "realName": "星矢",
-            "nickName": "Seiya",
-            "gender": "1",
-            "email": "seiya@saint.com",
-            "group": "X"
-        },
-        {
-            "id": "ab003",
-            "avatar": "img/temp/Dragon.png",
-            "realName": "紫龙",
-            "nickName": "Shiryu",
-            "gender": "1",
-            "email": "shiryu@saint.com",
-            "group": "Z"
-        },
-        {
-            "id": "ab004",
-            "avatar": "img/temp/Cygnus.png",
-            "realName": "冰河",
-            "nickName": "Hyoga",
-            "gender": "1",
-            "email": "hyoga@saint.com",
-            "group": "B"
-        },
-        {
-            "id": "ab005",
-            "avatar": "img/temp/Andromeda.png",
-            "realName": "瞬",
-            "nickName": "Shun",
-            "gender": "1",
-            "email": "shun@saint.com",
-            "group": "S"
-        },
-        {
-            "id": "ab006",
-            "avatar": "img/temp/Phoenix.png",
-            "realName": "一辉",
-            "nickName": "Ikki",
-            "gender": "1",
-            "email": "ikki@saint.com",
-            "group": "Y"
-        },
-        {
-            "id": "ab007",
+            "id": "uid001",
             "avatar": "img/temp/Aries.png",
             "realName": "穆",
             "nickName": "Mu",
@@ -1136,7 +1100,7 @@
             "group": "M"
         },
         {
-            "id": "ab008",
+            "id": "uid002",
             "avatar": "img/temp/Taurus.png",
             "realName": "阿鲁迪巴",
             "nickName": "Aldebaran",
@@ -1145,7 +1109,7 @@
             "group": "A"
         },
         {
-            "id": "ab009",
+            "id": "uid003",
             "avatar": "img/temp/Gemini.png",
             "realName": "撒加",
             "nickName": "Saga",
@@ -1154,7 +1118,7 @@
             "group": "S"
         },
         {
-            "id": "ab010",
+            "id": "uid004",
             "avatar": "img/temp/Cancer.png",
             "realName": "迪斯马斯克",
             "nickName": "Death Mask",
@@ -1163,7 +1127,7 @@
             "group": "D"
         },
         {
-            "id": "ab011",
+            "id": "uid005",
             "avatar": "img/temp/Leo.png",
             "realName": "艾欧里亚",
             "nickName": "Aiolia",
@@ -1172,7 +1136,7 @@
             "group": "A"
         },
         {
-            "id": "ab012",
+            "id": "uid006",
             "avatar": "img/temp/Virgo.png",
             "realName": "沙加",
             "nickName": "Shaka",
@@ -1181,7 +1145,7 @@
             "group": "S"
         },
         {
-            "id": "ab013",
+            "id": "uid007",
             "avatar": "img/temp/Libra.png",
             "realName": "童虎",
             "nickName": "Dohko",
@@ -1190,7 +1154,7 @@
             "group": "T"
         },
         {
-            "id": "ab014",
+            "id": "uid008",
             "avatar": "img/temp/Scorpion.png",
             "realName": "米罗",
             "nickName": "Milo",
@@ -1199,7 +1163,7 @@
             "group": "M"
         },
         {
-            "id": "ab015",
+            "id": "uid009",
             "avatar": "img/temp/Sagittarius.png",
             "realName": "艾俄洛斯",
             "nickName": "Aiolos",
@@ -1208,7 +1172,7 @@
             "group": "A"
         },
         {
-            "id": "ab016",
+            "id": "uid010",
             "avatar": "img/temp/Capricorn.png",
             "realName": "修罗",
             "nickName": "Shura",
@@ -1217,7 +1181,7 @@
             "group": "X"
         },
         {
-            "id": "ab017",
+            "id": "uid011",
             "avatar": "img/temp/Aquarius.png",
             "realName": "卡妙",
             "nickName": "Camus",
@@ -1226,13 +1190,67 @@
             "group": "K"
         },
         {
-            "id": "ab018",
+            "id": "uid012",
             "avatar": "img/temp/Picses.png",
             "realName": "阿布罗狄",
             "nickName": "Aphrodite",
             "gender": "1",
             "email": "aphrodite@saint.com",
             "group": "A"
+        },
+        {
+            "id": "uid013",
+            "avatar": "img/temp/Pegasus.png",
+            "realName": "星矢",
+            "nickName": "Seiya",
+            "gender": "1",
+            "email": "seiya@saint.com",
+            "group": "X"
+        },
+        {
+            "id": "uid014",
+            "avatar": "img/temp/Dragon.png",
+            "realName": "紫龙",
+            "nickName": "Shiryu",
+            "gender": "1",
+            "email": "shiryu@saint.com",
+            "group": "Z"
+        },
+        {
+            "id": "uid015",
+            "avatar": "img/temp/Cygnus.png",
+            "realName": "冰河",
+            "nickName": "Hyoga",
+            "gender": "1",
+            "email": "hyoga@saint.com",
+            "group": "B"
+        },
+        {
+            "id": "uid016",
+            "avatar": "img/temp/Andromeda.png",
+            "realName": "瞬",
+            "nickName": "Shun",
+            "gender": "1",
+            "email": "shun@saint.com",
+            "group": "S"
+        },
+        {
+            "id": "uid017",
+            "avatar": "img/temp/Phoenix.png",
+            "realName": "一辉",
+            "nickName": "Ikki",
+            "gender": "1",
+            "email": "ikki@saint.com",
+            "group": "Y"
+        },
+        {
+            "id": "uid018",
+            "avatar": "img/temp/Goddess.png",
+            "realName": "雅典娜",
+            "nickName": "Athena",
+            "gender": "2",
+            "email": "athena@saint.com",
+            "group": "Y"
         }
     ]
 }

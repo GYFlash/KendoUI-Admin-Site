@@ -1018,6 +1018,7 @@ function initMessage() {
                     id: 'id',
                     fields: {
                         avatar: { type: 'string' },
+                        userId: { type: 'string' },
                         realName: { type: 'string' },
                         nickName: { type: 'string' },
                         chat: { type: 'object',
@@ -1026,14 +1027,13 @@ function initMessage() {
                         unread: { type: 'number' }
                     }
                 }
-            },
-            pageSize: 12
+            }
         },
         height: 550,
         scrollable: 'endless',
         selectable: true,
         template:
-            '<div class="sms-list">' +
+            '<div class="sms-list" data-id="#= userId #">' +
                 '<figure>' +
                     '# if (unread > 0 && unread < 100) { #' +
                         '<sup class="theme-m-bg">#= unread #</sup>' +
@@ -1156,7 +1156,7 @@ function initMessage() {
             var group = '<div class="address-book-list">' +
                             '<h4>' + e.value + '</h4>';
             for (var i = 0; i < e.items.length; i++) {
-                group +=    '<h5 onclick="addressBookInfo(this, \'' + e.items[i].gender + '\', \'' + e.items[i].email + '\');"><img src="' + e.items[i].avatar + '" alt="' + e.items[i].nickName + '">' + e.items[i].realName + '</h5>';
+                group +=    '<h5 data-id="' + e.items[i].id + '" onclick="addressBookInfo(this, \'' + e.items[i].gender + '\', \'' + e.items[i].email + '\');"><img src="' + e.items[i].avatar + '" alt="' + e.items[i].nickName + '">' + e.items[i].realName + '</h5>';
             }
                 group += '</div>';
             return group;
@@ -1232,7 +1232,7 @@ function sendMail() {
     }
 }
 
-// 回复和转发站内信
+// 发、回复和转发站内信
 function postMail(type, toList, ccList, subject, content) {
     $('#msgReceiver').data('kendoMultiSelect').value(toList.split(','));
     $('#msgCC').data('kendoMultiSelect').value(ccList.split(','));
@@ -1248,8 +1248,17 @@ function postMail(type, toList, ccList, subject, content) {
     } else {
         $('#writeMail textarea[name=content]').val('\n------------------------------------------------------------\n' + content.replace(/<br>/g, '\n'));
     }
-    $('#messageDrawer .k-drawer-item').removeClass('k-state-selected').first().addClass('k-state-selected');
+    $('#messageDrawer .k-drawer-item').removeClass('k-state-selected').eq(0).addClass('k-state-selected');
     $('#messageDrawerContent > div').addClass('hide').eq(0).removeClass('hide');
+}
+
+// 发短信息
+function postSms(userId, realName) {
+    $('#messageDrawer .k-drawer-item').removeClass('k-state-selected').eq(4).addClass('k-state-selected');
+    $('#messageDrawerContent > div').addClass('hide').eq(4).removeClass('hide');
+    $('#smsSearch input').val(realName).trigger('keyup');
+    $('#sms').data('kendoListView').select($('#sms .sms-list[data-id=' + userId + ']'));
+    $('#smsChat .k-message-box input').focus();
 }
 
 // 通讯录明细
@@ -1272,7 +1281,7 @@ function addressBookInfo(dom, gender, email) {
             '<p>' + email + '</p>' +
             '<div class="btns">' +
                 '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="postMail(\'newPost\', \'' + email + '\', \'\', \'\', \'\');"><i class="fas fa-envelope"></i>发站内信</button>' +
-                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick=""><i class="fas fa-comments"></i>发短信息</button>' +
+                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="postSms(\'' + $(dom).attr('data-id') + '\', \'' + $(dom).text() + '\');"><i class="fas fa-comments"></i>发短信息</button>' +
             '</div>' +
         '</div>';
     $('#addressBook').parent().next().html(content);
