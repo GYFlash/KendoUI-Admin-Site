@@ -793,6 +793,21 @@ iframe#section {
       #menuH #messageBox .card .card-body #messageDrawer #sms .blank,
       #menuV #messageBox .card .card-body #messageDrawer #sms .blank {
         height: 550px; }
+      #menuH #messageBox .card .card-body #messageDrawer #smsChat,
+      #menuV #messageBox .card .card-body #messageDrawer #smsChat {
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+        white-space: normal; }
+        #menuH #messageBox .card .card-body #messageDrawer #smsChat .k-message-list img,
+        #menuV #messageBox .card .card-body #messageDrawer #smsChat .k-message-list img {
+          border: 1px solid #ccc; }
+        #menuH #messageBox .card .card-body #messageDrawer #smsChat .k-message-list time,
+        #menuV #messageBox .card .card-body #messageDrawer #smsChat .k-message-list time {
+          color: #999; }
+        #menuH #messageBox .card .card-body #messageDrawer #smsChat .k-message-box,
+        #menuV #messageBox .card .card-body #messageDrawer #smsChat .k-message-box {
+          border-color: #ccc; }
       #menuH #messageBox .card .card-body #messageDrawer #smsSearch,
       #menuH #messageBox .card .card-body #messageDrawer #addressBookSearch,
       #menuV #messageBox .card .card-body #messageDrawer #smsSearch,

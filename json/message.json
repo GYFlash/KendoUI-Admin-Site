@@ -795,16 +795,22 @@
             "nickName": "Athena",
             "chat": [
                 {
+                    "id": "sms018-001",
+                    "belongTo": "own",
+                    "text": "女神在么？",
+                    "time": "2019-09-20 08:30:00"
+                },
+                {
                     "id": "sms018-002",
                     "belongTo": "other",
                     "text": "在的~",
                     "time": "2019-09-20 08:30:01"
                 },
                 {
-                    "id": "sms018-001",
-                    "belongTo": "own",
-                    "text": "女神在么？",
-                    "time": "2019-09-20 08:30:00"
+                    "id": "sms018-003",
+                    "belongTo": "other",
+                    "text": "啥事？",
+                    "time": "2019-09-20 08:30:01"
                 }
             ],
             "unread": 1

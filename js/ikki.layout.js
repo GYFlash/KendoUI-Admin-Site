@@ -1059,6 +1059,60 @@ function initMessage() {
         change: function (e) {
             // 短信息明细
             var dataItem = e.sender.dataItem(e.sender.select());
+            if ($('#smsChat').data('kendoChat')) {
+                $('#smsChat .k-message-list-content').html('');
+            } else {
+                $('#sms').parent().next().html('<div id="smsChat"></div>');
+                $('#smsChat').kendoChat({
+                    user: {
+                        name: sessionStorage.getItem('userName'),
+                        iconUrl: sessionStorage.getItem('avatar')
+                    },
+                    post: function (e) {
+                        $.fn.ajaxPost({
+                            ajaxData: {
+                                id: dataItem.id,
+                                text: e.text
+                            },
+                            ajaxUrl: smsSendUrl,
+                            succeed: function (res) {
+                            },
+                            failed: function () {
+                                alertMsg('短信息发送失败！', 'error');
+                            }
+                        });
+                    }
+                });
+            }
+            $.each(dataItem.chat, function (i, items) {
+                var id,
+                    name,
+                    iconUrl,
+                    userInfo;
+                if (items.belongTo === 'own') {
+                    userInfo = $('#smsChat').data('kendoChat').getUser();
+                    id = userInfo.id;
+                    name = userInfo.name;
+                    iconUrl = userInfo.iconUrl;
+                } else if (items.belongTo === 'other') {
+                    id = kendo.guid();
+                    name = dataItem.realName;
+                    iconUrl = dataItem.avatar;
+                }
+                $('#smsChat').data('kendoChat').renderMessage(
+                    {
+                        type: 'text',
+                        text: items.text
+                    },
+                    {
+                        id: id,
+                        name: name,
+                        iconUrl: iconUrl
+                    }
+                );
+                $('#smsChat .k-message-list-content > div:last p').hide();
+                $('#smsChat .k-message-list-content > div:last time').text(kendo.toString(kendo.parseDate(items.time), "MM-dd HH:mm"));
+            });
             // 短信息已读
             $.fn.ajaxPost({
                 ajaxData: {

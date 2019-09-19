@@ -926,6 +926,23 @@ iframe#section {
                             height: 550px;
                         }
                     }
+                    #smsChat {
+                        border-top: 0;
+                        border-right: 0;
+                        border-bottom: 0;
+                        white-space: normal;
+                        .k-message-list {
+                            img {
+                                border: 1px solid $line-color;
+                            }
+                            time {
+                                color: #999;
+                            }
+                        }
+                        .k-message-box {
+                            border-color: $line-color;
+                        }
+                    }
                     #smsSearch,
                     #addressBookSearch {
                         padding: 10px;
