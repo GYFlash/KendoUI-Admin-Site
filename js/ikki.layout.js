@@ -155,8 +155,8 @@ $(function () {
     // 聊天机器人
     $('#botChat').kendoChat({
         user: { // 用户名称及头像
-            name: 'IKKI',
-            iconUrl: 'img/IKKI.png'
+            name: sessionStorage.getItem('userName'),
+            iconUrl: sessionStorage.getItem('avatar')
         },
         post: function (e) {
             $.ajax({
