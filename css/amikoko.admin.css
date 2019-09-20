@@ -798,6 +798,7 @@ iframe#section {
         border-top: 0;
         border-right: 0;
         border-bottom: 0;
+        background: #f4f4f4;
         white-space: normal; }
         #menuH #messageBox .card .card-body #messageDrawer #smsChat .k-message-list img,
         #menuV #messageBox .card .card-body #messageDrawer #smsChat .k-message-list img {

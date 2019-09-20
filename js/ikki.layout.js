@@ -1045,15 +1045,17 @@ function initMessage() {
                 '<div>' +
                     '<h5>' +
                         '<strong>#= realName #</strong>' +
-                        '<time>' +
-                            '# if (kendo.toString(kendo.parseDate(chat[0].time), "yyyy-MM-dd") === kendo.toString(kendo.parseDate(new Date()), "yyyy-MM-dd")) { #' +
-                                '#= kendo.toString(kendo.parseDate(chat[0].time), "HH:mm") #' +
-                            '# } else { #' +
-                                '#= kendo.toString(kendo.parseDate(chat[0].time), "MM-dd") #' +
-                            '# } #' +
-                        '</time>' +
+                        '# if (chat.length > 0) { #' +
+                            '<time>' +
+                                '# if (kendo.toString(kendo.parseDate(chat[0].time), "yyyy-MM-dd") === kendo.toString(kendo.parseDate(new Date()), "yyyy-MM-dd")) { #' +
+                                    '#= kendo.toString(kendo.parseDate(chat[0].time), "HH:mm") #' +
+                                '# } else { #' +
+                                    '#= kendo.toString(kendo.parseDate(chat[0].time), "MM-dd") #' +
+                                '# } #' +
+                            '</time>' +
+                        '# } #' +
                     '</h5>' +
-                    '<p>#= chat[0].text #</p>' +
+                    '<p># if (chat.length > 0) { ##= chat[0].text ## } #</p>' +
                 '</div>' +
             '</div>',
         change: function (e) {
@@ -1095,7 +1097,7 @@ function initMessage() {
                     name = userInfo.name;
                     iconUrl = userInfo.iconUrl;
                 } else if (items.belongTo === 'other') {
-                    id = kendo.guid();
+                    id = dataItem.userId;
                     name = dataItem.realName;
                     iconUrl = dataItem.avatar;
                 }
