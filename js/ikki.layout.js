@@ -1047,15 +1047,15 @@ function initMessage() {
                         '<strong>#= realName #</strong>' +
                         '# if (chat.length > 0) { #' +
                             '<time>' +
-                                '# if (kendo.toString(kendo.parseDate(chat[0].time), "yyyy-MM-dd") === kendo.toString(kendo.parseDate(new Date()), "yyyy-MM-dd")) { #' +
-                                    '#= kendo.toString(kendo.parseDate(chat[0].time), "HH:mm") #' +
+                                '# if (kendo.toString(kendo.parseDate(chat[chat.length - 1].time), "yyyy-MM-dd") === kendo.toString(kendo.parseDate(new Date()), "yyyy-MM-dd")) { #' +
+                                    '#= kendo.toString(kendo.parseDate(chat[chat.length - 1].time), "HH:mm") #' +
                                 '# } else { #' +
-                                    '#= kendo.toString(kendo.parseDate(chat[0].time), "MM-dd") #' +
+                                    '#= kendo.toString(kendo.parseDate(chat[chat.length - 1].time), "MM-dd") #' +
                                 '# } #' +
                             '</time>' +
                         '# } #' +
                     '</h5>' +
-                    '<p># if (chat.length > 0) { ##= chat[0].text ## } #</p>' +
+                    '<p># if (chat.length > 0) { ##= chat[chat.length - 1].text ## } #</p>' +
                 '</div>' +
             '</div>',
         change: function (e) {
