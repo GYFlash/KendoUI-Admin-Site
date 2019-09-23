@@ -406,7 +406,7 @@ function showPath(hash) {
 
 // 全局搜索
 function globalSearch() {
-    $('#globalSearch:visible').kendoComboBox({
+    $('.global-search input[type=search]').kendoComboBox({
         dataSource: {
             transport: {
                 read: function (options) {

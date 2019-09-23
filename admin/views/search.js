@@ -1,6 +1,10 @@
 $(function () {
     // 获取搜索关键字
-    $('#searchKeywords').val($('#globalSearch').prev().find('.k-input').val());
+    if ($('#menuH .global-search input[type=search]').prev().find('.k-input').val() !== '') {
+        $('#searchKeywords').val($('#menuH .global-search input[type=search]').prev().find('.k-input').val());
+    } else {
+        $('#searchKeywords').val($('#menuV .global-search input[type=search]').prev().find('.k-input').val());
+    }
     // 生成工具条
     $('#toolbar').kendoToolBar({
         resizable: false,
