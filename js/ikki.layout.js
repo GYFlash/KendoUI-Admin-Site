@@ -1077,8 +1077,6 @@ function initMessage() {
                                 text: e.text
                             },
                             ajaxUrl: smsSendUrl,
-                            succeed: function (res) {
-                            },
                             failed: function () {
                                 alertMsg('短信息发送失败！', 'error');
                             }
@@ -1113,7 +1111,7 @@ function initMessage() {
                     }
                 );
                 $('#smsChat .k-message-list-content > div:last p').hide();
-                $('#smsChat .k-message-list-content > div:last time').text(kendo.toString(kendo.parseDate(items.time), "MM-dd HH:mm"));
+                $('#smsChat .k-message-list-content > div:last time:last').text(kendo.toString(kendo.parseDate(items.time), "MM-dd HH:mm"));
             });
             // 短信息已读
             $.fn.ajaxPost({
