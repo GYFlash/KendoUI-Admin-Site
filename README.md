@@ -488,7 +488,7 @@ ROOT/·····································�
 * 用户名头像显示 <small>[ User Name & Avatar ]</small> ✔️
 * [前台切换 <small>[ Goto Website ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/site/index.html) ✔️
 * 用户中心 <small>[ User Center ]</small>
-* 修改密码 <small>[ Change Password ]</small>
+* 修改密码 <small>[ Change Password ]</small> ✔️
 * 系统设置 <small>[ Setting ]</small>
 * 退出登录 <small>[ Sign Out ]</small> ✔️
 

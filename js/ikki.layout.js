@@ -1663,6 +1663,146 @@ function noticeReadAll(type, tab) {
     });
 }
 
+// 修改密码
+function changePassword() {
+    var changePasswordHtml =
+            '<form>' +
+                '<input name="userId" type="hidden">' +
+                '<div class="form-group row justify-content-center">' +
+                    '<label class="col-form-label text-right col-3"><strong class="k-required">*</strong>旧密码：</label>' +
+                    '<div class="col-8">' +
+                        '<div class="input-group">' +
+                            '<div class="input-group-prepend">' +
+                                '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
+                            '</div>' +
+                            '<input class="form-control" name="oldPassword" type="password" required data-required-msg="请输入旧密码！" pattern="[A-Za-z0-9]{6,20}" data-pattern-msg="请输入6-20个大小写字母或数字！">' +
+                            '<span class="k-invalid-msg" data-for="oldPassword"></span>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="form-group row justify-content-center">' +
+                    '<label class="col-form-label text-right col-3"><strong class="k-required">*</strong>新密码：</label>' +
+                    '<div class="col-8">' +
+                        '<div class="input-group">' +
+                            '<div class="input-group-prepend">' +
+                                '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
+                            '</div>' +
+                            '<input class="form-control" name="newPassword" type="password" required data-required-msg="请输入新密码！" pattern="[A-Za-z0-9]{6,20}" data-pattern-msg="请输入6-20个大小写字母或数字！">' +
+                            '<div class="input-group-append">' +
+                                '<button class="btn input-group-text" id="showNewPass" type="button"><i class="fas fa-eye-slash"></i></button>' +
+                            '</div>' +
+                            '<span class="k-invalid-msg" data-for="newPassword"></span>' +
+                        '</div>' +
+                        '<div id="newPassStrength"></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="form-group row justify-content-center">' +
+                    '<label class="col-form-label text-right col-3"><strong class="k-required">*</strong>确认密码：</label>' +
+                    '<div class="col-8">' +
+                        '<div class="input-group">' +
+                            '<div class="input-group-prepend">' +
+                                '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
+                            '</div>' +
+                            '<input class="form-control" name="confirmPassword" type="password" required data-required-msg="请输入确认密码！">' +
+                            '<span class="k-invalid-msg" data-for="confirmPassword"></span>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</form>',
+        confirmDialog = $('<div class="dialog-box" id="changePasswordBox"></div>').kendoDialog({
+            animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
+            closable: false,
+            width: 360,
+            title: '修改密码',
+            content: changePasswordHtml,
+            actions: [
+                {
+                    text: '确定',
+                    primary: true,
+                    action: function (e) {
+                        var validatorChangePass = $('#changePasswordBox form').kendoValidator({
+                            rules: {
+                                // 匹配密码
+                                matchPassword: function (input) {
+                                    if (!input.is('#changePasswordBox input[name="confirmPassword"]')) {
+                                        return true;
+                                    }
+                                    return (input.val() === $('#changePasswordBox input[name="newPassword"]').val());
+                                }
+                            },
+                            messages: {
+                                matchPassword: '两次输入的密码不一致！'
+                            }
+                        }).data('kendoValidator');
+                        if (validatorChangePass.validate()) {
+                            $.fn.ajaxPost({
+                                ajaxData: $('#changePasswordBox form').serializeObject(),
+                                succeed: function() {
+                                    $('#changePasswordBox').data('kendoDialog').close();
+                                },
+                                isMsg: true
+                            });
+                        }
+                        return false;
+                    }
+                },
+                {
+                    text: '取消',
+                    action: function (e) {
+                        confirmDialog.close();
+                    }
+                }
+            ],
+            open: function () {
+                // 获取用户 ID
+                $('#changePasswordBox input[name="userId"]').val(sessionStorage.getItem('userId'));
+                // 显示密码
+                $('#showNewPass').unbind('click').click(function () {
+                    if ($(this).find('.fa-eye-slash').length === 1) {
+                        $('#changePasswordBox input[name="oldPassword"], #changePasswordBox input[name="newPassword"], #changePasswordBox input[name="confirmPassword"]').attr('type', 'text');
+                        $('#showNewPass i').removeClass('fa-eye-slash').addClass('fa-eye');
+                    } else {
+                        $('#changePasswordBox input[name="oldPassword"], #changePasswordBox input[name="newPassword"], #changePasswordBox input[name="confirmPassword"]').attr('type', 'password');
+                        $('#showNewPass i').removeClass('fa-eye').addClass('fa-eye-slash');
+                    }
+                });
+                // 密码强度
+                var newPassProgress = $('#newPassStrength').kendoProgressBar({
+                    animation: {
+                        duration: 200
+                    },
+                    min: 5,
+                    max: 16,
+                    change: function (e) {
+                        if (e.value < 6) {
+                            this.progressStatus.text('密码强度');
+                        } else if (e.value <= 7) {
+                            this.progressStatus.text('弱');
+                            this.progressWrapper.removeClass('bg-danger bg-warning bg-success bg-info').addClass('bg-danger');
+                        } else if (e.value <= 9) {
+                            this.progressStatus.text('中');
+                            this.progressWrapper.removeClass('bg-danger bg-warning bg-success bg-info').addClass('bg-warning');
+                        } else if (e.value <= 12) {
+                            this.progressStatus.text('强');
+                            this.progressWrapper.removeClass('bg-danger bg-warning bg-success bg-info').addClass('bg-success');
+                        } else {
+                            this.progressStatus.text('超强');
+                            this.progressWrapper.removeClass('bg-danger bg-warning bg-success bg-info').addClass('bg-info');
+                        }
+                    }
+                }).data('kendoProgressBar');
+                newPassProgress.progressStatus.text('密码强度');
+                $('#changePasswordBox input[name="newPassword"]').keyup(function () {
+                    newPassProgress.value(this.value.length);
+                });
+            },
+            close: function () {
+                confirmDialog.destroy();
+            }
+        }).data('kendoDialog');
+    confirmDialog.open();
+}
+
 // 退出登录
 function logout() {
     sessionStorage.clear();

@@ -1196,6 +1196,33 @@ iframe#section {
   margin-left: 6px;
   opacity: .5; }
 
+#changePasswordBox {
+  padding: 30px 15px 15px 15px; }
+  #changePasswordBox label {
+    padding-left: 0;
+    padding-right: 0; }
+  #changePasswordBox .form-control:focus {
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075), 0 0 5px rgba(128, 189, 255, 0.5); }
+  #changePasswordBox .k-tooltip-validation {
+    display: block;
+    margin: 0;
+    border: 1px solid #faa685;
+    border-radius: 0;
+    padding: 5px 10px;
+    width: 100%;
+    color: #a64515;
+    background-color: #fddacc; }
+  #changePasswordBox .k-progressbar {
+    border-radius: 4px;
+    width: 100%; }
+    #changePasswordBox .k-progressbar .k-progress-status-wrap {
+      -ms-flex-pack: center;
+          justify-content: center;
+      border: 1px solid #ced4da;
+      font-size: 12px;
+      font-weight: 100;
+      line-height: 20px; }
+
 /* 顶部菜单动效 */
 #menuCkb {
   position: absolute;
@@ -2001,24 +2028,24 @@ iframe#section {
 .k-dialog .dialog-box,
 .k-window .dialog-box {
   padding: 40px; }
-  .k-dialog .dialog-box i.fas,
-  .k-window .dialog-box i.fas {
+  .k-dialog .dialog-box dt i.fas,
+  .k-window .dialog-box dt i.fas {
     margin-right: 10px;
     font-size: 30px;
     vertical-align: middle; }
-  .k-dialog .dialog-box i.fa-check-circle,
-  .k-window .dialog-box i.fa-check-circle {
+  .k-dialog .dialog-box dt i.fa-check-circle,
+  .k-window .dialog-box dt i.fa-check-circle {
     color: #bede0b; }
-  .k-dialog .dialog-box i.fa-info-circle,
-  .k-dialog .dialog-box i.fa-question-circle,
-  .k-window .dialog-box i.fa-info-circle,
-  .k-window .dialog-box i.fa-question-circle {
+  .k-dialog .dialog-box dt i.fa-info-circle,
+  .k-dialog .dialog-box dt i.fa-question-circle,
+  .k-window .dialog-box dt i.fa-info-circle,
+  .k-window .dialog-box dt i.fa-question-circle {
     color: #84cef8; }
-  .k-dialog .dialog-box i.fa-exclamation-circle,
-  .k-window .dialog-box i.fa-exclamation-circle {
+  .k-dialog .dialog-box dt i.fa-exclamation-circle,
+  .k-window .dialog-box dt i.fa-exclamation-circle {
     color: #f7d82a; }
-  .k-dialog .dialog-box i.fa-times-circle,
-  .k-window .dialog-box i.fa-times-circle {
+  .k-dialog .dialog-box dt i.fa-times-circle,
+  .k-window .dialog-box dt i.fa-times-circle {
     color: #faa685; }
 .k-dialog .k-dialog-buttongroup .k-button:first-child:last-child,
 .k-window .k-dialog-buttongroup .k-button:first-child:last-child {

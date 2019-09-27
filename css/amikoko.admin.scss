@@ -1356,6 +1356,38 @@ iframe#section {
     }
 }
 
+#changePasswordBox {
+    padding: 30px 15px 15px 15px;
+    label {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .form-control:focus {
+        @include focus-shadow;
+    }
+    .k-tooltip-validation {
+        display: block;
+        margin: 0;
+        border: 1px solid #faa685;
+        border-radius: 0;
+        padding: 5px 10px;
+        width: 100%;
+        color: #a64515;
+        background-color: #fddacc;
+    }
+    .k-progressbar {
+        border-radius: $border-radius;
+        width: 100%;
+        .k-progress-status-wrap {
+            justify-content: center;
+            border: 1px solid #ced4da;
+            font-size: 12px;
+            font-weight: 100;
+            line-height: 20px;
+        }
+    }
+}
+
 /* 顶部菜单动效 */
 #menuCkb {
     position: absolute;
@@ -2370,23 +2402,25 @@ iframe#section {
 .k-window {
     .dialog-box {
         padding: 40px;
-        i.fas {
-            margin-right: 10px;
-            font-size: 30px;
-            vertical-align: middle;
-        }
-        i.fa-check-circle {
-            color: #bede0b;
-        }
-        i.fa-info-circle,
-        i.fa-question-circle {
-            color: #84cef8;
-        }
-        i.fa-exclamation-circle {
-            color: #f7d82a;
-        }
-        i.fa-times-circle {
-            color: #faa685;
+        dt {
+            i.fas {
+                margin-right: 10px;
+                font-size: 30px;
+                vertical-align: middle;
+            }
+            i.fa-check-circle {
+                color: #bede0b;
+            }
+            i.fa-info-circle,
+            i.fa-question-circle {
+                color: #84cef8;
+            }
+            i.fa-exclamation-circle {
+                color: #f7d82a;
+            }
+            i.fa-times-circle {
+                color: #faa685;
+            }
         }
     }
     .k-dialog-buttongroup {

@@ -509,8 +509,7 @@
                 {
                     "text": "<i class='fas fa-key'></i>修改密码",
                     "encoded": false,
-                    "cssClass": "links-password",
-                    "url": "javascript:linkTo(\"/users/\", \"password\");"
+                    "url": "javascript:changePassword();"
                 },
                 {
                     "text": "<i class='fas fa-cog'></i>系统设置",
