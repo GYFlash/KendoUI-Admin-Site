@@ -1357,12 +1357,10 @@ iframe#section {
 }
 
 #changePasswordBox {
-    padding: 30px 15px 15px 15px;
-    label {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .form-control:focus {
+    padding: 30px 30px 15px 30px;
+    background: #f6f6f6;
+    .form-control:focus,
+    .btn:focus {
         @include focus-shadow;
     }
     .k-tooltip-validation {
@@ -1544,7 +1542,8 @@ iframe#section {
             height: 16px;
             font-size: 16px;
         }
-        .form-control:focus {
+        .form-control:focus,
+        .btn:focus {
             @include focus-shadow;
         }
         .form-control-lg {

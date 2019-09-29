@@ -1668,51 +1668,43 @@ function changePassword() {
     var changePasswordHtml =
             '<form>' +
                 '<input name="userId" type="hidden">' +
-                '<div class="form-group row justify-content-center">' +
-                    '<label class="col-form-label text-right col-3"><strong class="k-required">*</strong>旧密码：</label>' +
-                    '<div class="col-8">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-prepend">' +
-                                '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
-                            '</div>' +
-                            '<input class="form-control" name="oldPassword" type="password" required data-required-msg="请输入旧密码！" pattern="[A-Za-z0-9]{6,20}" data-pattern-msg="请输入6-20个大小写字母或数字！">' +
-                            '<span class="k-invalid-msg" data-for="oldPassword"></span>' +
+                '<div class="form-group">' +
+                    '<div class="input-group">' +
+                        '<div class="input-group-prepend">' +
+                            '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
                         '</div>' +
+                        '<input class="form-control" name="oldPassword" type="password" placeholder="旧密码" required data-required-msg="请输入旧密码！" pattern="[A-Za-z0-9]{6,20}" data-pattern-msg="请输入6-20个大小写字母或数字！">' +
+                        '<span class="k-invalid-msg" data-for="oldPassword"></span>' +
                     '</div>' +
                 '</div>' +
-                '<div class="form-group row justify-content-center">' +
-                    '<label class="col-form-label text-right col-3"><strong class="k-required">*</strong>新密码：</label>' +
-                    '<div class="col-8">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-prepend">' +
-                                '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
-                            '</div>' +
-                            '<input class="form-control" name="newPassword" type="password" required data-required-msg="请输入新密码！" pattern="[A-Za-z0-9]{6,20}" data-pattern-msg="请输入6-20个大小写字母或数字！">' +
-                            '<div class="input-group-append">' +
-                                '<button class="btn input-group-text" id="showNewPass" type="button"><i class="fas fa-eye-slash"></i></button>' +
-                            '</div>' +
-                            '<span class="k-invalid-msg" data-for="newPassword"></span>' +
+                '<div class="form-group">' +
+                    '<div class="input-group">' +
+                        '<div class="input-group-prepend">' +
+                            '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
                         '</div>' +
-                        '<div id="newPassStrength"></div>' +
+                        '<input class="form-control" name="newPassword" type="password" placeholder="新密码" required data-required-msg="请输入新密码！" pattern="[A-Za-z0-9]{6,20}" data-pattern-msg="请输入6-20个大小写字母或数字！">' +
+                        '<div class="input-group-append">' +
+                            '<button class="btn input-group-text" id="showNewPass" type="button"><i class="fas fa-eye-slash"></i></button>' +
+                        '</div>' +
+                        '<span class="k-invalid-msg" data-for="newPassword"></span>' +
                     '</div>' +
+                    '<div id="newPassStrength"></div>' +
                 '</div>' +
-                '<div class="form-group row justify-content-center">' +
-                    '<label class="col-form-label text-right col-3"><strong class="k-required">*</strong>确认密码：</label>' +
-                    '<div class="col-8">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-prepend">' +
-                                '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
-                            '</div>' +
-                            '<input class="form-control" name="confirmPassword" type="password" required data-required-msg="请输入确认密码！">' +
-                            '<span class="k-invalid-msg" data-for="confirmPassword"></span>' +
+                '<div class="form-group">' +
+                    '<div class="input-group">' +
+                        '<div class="input-group-prepend">' +
+                            '<span class="input-group-text"><i class="fas fa-key"></i></span>' +
                         '</div>' +
+                        '<input class="form-control" name="confirmPassword" type="password" placeholder="确认密码" required data-required-msg="请输入确认密码！">' +
+                        '<span class="k-invalid-msg" data-for="confirmPassword"></span>' +
                     '</div>' +
                 '</div>' +
             '</form>',
         confirmDialog = $('<div class="dialog-box" id="changePasswordBox"></div>').kendoDialog({
             animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
             closable: false,
-            width: 360,
+            width: '100%',
+            maxWidth: 360,
             title: '修改密码',
             content: changePasswordHtml,
             actions: [
