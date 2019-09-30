@@ -1714,6 +1714,13 @@ function changePassword() {
                     action: function (e) {
                         var validatorChangePass = $('#changePasswordBox form').kendoValidator({
                             rules: {
+                                // 区分密码
+                                noMatchPassword: function (input) {
+                                    if (!input.is('#changePasswordBox input[name="newPassword"]')) {
+                                        return true;
+                                    }
+                                    return (input.val() !== $('#changePasswordBox input[name="oldPassword"]').val());
+                                },
                                 // 匹配密码
                                 matchPassword: function (input) {
                                     if (!input.is('#changePasswordBox input[name="confirmPassword"]')) {
@@ -1723,6 +1730,7 @@ function changePassword() {
                                 }
                             },
                             messages: {
+                                noMatchPassword: '新旧密码不能相同！',
                                 matchPassword: '两次输入的密码不一致！'
                             }
                         }).data('kendoValidator');
