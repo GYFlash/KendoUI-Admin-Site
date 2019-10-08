@@ -368,8 +368,8 @@ function tokenAuth() {
 // 面包屑导航
 function showPath(hash) {
     $('#path').html('');
-    $.each($('#navPanelBar, #menuH, #menuV').find('.links-'+ hash).children('.k-link').parents('.k-item'), function (i, doms) {
-        $('#path').prepend('<span><i class="fas fa-angle-double-right"></i>' + $(doms).children('.k-link').html() + '</span>');
+    $.each($('#navPanelBar, #menuH').find('.links-'+ hash).children('.k-link').parents('.k-item'), function (i, doms) {
+        $('#path').prepend('<span><i class="fas fa-angle-double-right"></i>' + $(doms).children('.k-link').html() + '</span>').find('sup').removeClass();
     });
     if (hash === 'search') {
         $('#path').prepend('<span><i class="fas fa-angle-double-right"></i><i class="fas fa-search"></i>搜索结果<small>Search Result</small></span>');
@@ -1299,21 +1299,21 @@ function initNotice() {
             '<div>' +
                 '<div id="systemNotification"></div>' +
                 '<div class="notice-tools">' +
-                    '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
+                    '<a href="javascript:linkTo(\'/users/\', \'notice\');"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'systemNotification\', \'notificationTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
             '</div>' +
             '<div>' +
                 '<div id="userUpdating"></div>' +
                 '<div class="notice-tools">' +
-                    '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
+                    '<a href="javascript:linkTo(\'/users/\', \'notice\');"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'userUpdating\', \'updatingTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
             '</div>' +
             '<div>' +
                 '<div id="toDoItems"></div>' +
                 '<div class="notice-tools">' +
-                    '<a href="javascript:;"><i class="fas fa-history"></i>查看历史</a>' +
+                    '<a href="javascript:linkTo(\'/users/\', \'notice\');"><i class="fas fa-history"></i>查看历史</a>' +
                     '<a href="javascript:noticeReadAll(\'toDoItems\', \'toDoTab\');"><i class="fas fa-eye"></i>全部已读</a>' +
                 '</div>' +
             '</div>' +
