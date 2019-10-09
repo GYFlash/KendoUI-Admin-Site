@@ -587,7 +587,7 @@ function initMessage() {
             '<div class="card-header">' +
                 '<button class="k-button" id="messageDrawerBtn" type="button"><i class="fas fa-indent"></i></button>' +
                 '<strong>站内信及短信息</strong>' +
-                '<a href="javascript:linkTo(\'users\', \'message\');">更多<i class="fas fa-angle-double-right"></i></a>' +
+                '<a href="javascript:linkTo(\'/users/\', \'message\');">更多<i class="fas fa-angle-double-right"></i></a>' +
             '</div>' +
             '<div class="card-body">' +
                 '<div id="messageDrawer">' +

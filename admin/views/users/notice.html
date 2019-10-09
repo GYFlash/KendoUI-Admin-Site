@@ -1,18 +1,135 @@
 <script id="noticeTemp" type="text/x-kendo-template">
-    <div id="noticeTabStripPage">
+    <div id="noticeTabStripView">
         <ul>
-            <li id="notificationTabPage"><i class="fas fa-volume-up"></i>通知</li>
-            <li id="updatingTabPage"><i class="fas fa-user-clock"></i>动态</li>
-            <li id="toDoTabPage"><i class="fas fa-calendar-check"></i>待办</li>
+            <li id="notificationTabView"><i class="fas fa-volume-up"></i>通知</li>
+            <li id="updatingTabView"><i class="fas fa-user-clock"></i>动态</li>
+            <li id="toDoTabView"><i class="fas fa-calendar-check"></i>待办</li>
         </ul>
         <div>
-            <div id="systemNotificationPage"></div>
+            <div id="systemNotificationToolbar"></div>
+            <div id="systemNotificationListView"></div>
         </div>
         <div>
-            <div id="userUpdatingPage"></div>
+            <div id="userUpdatingToolbar"></div>
+            <div id="userUpdatingListView"></div>
         </div>
         <div>
-            <div id="toDoItemsPage"></div>
+            <div id="toDoItemsToolbar"></div>
+            <div id="toDoItemsListView"></div>
         </div>
     </div>
+    <style scoped>
+        #noticeTabStripView .k-tabstrip-items li {
+            padding: 0 15px;
+        }
+        #noticeTabStripView .k-tabstrip-items .k-state-active {
+            background: #f6f6f6;
+        }
+        @media only screen and (max-width: 575px) {
+            #noticeTabStripView .k-tabstrip-items {
+                justify-content: space-between;
+            }
+            #noticeTabStripView .k-tabstrip-items li {
+                padding: 0;
+            }
+            #noticeTabStripView .k-toolbar .k-textbox {
+                width: 150px;
+            }
+        }
+        #noticeTabStripView .k-tabstrip-items i {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            line-height: 16px;
+        }
+        #noticeTabStripView .k-tabstrip-items .badge {
+            margin-left: 6px;
+            font-weight: 100;
+        }
+        #noticeTabStripView .k-content {
+            padding: 0;
+        }
+        #noticeTabStripView .k-content .k-toolbar {
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+        }
+        #noticeTabStripView .k-content .k-listview {
+            border: 0;
+        }
+        #noticeTabStripView .k-content .k-listview .media {
+            padding: 15px 20px;
+        }
+        #noticeTabStripView .k-content .k-listview .media figure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 15px 0 0;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+        }
+        #noticeTabStripView .k-content .k-listview .media figure i {
+            margin: 0;
+        }
+        #noticeTabStripView .k-content .k-listview .media img {
+            margin: 0 15px 0 0;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+        }
+        #noticeTabStripView .k-content .k-listview .media h5 {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #ccc;
+            white-space: normal;
+        }
+        #noticeTabStripView .k-content .k-listview .media h5 em {
+            float: right;
+            margin-left: 10px;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-size: 12px;
+            font-style: normal;
+        }
+        #noticeTabStripView .k-content .k-listview .media h5 .k-notification-normal {
+            border-color: #ccc;
+            color: #656565;
+            background: #f6f6f6;
+        }
+        #noticeTabStripView .k-content .k-listview .media p {
+            margin-bottom: 3px;
+            font-size: 12px;
+            color: #ccc;
+            white-space: normal;
+        }
+        #noticeTabStripView .k-content .k-listview .media time {
+            font-size: 12px;
+            color: #ccc;
+        }
+        #noticeTabStripView .k-content .k-listview .media .unread h5 {
+            color: #000;
+        }
+        #noticeTabStripView .k-content .k-listview .media .unread p {
+            color: #666;
+        }
+        #noticeTabStripView .k-content .k-listview .media .unread time {
+            color: #999;
+        }
+        #noticeTabStripView .k-content .k-listview .k-state-selected h5,
+        #noticeTabStripView .k-content .k-listview .k-state-selected p,
+        #noticeTabStripView .k-content .k-listview .k-state-selected time {
+            color: #000;
+        }
+        #noticeTabStripView .k-content .blank {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    </style>
 </script>
