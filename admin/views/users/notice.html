@@ -1,23 +1,5 @@
 <script id="noticeTemp" type="text/x-kendo-template">
-    <div id="noticeTabStripView">
-        <ul>
-            <li id="notificationTabView"><i class="fas fa-volume-up"></i>通知</li>
-            <li id="updatingTabView"><i class="fas fa-user-clock"></i>动态</li>
-            <li id="toDoTabView"><i class="fas fa-calendar-check"></i>待办</li>
-        </ul>
-        <div>
-            <div id="systemNotificationToolbar"></div>
-            <div id="systemNotificationListView"></div>
-        </div>
-        <div>
-            <div id="userUpdatingToolbar"></div>
-            <div id="userUpdatingListView"></div>
-        </div>
-        <div>
-            <div id="toDoItemsToolbar"></div>
-            <div id="toDoItemsListView"></div>
-        </div>
-    </div>
+    <div id="noticeTabStripView"></div>
     <style scoped>
         #noticeTabStripView .k-tabstrip-items li {
             padding: 0 15px;
@@ -41,10 +23,9 @@
                 width: 150px;
             }
         }
-        #noticeTabStripView .k-tabstrip-items i {
+        #noticeTabStripView .k-tabstrip-items .k-sprite {
+            overflow: visible;
             margin-right: 8px;
-            width: 16px;
-            height: 16px;
             font-size: 16px;
             line-height: 16px;
         }
@@ -64,6 +45,7 @@
             border: 0;
         }
         #noticeTabStripView .k-content .k-listview .media {
+            align-items: center;
             padding: 15px 20px;
         }
         #noticeTabStripView .k-content .k-listview .media figure {

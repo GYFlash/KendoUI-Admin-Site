@@ -2,6 +2,32 @@ $(function () {
     // 选项卡生成
     $('#noticeTabStripView').kendoTabStrip({
         animation: false,
+        dataSource: [
+            {
+                text: '通知',
+                spriteCssClass: 'fas fa-volume-up',
+                content:
+                    '<div id="systemNotificationToolbar"></div>' +
+                    '<div id="systemNotificationListView"></div>'
+            },
+            {
+                text: '动态',
+                spriteCssClass: 'fas fa-user-clock',
+                content:
+                    '<div id="userUpdatingToolbar"></div>' +
+                    '<div id="userUpdatingListView"></div>'
+            },
+            {
+                text: '待办',
+                spriteCssClass: 'fas fa-calendar-check',
+                content:
+                    '<div id="toDoItemsToolbar"></div>' +
+                    '<div id="toDoItemsListView"></div>'
+            }
+        ],
+        dataTextField: 'text',
+        dataSpriteCssClass: 'spriteCssClass',
+        dataContentField: 'content',
         select: function (e) {
             var noticeType = $(e.contentElement).find('div').eq(1).attr('id');
             if (noticeType === 'systemNotificationListView') {
@@ -100,13 +126,13 @@ $(function () {
         succeed: function (res) {
             $('#noticeTabStripView').find('.k-tabstrip-items .badge').remove();
             if (res.systemNotificationTotal > 0) {
-                $('#notificationTabView > .k-link').append('<span class="badge theme-s-bg">' + res.systemNotificationTotal + '</span>');
+                $('#noticeTabStripView .k-tabstrip-items > li:eq(0) > .k-link').append('<span class="badge theme-s-bg">' + res.systemNotificationTotal + '</span>');
             }
             if (res.userUpdatingTotal > 0) {
-                $('#updatingTabView > .k-link').append('<span class="badge theme-s-bg">' + res.userUpdatingTotal + '</span>');
+                $('#noticeTabStripView .k-tabstrip-items > li:eq(1) > .k-link').append('<span class="badge theme-s-bg">' + res.userUpdatingTotal + '</span>');
             }
             if (res.toDoItemsTotal > 0) {
-                $('#toDoTabView > .k-link').append('<span class="badge theme-s-bg">' + res.toDoItemsTotal + '</span>');
+                $('#noticeTabStripView .k-tabstrip-items > li:eq(2) > .k-link').append('<span class="badge theme-s-bg">' + res.toDoItemsTotal + '</span>');
             }
         }
     });
@@ -132,10 +158,10 @@ function getSystemNotificationView() {
                         },
                         ajaxUrl: 'json/notice.json',
                         succeed: function (res) {
-                            $('#notificationTabView').find('.badge').remove();
+                            $('#noticeTabStripView .k-tabstrip-items > li:eq(0)').find('.badge').remove();
                             options.success(res);
                             if (res.systemNotification.length > 0) {
-                                $('#notificationTabView > .k-link').append('<span class="badge theme-s-bg">' + res.systemNotification.length + '</span>');
+                                $('#noticeTabStripView .k-tabstrip-items > li:eq(0) > .k-link').append('<span class="badge theme-s-bg">' + res.systemNotification.length + '</span>');
                             } else {
                                 $('#systemNotificationListView').html('<div class="blank">暂时没有新的系统通知~</div>');
                             }
@@ -190,7 +216,7 @@ function getSystemNotificationView() {
                     succeed: function () {
                         e.sender.dataItem(e.sender.select()).set('unread', false);
                         $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#notificationTabView').find('.badge');
+                        var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(0)').find('.badge');
                         if (badgeDom.text() === '1') {
                             badgeDom.remove();
                         } else {
@@ -227,10 +253,10 @@ function getUserUpdatingView() {
                         },
                         ajaxUrl: 'json/notice.json',
                         succeed: function (res) {
-                            $('#updatingTabView').find('.badge').remove();
+                            $('#noticeTabStripView .k-tabstrip-items > li:eq(1)').find('.badge').remove();
                             options.success(res);
                             if (res.userUpdating.length > 0) {
-                                $('#updatingTabView > .k-link').append('<span class="badge theme-s-bg">' + res.userUpdating.length + '</span>');
+                                $('#noticeTabStripView .k-tabstrip-items > li:eq(1) > .k-link').append('<span class="badge theme-s-bg">' + res.userUpdating.length + '</span>');
                             } else {
                                 $('#userUpdatingListView').html('<div class="blank">暂时没有新的个人动态~</div>');
                             }
@@ -284,7 +310,7 @@ function getUserUpdatingView() {
                     succeed: function () {
                         e.sender.dataItem(e.sender.select()).set('unread', false);
                         $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#updatingTabView').find('.badge');
+                        var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(1)').find('.badge');
                         if (badgeDom.text() === '1') {
                             badgeDom.remove();
                         } else {
@@ -321,10 +347,10 @@ function getToDoItemsView() {
                         },
                         ajaxUrl: 'json/notice.json',
                         succeed: function (res) {
-                            $('#toDoTabView').find('.badge').remove();
+                            $('#noticeTabStripView .k-tabstrip-items > li:eq(2)').find('.badge').remove();
                             options.success(res);
                             if (res.toDoItems.length > 0) {
-                                $('#toDoTabView > .k-link').append('<span class="badge theme-s-bg">' + res.toDoItems.length + '</span>');
+                                $('#noticeTabStripView .k-tabstrip-items > li:eq(2) > .k-link').append('<span class="badge theme-s-bg">' + res.toDoItems.length + '</span>');
                             } else {
                                 $('#toDoItemsListView').html('<div class="blank">暂时没有新的待办事项~</div>');
                             }
@@ -377,7 +403,7 @@ function getToDoItemsView() {
                     succeed: function () {
                         e.sender.dataItem(e.sender.select()).set('unread', false);
                         $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#toDoTabView').find('.badge');
+                        var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(2)').find('.badge');
                         if (badgeDom.text() === '1') {
                             badgeDom.remove();
                         } else {
