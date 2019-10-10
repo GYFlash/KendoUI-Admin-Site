@@ -31,6 +31,11 @@
             }
             #noticeTabStripView .k-tabstrip-items li {
                 padding: 0;
+                min-width: 30%;
+            }
+            #noticeTabStripView .k-tabstrip-items li .k-link {
+                justify-content: center;
+                white-space: nowrap;
             }
             #noticeTabStripView .k-toolbar .k-textbox {
                 width: 150px;
@@ -80,9 +85,23 @@
             width: 32px;
             height: 32px;
         }
+        @media only screen and (min-width: 576px) {
+            #noticeTabStripView .k-content .k-listview .media figure {
+                width: 64px;
+                height: 64px;
+            }
+            #noticeTabStripView .k-content .k-listview .media figure i {
+                font-size: 28px;
+            }
+            #noticeTabStripView .k-content .k-listview .media img {
+                width: 64px;
+                height: 64px;
+            }
+        }
         #noticeTabStripView .k-content .k-listview .media h5 {
             margin-bottom: 10px;
             font-size: 14px;
+            font-weight: bold;
             color: #ccc;
             white-space: normal;
         }

@@ -117,7 +117,7 @@ function getSystemNotificationView() {
     if ($('#systemNotificationListView').data('kendoListView')) {
         $('#systemNotificationListView').data('kendoListView').destroy();
     }
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 660) {
         var listViewHeight = $('#container').height() - 111;
     } else {
         var listViewHeight = $('#container').height() - 81;
@@ -212,7 +212,7 @@ function getUserUpdatingView() {
     if ($('#userUpdatingListView').data('kendoListView')) {
         $('#userUpdatingListView').data('kendoListView').destroy();
     }
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 660) {
         var listViewHeight = $('#container').height() - 111;
     } else {
         var listViewHeight = $('#container').height() - 81;
@@ -306,7 +306,7 @@ function getToDoItemsView() {
     if ($('#toDoItemsListView').data('kendoListView')) {
         $('#toDoItemsListView').data('kendoListView').destroy();
     }
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 660) {
         var listViewHeight = $('#container').height() - 111;
     } else {
         var listViewHeight = $('#container').height() - 81;
