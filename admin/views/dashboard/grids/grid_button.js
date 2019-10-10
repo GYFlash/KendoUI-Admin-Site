@@ -656,7 +656,7 @@ function importTemp() {
                     select: '<span class="fa fa-upload mr-1"></span>选择导入文件'
                 },
                 select: function (e) {
-                    setTimeout(function (){
+                    setTimeout(function () {
                         if ($(e.sender.wrapper[0]).find('.k-file-invalid-icon').length < 1) {
                             $(e.sender.element[0]).prop('required', false);
                         } else {

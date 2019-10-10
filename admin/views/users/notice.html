@@ -7,22 +7,6 @@
         #noticeTabStripView .k-tabstrip-items .k-state-active {
             background: #f6f6f6;
         }
-        @media only screen and (max-width: 575px) {
-            #noticeTabStripView .k-tabstrip-items {
-                justify-content: space-between;
-            }
-            #noticeTabStripView .k-tabstrip-items li {
-                padding: 0;
-                min-width: 30%;
-            }
-            #noticeTabStripView .k-tabstrip-items li .k-link {
-                justify-content: center;
-                white-space: nowrap;
-            }
-            #noticeTabStripView .k-toolbar .k-textbox {
-                width: 150px;
-            }
-        }
         #noticeTabStripView .k-tabstrip-items .k-sprite {
             overflow: visible;
             margin-right: 8px;
@@ -46,7 +30,10 @@
         }
         #noticeTabStripView .k-content .k-listview .media {
             align-items: center;
-            padding: 15px 20px;
+            padding: 16px;
+        }
+        #noticeTabStripView .k-content .k-listview .media label {
+            margin-right: 8px;
         }
         #noticeTabStripView .k-content .k-listview .media figure {
             display: flex;
@@ -66,6 +53,31 @@
             border-radius: 50%;
             width: 32px;
             height: 32px;
+        }
+        @media only screen and (max-width: 575px) {
+            #noticeTabStripView .k-tabstrip-items {
+                justify-content: space-between;
+            }
+            #noticeTabStripView .k-tabstrip-items li {
+                padding: 0;
+                min-width: 30%;
+            }
+            #noticeTabStripView .k-tabstrip-items li .k-link {
+                justify-content: center;
+                white-space: nowrap;
+            }
+            #noticeTabStripView .k-toolbar .k-textbox {
+                width: 150px;
+            }
+            #noticeTabStripView .k-content .k-listview .media {
+                align-items: flex-start;
+            }
+            #noticeTabStripView .k-content .k-listview .media figure {
+                border-radius: 4px;
+            }
+            #noticeTabStripView .k-content .k-listview .media img {
+                border-radius: 4px;
+            }
         }
         @media only screen and (min-width: 576px) {
             #noticeTabStripView .k-content .k-listview .media figure {
@@ -131,6 +143,13 @@
             justify-content: center;
             align-items: center;
             height: 100%;
+        }
+        .ids {
+            z-index: 1;
+            width: 16px;
+            height: 16px;
+            clip: auto;
+            pointer-events: auto;
         }
     </style>
 </script>

@@ -192,9 +192,10 @@ function getSystemNotificationView() {
         },
         height: listViewHeight,
         scrollable: 'endless',
-        selectable: true,
+        selectable: 'multiple',
         template:
             '<div class="media">' +
+                '<input class="k-checkbox ids" id="#= id #Ids" type="checkbox" value="#= id #"><label class="k-checkbox-label" for="#= id #Ids"></label>' +
                 '<figure class="theme-m-bg">' +
                     '<i class="fab fa-#= avatar #"></i>' +
                 '</figure>' +
@@ -205,30 +206,57 @@ function getSystemNotificationView() {
                 '</div>' +
             '</div>',
         change: function (e) {
-            // 系统通知已读
-            if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
-                $.fn.ajaxPost({
-                    ajaxData: {
-                        id: e.sender.dataItem(e.sender.select()).id,
-                        type: 'systemNotification'
-                    },
-                    ajaxUrl: 'json/response.json',
-                    succeed: function () {
-                        e.sender.dataItem(e.sender.select()).set('unread', false);
-                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(0)').find('.badge');
-                        if (badgeDom.text() === '1') {
-                            badgeDom.remove();
-                        } else {
-                            badgeDom.text(Number(badgeDom.text()) - 1);
-                        }
-                        getNotice();
-                    },
-                    failed: function () {
-                        alertMsg('标记已读出错！', 'error');
+            $('#systemNotificationListView .ids').prop('checked', false);
+            this.select().find('.ids').prop('checked', true);
+        },
+        dataBound: function () {
+            $('#systemNotificationSelectAll').prop('checked', false);
+        }
+    });
+    // 系统通知已读
+    $('#systemNotificationListView').on('click', '.media', function () {
+        var that = $(this);
+        if (that.find('.media-body').hasClass('unread')) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: that.find('.ids').val(),
+                    type: 'systemNotification'
+                },
+                ajaxUrl: 'json/response.json',
+                succeed: function () {
+                    $('#systemNotificationListView').data('kendoListView').dataItem(that).set('unread', false);
+                    setTimeout(function () {
+                        $('#systemNotificationListView').data('kendoListView').select($('#' + that.find('.ids').attr('id')).parent());
+                    }, 10);
+                    that.find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                    var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(0)').find('.badge');
+                    if (badgeDom.text() === '1') {
+                        badgeDom.remove();
+                    } else {
+                        badgeDom.text(Number(badgeDom.text()) - 1);
                     }
-                });
-            }
+                    getNotice();
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
+    // 全选
+    $('#systemNotificationSelectAll').click(function () {
+        if ($(this).prop('checked')) {
+            $('#systemNotificationListView').data('kendoListView').select($('#systemNotificationListView .media'));
+        } else {
+            $('#systemNotificationListView').data('kendoListView').clearSelection();
+        }
+    });
+    // 单选
+    $('#systemNotificationListView').on('click', '.ids', function () {
+        if ($(this).prop('checked')) {
+            $('#systemNotificationListView').data('kendoListView').select($(this).parents('.media'));
+        } else {
+            $(this).parents('.media').removeClass('k-state-selected').removeAttr('aria-selected');
         }
     });
 }
@@ -288,9 +316,10 @@ function getUserUpdatingView() {
         },
         height: listViewHeight,
         scrollable: 'endless',
-        selectable: true,
+        selectable: 'multiple',
         template:
             '<div class="media">' +
+                '<input class="k-checkbox ids" id="#= id #Ids" type="checkbox" value="#= id #"><label class="k-checkbox-label" for="#= id #Ids"></label>' +
                 '<img src="#= avatar #" alt="#= nickName #">' +
                 '<div class="media-body# if (unread) { # unread# } #">' +
                     '<h5>#= title #</h5>' +
@@ -299,30 +328,57 @@ function getUserUpdatingView() {
                 '</div>' +
             '</div>',
         change: function (e) {
-            // 个人动态已读
-            if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
-                $.fn.ajaxPost({
-                    ajaxData: {
-                        id: e.sender.dataItem(e.sender.select()).id,
-                        type: 'userUpdating'
-                    },
-                    ajaxUrl: 'json/response.json',
-                    succeed: function () {
-                        e.sender.dataItem(e.sender.select()).set('unread', false);
-                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(1)').find('.badge');
-                        if (badgeDom.text() === '1') {
-                            badgeDom.remove();
-                        } else {
-                            badgeDom.text(Number(badgeDom.text()) - 1);
-                        }
-                        getNotice();
-                    },
-                    failed: function () {
-                        alertMsg('标记已读出错！', 'error');
+            $('#userUpdatingListView .ids').prop('checked', false);
+            this.select().find('.ids').prop('checked', true);
+        },
+        dataBound: function () {
+            $('#userUpdatingSelectAll').prop('checked', false);
+        }
+    });
+    // 个人动态已读
+    $('#userUpdatingListView').on('click', '.media', function () {
+        var that = $(this);
+        if (that.find('.media-body').hasClass('unread')) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: that.find('.ids').val(),
+                    type: 'userUpdating'
+                },
+                ajaxUrl: 'json/response.json',
+                succeed: function () {
+                    $('#userUpdatingListView').data('kendoListView').dataItem(that).set('unread', false);
+                    setTimeout(function () {
+                        $('#userUpdatingListView').data('kendoListView').select($('#' + that.find('.ids').attr('id')).parent());
+                    }, 10);
+                    that.find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                    var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(1)').find('.badge');
+                    if (badgeDom.text() === '1') {
+                        badgeDom.remove();
+                    } else {
+                        badgeDom.text(Number(badgeDom.text()) - 1);
                     }
-                });
-            }
+                    getNotice();
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
+    // 全选
+    $('#userUpdatingSelectAll').click(function () {
+        if ($(this).prop('checked')) {
+            $('#userUpdatingListView').data('kendoListView').select($('#userUpdatingListView .media'));
+        } else {
+            $('#userUpdatingListView').data('kendoListView').clearSelection();
+        }
+    });
+    // 单选
+    $('#userUpdatingListView').on('click', '.ids', function () {
+        if ($(this).prop('checked')) {
+            $('#userUpdatingListView').data('kendoListView').select($(this).parents('.media'));
+        } else {
+            $(this).parents('.media').removeClass('k-state-selected').removeAttr('aria-selected');
         }
     });
 }
@@ -382,9 +438,10 @@ function getToDoItemsView() {
         },
         height: listViewHeight,
         scrollable: 'endless',
-        selectable: true,
+        selectable: 'multiple',
         template:
             '<div class="media">' +
+                '<input class="k-checkbox ids" id="#= id #Ids" type="checkbox" value="#= id #"><label class="k-checkbox-label" for="#= id #Ids"></label>' +
                 '<div class="media-body# if (unread) { # unread# } #">' +
                     '<h5><em class="k-notification-# if (stateType === \'1\') { #success# } else if (stateType === \'2\') { #info# } else if (stateType === \'3\') { #warning# } else if (stateType === \'4\') { #error# } else { #normal# } #">#= state #</em>#= title #</h5>' +
                     '<p>#= content #</p>' +
@@ -392,30 +449,57 @@ function getToDoItemsView() {
                 '</div>' +
             '</div>',
         change: function (e) {
-            // 待办事项已读
-            if ($(e.sender.select()).find('.media-body').hasClass('unread')) {
-                $.fn.ajaxPost({
-                    ajaxData: {
-                        id: e.sender.dataItem(e.sender.select()).id,
-                        type: 'toDoItems'
-                    },
-                    ajaxUrl: 'json/response.json',
-                    succeed: function () {
-                        e.sender.dataItem(e.sender.select()).set('unread', false);
-                        $(e.sender.select()).find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                        var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(2)').find('.badge');
-                        if (badgeDom.text() === '1') {
-                            badgeDom.remove();
-                        } else {
-                            badgeDom.text(Number(badgeDom.text()) - 1);
-                        }
-                        getNotice();
-                    },
-                    failed: function () {
-                        alertMsg('标记已读出错！', 'error');
+            $('#toDoItemsListView .ids').prop('checked', false);
+            this.select().find('.ids').prop('checked', true);
+        },
+        dataBound: function () {
+            $('#toDoItemsSelectAll').prop('checked', false);
+        }
+    });
+    // 待办事项已读
+    $('#toDoItemsListView').on('click', '.media', function () {
+        var that = $(this);
+        if (that.find('.media-body').hasClass('unread')) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: that.find('.ids').val(),
+                    type: 'toDoItems'
+                },
+                ajaxUrl: 'json/response.json',
+                succeed: function () {
+                    $('#toDoItemsListView').data('kendoListView').dataItem(that).set('unread', false);
+                    setTimeout(function () {
+                        $('#toDoItemsListView').data('kendoListView').select($('#' + that.find('.ids').attr('id')).parent());
+                    }, 10);
+                    that.find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                    var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(2)').find('.badge');
+                    if (badgeDom.text() === '1') {
+                        badgeDom.remove();
+                    } else {
+                        badgeDom.text(Number(badgeDom.text()) - 1);
                     }
-                });
-            }
+                    getNotice();
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
+    // 全选
+    $('#toDoItemsSelectAll').click(function () {
+        if ($(this).prop('checked')) {
+            $('#toDoItemsListView').data('kendoListView').select($('#toDoItemsListView .media'));
+        } else {
+            $('#toDoItemsListView').data('kendoListView').clearSelection();
+        }
+    });
+    // 单选
+    $('#toDoItemsListView').on('click', '.ids', function () {
+        if ($(this).prop('checked')) {
+            $('#toDoItemsListView').data('kendoListView').select($(this).parents('.media'));
+        } else {
+            $(this).parents('.media').removeClass('k-state-selected').removeAttr('aria-selected');
         }
     });
 }

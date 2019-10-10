@@ -73,7 +73,7 @@ $(function () {
                     shapeClick: function (e) {
                         $('#inputBoxMap').val(e.shape.dataItem.properties.name);
                         e.layer.reset();
-                        setTimeout(function (){
+                        setTimeout(function () {
                             divWindow.close();
                         }, 500);
                     }
@@ -371,7 +371,7 @@ $(function () {
                                             action: function () {
                                                 comboMap.value(e.shape.dataItem.properties.id);
                                                 e.layer.reset();
-                                                setTimeout(function (){
+                                                setTimeout(function () {
                                                     divWindow.close();
                                                 }, 500);
                                             }
@@ -400,7 +400,7 @@ $(function () {
                             } else {
                                 comboMap.value(e.shape.dataItem.id);
                                 e.layer.reset();
-                                setTimeout(function (){
+                                setTimeout(function () {
                                     divWindow.close();
                                 }, 500);
                             }

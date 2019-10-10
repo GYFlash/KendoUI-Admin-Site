@@ -69,7 +69,7 @@ function createTree(id, uid) {
             '<button class="k-button k-button-icontext" onclick="cancelCreateTree(this);"><span class="k-icon k-i-cancel"></span>取消</button>',
         spriteCssClass: 'fas fa-user k-sprite-edit'
     }, treeView.findByUid(uid), function (e) {
-        setTimeout(function (){
+        setTimeout(function () {
             treeView.select(e);
             e.find('.k-textbox').focus();
         }, 10);
@@ -97,7 +97,7 @@ function saveCreateTree(id, dom) {
 // 增取消
 function cancelCreateTree(dom) {
     treeView.remove($(dom).closest('li'));
-    setTimeout(function (){
+    setTimeout(function () {
         $('#treeView').blur();
     }, 10);
 }
@@ -125,7 +125,7 @@ function updateTree(id, text, uid) {
             '<button class="k-button k-button-icontext" onclick="cancelUpdateTree(this);"><span class="k-icon k-i-cancel"></span>取消</button>',
         spriteCssClass: 'fas fa-user k-sprite-edit'
     }, treeView.findByUid(uid));
-    setTimeout(function (){
+    setTimeout(function () {
         treeView.select(treeView.findByUid(uid).prev());
         treeView.findByUid(uid).hide().prev().find('.k-textbox').focus();
     }, 10);
@@ -153,7 +153,7 @@ function saveUpdateTree(id, dom) {
 function cancelUpdateTree(dom) {
     $(dom).closest('li').next().show();
     treeView.remove($(dom).closest('li'));
-    setTimeout(function (){
+    setTimeout(function () {
         $('#treeView').blur();
     }, 10);
 }
