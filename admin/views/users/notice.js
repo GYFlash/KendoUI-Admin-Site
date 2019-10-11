@@ -38,7 +38,7 @@ $(function () {
                         { template: '<input class="k-checkbox" id="systemNotificationSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="systemNotificationSelectAll"></label>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'systemNotification\', 0);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'systemNotification\');"><span class="k-icon k-i-x"></span>删除</a>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="emptyAll(\'systemNotification\', 0, \'系统通知\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
                         { template: '<a class="k-button k-button-icontext systemNotificationOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext systemNotificationOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
                         { template: '<input class="k-textbox" id="systemNotificationSearch" type="text" placeholder="搜索...">' },
@@ -67,7 +67,7 @@ $(function () {
                         { template: '<input class="k-checkbox" id="userUpdatingSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="userUpdatingSelectAll"></label>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'userUpdating\', 1);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'userUpdating\');"><span class="k-icon k-i-x"></span>删除</a>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="emptyAll(\'userUpdating\', 1, \'个人动态\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
                         { template: '<a class="k-button k-button-icontext userUpdatingOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext userUpdatingOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
                         { template: '<input class="k-textbox" id="userUpdatingSearch" type="text" placeholder="搜索...">' },
@@ -96,7 +96,7 @@ $(function () {
                         { template: '<input class="k-checkbox" id="toDoItemsSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="toDoItemsSelectAll"></label>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'toDoItems\', 2);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'toDoItems\');"><span class="k-icon k-i-x"></span>删除</a>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="emptyAll(\'toDoItems\', 2, \'待办事项\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
                         { template: '<a class="k-button k-button-icontext toDoItemsOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext toDoItemsOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
                         { template: '<input class="k-textbox" id="toDoItemsSearch" type="text" placeholder="搜索...">' },
@@ -551,4 +551,26 @@ function batchDel(type) {
     } else {
         alertMsg('请先选择对象！', 'warning');
     }
+}
+
+// 清空
+function emptyAll(type, index, text) {
+    confirmMsg('清空确认', '你确定要清空<strong class="theme-m mx-1">' + text + '</strong>吗？', 'question', function () {
+        $('#loading').show();
+        $.fn.ajaxPost({
+            ajaxData: {
+                type: type
+            },
+            ajaxUrl: 'json/response.json',
+            finished: function () {
+                $('#loading').hide();
+            },
+            succeed: function (res) {
+                $('#noticeTabStripView .k-tabstrip-items > li:eq(' + index + ')').find('.badge').remove();
+                $('#' + type + 'ListView').html('<div class="blank">暂时没有新的' + text + '~</div>');
+                getNotice();
+            },
+            isMsg: true
+        });
+    });
 }
