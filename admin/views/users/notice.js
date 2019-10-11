@@ -36,7 +36,7 @@ $(function () {
                     resizable: false,
                     items: [
                         { template: '<input class="k-checkbox" id="systemNotificationSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="systemNotificationSelectAll"></label>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-eye"></span>全部已读</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'systemNotification\', 0);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
@@ -65,7 +65,7 @@ $(function () {
                     resizable: false,
                     items: [
                         { template: '<input class="k-checkbox" id="userUpdatingSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="userUpdatingSelectAll"></label>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-eye"></span>全部已读</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'userUpdating\', 1);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
@@ -94,7 +94,7 @@ $(function () {
                     resizable: false,
                     items: [
                         { template: '<input class="k-checkbox" id="toDoItemsSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="toDoItemsSelectAll"></label>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-eye"></span>全部已读</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'toDoItems\', 2);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
@@ -500,6 +500,27 @@ function getToDoItemsView() {
             $('#toDoItemsListView').data('kendoListView').select($(this).parents('.media'));
         } else {
             $(this).parents('.media').removeClass('k-state-selected').removeAttr('aria-selected');
+        }
+    });
+}
+
+// 全部已读
+function readAll(type, index) {
+    $.fn.ajaxPost({
+        ajaxData: {
+            type: type
+        },
+        ajaxUrl: 'json/response.json',
+        succeed: function () {
+            $.each($('#' + type + 'ListView .media'), function (i, items) {
+                $('#' + type + 'ListView').data('kendoListView').dataItem(items).set('unread', false);
+            });
+            $('#' + type + 'ListView').find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+            $('#noticeTabStripView .k-tabstrip-items > li:eq(' + index + ')').find('.badge').remove();
+            getNotice();
+        },
+        failed: function () {
+            alertMsg('标记全部已读出错！', 'error');
         }
     });
 }
