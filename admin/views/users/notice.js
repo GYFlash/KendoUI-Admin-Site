@@ -37,7 +37,7 @@ $(function () {
                     items: [
                         { template: '<input class="k-checkbox" id="systemNotificationSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="systemNotificationSelectAll"></label>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'systemNotification\', 0);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-x"></span>删除</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'systemNotification\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
                         { template: '<a class="k-button k-button-icontext systemNotificationOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext systemNotificationOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
@@ -66,7 +66,7 @@ $(function () {
                     items: [
                         { template: '<input class="k-checkbox" id="userUpdatingSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="userUpdatingSelectAll"></label>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'userUpdating\', 1);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-x"></span>删除</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'userUpdating\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
                         { template: '<a class="k-button k-button-icontext userUpdatingOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext userUpdatingOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
@@ -95,7 +95,7 @@ $(function () {
                     items: [
                         { template: '<input class="k-checkbox" id="toDoItemsSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="toDoItemsSelectAll"></label>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="readAll(\'toDoItems\', 2);"><span class="k-icon k-i-eye"></span>全部已读</a>' },
-                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-x"></span>删除</a>' },
+                        { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'toDoItems\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
                         { template: '<a class="k-button k-button-icontext toDoItemsOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext toDoItemsOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
@@ -523,4 +523,32 @@ function readAll(type, index) {
             alertMsg('标记全部已读出错！', 'error');
         }
     });
+}
+
+// 删除
+function batchDel(type) {
+    var ids = [];
+    $.each($('#' + type + 'ListView .ids'), function () {
+        if ($(this).prop('checked')) {
+            ids.push($(this).val());
+        }
+    });
+    if (ids.length > 0) {
+        $('#loading').show();
+        $.fn.ajaxPost({
+            ajaxData: {
+                'ids': ids
+            },
+            ajaxUrl: 'json/response.json',
+            finished: function () {
+                $('#loading').hide();
+            },
+            succeed: function (res) {
+                $('#' + type + 'ListView').data('kendoListView').dataSource.read();
+            },
+            isMsg: true
+        });
+    } else {
+        alertMsg('请先选择对象！', 'warning');
+    }
 }
