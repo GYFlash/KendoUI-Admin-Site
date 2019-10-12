@@ -90,6 +90,17 @@ $(function () {
             });
         }
     });
+    // 新消息数量
+    getMessage();
+    // 新提醒数量
+    getNotice();
+    // 每半分钟获取一次
+    setInterval(function () {
+        if ($('#menuH div.k-animation-container[aria-hidden=false]').length === 0) {
+            getMessage();
+            getNotice();
+        }
+    }, 30000);
     // 面包屑导航
     setTimeout(function () {
         showPath(location.hash.split('#')[1].split('/')[location.hash.split('#')[1].split('/').length - 1]);
@@ -134,17 +145,6 @@ $(function () {
             unlockScreen();
         }
     });
-    // 新消息数量
-    getMessage();
-    // 新提醒数量
-    getNotice();
-    // 每半分钟获取一次
-    setInterval(function () {
-        if ($('#menuH div.k-animation-container[aria-hidden=false]').length === 0) {
-            getMessage();
-            getNotice();
-        }
-    }, 30000);
     // 工具箱图标
     $('body').append('<div id="toolBox"><button class="k-button k-state-selected" id="tools"><i class="fas fa-tools"></i></button></div>');
     // 聊天机器人图标
@@ -679,13 +679,13 @@ function initMessage() {
         width: 120,
         show: function(e) {
             $('#messageDrawerBtn i').removeClass('fa-indent').addClass('fa-outdent');
-            $('#messageBox .k-drawer-items sup').hide();
-            $('#messageBox .k-drawer-items .badge').show();
+            $('#messageBox .k-drawer-items sup').fadeOut();
+            $('#messageBox .k-drawer-items .badge').fadeIn();
         },
         hide: function(e) {
             $('#messageDrawerBtn i').removeClass('fa-outdent').addClass('fa-indent');
-            $('#messageBox .k-drawer-items .badge').hide();
-            $('#messageBox .k-drawer-items sup').show();
+            $('#messageBox .k-drawer-items .badge').fadeOut();
+            $('#messageBox .k-drawer-items sup').fadeIn();
         },
         itemClick: function (e) {
             $('#messageDrawerContent > div').addClass('hide').eq(e.item.index()).removeClass('hide');
@@ -695,13 +695,13 @@ function initMessage() {
         if ($('#messageDrawer').data('kendoDrawer').drawerContainer.hasClass('k-drawer-expanded')) {
             $('#messageDrawer').data('kendoDrawer').hide();
             $('#messageDrawerBtn i').removeClass('fa-outdent').addClass('fa-indent');
-            $('#messageBox .k-drawer-items .badge').hide();
-            $('#messageBox .k-drawer-items sup').show();
+            $('#messageBox .k-drawer-items .badge').fadeOut();
+            $('#messageBox .k-drawer-items sup').fadeIn();
         } else {
             $('#messageDrawer').data('kendoDrawer').show();
             $('#messageDrawerBtn i').removeClass('fa-indent').addClass('fa-outdent');
-            $('#messageBox .k-drawer-items sup').hide();
-            $('#messageBox .k-drawer-items .badge').show();
+            $('#messageBox .k-drawer-items sup').fadeOut();
+            $('#messageBox .k-drawer-items .badge').fadeIn();
         }
     });
     // 通讯录数据源
