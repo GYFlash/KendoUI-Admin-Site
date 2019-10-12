@@ -58,4 +58,84 @@ $(function () {
             }
         }
     });
+    // 通讯录数据源
+    var addressBookDataSource = new kendo.data.DataSource({
+        transport: {
+            read: function (options) {
+                $.fn.ajaxPost({
+                    ajaxData: {
+                        type: 'addressBook'
+                    },
+                    ajaxUrl: 'json/message.json',
+                    succeed: function (res) {
+                        options.success(res);
+                    },
+                    failed: function (res) {
+                        options.error(res);
+                    }
+                });
+            }
+        },
+        schema: {
+            total: function(res) {
+                return res.addressBook.length;
+            },
+            data: 'addressBook',
+            model: {
+                id: 'id',
+                fields: {
+                    avatar: { type: 'string' },
+                    realName: { type: 'string' },
+                    nickName: { type: 'string' },
+                    gender: { type: 'string' },
+                    email: { type: 'string' },
+                    group: { type: 'string' }
+                }
+            }
+        },
+        group: {
+            field: 'group',
+            dir: 'asc'
+        }
+    });
+    // 收件人
+    $('#msgReceiverView').kendoMultiSelect({
+        dataSource: addressBookDataSource,
+        placeholder: '收件人（必填）',
+        dataValueField: 'email',
+        dataTextField: 'nickName',
+        height: 400,
+        autoClose: false,
+        filter: 'contains',
+        delay: 300,
+        itemTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #<small>&lt;#: email #&gt;</small>',
+        tagTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #'
+    });
+    // 抄送
+    $('#msgCCView').kendoMultiSelect({
+        dataSource: addressBookDataSource,
+        placeholder: '抄送',
+        dataValueField: 'email',
+        dataTextField: 'nickName',
+        height: 400,
+        autoClose: false,
+        filter: 'contains',
+        delay: 300,
+        itemTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #<small>&lt;#: email #&gt;</small>',
+        tagTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #'
+    });
 });
+
+// 发送站内信
+function sendMailView() {
+    if ($('#writeMailView form').kendoValidator().data('kendoValidator').validate()) {
+        $.fn.ajaxPost({
+            ajaxData: $('#writeMailView form').serializeObject(),
+            ajaxUrl: 'json/response.json',
+            succeed: function (res) {
+                $('#writeMailView form')[0].reset();
+            },
+            isMsg: true
+        });
+    }
+}

@@ -19,7 +19,7 @@
                                 <textarea class="k-textarea w-100" name="content" placeholder="正文内容"></textarea>
                             </p>
                             <div class="btns">
-                                <button class="k-button k-button-icontext k-state-selected" type="button" onclick="sendMail();"><i class="fas fa-paper-plane"></i>发送</button>
+                                <button class="k-button k-button-icontext k-state-selected" type="button" onclick="sendMailView();"><i class="fas fa-paper-plane"></i>发送</button>
                             </div>
                         </form>
                     </div>
@@ -87,6 +87,8 @@
             height: 16px;
             font-size: 16px;
             line-height: 16px;
+            text-align: center;
+            vertical-align: middle;
         }
         #messageDrawerView .k-drawer-container .k-drawer-item .badge {
             margin-left: 6px;
@@ -123,6 +125,76 @@
         #messageDrawerContentView > div > .row > div,
         #messageDrawerContentView > div .blank {
             height: 100%;
+        }
+        #messageDrawerView .mail-content {
+            overflow: auto;
+            padding: 10px 20px;
+        }
+        #messageDrawerView .mail-content .btns {
+            margin-top: 10px;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        #messageDrawerView .mail-content .btns button {
+            margin: 0 10px;
+        }
+        #messageDrawerView .mail-content .btns button i {
+            margin-right: 6px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            line-height: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        #writeMailView .mail-content {
+            padding: 20px;
+        }
+        #writeMailView .k-multiselect-wrap img {
+            margin-right: 6px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+        #writeMailView textarea {
+            height: 320px;
+        }
+        #writeMailView .k-invalid-msg {
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        #writeMailView .mail-content .btns {
+            margin-top: 0;
+            border-top: 0;
+        }
+        #msgReceiverView-list li.k-item,
+        #msgCCView-list li.k-item {
+            white-space: nowrap;
+        }
+        #msgReceiverView-list li.k-item img,
+        #msgCCView-list li.k-item img {
+            margin-right: 6px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+        #msgReceiverView-list li.k-state-hover,
+        #msgCCView-list li.k-state-hover {
+            color: #656565;
+            background: #eee;
+        }
+        #msgReceiverView-list li.k-state-selected,
+        #msgCCView-list li.k-state-selected {
+            color: #656565;
+            background: #ddd;
+        }
+        #msgReceiverView-list li.k-state-focused,
+        #msgCCView-list li.k-state-focused {
+            box-shadow: none;
         }
     </style>
 </script>
