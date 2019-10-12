@@ -1,0 +1,128 @@
+<script id="messageTemp" type="text/x-kendo-template">
+    <div id="messageDrawerView">
+        <div id="messageDrawerContentView">
+            <div class="hide">
+                <div class="row no-gutters">
+                    <div class="col-12" id="writeMailView">
+                        <form class="mail-content">
+                            <p>
+                                <select class="w-100" id="msgReceiverView" name="receiver" multiple required data-required-msg="请选择收件人！"></select>
+                                <span class="k-invalid-msg" data-for="receiver"></span>
+                            </p>
+                            <p>
+                                <select class="w-100" id="msgCCView" name="cc" multiple></select>
+                            </p>
+                            <p>
+                                <input class="k-textbox w-100" name="subject" type="text" placeholder="主题（必填）" required data-required-msg="请输入主题！">
+                            </p>
+                            <p>
+                                <textarea class="k-textarea w-100" name="content" placeholder="正文内容"></textarea>
+                            </p>
+                            <div class="btns">
+                                <button class="k-button k-button-icontext k-state-selected" type="button" onclick="sendMail();"><i class="fas fa-paper-plane"></i>发送</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row no-gutters">
+                    <div class="col-md-4 col-xl-3" id="inboxView"></div>
+                    <div class="d-none d-md-block col-md-8 col-xl-9">
+                        <div class="blank"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hide">
+                <div class="row no-gutters">
+                    <div class="col-md-4 col-xl-3" id="outboxView"></div>
+                    <div class="d-none d-md-block col-md-8 col-xl-9">
+                        <div class="blank"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hide"></div>
+            <div class="hide">
+                <div class="row no-gutters">
+                    <div class="col-md-4 col-xl-3">
+                        <div id="smsSearchView"><span class="k-textbox k-space-left w-100"><input type="text" placeholder="搜索"><a class="k-icon k-i-search k-required ml-1" href="javascript:;"></a></span></div>
+                        <div id="smsView"></div>
+                    </div>
+                    <div class="d-none d-md-block col-md-8 col-xl-9">
+                        <div class="blank"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hide"></div>
+            <div class="hide">
+                <div class="row no-gutters">
+                    <div class="col-md-4 col-xl-3">
+                        <div id="addressBookSearchView"><span class="k-textbox k-space-left w-100"><input type="text" placeholder="搜索"><a class="k-icon k-i-search k-required ml-1" href="javascript:;"></a></span></div>
+                        <div id="addressBookView"></div>
+                    </div>
+                    <div class="d-none d-md-block col-md-8 col-xl-9">
+                        <div class="blank"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="messageDrawerBtnView"><i class="fas fa-indent hide"></i></div>
+    </div>
+    <style scoped>
+        #messageDrawerView {
+            border-radius: 4px;
+        }
+        #messageDrawerView .k-drawer-container {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            background: #e6e6e6;
+        }
+        #messageDrawerView .k-drawer-container .k-drawer-item {
+            position: relative;
+            font-size: 14px;
+        }
+        #messageDrawerView .k-drawer-container .k-drawer-item i {
+            margin: 0 12px 0 4px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            line-height: 16px;
+        }
+        #messageDrawerView .k-drawer-container .k-drawer-item .badge {
+            margin-left: 6px;
+            font-weight: 100;
+        }
+        #messageDrawerView .k-drawer-container .k-drawer-item sup {
+            display: inline-block;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            background: #f35800;
+        }
+        #messageDrawerBtnView {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 1px;
+            bottom: 1px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        #messageDrawerView .blank {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #messageDrawerContentView > div,
+        #messageDrawerContentView > div > .row,
+        #messageDrawerContentView > div > .row > div,
+        #messageDrawerContentView > div .blank {
+            height: 100%;
+        }
+    </style>
+</script>
