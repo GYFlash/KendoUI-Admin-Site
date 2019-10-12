@@ -70,6 +70,17 @@ $(function () {
                         });
                     }
                 });
+                // 搜索
+                $('#systemNotificationSearch').keyup(function () {
+                    $('#systemNotificationListView').data('kendoListView').dataSource.filter({
+                        logic: 'or',
+                        filters: [
+                            { field: 'title', operator: 'contains', value: $(this).val() },
+                            { field: 'content', operator: 'contains', value: $(this).val() },
+                            { field: 'time', operator: 'contains', value: $(this).val() }
+                        ]
+                    });
+                });
                 // 生成列表
                 getSystemNotificationView();
             } else if (noticeType === 'userUpdatingListView') {
@@ -112,6 +123,18 @@ $(function () {
                         });
                     }
                 });
+                // 搜索
+                $('#userUpdatingSearch').keyup(function () {
+                    $('#userUpdatingListView').data('kendoListView').dataSource.filter({
+                        logic: 'or',
+                        filters: [
+                            { field: 'nickName', operator: 'contains', value: $(this).val() },
+                            { field: 'title', operator: 'contains', value: $(this).val() },
+                            { field: 'content', operator: 'contains', value: $(this).val() },
+                            { field: 'time', operator: 'contains', value: $(this).val() }
+                        ]
+                    });
+                });
                 // 生成列表
                 getUserUpdatingView();
             } else if (noticeType === 'toDoItemsListView') {
@@ -153,6 +176,18 @@ $(function () {
                             value: this.value()
                         });
                     }
+                });
+                // 搜索
+                $('#toDoItemsSearch').keyup(function () {
+                    $('#toDoItemsListView').data('kendoListView').dataSource.filter({
+                        logic: 'or',
+                        filters: [
+                            { field: 'state', operator: 'contains', value: $(this).val() },
+                            { field: 'title', operator: 'contains', value: $(this).val() },
+                            { field: 'content', operator: 'contains', value: $(this).val() },
+                            { field: 'time', operator: 'contains', value: $(this).val() }
+                        ]
+                    });
                 });
                 // 生成列表
                 getToDoItemsView();
