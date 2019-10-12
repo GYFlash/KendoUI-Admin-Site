@@ -55,7 +55,20 @@ $(function () {
                     },
                     optionLabel: "全部",
                     dataValueField: 'value',
-                    dataTextField: 'text'
+                    dataTextField: 'text',
+                    change: function (e) {
+                        $('#systemNotificationListView').data('kendoListView').dataSource.filter({
+                            field: 'unread',
+                            operator: function (items, value) {
+                                if (value) {
+                                    return String(items) === value;
+                                } else {
+                                    return true;
+                                }
+                            },
+                            value: this.value()
+                        });
+                    }
                 });
                 // 生成列表
                 getSystemNotificationView();
@@ -84,7 +97,20 @@ $(function () {
                     },
                     optionLabel: "全部",
                     dataValueField: 'value',
-                    dataTextField: 'text'
+                    dataTextField: 'text',
+                    change: function (e) {
+                        $('#userUpdatingListView').data('kendoListView').dataSource.filter({
+                            field: 'unread',
+                            operator: function (items, value) {
+                                if (value) {
+                                    return String(items) === value;
+                                } else {
+                                    return true;
+                                }
+                            },
+                            value: this.value()
+                        });
+                    }
                 });
                 // 生成列表
                 getUserUpdatingView();
@@ -113,7 +139,20 @@ $(function () {
                     },
                     optionLabel: "全部",
                     dataValueField: 'value',
-                    dataTextField: 'text'
+                    dataTextField: 'text',
+                    change: function (e) {
+                        $('#toDoItemsListView').data('kendoListView').dataSource.filter({
+                            field: 'unread',
+                            operator: function (items, value) {
+                                if (value) {
+                                    return String(items) === value;
+                                } else {
+                                    return true;
+                                }
+                            },
+                            value: this.value()
+                        });
+                    }
                 });
                 // 生成列表
                 getToDoItemsView();
