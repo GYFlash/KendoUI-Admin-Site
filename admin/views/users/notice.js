@@ -40,7 +40,7 @@ $(function () {
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'systemNotification\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="emptyAll(\'systemNotification\', 0, \'系统通知\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
-                        { template: '<a class="k-button k-button-icontext systemNotificationOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext systemNotificationOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
+                        { template: '<a class="k-button k-button-icontext orderBtn hide" href="javascript:;" onclick="order(\'systemNotification\', \'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext orderBtn" href="javascript:;" onclick="order(\'systemNotification\', \'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
                         { template: '<input class="k-textbox" id="systemNotificationSearch" type="text" placeholder="搜索...">' },
                         { template: '<select class="w-100" id="systemNotificationFilter"></select>' }
                     ]
@@ -93,7 +93,7 @@ $(function () {
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'userUpdating\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="emptyAll(\'userUpdating\', 1, \'个人动态\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
-                        { template: '<a class="k-button k-button-icontext userUpdatingOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext userUpdatingOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
+                        { template: '<a class="k-button k-button-icontext orderBtn hide" href="javascript:;" onclick="order(\'userUpdating\', \'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext orderBtn" href="javascript:;" onclick="order(\'userUpdating\', \'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
                         { template: '<input class="k-textbox" id="userUpdatingSearch" type="text" placeholder="搜索...">' },
                         { template: '<select class="w-100" id="userUpdatingFilter"></select>' }
                     ]
@@ -147,7 +147,7 @@ $(function () {
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchDel(\'toDoItems\');"><span class="k-icon k-i-x"></span>删除</a>' },
                         { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="emptyAll(\'toDoItems\', 2, \'待办事项\');"><span class="k-icon k-i-trash"></span>清空</a>' },
                         { type: 'spacer' },
-                        { template: '<a class="k-button k-button-icontext toDoItemsOrderBtn" href="javascript:;" onclick="order(\'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext toDoItemsOrderBtn hide" href="javascript:;" onclick="order(\'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
+                        { template: '<a class="k-button k-button-icontext orderBtn hide" href="javascript:;" onclick="order(\'toDoItems\', \'desc\');"><span class="k-icon k-i-sort-asc-sm"></span>升序</a><a class="k-button k-button-icontext orderBtn" href="javascript:;" onclick="order(\'toDoItems\', \'asc\');"><span class="k-icon k-i-sort-desc-sm"></span>降序</a>' },
                         { template: '<input class="k-textbox" id="toDoItemsSearch" type="text" placeholder="搜索...">' },
                         { template: '<select class="w-100" id="toDoItemsFilter"></select>' }
                     ]
@@ -647,4 +647,13 @@ function emptyAll(type, index, text) {
             isMsg: true
         });
     });
+}
+
+// 排序
+function order(type, dir) {
+    $('#' + type + 'ListView').data('kendoListView').dataSource.sort({
+        field: 'id',
+        dir: dir
+    });
+    $('#' + type + 'Toolbar .orderBtn').toggle();
 }
