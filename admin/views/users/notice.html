@@ -25,6 +25,9 @@
             border-left: 0;
             border-right: 0;
         }
+        #noticeTabStripView .k-content .k-toolbar .k-checkbox-label {
+            margin-left: 8px;
+        }
         #noticeTabStripView .k-content .k-listview {
             border: 0;
         }
@@ -67,7 +70,7 @@
                 white-space: nowrap;
             }
             #noticeTabStripView .k-toolbar .k-textbox {
-                width: 150px;
+                width: 120px;
             }
             #noticeTabStripView .k-content .k-listview .media {
                 align-items: flex-start;
@@ -90,6 +93,11 @@
             #noticeTabStripView .k-content .k-listview .media img {
                 width: 64px;
                 height: 64px;
+            }
+        }
+        @media only screen and (max-width: 400px) {
+            #noticeTabStripView .k-toolbar .k-textbox {
+                width: 90px;
             }
         }
         #noticeTabStripView .k-content .k-listview .media h5 {
