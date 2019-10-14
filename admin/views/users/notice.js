@@ -29,36 +29,36 @@ $(function () {
         dataSpriteCssClass: 'spriteCssClass',
         dataContentField: 'content',
         select: function (e) {
-            var noticeType = $(e.contentElement).find('div').eq(1).attr('id');
-            if (noticeType === 'systemNotificationListView') {
-                // 生成工具条
-                $('#systemNotificationToolbar').kendoToolBar({
+            var noticeType = $(e.contentElement).children().eq(1).attr('id').substring(0, $(e.contentElement).children().eq(1).attr('id').length - 8);
+            // 生成工具栏
+            if (!($('#' + noticeType + 'Toolbar').data('kendoToolBar'))) {
+                $('#' + noticeType + 'Toolbar').kendoToolBar({
                     items: [
                         {
-                            template: '<input class="k-checkbox" id="systemNotificationSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="systemNotificationSelectAll"></label>'
+                            template: '<input class="k-checkbox" id="' + noticeType + 'SelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="' + noticeType + 'SelectAll"></label>'
                         },
                         {
                             type: 'button',
                             text: '全部已读',
                             icon: 'eye',
-                            click: function (e) {
-                                readAll('systemNotification', 0);
+                            click: function () {
+                                readAll(noticeType, $(e.item).index());
                             }
                         },
                         {
                             type: 'button',
                             text: '删除',
                             icon: 'x',
-                            click: function (e) {
-                                batchDel('systemNotification');
+                            click: function () {
+                                batchDel(noticeType);
                             }
                         },
                         {
                             type: 'button',
                             text: '清空',
                             icon: 'trash',
-                            click: function (e) {
-                                emptyAll('systemNotification', 0, '系统通知');
+                            click: function () {
+                                emptyAll(noticeType, $(e.item).index(), $(e.item).text().substr(0, 2));
                             }
                         },
                         {
@@ -71,8 +71,8 @@ $(function () {
                             attributes: { 'class': 'orderBtn' },
                             hidden: true,
                             overflow: 'never',
-                            click: function (e) {
-                                order('systemNotification', 'desc');
+                            click: function () {
+                                order(noticeType, 'desc');
                             }
                         },
                         {
@@ -81,12 +81,12 @@ $(function () {
                             icon: 'sort-desc',
                             attributes: { 'class': 'orderBtn' },
                             overflow: 'never',
-                            click: function (e) {
-                                order('systemNotification', 'asc');
+                            click: function () {
+                                order(noticeType, 'asc');
                             }
                         },
                         {
-                            template: '<span class="k-textbox k-space-left"><input id="systemNotificationSearch" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
+                            template: '<span class="k-textbox k-space-left"><input id="' + noticeType + 'Search" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
                         },
                         {
                             type: 'splitButton',
@@ -95,8 +95,8 @@ $(function () {
                             menuButtons: [
                                 {
                                     text: '未读',
-                                    click: function (e) {
-                                        $('#systemNotificationListView').data('kendoListView').dataSource.filter({
+                                    click: function () {
+                                        $('#' + noticeType + 'ListView').data('kendoListView').dataSource.filter({
                                             field: 'unread',
                                             operator: 'eq',
                                             value: true
@@ -105,8 +105,8 @@ $(function () {
                                 },
                                 {
                                     text: '已读',
-                                    click: function (e) {
-                                        $('#systemNotificationListView').data('kendoListView').dataSource.filter({
+                                    click: function () {
+                                        $('#' + noticeType + 'ListView').data('kendoListView').dataSource.filter({
                                             field: 'unread',
                                             operator: 'eq',
                                             value: false
@@ -115,8 +115,8 @@ $(function () {
                                 }
                             ],
                             overflow: 'never',
-                            click: function (e) {
-                                $('#systemNotificationListView').data('kendoListView').dataSource.filter({
+                            click: function () {
+                                $('#' + noticeType + 'ListView').data('kendoListView').dataSource.filter({
                                     field: 'unread',
                                     operator: 'isnotnull'
                                 });
@@ -124,6 +124,8 @@ $(function () {
                         }
                     ]
                 });
+            }
+            if (noticeType === 'systemNotification') {
                 // 搜索
                 $('#systemNotificationSearch').keyup(function () {
                     $('#systemNotificationListView').data('kendoListView').dataSource.filter({
@@ -137,98 +139,7 @@ $(function () {
                 });
                 // 生成列表
                 getSystemNotificationView();
-            } else if (noticeType === 'userUpdatingListView') {
-                // 生成工具条
-                $('#userUpdatingToolbar').kendoToolBar({
-                    items: [
-                        {
-                            template: '<input class="k-checkbox" id="userUpdatingSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="userUpdatingSelectAll"></label>'
-                        },
-                        {
-                            type: 'button',
-                            text: '全部已读',
-                            icon: 'eye',
-                            click: function (e) {
-                                readAll('userUpdating', 1);
-                            }
-                        },
-                        {
-                            type: 'button',
-                            text: '删除',
-                            icon: 'x',
-                            click: function (e) {
-                                batchDel('userUpdating');
-                            }
-                        },
-                        {
-                            type: 'button',
-                            text: '清空',
-                            icon: 'trash',
-                            click: function (e) {
-                                emptyAll('userUpdating', 1, '个人动态');
-                            }
-                        },
-                        { type: 'spacer' },
-                        {
-                            type: 'button',
-                            text: '升序',
-                            icon: 'sort-asc',
-                            attributes: { 'class': 'orderBtn' },
-                            hidden: true,
-                            overflow: 'never',
-                            click: function (e) {
-                                order('userUpdating', 'desc');
-                            }
-                        },
-                        {
-                            type: 'button',
-                            text: '降序',
-                            icon: 'sort-desc',
-                            attributes: { 'class': 'orderBtn' },
-                            overflow: 'never',
-                            click: function (e) {
-                                order('userUpdating', 'asc');
-                            }
-                        },
-                        {
-                            template: '<span class="k-textbox k-space-left"><input id="userUpdatingSearch" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
-                        },
-                        {
-                            type: 'splitButton',
-                            text: '全部',
-                            icon: 'filter',
-                            menuButtons: [
-                                {
-                                    text: '未读',
-                                    click: function (e) {
-                                        $('#userUpdatingListView').data('kendoListView').dataSource.filter({
-                                            field: 'unread',
-                                            operator: 'eq',
-                                            value: true
-                                        });
-                                    }
-                                },
-                                {
-                                    text: '已读',
-                                    click: function (e) {
-                                        $('#userUpdatingListView').data('kendoListView').dataSource.filter({
-                                            field: 'unread',
-                                            operator: 'eq',
-                                            value: false
-                                        });
-                                    }
-                                }
-                            ],
-                            overflow: 'never',
-                            click: function (e) {
-                                $('#userUpdatingListView').data('kendoListView').dataSource.filter({
-                                    field: 'unread',
-                                    operator: 'isnotnull'
-                                });
-                            }
-                        }
-                    ]
-                });
+            } else if (noticeType === 'userUpdating') {
                 // 搜索
                 $('#userUpdatingSearch').keyup(function () {
                     $('#userUpdatingListView').data('kendoListView').dataSource.filter({
@@ -243,98 +154,7 @@ $(function () {
                 });
                 // 生成列表
                 getUserUpdatingView();
-            } else if (noticeType === 'toDoItemsListView') {
-                // 生成工具条
-                $('#toDoItemsToolbar').kendoToolBar({
-                    items: [
-                        {
-                            template: '<input class="k-checkbox" id="toDoItemsSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="toDoItemsSelectAll"></label>'
-                        },
-                        {
-                            type: 'button',
-                            text: '全部已读',
-                            icon: 'eye',
-                            click: function (e) {
-                                readAll('toDoItems', 2);
-                            }
-                        },
-                        {
-                            type: 'button',
-                            text: '删除',
-                            icon: 'x',
-                            click: function (e) {
-                                batchDel('toDoItems');
-                            }
-                        },
-                        {
-                            type: 'button',
-                            text: '清空',
-                            icon: 'trash',
-                            click: function (e) {
-                                emptyAll('toDoItems', 2, '待办事项');
-                            }
-                        },
-                        { type: 'spacer' },
-                        {
-                            type: 'button',
-                            text: '升序',
-                            icon: 'sort-asc',
-                            attributes: { 'class': 'orderBtn' },
-                            hidden: true,
-                            overflow: 'never',
-                            click: function (e) {
-                                order('toDoItems', 'desc');
-                            }
-                        },
-                        {
-                            type: 'button',
-                            text: '降序',
-                            icon: 'sort-desc',
-                            attributes: { 'class': 'orderBtn' },
-                            overflow: 'never',
-                            click: function (e) {
-                                order('toDoItems', 'asc');
-                            }
-                        },
-                        {
-                            template: '<span class="k-textbox k-space-left"><input id="toDoItemsSearch" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
-                        },
-                        {
-                            type: 'splitButton',
-                            text: '全部',
-                            icon: 'filter',
-                            menuButtons: [
-                                {
-                                    text: '未读',
-                                    click: function (e) {
-                                        $('#toDoItemsListView').data('kendoListView').dataSource.filter({
-                                            field: 'unread',
-                                            operator: 'eq',
-                                            value: true
-                                        });
-                                    }
-                                },
-                                {
-                                    text: '已读',
-                                    click: function (e) {
-                                        $('#toDoItemsListView').data('kendoListView').dataSource.filter({
-                                            field: 'unread',
-                                            operator: 'eq',
-                                            value: false
-                                        });
-                                    }
-                                }
-                            ],
-                            overflow: 'never',
-                            click: function (e) {
-                                $('#toDoItemsListView').data('kendoListView').dataSource.filter({
-                                    field: 'unread',
-                                    operator: 'isnotnull'
-                                });
-                            }
-                        }
-                    ]
-                });
+            } else if (noticeType === 'toDoItems') {
                 // 搜索
                 $('#toDoItemsSearch').keyup(function () {
                     $('#toDoItemsListView').data('kendoListView').dataSource.filter({
