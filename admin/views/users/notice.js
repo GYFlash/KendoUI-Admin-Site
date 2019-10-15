@@ -125,51 +125,73 @@ $(function () {
                     ]
                 });
             }
-            if (noticeType === 'systemNotification') {
-                // 搜索
-                $('#systemNotificationSearch').keyup(function () {
-                    $('#systemNotificationListView').data('kendoListView').dataSource.filter({
-                        logic: 'or',
-                        filters: [
-                            { field: 'title', operator: 'contains', value: $(this).val() },
-                            { field: 'content', operator: 'contains', value: $(this).val() },
-                            { field: 'time', operator: 'contains', value: $(this).val() }
-                        ]
-                    });
+            // 搜索
+            $('#' + noticeType + 'Search').keyup(function () {
+                $('#' + noticeType + 'ListView').data('kendoListView').dataSource.filter({
+                    logic: 'or',
+                    filters: [
+                        { field: 'nickName', operator: 'contains', value: $(this).val() },
+                        { field: 'title', operator: 'contains', value: $(this).val() },
+                        { field: 'content', operator: 'contains', value: $(this).val() },
+                        { field: 'time', operator: 'contains', value: $(this).val() },
+                        { field: 'state', operator: 'contains', value: $(this).val() }
+                    ]
                 });
-                // 生成列表
+            });
+            // 生成列表
+            if (noticeType === 'systemNotification') {
                 getSystemNotificationView();
             } else if (noticeType === 'userUpdating') {
-                // 搜索
-                $('#userUpdatingSearch').keyup(function () {
-                    $('#userUpdatingListView').data('kendoListView').dataSource.filter({
-                        logic: 'or',
-                        filters: [
-                            { field: 'nickName', operator: 'contains', value: $(this).val() },
-                            { field: 'title', operator: 'contains', value: $(this).val() },
-                            { field: 'content', operator: 'contains', value: $(this).val() },
-                            { field: 'time', operator: 'contains', value: $(this).val() }
-                        ]
-                    });
-                });
-                // 生成列表
                 getUserUpdatingView();
             } else if (noticeType === 'toDoItems') {
-                // 搜索
-                $('#toDoItemsSearch').keyup(function () {
-                    $('#toDoItemsListView').data('kendoListView').dataSource.filter({
-                        logic: 'or',
-                        filters: [
-                            { field: 'state', operator: 'contains', value: $(this).val() },
-                            { field: 'title', operator: 'contains', value: $(this).val() },
-                            { field: 'content', operator: 'contains', value: $(this).val() },
-                            { field: 'time', operator: 'contains', value: $(this).val() }
-                        ]
-                    });
-                });
-                // 生成列表
                 getToDoItemsView();
             }
+            // 已读
+            $('#' + noticeType + 'ListView').on('click', '.media', function () {
+                var that = $(this);
+                if (that.find('.media-body').hasClass('unread')) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            id: that.find('.ids').val(),
+                            type: noticeType
+                        },
+                        ajaxUrl: 'json/response.json',
+                        succeed: function () {
+                            $('#' + noticeType + 'ListView').data('kendoListView').dataItem(that).set('unread', false);
+                            setTimeout(function () {
+                                $('#' + noticeType + 'ListView').data('kendoListView').select($('#' + that.find('.ids').attr('id')).parent());
+                            }, 10);
+                            that.find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
+                            var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(' + $(e.item).index() + ')').find('.badge');
+                            if (badgeDom.text() === '1') {
+                                badgeDom.remove();
+                            } else {
+                                badgeDom.text(Number(badgeDom.text()) - 1);
+                            }
+                            getNotice();
+                        },
+                        failed: function () {
+                            alertMsg('标记已读出错！', 'error');
+                        }
+                    });
+                }
+            });
+            // 全选
+            $('#' + noticeType + 'SelectAll').click(function () {
+                if ($(this).prop('checked')) {
+                    $('#' + noticeType + 'ListView').data('kendoListView').select($('#' + noticeType + 'ListView .media'));
+                } else {
+                    $('#' + noticeType + 'ListView').data('kendoListView').clearSelection();
+                }
+            });
+            // 单选
+            $('#' + noticeType + 'ListView').on('click', '.ids', function () {
+                if ($(this).prop('checked')) {
+                    $('#' + noticeType + 'ListView').data('kendoListView').select($(this).parents('.media'));
+                } else {
+                    $(this).parents('.media').removeClass('k-state-selected').removeAttr('aria-selected');
+                }
+            });
         }
     }).data('kendoTabStrip').select($('#noticeTabStrip').data('kendoTabStrip').select().index());
     // 新提醒数量获取
@@ -192,9 +214,6 @@ $(function () {
 
 // 系统通知获取
 function getSystemNotificationView() {
-    if ($('#systemNotificationListView').data('kendoListView')) {
-        $('#systemNotificationListView').data('kendoListView').destroy();
-    }
     $('#systemNotificationListView').kendoListView({
         dataSource: {
             transport: {
@@ -260,59 +279,10 @@ function getSystemNotificationView() {
             $('#systemNotificationSelectAll').prop('checked', false);
         }
     });
-    // 系统通知已读
-    $('#systemNotificationListView').on('click', '.media', function () {
-        var that = $(this);
-        if (that.find('.media-body').hasClass('unread')) {
-            $.fn.ajaxPost({
-                ajaxData: {
-                    id: that.find('.ids').val(),
-                    type: 'systemNotification'
-                },
-                ajaxUrl: 'json/response.json',
-                succeed: function () {
-                    $('#systemNotificationListView').data('kendoListView').dataItem(that).set('unread', false);
-                    setTimeout(function () {
-                        $('#systemNotificationListView').data('kendoListView').select($('#' + that.find('.ids').attr('id')).parent());
-                    }, 10);
-                    that.find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                    var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(0)').find('.badge');
-                    if (badgeDom.text() === '1') {
-                        badgeDom.remove();
-                    } else {
-                        badgeDom.text(Number(badgeDom.text()) - 1);
-                    }
-                    getNotice();
-                },
-                failed: function () {
-                    alertMsg('标记已读出错！', 'error');
-                }
-            });
-        }
-    });
-    // 全选
-    $('#systemNotificationSelectAll').click(function () {
-        if ($(this).prop('checked')) {
-            $('#systemNotificationListView').data('kendoListView').select($('#systemNotificationListView .media'));
-        } else {
-            $('#systemNotificationListView').data('kendoListView').clearSelection();
-        }
-    });
-    // 单选
-    $('#systemNotificationListView').on('click', '.ids', function () {
-        if ($(this).prop('checked')) {
-            $('#systemNotificationListView').data('kendoListView').select($(this).parents('.media'));
-        } else {
-            $(this).parents('.media').removeClass('k-state-selected').removeAttr('aria-selected');
-        }
-    });
 }
 
 // 个人动态获取
 function getUserUpdatingView() {
-    if ($('#userUpdatingListView').data('kendoListView')) {
-        $('#userUpdatingListView').data('kendoListView').destroy();
-    }
     $('#userUpdatingListView').kendoListView({
         dataSource: {
             transport: {
@@ -377,59 +347,10 @@ function getUserUpdatingView() {
             $('#userUpdatingSelectAll').prop('checked', false);
         }
     });
-    // 个人动态已读
-    $('#userUpdatingListView').on('click', '.media', function () {
-        var that = $(this);
-        if (that.find('.media-body').hasClass('unread')) {
-            $.fn.ajaxPost({
-                ajaxData: {
-                    id: that.find('.ids').val(),
-                    type: 'userUpdating'
-                },
-                ajaxUrl: 'json/response.json',
-                succeed: function () {
-                    $('#userUpdatingListView').data('kendoListView').dataItem(that).set('unread', false);
-                    setTimeout(function () {
-                        $('#userUpdatingListView').data('kendoListView').select($('#' + that.find('.ids').attr('id')).parent());
-                    }, 10);
-                    that.find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                    var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(1)').find('.badge');
-                    if (badgeDom.text() === '1') {
-                        badgeDom.remove();
-                    } else {
-                        badgeDom.text(Number(badgeDom.text()) - 1);
-                    }
-                    getNotice();
-                },
-                failed: function () {
-                    alertMsg('标记已读出错！', 'error');
-                }
-            });
-        }
-    });
-    // 全选
-    $('#userUpdatingSelectAll').click(function () {
-        if ($(this).prop('checked')) {
-            $('#userUpdatingListView').data('kendoListView').select($('#userUpdatingListView .media'));
-        } else {
-            $('#userUpdatingListView').data('kendoListView').clearSelection();
-        }
-    });
-    // 单选
-    $('#userUpdatingListView').on('click', '.ids', function () {
-        if ($(this).prop('checked')) {
-            $('#userUpdatingListView').data('kendoListView').select($(this).parents('.media'));
-        } else {
-            $(this).parents('.media').removeClass('k-state-selected').removeAttr('aria-selected');
-        }
-    });
 }
 
 // 待办事项获取
 function getToDoItemsView() {
-    if ($('#toDoItemsListView').data('kendoListView')) {
-        $('#toDoItemsListView').data('kendoListView').destroy();
-    }
     $('#toDoItemsListView').kendoListView({
         dataSource: {
             transport: {
@@ -491,52 +412,6 @@ function getToDoItemsView() {
         },
         dataBound: function () {
             $('#toDoItemsSelectAll').prop('checked', false);
-        }
-    });
-    // 待办事项已读
-    $('#toDoItemsListView').on('click', '.media', function () {
-        var that = $(this);
-        if (that.find('.media-body').hasClass('unread')) {
-            $.fn.ajaxPost({
-                ajaxData: {
-                    id: that.find('.ids').val(),
-                    type: 'toDoItems'
-                },
-                ajaxUrl: 'json/response.json',
-                succeed: function () {
-                    $('#toDoItemsListView').data('kendoListView').dataItem(that).set('unread', false);
-                    setTimeout(function () {
-                        $('#toDoItemsListView').data('kendoListView').select($('#' + that.find('.ids').attr('id')).parent());
-                    }, 10);
-                    that.find('.media-body').removeClass('unread').find('.theme-m').removeClass('theme-m');
-                    var badgeDom = $('#noticeTabStripView .k-tabstrip-items > li:eq(2)').find('.badge');
-                    if (badgeDom.text() === '1') {
-                        badgeDom.remove();
-                    } else {
-                        badgeDom.text(Number(badgeDom.text()) - 1);
-                    }
-                    getNotice();
-                },
-                failed: function () {
-                    alertMsg('标记已读出错！', 'error');
-                }
-            });
-        }
-    });
-    // 全选
-    $('#toDoItemsSelectAll').click(function () {
-        if ($(this).prop('checked')) {
-            $('#toDoItemsListView').data('kendoListView').select($('#toDoItemsListView .media'));
-        } else {
-            $('#toDoItemsListView').data('kendoListView').clearSelection();
-        }
-    });
-    // 单选
-    $('#toDoItemsListView').on('click', '.ids', function () {
-        if ($(this).prop('checked')) {
-            $('#toDoItemsListView').data('kendoListView').select($(this).parents('.media'));
-        } else {
-            $(this).parents('.media').removeClass('k-state-selected').removeAttr('aria-selected');
         }
     });
 }
