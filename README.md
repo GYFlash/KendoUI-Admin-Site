@@ -463,6 +463,7 @@ ROOT/·····································�
 * 路由页面加载进度条 <small>[ Router Progress ]</small> ✔️
 * 路由页面动画过渡 <small>[ Animated Transitions ]</small> ✔️
 * 骨架屏 <small>[ Skeleton ]</small> ✔️
+* 看板娘 <small>[ Live2D ]</small> ✔️
 * 聊天机器人 <small>[ Bot ]</small> ✔️
 * 天气预报 <small>[ Weather Forecast ]</small> ✔️
 * 万年历 <small>[ Perpetual Calendar ]</small> ✔️
@@ -643,6 +644,8 @@ ROOT/·····································�
 * [Verify](https://github.com/Hibear/verify) ( v0.1.0 )
 * [Particleground](https://requestlab.fr/) ( v1.1.0 )
 * [Live2D Widget](https://github.com/xiazeyu/live2d-widget.js) ( v3.0.5 )
+* [JetBrains Open Source Support Program](https://www.jetbrains.com/community/opensource/)
+* [JetBrains WebStorm](https://www.jetbrains.com/?from=KendoUI-Admin-Site) ( v2019.2.3 x64 )
 
 ## 📷 界面预览 <small>Screenshot</small>
 
