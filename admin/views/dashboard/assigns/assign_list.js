@@ -1,5 +1,5 @@
 $(function () {
-    // 生成工具条
+    // 生成工具栏
     $('#toolbarFrom').kendoToolBar({
         resizable: false,
         items: [

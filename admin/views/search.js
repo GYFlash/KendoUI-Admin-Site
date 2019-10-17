@@ -5,7 +5,7 @@ $(function () {
     } else {
         $('#searchKeywords').val($('#menuV .global-search input[type=search]').prev().find('.k-input').val());
     }
-    // 生成工具条
+    // 生成工具栏
     $('#toolbar').kendoToolBar({
         resizable: false,
         items: [

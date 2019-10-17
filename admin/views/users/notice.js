@@ -224,11 +224,8 @@ function getSystemNotificationView() {
                         },
                         ajaxUrl: 'json/notice.json',
                         succeed: function (res) {
-                            $('#noticeTabStripView .k-tabstrip-items > li:eq(0)').find('.badge').remove();
                             options.success(res);
-                            if (res.systemNotification.length > 0) {
-                                $('#noticeTabStripView .k-tabstrip-items > li:eq(0) > .k-link').append('<span class="badge theme-s-bg">' + res.systemNotification.length + '</span>');
-                            } else {
+                            if (res.systemNotification.length === 0) {
                                 $('#systemNotificationListView').html('<div class="blank">暂时没有新的系统通知~</div>');
                             }
                         },
@@ -293,11 +290,8 @@ function getUserUpdatingView() {
                         },
                         ajaxUrl: 'json/notice.json',
                         succeed: function (res) {
-                            $('#noticeTabStripView .k-tabstrip-items > li:eq(1)').find('.badge').remove();
                             options.success(res);
-                            if (res.userUpdating.length > 0) {
-                                $('#noticeTabStripView .k-tabstrip-items > li:eq(1) > .k-link').append('<span class="badge theme-s-bg">' + res.userUpdating.length + '</span>');
-                            } else {
+                            if (res.userUpdating.length === 0) {
                                 $('#userUpdatingListView').html('<div class="blank">暂时没有新的个人动态~</div>');
                             }
                         },
@@ -361,11 +355,8 @@ function getToDoItemsView() {
                         },
                         ajaxUrl: 'json/notice.json',
                         succeed: function (res) {
-                            $('#noticeTabStripView .k-tabstrip-items > li:eq(2)').find('.badge').remove();
                             options.success(res);
-                            if (res.toDoItems.length > 0) {
-                                $('#noticeTabStripView .k-tabstrip-items > li:eq(2) > .k-link').append('<span class="badge theme-s-bg">' + res.toDoItems.length + '</span>');
-                            } else {
+                            if (res.toDoItems.length === 0) {
                                 $('#toDoItemsListView').html('<div class="blank">暂时没有新的待办事项~</div>');
                             }
                         },
