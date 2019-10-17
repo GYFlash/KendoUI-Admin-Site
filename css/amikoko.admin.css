@@ -2032,6 +2032,11 @@ iframe#section {
   line-height: 2.4em; }
 
 /* 对话框 */
+.k-dialog .k-window-title img,
+.k-window .k-window-title img {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px; }
 .k-dialog .dialog-box,
 .k-window .dialog-box {
   padding: 40px; }

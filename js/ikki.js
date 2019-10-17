@@ -388,7 +388,10 @@ function confirmMsgBtn(title, msg, type, confirmed) {
         maxHeight: '30%',
         minWidth: 320,
         minHeight: 196,
-        title: title,
+        title: {
+            text: title,
+            encoded: false
+        },
         modal: true,
         pinned: true,
         resizable: false,
@@ -409,7 +412,10 @@ function confirmMsgBtn(title, msg, type, confirmed) {
 function divWindow(title, width, height, content) {
     var divWindow = $('<div class="window-box"></div>').kendoWindow({
         animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
-        title: title,
+        title: {
+            text: title,
+            encoded: false
+        },
         width: width,
         height: height,
         modal: true,
@@ -427,7 +433,10 @@ function iframeWindow(title, width, height, url) {
     var iframeWindow = $('<div class="iframe-box"></div>').kendoWindow({
         actions: ['Pin', 'Refresh', 'Minimize', 'Maximize', 'Close'],
         animation: {open: {effects: 'fade:in'}, close: {effects: 'fade:out'}},
-        title: title,
+        title: {
+            text: title,
+            encoded: false
+        },
         width: width,
         height: height,
         modal: true,

@@ -2406,6 +2406,13 @@ iframe#section {
 /* 对话框 */
 .k-dialog,
 .k-window {
+    .k-window-title {
+        img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+    }
     .dialog-box {
         padding: 40px;
         dt {
