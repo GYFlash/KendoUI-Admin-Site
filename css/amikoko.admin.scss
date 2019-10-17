@@ -860,9 +860,16 @@ iframe#section {
                         overflow: auto;
                         padding: 10px 20px;
                         height: 600px;
+                        h6 {
+                            line-height: 1.5;
+                            white-space: normal;
+                        }
                         dl {
+                            margin-top: 10px;
                             margin-bottom: 10px;
+                            border-top: 1px solid $line-color;
                             border-bottom: 1px solid $line-color;
+                            padding-top: 5px;
                             padding-bottom: 5px;
                             font-size: $font-size-s;
                             dt {

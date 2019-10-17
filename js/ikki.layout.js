@@ -834,6 +834,7 @@ function initMessage() {
                 ccList = [],
                 content =
                     '<div class="mail-content">' +
+                        '<h6><strong>' + dataItem.subject + '</strong></h6>' +
                         '<dl class="row no-gutters">' +
                             '<dt class="col-2">发件人：</dt>' +
                             '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<small>&lt;' + dataItem.email + '&gt;</small></dd>' +
@@ -957,6 +958,7 @@ function initMessage() {
                 ccList = [],
                 content =
                     '<div class="mail-content">' +
+                        '<h6><strong>' + dataItem.subject + '</strong></h6>' +
                         '<dl class="row no-gutters">' +
                             '<dt class="col-2">发件人：</dt>' +
                             '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<small>&lt;' + dataItem.email + '&gt;</small></dd>' +

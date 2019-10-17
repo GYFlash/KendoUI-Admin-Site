@@ -734,10 +734,17 @@ iframe#section {
         overflow: auto;
         padding: 10px 20px;
         height: 600px; }
+        #menuH #messageBox .card .card-body #messageDrawer .mail-content h6,
+        #menuV #messageBox .card .card-body #messageDrawer .mail-content h6 {
+          line-height: 1.5;
+          white-space: normal; }
         #menuH #messageBox .card .card-body #messageDrawer .mail-content dl,
         #menuV #messageBox .card .card-body #messageDrawer .mail-content dl {
+          margin-top: 10px;
           margin-bottom: 10px;
+          border-top: 1px solid #ccc;
           border-bottom: 1px solid #ccc;
+          padding-top: 5px;
           padding-bottom: 5px;
           font-size: 12px; }
           #menuH #messageBox .card .card-body #messageDrawer .mail-content dl dt,
