@@ -47,9 +47,10 @@ $(function () {
         change: function (e) {
             $('#listFrom .listItem .ids').prop('checked', false);
             this.select().find('.ids').prop('checked', true);
+            selectHalf('From');
         },
         dataBound: function () {
-            $('#selectAllFrom').prop('checked', false);
+            selectHalf('From');
         }
     }).data('kendoListView');
     var listTo = $('#listTo').kendoListView({
@@ -82,9 +83,10 @@ $(function () {
         change: function (e) {
             $('#listTo .listItem .ids').prop('checked', false);
             this.select().find('.ids').prop('checked', true);
+            selectHalf('To');
         },
         dataBound: function () {
-            $('#selectAllTo').prop('checked', false);
+            selectHalf('To');
         }
     }).data('kendoListView');
     // 全选
@@ -104,6 +106,7 @@ $(function () {
     });
     // 单选
     $('#listFrom').on('click', '.ids', function () {
+        selectHalf('From');
         if ($(this).prop('checked')) {
             listFrom.select($(this).parents('.listItem'));
         } else {
@@ -111,6 +114,7 @@ $(function () {
         }
     });
     $('#listTo').on('click', '.ids', function () {
+        selectHalf('To');
         if ($(this).prop('checked')) {
             listTo.select($(this).parents('.listItem'));
         } else {
@@ -249,3 +253,14 @@ $(function () {
         listTo.dataSource.cancelChanges();
     });
 });
+
+// 半选
+function selectHalf(type) {
+    if ($('#list' + type).find('.ids:checked').length < $('#list' + type).find('.ids').length && $('#list' + type).find('.ids:checked').length > 0) {
+        $('#selectAll' + type).prop('checked', false).prop('indeterminate', true);
+    } else if ($('#list' + type).find('.ids:checked').length === $('#list' + type).find('.ids').length) {
+        $('#selectAll' + type).prop('indeterminate', false).prop('checked', true);
+    } else {
+        $('#selectAll' + type).prop('indeterminate', false).prop('checked', false);
+    }
+}

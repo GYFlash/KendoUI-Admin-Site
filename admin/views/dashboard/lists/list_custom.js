@@ -634,6 +634,7 @@ $(function () {
         change: function (e) {
             $('.listItem .ids').prop('checked', false);
             this.select().find('.ids').prop('checked', true);
+            selectHalf();
         },
         navigatable: true,
         editTemplate: kendo.template($('#editTemplate').html()),
@@ -1191,7 +1192,7 @@ $(function () {
             });
         },
         dataBound: function () {
-            $('#selectAll').prop('checked', false);
+            selectHalf();
         }
     });
     // 获取数据源并分页
@@ -1212,6 +1213,7 @@ $(function () {
     });
     // 单选
     $('.k-listview').on('click', '.ids', function () {
+        selectHalf();
         if ($(this).prop('checked')) {
             $('#listView').data('kendoListView').select($(this).parents('.listItem'));
         } else {
@@ -1244,6 +1246,17 @@ $(function () {
         });
     });
 });
+
+// 半选
+function selectHalf() {
+    if ($('#listView').find('.ids:checked').length < $('#listView').find('.ids').length && $('#listView').find('.ids:checked').length > 0) {
+        $('#selectAll').prop('checked', false).prop('indeterminate', true);
+    } else if ($('#listView').find('.ids:checked').length === $('#listView').find('.ids').length) {
+        $('#selectAll').prop('indeterminate', false).prop('checked', true);
+    } else {
+        $('#selectAll').prop('indeterminate', false).prop('checked', false);
+    }
+}
 
 // 排序
 function order(dir) {
