@@ -645,8 +645,14 @@ $(function () {
                             return dataItem.online;
                         }
                     },
-                    { name: 'destroy',
-                        iconClass: 'k-icon k-i-x'
+                    { name: 'del', text: '删除',
+                        iconClass: 'k-icon k-i-x',
+                        click: function (e) {
+                            e.preventDefault();
+                            confirmMsg('删除确认', '你确定要删除这条数据吗？', 'question', function () {
+                                $('#grid').data('kendoGrid').removeRow($(e.target).closest('tr'));
+                            });
+                        }
                     }
                 ]
             },
@@ -833,7 +839,8 @@ $(function () {
                 width: '80%',
                 height: '40%'
             },
-            template: kendo.template($('#editTemplate').html())
+            template: kendo.template($('#editTemplate').html()),
+            confirmation: false
         },
         edit: function (e) {
             if (e.model.id === '') {
