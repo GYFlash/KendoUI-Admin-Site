@@ -916,7 +916,7 @@ $(function () {
         ],
         columns: [
             { selectable: true, width: '40px' },
-            { title: '操作', width: '90px',
+            { title: '操作', width: '100px',
                 command: [
                     { name: 'detail', text: '详情',
                         iconClass: 'k-icon k-i-txt',

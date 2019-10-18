@@ -2700,6 +2700,11 @@ form {
 
 /* 表格 */
 .k-grid {
+    .fa {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+    }
     .k-hierarchy-cell + td {
         border-left-width: 1px;
     }

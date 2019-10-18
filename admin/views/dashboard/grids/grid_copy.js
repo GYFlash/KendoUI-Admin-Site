@@ -168,7 +168,7 @@ $(function () {
             { template: '<span class="float-right py-1 theme-m">注：年龄和身高联动、生日和配偶生日联动~</span>' }
         ],
         columns: [
-            { locked: true, title: '操作', width: '90px',
+            { locked: true, title: '操作', width: '100px',
                 command: [
                     { name: 'copy', text: '复制',
                         iconClass: 'k-icon k-i-copy',

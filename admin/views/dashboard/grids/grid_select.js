@@ -255,9 +255,10 @@ $(function () {
         change: function (e) {
             $('.k-grid-content .ids').prop('checked', false);
             this.select().find('.ids').prop('checked', true);
+            selectHalf();
         },
         dataBound: function () {
-            $('#selectAll').prop('checked', false);
+            selectHalf();
         }
     });
     // 全选
@@ -270,6 +271,7 @@ $(function () {
     });
     // 单选
     $('.k-grid-content').on('click', '.ids', function () {
+        selectHalf();
         if ($(this).prop('checked')) {
             $('#grid').data('kendoGrid').select($(this).parents('tr'));
         } else {
@@ -278,3 +280,14 @@ $(function () {
         }
     });
 });
+
+// 半选
+function selectHalf() {
+    if ($('#grid').find('.ids:checked').length < $('#grid').find('.ids').length && $('#grid').find('.ids:checked').length > 0) {
+        $('#selectAll').prop('checked', false).prop('indeterminate', true);
+    } else if ($('#grid').find('.ids:checked').length === $('#grid').find('.ids').length) {
+        $('#selectAll').prop('indeterminate', false).prop('checked', true);
+    } else {
+        $('#selectAll').prop('indeterminate', false).prop('checked', false);
+    }
+}
