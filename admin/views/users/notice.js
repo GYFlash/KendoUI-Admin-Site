@@ -186,6 +186,7 @@ $(function () {
             });
             // 单选
             $('#' + noticeType + 'ListView').on('click', '.ids', function () {
+                selectHalf(noticeType);
                 if ($(this).prop('checked')) {
                     $('#' + noticeType + 'ListView').data('kendoListView').select($(this).parents('.media'));
                 } else {
@@ -198,7 +199,6 @@ $(function () {
     $.fn.ajaxPost({
         ajaxUrl: 'json/notice.json',
         succeed: function (res) {
-            $('#noticeTabStripView').find('.k-tabstrip-items .badge').remove();
             if (res.systemNotificationTotal > 0) {
                 $('#noticeTabStripView .k-tabstrip-items > li:eq(0) > .k-link').append('<span class="badge theme-s-bg">' + res.systemNotificationTotal + '</span>');
             }
@@ -271,9 +271,10 @@ function getSystemNotificationView() {
         change: function (e) {
             $('#systemNotificationListView .ids').prop('checked', false);
             this.select().find('.ids').prop('checked', true);
+            selectHalf('systemNotification');
         },
         dataBound: function () {
-            $('#systemNotificationSelectAll').prop('checked', false);
+            selectHalf('systemNotification');
         }
     });
 }
@@ -336,9 +337,10 @@ function getUserUpdatingView() {
         change: function (e) {
             $('#userUpdatingListView .ids').prop('checked', false);
             this.select().find('.ids').prop('checked', true);
+            selectHalf('userUpdating');
         },
         dataBound: function () {
-            $('#userUpdatingSelectAll').prop('checked', false);
+            selectHalf('userUpdating');
         }
     });
 }
@@ -400,11 +402,23 @@ function getToDoItemsView() {
         change: function (e) {
             $('#toDoItemsListView .ids').prop('checked', false);
             this.select().find('.ids').prop('checked', true);
+            selectHalf('toDoItems');
         },
         dataBound: function () {
-            $('#toDoItemsSelectAll').prop('checked', false);
+            selectHalf('toDoItems');
         }
     });
+}
+
+// 半选
+function selectHalf(type) {
+    if ($('#' + type + 'ListView').find('.ids:checked').length < $('#' + type + 'ListView').find('.ids').length && $('#' + type + 'ListView').find('.ids:checked').length > 0) {
+        $('#' + type + 'SelectAll').prop('checked', false).prop('indeterminate', true);
+    } else if ($('#' + type + 'ListView').find('.ids:checked').length === $('#' + type + 'ListView').find('.ids').length) {
+        $('#' + type + 'SelectAll').prop('indeterminate', false).prop('checked', true);
+    } else {
+        $('#' + type + 'SelectAll').prop('indeterminate', false).prop('checked', false);
+    }
 }
 
 // 全部已读
