@@ -2921,12 +2921,12 @@ form {
             border-top: 0;
         }
         .k-edit-button,
-        .k-delete-button {
+        .k-del-button {
             visibility: hidden;
         }
         &:hover {
             .k-edit-button,
-            .k-delete-button {
+            .k-del-button {
                 visibility: visible;
             }
         }

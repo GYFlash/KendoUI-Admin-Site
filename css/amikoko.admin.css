@@ -2402,10 +2402,10 @@ form .searchBtn.row {
   .k-listview > div:first-child {
     border-top: 0; }
   .k-listview > div .k-edit-button,
-  .k-listview > div .k-delete-button {
+  .k-listview > div .k-del-button {
     visibility: hidden; }
   .k-listview > div:hover .k-edit-button,
-  .k-listview > div:hover .k-delete-button {
+  .k-listview > div:hover .k-del-button {
     visibility: visible; }
   .k-listview > div.k-edit-item {
     background: #f5f5f5; }

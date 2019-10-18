@@ -795,6 +795,19 @@ function cudItem(options, data, url, succeed) {
     });
 }
 
+// 自定义删除
+function btnDestroy(e) {
+    e.preventDefault();
+    confirmMsg('删除确认', '你确定要删除这条数据吗？', 'question', function () {
+        if ($('#grid').length > 0) {
+            $('#grid').data('kendoGrid').removeRow($(e.target).closest('tr'));
+        }
+        if ($('#listView').length > 0) {
+            $('#listView').data('kendoListView').remove($(e.target).closest('.listItem'));
+        }
+    });
+}
+
 // 读取条目
 function readItem(options, url, succeed) {
     $.fn.ajaxPost({
