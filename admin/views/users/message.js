@@ -128,7 +128,7 @@ $(function () {
     $('#inboxToolbar').width($('#messageDrawerContentView').width()).kendoToolBar({
         items: [
             {
-                template: '<input class="k-checkbox" id="inboxSelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="inboxSelectAll"></label>'
+                template: '<input class="k-checkbox" id="inboxSelectAll" type="checkbox"><label class="k-checkbox-label" for="inboxSelectAll" title="全选"></label>'
             },
             {
                 type: 'button',
@@ -285,7 +285,7 @@ $(function () {
             '<div class="mail-list# if (unread) { # unread# } #">' +
                 '<h5>' +
                     '<input class="k-checkbox ids" id="#= id #Ids" type="checkbox" value="#= id #"><label class="k-checkbox-label" for="#= id #Ids"></label>' +
-                    '<img src="#= avatar #" alt="#= email #">' +
+                    '<img src="#= avatar #" alt="#= email #" title="<#= email #>">' +
                     '#= nickName #' +
                 '</h5>' +
                 '<p>#= subject #</p>' +

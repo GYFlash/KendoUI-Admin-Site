@@ -823,7 +823,7 @@ function initMessage() {
         selectable: true,
         template:
             '<div class="mail-list# if (unread) { # unread# } #">' +
-                '<h5><img src="#= avatar #" alt="#= email #">#= nickName #</h5>' +
+                '<h5><img src="#= avatar #" alt="#= email #" title="<#= email #>">#= nickName #</h5>' +
                 '<p>#= subject #</p>' +
                 '<time>#= time #</time>' +
             '</div>',
@@ -945,7 +945,7 @@ function initMessage() {
             '<div class="mail-list unread">' +
                 '<h5>' +
                     '# for (var i = 0; i < to.length; i++) { #' +
-                        '<img src="#= to[i].avatar #" alt="#= to[i].email #" title="#= to[i].nickName #">' +
+                        '<img src="#= to[i].avatar #" alt="#= to[i].email #" title="#= to[i].nickName # <#= to[i].email #>">' +
                     '# } #' +
                 '</h5>' +
                 '<p>#= subject #</p>' +

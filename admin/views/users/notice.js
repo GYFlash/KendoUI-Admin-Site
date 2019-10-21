@@ -35,7 +35,7 @@ $(function () {
                 $('#' + noticeType + 'Toolbar').kendoToolBar({
                     items: [
                         {
-                            template: '<input class="k-checkbox" id="' + noticeType + 'SelectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="' + noticeType + 'SelectAll"></label>'
+                            template: '<input class="k-checkbox" id="' + noticeType + 'SelectAll" type="checkbox"><label class="k-checkbox-label" for="' + noticeType + 'SelectAll" title="全选"></label>'
                         },
                         {
                             type: 'button',

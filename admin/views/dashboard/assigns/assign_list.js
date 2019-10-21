@@ -3,7 +3,7 @@ $(function () {
     $('#toolbarFrom').kendoToolBar({
         resizable: false,
         items: [
-            { template: '<input class="k-checkbox" id="selectAllFrom" type="checkbox" title="全选"><label class="k-checkbox-label" for="selectAllFrom"></label>' },
+            { template: '<input class="k-checkbox" id="selectAllFrom" type="checkbox"><label class="k-checkbox-label" for="selectAllFrom" title="全选"></label>' },
             { type: 'spacer' },
             { template: '<input class="k-textbox w-100" name="keywords" type="text" placeholder="关键字搜索">' }
         ]
@@ -11,7 +11,7 @@ $(function () {
     $('#toolbarTo').kendoToolBar({
         resizable: false,
         items: [
-            { template: '<input class="k-checkbox" id="selectAllTo" type="checkbox" title="全选"><label class="k-checkbox-label" for="selectAllTo"></label>' },
+            { template: '<input class="k-checkbox" id="selectAllTo" type="checkbox"><label class="k-checkbox-label" for="selectAllTo" title="全选"></label>' },
             { type: 'spacer' },
             { template: '<input class="k-textbox w-100" name="keywords" type="text" placeholder="关键字搜索">' }
         ]

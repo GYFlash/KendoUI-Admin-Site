@@ -300,7 +300,7 @@ $(function () {
     $('#toolbar').kendoToolBar({
         resizable: false,
         items: [
-            { template: '<input class="k-checkbox" id="selectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="selectAll"></label>' },
+            { template: '<input class="k-checkbox" id="selectAll" type="checkbox"><label class="k-checkbox-label" for="selectAll" title="全选"></label>' },
             { template: '<a class="k-button k-button-icontext k-state-selected k-add-button" href="javascript:;"><span class="k-icon k-i-add"></span>新增</a>' },
             { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="batchSubmitId(\'json/response.json\')"><span class="k-icon k-i-x"></span>批量删除</a>' },
             { type: 'spacer' },

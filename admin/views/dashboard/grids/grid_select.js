@@ -81,7 +81,7 @@ $(function () {
         ],
         columns: [
             { field: 'id', width: '40px',
-                headerTemplate: '<input class="k-checkbox" id="selectAll" type="checkbox" title="全选"><label class="k-checkbox-label" for="selectAll"></label>',
+                headerTemplate: '<input class="k-checkbox" id="selectAll" type="checkbox"><label class="k-checkbox-label" for="selectAll" title="全选"></label>',
                 template: '<input class="k-checkbox ids" id="#= id #Ids" type="checkbox" value="#= id #"><label class="k-checkbox-label" for="#= id #Ids"></label>'
             },
             { field: 'userName', title: '用户名', width: '80px' },
