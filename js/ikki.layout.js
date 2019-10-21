@@ -669,7 +669,7 @@ function initMessage() {
                 '<li class="k-state-selected" id="inboxDrawer" data-role="drawer-item"><i class="fas fa-inbox" title="收件箱"></i>收件箱</li>' +
                 '<li data-role="drawer-item"><i class="fas fa-envelope" title="发件箱"></i>发件箱</li>' +
                 '<li data-role="drawer-separator"></li>' +
-                '<li data-role="drawer-item" id="smsDrawer"><i class="fas fa-comments" title="短信息"></i>短信息</li>' +
+                '<li id="smsDrawer" data-role="drawer-item"><i class="fas fa-comments" title="短信息"></i>短信息</li>' +
                 '<li data-role="drawer-separator"></li>' +
                 '<li data-role="drawer-item"><i class="fas fa-address-book" title="通讯录"></i>通讯录</li>' +
             '</ul>',
@@ -823,7 +823,7 @@ function initMessage() {
         selectable: true,
         template:
             '<div class="mail-list# if (unread) { # unread# } #">' +
-                '<h5><img src="#= avatar #" alt="#= email #" title="<#= email #>">#= nickName #</h5>' +
+                '<h5><img src="#= avatar #" alt="#= email #" title="&lt;#= email #&gt;">#= nickName #</h5>' +
                 '<p>#= subject #</p>' +
                 '<time>#= time #</time>' +
             '</div>',
@@ -945,7 +945,7 @@ function initMessage() {
             '<div class="mail-list unread">' +
                 '<h5>' +
                     '# for (var i = 0; i < to.length; i++) { #' +
-                        '<img src="#= to[i].avatar #" alt="#= to[i].email #" title="#= to[i].nickName # <#= to[i].email #>">' +
+                        '<img src="#= to[i].avatar #" alt="#= to[i].email #" title="#= to[i].nickName # &lt;#= to[i].email #&gt;">' +
                     '# } #' +
                 '</h5>' +
                 '<p>#= subject #</p>' +

@@ -8,7 +8,7 @@ $(function () {
                 '<li class="k-state-selected" id="inboxDrawerView" data-role="drawer-item"><i class="fas fa-inbox" title="收件箱"></i>收件箱</li>' +
                 '<li data-role="drawer-item"><i class="fas fa-envelope" title="发件箱"></i>发件箱</li>' +
                 '<li data-role="drawer-separator"></li>' +
-                '<li data-role="drawer-item" id="smsDrawerView"><i class="fas fa-comments" title="短信息"></i>短信息</li>' +
+                '<li id="smsDrawerView" data-role="drawer-item"><i class="fas fa-comments" title="短信息"></i>短信息</li>' +
                 '<li data-role="drawer-separator"></li>' +
                 '<li data-role="drawer-item"><i class="fas fa-address-book" title="通讯录"></i>通讯录</li>' +
             '</ul>',
@@ -285,7 +285,7 @@ $(function () {
             '<div class="mail-list# if (unread) { # unread# } #">' +
                 '<h5>' +
                     '<input class="k-checkbox ids" id="#= id #Ids" type="checkbox" value="#= id #"><label class="k-checkbox-label" for="#= id #Ids"></label>' +
-                    '<img src="#= avatar #" alt="#= email #" title="<#= email #>">' +
+                    '<img src="#= avatar #" alt="#= email #" title="&lt;#= email #&gt;">' +
                     '#= nickName #' +
                 '</h5>' +
                 '<p>#= subject #</p>' +
@@ -294,7 +294,7 @@ $(function () {
         change: function (e) {
             $('#inboxView .ids').prop('checked', false);
             this.select().find('.ids').prop('checked', true);
-            selectHalf();
+            selectHalf('inbox');
             // 收件箱明细
             if (this.select().length > 0) {
                 var dataItem = e.sender.dataItem(e.sender.select()),
@@ -340,7 +340,7 @@ $(function () {
             }
         },
         dataBound: function () {
-            selectHalf();
+            selectHalf('inbox');
         }
     });
     // 收件箱已读
@@ -384,7 +384,7 @@ $(function () {
     });
     // 收件箱单选
     $('#inboxView').on('click', '.ids', function () {
-        selectHalf();
+        selectHalf('inbox');
         if ($(this).prop('checked')) {
             $('#inboxView').data('kendoListView').select($(this).parents('.mail-list'));
         } else {
@@ -430,14 +430,14 @@ function postMailView(type, toList, ccList, subject, content) {
     $('#messageDrawerContentView > div').addClass('hide').eq(0).removeClass('hide');
 }
 
-// 收件箱半选
-function selectHalf() {
-    if ($('#inboxView').find('.ids:checked').length < $('#inboxView').find('.ids').length && $('#inboxView').find('.ids:checked').length > 0) {
-        $('#inboxSelectAll').prop('checked', false).prop('indeterminate', true);
-    } else if ($('#inboxView').find('.ids:checked').length === $('#inboxView').find('.ids').length) {
-        $('#inboxSelectAll').prop('indeterminate', false).prop('checked', true);
+// 半选
+function selectHalf(type) {
+    if ($('#' + type + 'View').find('.ids:checked').length < $('#' + type + 'View').find('.ids').length && $('#' + type + 'View').find('.ids:checked').length > 0) {
+        $('#' + type + 'SelectAll').prop('checked', false).prop('indeterminate', true);
+    } else if ($('#' + type + 'View').find('.ids:checked').length === $('#' + type + 'View').find('.ids').length) {
+        $('#' + type + 'SelectAll').prop('indeterminate', false).prop('checked', true);
     } else {
-        $('#inboxSelectAll').prop('indeterminate', false).prop('checked', false);
+        $('#' + type + 'SelectAll').prop('indeterminate', false).prop('checked', false);
     }
 }
 
