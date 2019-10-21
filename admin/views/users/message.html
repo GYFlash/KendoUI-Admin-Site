@@ -27,6 +27,7 @@
             </div>
             <div>
                 <div class="row no-gutters">
+                    <div class="col-12" id="inboxToolbar"></div>
                     <div class="col-md-4 col-xl-3" id="inboxView"></div>
                     <div class="d-none d-md-block col-md-8 col-xl-9">
                         <div class="blank"></div>
@@ -72,6 +73,16 @@
         #messageDrawerView {
             border-radius: 4px;
         }
+        #messageDrawerView i,
+        .k-window-content .mail-content i {
+            margin-right: 6px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            line-height: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
         #messageDrawerView .k-drawer-container {
             border-top-left-radius: 4px;
             border-bottom-left-radius: 4px;
@@ -83,12 +94,6 @@
         }
         #messageDrawerView .k-drawer-container .k-drawer-item i {
             margin: 0 12px 0 4px;
-            width: 16px;
-            height: 16px;
-            font-size: 16px;
-            line-height: 16px;
-            text-align: center;
-            vertical-align: middle;
         }
         #messageDrawerView .k-drawer-container .k-drawer-item .badge {
             margin-left: 6px;
@@ -115,38 +120,126 @@
             height: 40px;
             cursor: pointer;
         }
+        #messageDrawerBtnView i {
+            margin: 0;
+        }
+        #messageDrawerContentView > div,
+        #messageDrawerContentView > div > .row,
+        #messageDrawerContentView > div .blank {
+            height: 100%;
+        }
+        #messageDrawerContentView .k-toolbar {
+            padding: 8px;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            height: 48px;
+        }
+        #messageDrawerContentView > div > .row > .col-md-4,
+        #messageDrawerContentView > div > .row > .col-md-8 {
+            height: calc(100% - 48px);
+        }
+        #messageDrawerContentView .k-toolbar .k-checkbox-label {
+            margin-left: 4px;
+        }
+        #messageDrawerView .k-listview {
+            border: 0;
+            background: #eee;
+            box-shadow: 1px 0 2px rgba(0, 0, 0, .1);
+        }
+        #messageDrawerView .k-listview .mail-list {
+            padding: 8px 12px;
+        }
+        #messageDrawerView .k-listview .mail-list .k-checkbox-label {
+            margin-right: 8px;
+        }
+        #messageDrawerView .k-listview .mail-list img {
+            margin: 0 6px 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+        #messageDrawerView .k-listview .mail-list h5 {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #bababa;
+        }
+        #messageDrawerView .k-listview .mail-list p {
+            margin-bottom: 3px;
+            font-size: 12px;
+            color: #bababa;
+        }
+        #messageDrawerView .k-listview .mail-list time {
+            font-size: 12px;
+            color: #bababa;
+        }
+        #messageDrawerView .k-listview .unread h5 {
+            color: #000;
+        }
+        #messageDrawerView .k-listview .unread p {
+            color: #666;
+        }
+        #messageDrawerView .k-listview .unread time {
+            color: #999;
+        }
+        #messageDrawerView .k-listview .k-state-selected h5,
+        #messageDrawerView .k-listview .k-state-selected p,
+        #messageDrawerView .k-listview .k-state-selected time {
+            color: #000;
+        }
         #messageDrawerView .blank {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        #messageDrawerContentView > div,
-        #messageDrawerContentView > div > .row,
-        #messageDrawerContentView > div > .row > div,
-        #messageDrawerContentView > div .blank {
-            height: 100%;
-        }
         #messageDrawerView .mail-content {
             overflow: auto;
             padding: 10px 20px;
+            height: 100%;
         }
-        #messageDrawerView .mail-content .btns {
+        #messageDrawerView .mail-content h6,
+        .k-window-content .mail-content h6 {
+            line-height: 1.5;
+        }
+        #messageDrawerView .mail-content dl,
+        .k-window-content .mail-content dl {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-size: 12px;
+        }
+        #messageDrawerView .mail-content dt,
+        .k-window-content .mail-content dt {
+            font-weight: normal;
+            color: #999;
+            text-align: right;
+        }
+        #messageDrawerView .mail-content dd > img,
+        .k-window-content .mail-content dd > img {
+            margin-right: 3px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            vertical-align: -10%;
+        }
+        #messageDrawerView .mail-content .btns,
+        .k-window-content .mail-content .btns {
             margin-top: 10px;
             border-top: 1px solid #ccc;
-            padding: 10px;
+            padding: 10px 5px;
             text-align: center;
         }
-        #messageDrawerView .mail-content .btns button {
+        #messageDrawerView .mail-content .btns button,
+        .k-window-content .mail-content .btns button {
             margin: 0 10px;
         }
-        #messageDrawerView .mail-content .btns button i {
-            margin-right: 6px;
-            width: 16px;
-            height: 16px;
-            font-size: 16px;
-            line-height: 16px;
-            text-align: center;
-            vertical-align: middle;
+        #writeMailView {
+            height: 100%;
         }
         #writeMailView .mail-content {
             padding: 20px;
@@ -195,6 +288,39 @@
         #msgReceiverView-list li.k-state-focused,
         #msgCCView-list li.k-state-focused {
             box-shadow: none;
+        }
+        @media only screen and (max-width: 575px) {
+            #messageDrawerContentView .k-toolbar .k-textbox {
+                width: 120px;
+            }
+            #messageDrawerContentView .k-toolbar .k-overflow-anchor {
+                width: 20px;
+            }
+            .k-window .k-window-title img {
+                border-radius: 50%;
+                vertical-align: -20%;
+            }
+            .k-window .k-window-title strong {
+                font-size: 14px;
+                line-height: 20px;
+                color: #000;
+            }
+            .k-window .k-window-title small {
+                margin-left: 6px;
+                color: #999;
+            }
+        }
+        @media only screen and (max-width: 425px) {
+            #messageDrawerContentView .k-toolbar .k-textbox {
+                width: 78px;
+            }
+        }
+        .ids {
+            z-index: 1;
+            width: 16px;
+            height: 16px;
+            clip: auto;
+            pointer-events: auto;
         }
     </style>
 </script>
