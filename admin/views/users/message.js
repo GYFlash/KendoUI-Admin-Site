@@ -391,6 +391,200 @@ $(function () {
             $(this).parents('.mail-list').removeClass('k-state-selected').removeAttr('aria-selected');
         }
     });
+    // 发件箱工具栏
+    $('#messageDrawerContentView > div:eq(2)').removeClass('hide');
+    $('#outboxToolbar').width($('#messageDrawerContentView').width()).kendoToolBar({
+        items: [
+            {
+                template: '<input class="k-checkbox" id="outboxSelectAll" type="checkbox"><label class="k-checkbox-label" for="outboxSelectAll" title="全选"></label>'
+            },
+            {
+                type: 'button',
+                text: '删除',
+                icon: 'x',
+                click: function () {
+                    batchDel('outbox');
+                }
+            },
+            {
+                type: 'button',
+                text: '清空',
+                icon: 'trash',
+                click: function () {
+                    emptyAll('outbox', '发件箱');
+                }
+            },
+            {
+                type: 'spacer'
+            },
+            {
+                type: 'button',
+                text: '升序',
+                icon: 'sort-asc',
+                attributes: { 'class': 'orderBtn' },
+                hidden: true,
+                overflow: 'never',
+                click: function () {
+                    order('outbox', 'desc');
+                }
+            },
+            {
+                type: 'button',
+                text: '降序',
+                icon: 'sort-desc',
+                attributes: { 'class': 'orderBtn' },
+                overflow: 'never',
+                click: function () {
+                    order('outbox', 'asc');
+                }
+            },
+            {
+                template: '<span class="k-textbox k-space-left"><input id="outboxSearch" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
+            }
+        ]
+    });
+    $('#messageDrawerContentView > div:eq(2)').addClass('hide');
+    // 发件箱搜索
+    $('#outboxSearch').keyup(function () {
+        $('#outboxView').data('kendoListView').dataSource.filter({
+            logic: 'or',
+            filters: [
+                { field: 'nickName', operator: 'contains', value: $(this).val() },
+                { field: 'email', operator: 'contains', value: $(this).val() },
+                { field: 'subject', operator: 'contains', value: $(this).val() },
+                { field: 'content', operator: 'contains', value: $(this).val() },
+                { field: 'time', operator: 'contains', value: $(this).val() }
+            ]
+        });
+    });
+    // 发件箱列表
+    $('#outboxView').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'outbox'
+                        },
+                        ajaxUrl: 'json/message.json',
+                        succeed: function (res) {
+                            options.success(res);
+                            if (res.outbox.length === 0) {
+                                $('#outboxView').html('<div class="blank">您的发件箱是空的~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.outbox.length;
+                },
+                data: 'outbox',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        nickName: { type: 'string' },
+                        email: { type: 'string' },
+                        to: { type: 'object',
+                            defaultValue: []
+                        },
+                        cc: { type: 'object',
+                            defaultValue: []
+                        },
+                        subject: { type: 'string' },
+                        content: { type: 'string' },
+                        time: { type: 'string' }
+                    }
+                }
+            },
+            pageSize: 10
+        },
+        height: $('#outboxView').height(),
+        scrollable: 'endless',
+        selectable: 'multiple',
+        template:
+            '<div class="mail-list unread">' +
+                '<h5>' +
+                    '<input class="k-checkbox ids" id="#= id #Ids" type="checkbox" value="#= id #"><label class="k-checkbox-label" for="#= id #Ids"></label>' +
+                    '# for (var i = 0; i < to.length; i++) { #' +
+                        '<img src="#= to[i].avatar #" alt="#= to[i].email #" title="#= to[i].nickName # &lt;#= to[i].email #&gt;">' +
+                    '# } #' +
+                '</h5>' +
+                '<p>#= subject #</p>' +
+                '<time>#= time #</time>' +
+            '</div>',
+        change: function (e) {
+            $('#outboxView .ids').prop('checked', false);
+            this.select().find('.ids').prop('checked', true);
+            selectHalf('outbox');
+            // 发件箱明细
+            if (this.select().length > 0) {
+                var dataItem = e.sender.dataItem(e.sender.select()),
+                    toList = [],
+                    ccList = [],
+                    content =
+                        '<div class="mail-content">' +
+                            '<h6><strong>' + dataItem.subject + '</strong></h6>' +
+                            '<dl class="row no-gutters">' +
+                                '<dt class="col-2">发件人：</dt>' +
+                                '<dd class="col-10"><img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '">' + dataItem.nickName + '<small>&lt;' + dataItem.email + '&gt;</small></dd>' +
+                                '<dt class="col-2">收件人：</dt>' +
+                                '<dd class="col-10">';
+                for (var i = 0; i < dataItem.to.length; i++) {
+                    content +=      '<img src="' + dataItem.to[i].avatar + '" alt="' + dataItem.to[i].nickName + '">' + dataItem.to[i].nickName + '<small>&lt;' + dataItem.to[i].email + '&gt;;</small><br>';
+                    toList.push(dataItem.to[i].email);
+                }
+                    content +=  '</dd>';
+                if (dataItem.cc.length > 0) {
+                    content +=  '<dt class="col-2">抄送：</dt>' +
+                                '<dd class="col-10">';
+                    for (var k = 0; k < dataItem.cc.length; k++) {
+                        content +=  '<img src="' + dataItem.cc[k].avatar + '" alt="' + dataItem.cc[k].nickName + '">' + dataItem.cc[k].nickName + '<small>&lt;' + dataItem.cc[k].email + '&gt;;</small><br>';
+                        ccList.push(dataItem.cc[k].email);
+                    }
+                    content +=  '</dd>';
+                }
+                    content +=  '<dt class="col-2">时间：</dt>' +
+                                '<dd class="col-10">' + kendo.toString(kendo.parseDate(dataItem.time), 'yyyy-MM-dd（ddd）HH:mm') + '</dd>' +
+                            '</dl>' +
+                            '<div class="content">' + dataItem.content + '</div>' +
+                            '<div class="btns">' +
+                                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="postMailView(\'reedit\', \'' + toList + '\', \'' + ccList + '\', \'' + dataItem.subject + '\', \'' + dataItem.content + '\');"><i class="fas fa-edit"></i>再次编辑</button>' +
+                            '</div>' +
+                        '</div>';
+                if (window.outerWidth < 768) {
+                    divWindow('<img src="' + dataItem.avatar + '" alt="' + dataItem.nickName + '"><strong>' + dataItem.nickName + '</strong><small>&lt;' + dataItem.email + '&gt;</small>', '90%', '45%', content);
+                } else {
+                    $('#outboxView').next().html(content);
+                }
+            }
+        },
+        dataBound: function () {
+            selectHalf('outbox');
+        }
+    });
+    // 发件箱全选
+    $('#outboxSelectAll').click(function () {
+        if ($(this).prop('checked')) {
+            $('#outboxView').data('kendoListView').select($('#outboxView .mail-list'));
+        } else {
+            $('#outboxView').data('kendoListView').clearSelection();
+        }
+    });
+    // 发件箱单选
+    $('#outboxView').on('click', '.ids', function () {
+        selectHalf('outbox');
+        if ($(this).prop('checked')) {
+            $('#outboxView').data('kendoListView').select($(this).parents('.mail-list'));
+        } else {
+            $(this).parents('.mail-list').removeClass('k-state-selected').removeAttr('aria-selected');
+        }
+    });
 });
 
 // 发送站内信
