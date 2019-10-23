@@ -46,10 +46,8 @@
             <div class="hide"></div>
             <div class="hide">
                 <div class="row no-gutters">
-                    <div class="col-md-4 col-xl-3">
-                        <div id="smsSearchView"><span class="k-textbox k-space-left w-100"><input type="text" placeholder="搜索"><a class="k-icon k-i-search k-required ml-1" href="javascript:;"></a></span></div>
-                        <div id="smsView"></div>
-                    </div>
+                    <div class="col-12" id="smsToolbar"></div>
+                    <div class="col-md-4 col-xl-3" id="smsView"></div>
                     <div class="d-none d-md-block col-md-8 col-xl-9">
                         <div class="blank"></div>
                     </div>
@@ -134,6 +132,7 @@
             border-top: 0;
             border-left: 0;
             border-right: 0;
+            border-radius: 0 4px 0 0;
             height: 48px;
         }
         #messageDrawerContentView > div > .row > .col-md-4,
@@ -188,6 +187,68 @@
         #messageDrawerView .k-listview .k-state-selected p,
         #messageDrawerView .k-listview .k-state-selected time {
             color: #000;
+        }
+        #messageDrawerView .k-listview .sms-list {
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 8px 12px;
+        }
+        #messageDrawerView .k-listview .sms-list .k-checkbox-label {
+            margin-right: 8px;
+        }
+        #messageDrawerView .k-listview .sms-list figure {
+            flex: 0 0 44px;
+            margin: 0;
+            padding-right: 8px;
+        }
+        #messageDrawerView .k-listview .sms-list sup {
+            display: inline-block;
+            position: absolute;
+            top: 1px;
+            left: 33px;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+            transform: scale(0.8);
+        }
+        #messageDrawerView .k-listview .sms-list img {
+            border-radius: 4px;
+            width: 100%;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, .2);
+        }
+        #messageDrawerView .k-listview .sms-list > div {
+            flex: auto;
+        }
+        #messageDrawerView .k-listview .sms-list h5 {
+            margin-bottom: 2px;
+            font-size: 14px;
+            color: #000;
+        }
+        #messageDrawerView .k-listview .sms-list strong {
+            display: inline-block;
+            width: calc(100% - 36px);
+            font-weight: normal;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        #messageDrawerView .k-listview .sms-list time {
+            float: right;
+            font-size: 12px;
+            color: #999;
+        }
+        #messageDrawerView .k-listview .sms-list p {
+            margin-bottom: 0;
+            width: 80px;
+            font-size: 12px;
+            color: #999;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
         #messageDrawerView .blank {
             display: flex;
@@ -290,12 +351,32 @@
         #msgCCView-list li.k-state-focused {
             box-shadow: none;
         }
+        #smsChatView {
+            border-top: 0;
+            border-right: 0;
+            border-bottom: 0;
+            border-radius: 0 0 4px 0;
+            max-width: none;
+            background: #f4f4f4;
+        }
+        #smsChatView .k-message-list img {
+            border: 1px solid #ccc;
+        }
+        #smsChatView .k-message-list time {
+            color: #999;
+        }
+        #smsChatView .k-message-box {
+            border-color: #ccc;
+        }
         @media only screen and (max-width: 575px) {
             #messageDrawerContentView .k-toolbar .k-textbox {
                 width: 120px;
             }
             #messageDrawerContentView .k-toolbar .k-overflow-anchor {
                 width: 20px;
+            }
+            #messageDrawerView .k-listview .sms-list p {
+                width: 200px;
             }
             .k-window .k-window-title img {
                 border-radius: 50%;
@@ -309,6 +390,16 @@
             .k-window .k-window-title small {
                 margin-left: 6px;
                 color: #999;
+            }
+        }
+        @media only screen and (min-width: 900px) {
+            #messageDrawerView .k-listview .sms-list figure {
+                flex: 0 0 64px;
+            }
+            #messageDrawerView .k-listview .sms-list p {
+                width: auto;
+                height: 34px;
+                white-space: normal;
             }
         }
         @media only screen and (max-width: 425px) {

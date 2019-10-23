@@ -179,7 +179,7 @@ $(function () {
                 }
             },
             {
-                template: '<span class="k-textbox k-space-left"><input id="inboxSearch" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
+                template: '<span class="k-textbox k-space-left"><input id="inboxSearchView" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
             },
             {
                 type: 'splitButton',
@@ -218,7 +218,7 @@ $(function () {
         ]
     });
     // 收件箱搜索
-    $('#inboxSearch').keyup(function () {
+    $('#inboxSearchView').keyup(function () {
         $('#inboxView').data('kendoListView').dataSource.filter({
             logic: 'or',
             filters: [
@@ -439,13 +439,13 @@ $(function () {
                 }
             },
             {
-                template: '<span class="k-textbox k-space-left"><input id="outboxSearch" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
+                template: '<span class="k-textbox k-space-left"><input id="outboxSearchView" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
             }
         ]
     });
     $('#messageDrawerContentView > div:eq(2)').addClass('hide');
     // 发件箱搜索
-    $('#outboxSearch').keyup(function () {
+    $('#outboxSearchView').keyup(function () {
         $('#outboxView').data('kendoListView').dataSource.filter({
             logic: 'or',
             filters: [
@@ -583,6 +583,304 @@ $(function () {
             $('#outboxView').data('kendoListView').select($(this).parents('.mail-list'));
         } else {
             $(this).parents('.mail-list').removeClass('k-state-selected').removeAttr('aria-selected');
+        }
+    });
+    // 短信息工具栏
+    $('#messageDrawerContentView > div:eq(4)').removeClass('hide');
+    $('#smsToolbar').width($('#messageDrawerContentView').width()).kendoToolBar({
+        items: [
+            {
+                template: '<input class="k-checkbox" id="smsSelectAll" type="checkbox"><label class="k-checkbox-label" for="smsSelectAll" title="全选"></label>'
+            },
+            {
+                type: 'button',
+                text: '全部已读',
+                icon: 'eye',
+                click: function () {
+                    readAll('sms');
+                }
+            },
+            {
+                type: 'button',
+                text: '删除',
+                icon: 'x',
+                click: function () {
+                    batchDel('sms');
+                }
+            },
+            {
+                type: 'button',
+                text: '清空',
+                icon: 'trash',
+                click: function () {
+                    emptyAll('sms', '短信息');
+                }
+            },
+            {
+                type: 'spacer'
+            },
+            {
+                type: 'button',
+                text: '升序',
+                icon: 'sort-asc',
+                attributes: { 'class': 'orderBtn' },
+                hidden: true,
+                overflow: 'never',
+                click: function () {
+                    order('sms', 'desc');
+                }
+            },
+            {
+                type: 'button',
+                text: '降序',
+                icon: 'sort-desc',
+                attributes: { 'class': 'orderBtn' },
+                overflow: 'never',
+                click: function () {
+                    order('sms', 'asc');
+                }
+            },
+            {
+                template: '<span class="k-textbox k-space-left"><input id="smsSearchView" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
+            },
+            {
+                type: 'splitButton',
+                text: '全部',
+                icon: 'filter',
+                menuButtons: [
+                    {
+                        text: '未读',
+                        click: function () {
+                            $('#smsView').data('kendoListView').dataSource.filter({
+                                field: 'unread',
+                                operator: 'gt',
+                                value: 0
+                            });
+                        }
+                    },
+                    {
+                        text: '已读',
+                        click: function () {
+                            $('#smsView').data('kendoListView').dataSource.filter({
+                                field: 'unread',
+                                operator: 'eq',
+                                value: 0
+                            });
+                        }
+                    }
+                ],
+                overflow: 'never',
+                click: function () {
+                    $('#smsView').data('kendoListView').dataSource.filter({
+                        field: 'unread',
+                        operator: 'isnotnull'
+                    });
+                }
+            }
+        ]
+    });
+    $('#messageDrawerContentView > div:eq(4)').addClass('hide');
+    // 短信息搜索
+    $('#smsSearchView').keyup(function () {
+        $('#smsView').data('kendoListView').dataSource.filter({
+            logic: 'or',
+            filters: [
+                { field: 'realName', operator: 'contains', value: $(this).val() },
+                { field: 'nickName', operator: 'contains', value: $(this).val() }
+            ]
+        });
+    });
+    // 短信息列表
+    $('#smsView').kendoListView({
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.fn.ajaxPost({
+                        ajaxData: {
+                            type: 'sms'
+                        },
+                        ajaxUrl: 'json/message.json',
+                        succeed: function (res) {
+                            options.success(res);
+                            if (res.sms.length === 0) {
+                                $('#smsView').html('<div class="blank">您还没有短信息~</div>');
+                            }
+                        },
+                        failed: function (res) {
+                            options.error(res);
+                        }
+                    });
+                }
+            },
+            schema: {
+                total: function(res) {
+                    return res.sms.length;
+                },
+                data: 'sms',
+                model: {
+                    id: 'id',
+                    fields: {
+                        avatar: { type: 'string' },
+                        userId: { type: 'string' },
+                        realName: { type: 'string' },
+                        nickName: { type: 'string' },
+                        chat: { type: 'object',
+                            defaultValue: []
+                        },
+                        unread: { type: 'number' }
+                    }
+                }
+            }
+        },
+        height: $('#smsView').height(),
+        scrollable: 'endless',
+        selectable: 'multiple',
+        template:
+            '<div class="sms-list" data-id="#= userId #">' +
+                '<input class="k-checkbox ids" id="#= id #Ids" type="checkbox" value="#= id #"><label class="k-checkbox-label" for="#= id #Ids"></label>' +
+                '<figure>' +
+                    '# if (unread > 0 && unread < 100) { #' +
+                        '<sup class="theme-m-bg">#= unread #</sup>' +
+                    '# } else if (unread >= 100) { #' +
+                        '<sup class="theme-m-bg font-weight-bold">&middot;&middot;&middot;</sup>' +
+                    '# } #' +
+                    '<img src="#= avatar #" alt="#= nickName #">' +
+                '</figure>' +
+                '<div>' +
+                    '<h5>' +
+                        '<strong>#= realName #</strong>' +
+                        '# if (chat.length > 0) { #' +
+                            '<time>' +
+                                '# if (kendo.toString(kendo.parseDate(chat[chat.length - 1].time), "yyyy-MM-dd") === kendo.toString(kendo.parseDate(new Date()), "yyyy-MM-dd")) { #' +
+                                    '#= kendo.toString(kendo.parseDate(chat[chat.length - 1].time), "HH:mm") #' +
+                                '# } else { #' +
+                                    '#= kendo.toString(kendo.parseDate(chat[chat.length - 1].time), "MM-dd") #' +
+                                '# } #' +
+                            '</time>' +
+                        '# } #' +
+                    '</h5>' +
+                    '<p># if (chat.length > 0) { ##= chat[chat.length - 1].text ## } #</p>' +
+                '</div>' +
+            '</div>',
+        change: function (e) {
+            $('#smsView .ids').prop('checked', false);
+            this.select().find('.ids').prop('checked', true);
+            selectHalf('sms');
+            // 短信息明细
+            if (this.select().length > 0) {
+                var dataItem = e.sender.dataItem(e.sender.select());
+                if ($('#smsChatView').data('kendoChat')) {
+                    $('#smsChatView .k-message-list-content').html('');
+                } else {
+                    if (window.outerWidth < 768) {
+                        divWindow('<img src="' + dataItem.avatar + '" alt="' + dataItem.realName + '"><strong>' + dataItem.realName + '</strong><small>' + dataItem.nickName + '</small>', '90%', '45%', '<div id="smsChatView"></div>');
+                        $('.window-box:visible').css('padding', '0');
+                        $('#smsChatView').css('border', '0').height('100%');
+                    } else {
+                        $('#smsView').next().html('<div id="smsChatView"></div>');
+                        $('#smsChatView').height($('#smsView').height());
+                    }
+                    $('#smsChatView').kendoChat({
+                        user: {
+                            name: sessionStorage.getItem('userName'),
+                            iconUrl: sessionStorage.getItem('avatar')
+                        },
+                        post: function (e) {
+                            $.fn.ajaxPost({
+                                ajaxData: {
+                                    id: dataItem.id,
+                                    text: e.text
+                                },
+                                ajaxUrl: 'json/response.json',
+                                failed: function () {
+                                    alertMsg('短信息发送失败！', 'error');
+                                }
+                            });
+                        }
+                    });
+                }
+                $.each(dataItem.chat, function (i, items) {
+                    var id,
+                        name,
+                        iconUrl,
+                        userInfo;
+                    if (items.belongTo === 'own') {
+                        userInfo = $('#smsChatView').data('kendoChat').getUser();
+                        id = userInfo.id;
+                        name = userInfo.name;
+                        iconUrl = userInfo.iconUrl;
+                    } else if (items.belongTo === 'other') {
+                        id = dataItem.userId;
+                        name = dataItem.realName;
+                        iconUrl = dataItem.avatar;
+                    }
+                    $('#smsChatView').data('kendoChat').renderMessage(
+                        {
+                            type: 'text',
+                            text: items.text
+                        },
+                        {
+                            id: id,
+                            name: name,
+                            iconUrl: iconUrl
+                        }
+                    );
+                    $('#smsChatView .k-message-list-content > div:last p').hide();
+                    $('#smsChatView .k-message-list-content > div:last time:last').text(kendo.toString(kendo.parseDate(items.time), "MM-dd HH:mm"));
+                });
+            }
+        },
+        dataBound: function () {
+            selectHalf('sms');
+        }
+    });
+    // 短信息已读
+    $('#smsView').on('click', '.sms-list', function () {
+        var that = $(this),
+            unreadNum = Number($(this).find('sup').text());
+        if (that.find('sup').length > 0) {
+            $.fn.ajaxPost({
+                ajaxData: {
+                    id: that.find('.ids').val(),
+                    type: 'sms'
+                },
+                ajaxUrl: 'json/response.json',
+                succeed: function () {
+                    $('#smsView').data('kendoListView').dataItem(that).set('unread', 0);
+                    setTimeout(function () {
+                        $('#smsView').data('kendoListView').select($('#' + that.find('.ids').attr('id')).parent());
+                    }, 10);
+                    that.find('sup').remove();
+                    var badgeDom = $('#smsDrawerView').find('.badge');
+                    if ($('#smsView sup').length === 0) {
+                        badgeDom.remove();
+                        $('#smsDrawerView').find('sup').remove();
+                    } else {
+                        badgeDom.text(Number(badgeDom.text()) - unreadNum);
+                    }
+                    getMessage();
+                },
+                failed: function () {
+                    alertMsg('标记已读出错！', 'error');
+                }
+            });
+        }
+    });
+    // 短信息全选
+    $('#smsSelectAll').click(function () {
+        if ($(this).prop('checked')) {
+            $('#smsView').data('kendoListView').select($('#smsView .sms-list'));
+        } else {
+            $('#smsView').data('kendoListView').clearSelection();
+        }
+    });
+    // 短信息单选
+    $('#smsView').on('click', '.ids', function () {
+        selectHalf('sms');
+        if ($(this).prop('checked')) {
+            $('#smsView').data('kendoListView').select($(this).parents('.sms-list'));
+        } else {
+            $(this).parents('.sms-list').removeClass('k-state-selected').removeAttr('aria-selected');
         }
     });
 });
