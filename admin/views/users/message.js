@@ -628,7 +628,7 @@ function postMailView(type, toList, ccList, subject, content) {
 function selectHalf(type) {
     if ($('#' + type + 'View').find('.ids:checked').length < $('#' + type + 'View').find('.ids').length && $('#' + type + 'View').find('.ids:checked').length > 0) {
         $('#' + type + 'SelectAll').prop('checked', false).prop('indeterminate', true);
-    } else if ($('#' + type + 'View').find('.ids:checked').length === $('#' + type + 'View').find('.ids').length) {
+    } else if ($('#' + type + 'View').find('.ids:checked').length === $('#' + type + 'View').find('.ids').length && $('#' + type + 'View').find('.ids:checked').length !== 0) {
         $('#' + type + 'SelectAll').prop('indeterminate', false).prop('checked', true);
     } else {
         $('#' + type + 'SelectAll').prop('indeterminate', false).prop('checked', false);
@@ -643,10 +643,15 @@ function readAll(type) {
         },
         ajaxUrl: 'json/response.json',
         succeed: function () {
-            $.each($('#' + type + 'View .mail-list'), function (i, items) {
-                $('#' + type + 'View').data('kendoListView').dataItem(items).set('unread', false);
+            $.each($('#' + type + 'View').children(), function (i, items) {
+                if (type === 'inbox') {
+                    $('#' + type + 'View').data('kendoListView').dataItem($(items)).set('unread', false);
+                    $(items).removeClass('unread');
+                } else if (type === 'sms') {
+                    $('#' + type + 'View').data('kendoListView').dataItem($(items)).set('unread', 0);
+                    $(items).find('sup').remove();
+                }
             });
-            $('#' + type + 'View').find('.mail-list').removeClass('unread');
             $('#' + type + 'DrawerView').find('.badge').remove();
             $('#' + type + 'DrawerView').find('sup').remove();
             getMessage();
