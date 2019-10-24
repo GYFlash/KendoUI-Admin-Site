@@ -1272,7 +1272,7 @@ function addressBookInfo(dom, gender, email) {
             '<figure style="background-image: url(' + $(dom).find('img').attr('src') + ');"></figure>' +
             '<img src="' + $(dom).find('img').attr('src') + '" alt="' + $(dom).find('img').attr('alt') + '">' +
             '<h5>' +
-            $(dom).text();
+                $(dom).text();
     if (gender === '1') {
         content += '<i class="fas fa-male mars"></i>';
     } else if (gender === '2') {

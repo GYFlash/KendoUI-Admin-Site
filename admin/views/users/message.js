@@ -883,6 +883,149 @@ $(function () {
             $(this).parents('.sms-list').removeClass('k-state-selected').removeAttr('aria-selected');
         }
     });
+    // 通讯录工具栏
+    $('#messageDrawerContentView > div:eq(6)').removeClass('hide');
+    $('#addressBookToolbar').width($('#messageDrawerContentView').width()).kendoToolBar({
+        items: [
+            {
+                template: '<input class="k-checkbox" id="addressBookSelectAll" type="checkbox"><label class="k-checkbox-label" for="addressBookSelectAll" title="全选"></label>'
+            },
+            {
+                type: 'button',
+                text: '发站内信',
+                icon: 'email',
+                click: function () {
+                    var ids = [];
+                    $.each($('#addressBookView .ids'), function () {
+                        if ($(this).prop('checked')) {
+                            ids.push($(this).val());
+                        }
+                    });
+                    if (ids.length > 0) {
+                        postMailView('newPost', '' + ids + '', '', '', '');
+                    } else {
+                        alertMsg('请先选择对象！', 'warning');
+                    }
+                }
+            },
+            {
+                type: 'spacer'
+            },
+            {
+                type: 'button',
+                text: '升序',
+                icon: 'sort-asc',
+                attributes: { 'class': 'orderBtn' },
+                hidden: true,
+                overflow: 'never',
+                click: function () {
+                    orderGroup('addressBook', 'desc');
+                }
+            },
+            {
+                type: 'button',
+                text: '降序',
+                icon: 'sort-desc',
+                attributes: { 'class': 'orderBtn' },
+                overflow: 'never',
+                click: function () {
+                    orderGroup('addressBook', 'asc');
+                }
+            },
+            {
+                template: '<span class="k-textbox k-space-left"><input id="addressBookSearchView" type="text" placeholder="搜索..."><i class="k-icon k-i-search ml-1"></i></span>'
+            },
+            {
+                type: 'splitButton',
+                text: '全部',
+                icon: 'filter',
+                menuButtons: [
+                    {
+                        text: '男',
+                        click: function () {
+                            $('#addressBookView').data('kendoListView').dataSource.filter({
+                                field: 'gender',
+                                operator: 'eq',
+                                value: '1'
+                            });
+                        }
+                    },
+                    {
+                        text: '女',
+                        click: function () {
+                            $('#addressBookView').data('kendoListView').dataSource.filter({
+                                field: 'gender',
+                                operator: 'eq',
+                                value: '2'
+                            });
+                        }
+                    }
+                ],
+                overflow: 'never',
+                click: function () {
+                    $('#addressBookView').data('kendoListView').dataSource.filter({
+                        field: 'gender',
+                        operator: 'isnotnull'
+                    });
+                }
+            }
+        ]
+    });
+    $('#messageDrawerContentView > div:eq(6)').addClass('hide');
+    // 通讯录搜索
+    $('#addressBookSearchView').keyup(function () {
+        $('#addressBookView').data('kendoListView').dataSource.filter({
+            logic: 'or',
+            filters: [
+                { field: 'realName', operator: 'contains', value: $(this).val() },
+                { field: 'nickName', operator: 'contains', value: $(this).val() },
+                { field: 'email', operator: 'contains', value: $(this).val() },
+                { field: 'group', operator: 'contains', value: $(this).val() }
+            ]
+        });
+    });
+    // 通讯录列表
+    $('#addressBookView').kendoListView({
+        dataSource: addressBookDataSource,
+        height: $('#addressBookView').height(),
+        scrollable: 'endless',
+        selectable: 'multiple',
+        template: function (e) {
+            var group = '<div class="address-book-list">' +
+                            '<h4>' + e.value + '</h4>';
+            for (var i = 0; i < e.items.length; i++) {
+                group +=    '<h5 data-id="' + e.items[i].id + '" onclick="addressBookInfoView(this, \'' + e.items[i].gender + '\', \'' + e.items[i].email + '\');">' +
+                                '<input class="k-checkbox ids" id="' + e.items[i].id + 'Ids" type="checkbox" value="' + e.items[i].email + '"><label class="k-checkbox-label" for="' + e.items[i].id + 'Ids"></label>' +
+                                '<img src="' + e.items[i].avatar + '" alt="' + e.items[i].nickName + '">' + e.items[i].realName +
+                            '</h5>';
+            }
+                group += '</div>';
+            return group;
+        },
+        change: function (e) {
+            this.select().removeClass('k-state-selected').removeAttr('aria-selected');
+        },
+        dataBound: function () {
+            selectHalf('addressBook');
+        }
+    });
+    // 通讯录全选
+    $('#addressBookSelectAll').click(function () {
+        if ($(this).prop('checked')) {
+            $('#addressBookView .ids').prop('checked', true).parent().addClass('k-state-selected');
+        } else {
+            $('#addressBookView .ids').prop('checked', false).parent().removeClass('k-state-selected');
+        }
+    });
+    // 通讯录单选
+    $('#addressBookView').on('click', '.ids', function () {
+        selectHalf('addressBook');
+        if ($(this).prop('checked')) {
+            $(this).parent().addClass('k-state-selected');
+        } else {
+            $(this).parent().removeClass('k-state-selected');
+        }
+    });
 });
 
 // 发送站内信
@@ -920,6 +1063,47 @@ function postMailView(type, toList, ccList, subject, content) {
     }
     $('#messageDrawerView .k-drawer-item').removeClass('k-state-selected').eq(0).addClass('k-state-selected');
     $('#messageDrawerContentView > div').addClass('hide').eq(0).removeClass('hide');
+}
+
+// 发短信息
+function postSmsView(userId, realName) {
+    if ($('body > .k-overlay').length > 0) {
+        $('.window-box').data('kendoWindow').close();
+    }
+    $('#messageDrawerView .k-drawer-item').removeClass('k-state-selected').eq(4).addClass('k-state-selected');
+    $('#messageDrawerContentView > div').addClass('hide').eq(4).removeClass('hide');
+    $('#smsSearchView').val(realName).trigger('keyup');
+    $('#smsView').data('kendoListView').select($('#smsView .sms-list[data-id=' + userId + ']'));
+    $('#smsView .sms-list[data-id=' + userId + ']').trigger('click');
+    $('#smsChatView .k-message-box input, .window-box:visible .k-message-box input').focus();
+}
+
+// 通讯录明细
+function addressBookInfoView(dom, gender, email) {
+    var content =
+        '<div class="address-book-content">' +
+            '<figure style="background-image: url(' + $(dom).find('img').attr('src') + ');"></figure>' +
+            '<img src="' + $(dom).find('img').attr('src') + '" alt="' + $(dom).find('img').attr('alt') + '">' +
+            '<h5>' +
+                $(dom).text();
+    if (gender === '1') {
+        content += '<i class="fas fa-male mars"></i>';
+    } else if (gender === '2') {
+        content += '<i class="fas fa-female venus"></i>';
+    }
+        content += '</h5>' +
+            '<h6>' + $(dom).find('img').attr('alt') + '</h6>' +
+            '<p>' + email + '</p>' +
+            '<div class="btns">' +
+                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="postMailView(\'newPost\', \'' + email + '\', \'\', \'\', \'\');"><i class="fas fa-envelope"></i>发站内信</button>' +
+                '<button class="k-button k-button-icontext k-state-selected" type="button" onclick="postSmsView(\'' + $(dom).attr('data-id') + '\', \'' + $(dom).text() + '\');"><i class="fas fa-comments"></i>发短信息</button>' +
+            '</div>' +
+        '</div>';
+    if (window.outerWidth < 768) {
+        divWindow('<img src="' + $(dom).find('img').attr('src') + '" alt="' + $(dom).find('img').attr('alt') + '"><strong>' + $(dom).text() + '</strong><small>' + $(dom).find('img').attr('alt') + '</small>', '90%', '45%', content);
+    } else {
+        $('#addressBookView').next().html(content);
+    }
 }
 
 // 半选
@@ -1016,6 +1200,20 @@ function order(type, dir) {
     $('#' + type + 'View').data('kendoListView').dataSource.sort({
         field: 'id',
         dir: dir
+    });
+    $('#' + type + 'Toolbar .orderBtn').toggle();
+}
+
+function orderGroup(type, dir) {
+    $('#' + type + 'View').data('kendoListView').dataSource.query({
+        group: {
+            field: 'group',
+            dir: dir
+        },
+        sort: {
+            field: 'id',
+            dir: dir
+        }
     });
     $('#' + type + 'Toolbar .orderBtn').toggle();
 }

@@ -480,7 +480,7 @@ ROOT/·····································�
 * 锁屏 <small>[ Lock Screen ]</small> ✔️
 * 配色 <small>[ Theme ]</small> ✔️
 * 语言 <small>[ Localization ]</small> ✔️
-* 消息 <small>[ Message ]</small>
+* [消息 <small>[ Message ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/users/message) ✔️
 * [提醒 <small>[ Notice ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/users/notice) ✔️
 * 用户名头像显示 <small>[ User Name & Avatar ]</small> ✔️
 * [前台切换 <small>[ Goto Website ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/site/index.html) ✔️
