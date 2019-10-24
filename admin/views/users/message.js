@@ -919,7 +919,7 @@ $(function () {
                 hidden: true,
                 overflow: 'never',
                 click: function () {
-                    orderGroup('addressBook', 'desc');
+                    orderGroup('addressBook', 'asc');
                 }
             },
             {
@@ -929,7 +929,7 @@ $(function () {
                 attributes: { 'class': 'orderBtn' },
                 overflow: 'never',
                 click: function () {
-                    orderGroup('addressBook', 'asc');
+                    orderGroup('addressBook', 'desc');
                 }
             },
             {
