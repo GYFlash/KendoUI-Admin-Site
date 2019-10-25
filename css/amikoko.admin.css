@@ -788,11 +788,6 @@ iframe#section {
         #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content textarea,
         #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content textarea {
           height: 320px; }
-        #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content .k-invalid-msg,
-        #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content .k-invalid-msg {
-          margin: 0;
-          padding-left: 0;
-          padding-right: 0; }
         #menuH #messageBox .card .card-body #messageDrawer #writeMail .mail-content .btns,
         #menuV #messageBox .card .card-body #messageDrawer #writeMail .mail-content .btns {
           margin-top: 0;
@@ -2128,10 +2123,10 @@ form .k-checkbox-label {
   margin: 7px 12px 7px 0; }
 form .k-tooltip-validation {
   display: block;
-  font-size: 12px; }
+  padding: 0; }
   form .k-tooltip-validation .k-icon {
     margin-right: 0;
-    line-height: .9em; }
+    line-height: .8em; }
 form .k-editor-toolbar .k-tool-group {
   border-left: none; }
 form .adv-search-area,

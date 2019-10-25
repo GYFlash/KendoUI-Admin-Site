@@ -412,7 +412,7 @@ $(function () {
         checked: true
     });
     // 表单验证
-    var validator = $('form').kendoValidator({
+    var validator = $('#formAjax').kendoValidator({
         rules: {
             // 昵称
             nickName: function (input) {
@@ -546,7 +546,7 @@ $(function () {
             noticeMsg('开始提交表单……', 'success', 'center', 500, function () {
                 $('#loading').show();
                 $.fn.ajaxPost({
-                    ajaxData: $('form').serializeObject(),
+                    ajaxData: $('#formAjax').serializeObject(),
                     finished: function (res) {
                         $('#loading').hide();
                     },

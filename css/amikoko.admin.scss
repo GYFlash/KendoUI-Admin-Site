@@ -917,11 +917,6 @@ iframe#section {
                             textarea {
                                 height: 320px;
                             }
-                            .k-invalid-msg {
-                                margin: 0;
-                                padding-left: 0;
-                                padding-right: 0;
-                            }
                             .btns {
                                 margin-top: 0;
                                 border-top: 0;
@@ -2525,10 +2520,10 @@ form {
     }
     .k-tooltip-validation {
         display: block;
-        font-size: $font-size-s;
+        padding: 0;
         .k-icon {
             margin-right: 0;
-            line-height: .9em;
+            line-height: .8em;
         }
     }
     .k-editor-toolbar {

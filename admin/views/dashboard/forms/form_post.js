@@ -325,7 +325,7 @@ $(function () {
         checked: true
     });
     // 表单验证
-    var validator = $('form').kendoValidator({
+    var validator = $('#formPost').kendoValidator({
         rules: {
             // 匹配密码
             matchPassword: function (input) {
@@ -432,7 +432,7 @@ $(function () {
         if (validator.validate()) {
             $(this).removeClass('k-state-selected').addClass('k-state-disabled').prop('disabled', true);
             noticeMsg('开始提交表单……', 'success', 'center', 500, function () {
-                $('form').submit();
+                $('#formPost').submit();
             });
         } else {
             noticeMsg('表单中有选项未填写正确！请检查……', 'error', 'center', 2000, function () {
