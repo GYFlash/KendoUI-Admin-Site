@@ -1,0 +1,87 @@
+{
+    "result": "y",
+    "msg": "数据获取错误，请重试！",
+    "data": [
+        {
+            "id": "uid000",
+            "userName": "IKKI2000",
+            "realName": "艾克",
+            "nickName": "IKKI",
+            "password": "000000000000",
+            "confirmPassword": "000000000000",
+            "online": true,
+            "gender": "1",
+            "age": 100,
+            "height": 1.0,
+            "bloodType": "3",
+            "birthday": "2000-01-01",
+            "mateBirthday": "2000-01-01",
+            "creditCard": "6225000000000000",
+            "asset": 100000000,
+            "nativePlace": {
+                "province": "110000",
+                "provinceName": "北京市",
+                "city": "110100",
+                "cityName": "市辖区",
+                "area": "110108",
+                "areaName": "海淀区"
+            },
+            "domicile": {
+                "code": "31",
+                "name": "上海市"
+            },
+            "nation": {
+                "nation": "20",
+                "nationName": "汉族"
+            },
+            "zodiac": {
+                "zodiac": "05",
+                "zodiacName": "龙"
+            },
+            "language": "普通话 English",
+            "education": [
+                "1",
+                "2",
+                "3",
+                "6"
+            ],
+            "graduation": "2000",
+            "firstJob": "2000-06",
+            "mobile": "13800138000",
+            "email": "ikki2002@qq.com",
+            "homepage": "https://ikki2000.github.io",
+            "getUp": "05:20",
+            "importantMoment": "2006-06-06 06:06",
+            "character": 6,
+            "color": "rgba(0, 196, 208, 1)",
+            "constellation": [
+                "5",
+                "6",
+                "7"
+            ],
+            "tourism": [
+                {
+                    "code": "11",
+                    "name": "北京市"
+                },
+                {
+                    "code": "31",
+                    "name": "上海市"
+                },
+                {
+                    "code": "4401",
+                    "name": "广州市"
+                }
+            ],
+            "summary": "\uD83C\uDF38我是IKKI~ 欢迎来到 Kendo UI Admin 后台管理系统 =^^=",
+            "photo": {
+                "url": "img/IKKI.png",
+                "name": "IKKI",
+                "extension": ".png",
+                "size": 29399
+            },
+            "sign": "\uD83C\uDF0C<strong><span style='color: rgb(0, 196, 208, .8);'>一飞冲天盖世志 辉满神州我理想</span></strong>",
+            "admin": true
+        }
+    ]
+}
