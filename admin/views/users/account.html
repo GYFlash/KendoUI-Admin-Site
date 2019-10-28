@@ -1,73 +1,92 @@
 <script id="accountTemp" type="text/x-kendo-template">
     <div id="account"></div>
     <script id="accountTemplate" type="text/x-kendo-template">
-        <div class="row">
+        <form class="row">
             <div class="col-md-4 col-lg-3 pr-md-0">
                 <div class="card mb-3">
-                    <h5 class="card-header">基本信息</h5>
-                    <figure class="d-flex justify-content-center mb-0 px-3 py-3 py-xl-5">
+                    <figure class="d-flex justify-content-center position-relative mb-0 px-3 py-3 py-xl-5">
                         <img class="img-thumbnail rounded-circle shadow" src="#= photo.url #" alt="#= nickName #">
                         <picture style="background-image: url('#= photo.url #');"></picture>
                     </figure>
                     <div class="card-body pt-0">
-                        <h4 class="card-title text-center mb-3">
-                            # if (gender === '1') { #
-                                <i class="fas fa-mars mars"></i>
-                            # } else if (gender === '2') { #
-                                <i class="fas fa-venus venus"></i>
-                            # } #
-                            <strong class="text-dark">#= realName #</strong>
-                            <small class="text-black-50">[#= nickName #]</small>
-                        </h4>
-                        <h4 class="card-title text-center mb-3">#= userName #</h4>
-                        <p class="card-text text-center mb-1">UID：#= id #</p>
-                        <p class="card-text text-center mb-1">
-                            # if (admin) { #
-                                <i class="fa fa-user-tie mr-2 theme-m"></i>超级管理员
-                            # } else { #
-                                <i class="fa fa-user mr-2"></i>普通用户
-                            # } #
+                        <p class="text-center">
+                            <button id="submitBtn" class="k-button k-button-lg k-state-selected" type="button">保存编辑</button>
+                        </p>
+                        <h4 class="card-title text-center mb-1">#= userName #</h4>
+                        <p class="card-text text-center">
+                            <a class="theme-m" href="javascript:changePassword();">修改密码</a>
                         </p>
                         <p class="card-text text-center">
+                            <span class="mr-2">UID：#= id #</span>
                             # if (online) { #
                                 <span class="dot-color k-notification-success"></span><span class="k-notification-success bg-transparent ml-2">在线</span>
                             # } else { #
                                 <span class="dot-color k-notification-error"></span><span class="k-notification-error bg-transparent ml-2">离线</span>
                             # } #
                         </p>
+                        <p class="text-center">
+                            <label><i class="fa fa-user-tie mr-1 theme-m"></i>超级管理员：</label>
+                            <input id="admin" name="admin" type="checkbox"# if (admin) { # checked# } #>
+                        </p>
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>头像：</label>
+                            <input class="w-100" id="photo" name="photo" type="file">
+                            <input id="photoUrl" name="photo" type="hidden" value="#= photo.url #">
+                            <span class="k-invalid-msg" data-for="photo"></span>
+                        </p>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <strong>年龄：</strong>
-                            #= age # 岁
-                        </li>
-                        <li class="list-group-item">
-                            <strong>身高：</strong>
-                            #= kendo.toString(height, '0.00') # m
-                        </li>
-                        <li class="list-group-item">
-                            <strong>血型：</strong>
-                            # if (bloodType === '1') { #
-                                A 型
-                            # } else if (bloodType === '2') { #
-                                B 型
-                            # } else if (bloodType === '3') { #
-                                O 型
-                            # } else if (bloodType === '4') { #
-                                AB 型
-                            # } else if (bloodType === '5') { #
-                                其他
-                            # } #
-                        </li>
-                        <li class="list-group-item">
-                            <strong>生日：</strong>
-                            #= birthday #
-                        </li>
-                        <li class="list-group-item">
-                            <strong>生肖：</strong>
-                            #= zodiac.zodiacName #
-                        </li>
-                    </ul>
+                </div>
+                <div class="card mb-3">
+                    <h5 class="card-header">基本信息</h5>
+                    <div class="card-body">
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>姓名：</label>
+                            <input class="k-textbox w-100" name="realName" type="text" required data-required-msg="请输入姓名！" pattern="[\\\u4E00-\\\u9FA5]{1,10}" data-pattern-msg="请输入1-10个汉字！" value="#= realName #">
+                        </p>
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>昵称：</label>
+                            <input class="k-textbox w-100" name="nickName" type="text" required data-required-msg="请输入昵称！" pattern="[A-Za-z0-9\\\s_\\\-\\\u4E00-\\\u9FA5]{2,20}" data-pattern-msg="请输入2-20个大小写字母、数字、空格、下划线、中划线或汉字！" value="#= nickName #">
+                            <span class="theme-m ajax-loading"><span class="k-icon k-i-loading"></span>验证中……</span><span class="k-invalid-msg" data-for="nickName"></span>
+                        </p>
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>性别：</label>
+                            <input class="k-radio" id="gender1" name="gender" type="radio" value="1"# if (gender === '1') { # checked# } #><label class="k-radio-label" for="gender1">男<i class="fas fa-mars mars ml-1"></i></label>
+                            <input class="k-radio" id="gender2" name="gender" type="radio" value="2"# if (gender === '2') { # checked# } #><label class="k-radio-label" for="gender2">女<i class="fas fa-venus venus ml-1"></i></label>
+                            <span class="k-invalid-msg" data-for="gender"></span>
+                        </p>
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>年龄：</label>
+                            <input class="w-100" id="age" name="age" type="number" required data-required-msg="请输入年龄！" min="1" max="120" step="1" data-min-msg="年龄最小1岁！" data-max-msg="年龄最大120岁！" value="#= age #">
+                            <span class="k-invalid-msg" data-for="age"></span>
+                        </p>
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>身高：</label>
+                            <input class="w-100" id="height" name="height" type="number" required data-required-msg="请输入身高！" value="#= height #">
+                            <span class="k-invalid-msg" data-for="height"></span>
+                        </p>
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>血型：</label>
+                            <select class="w-100" id="bloodType" name="bloodType" required data-required-msg="请选择血型！">
+                                <option value="">-= 请选择 =-</option>
+                                <option value="1"# if (bloodType === '1') { # selected# } #>A 型</option>
+                                <option value="2"# if (bloodType === '2') { # selected# } #>B 型</option>
+                                <option value="3"# if (bloodType === '3') { # selected# } #>O 型</option>
+                                <option value="4"# if (bloodType === '4') { # selected# } #>AB 型</option>
+                                <option value="5"# if (bloodType === '5') { # selected# } #>其他</option>
+                            </select>
+                            <span class="k-invalid-msg" data-for="bloodType"></span>
+                        </p>
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>生日：</label>
+                            <input class="w-100" id="birthday" name="birthday" type="date" required data-required-msg="请输入生日！" value="#= birthday #">
+                            <span class="k-invalid-msg" data-for="birthday"></span>
+                        </p>
+                        <p>
+                            <label class="d-block"><strong class="k-required">*</strong>生肖：</label>
+                            <input class="w-100" id="zodiac" name="zodiac" type="text" required data-required-msg="请选择生肖！" value="#= zodiac.zodiac #">
+                            <span class="k-invalid-msg" data-for="zodiac"></span><span class="k-invalid-msg" data-for="zodiac_input"></span>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-8 col-lg-9">
@@ -76,28 +95,52 @@
                     <div class="card-body">
                         <div class="row">
                             <p class="col-lg-6">
-                                <strong>配偶生日：</strong>
-                                #= mateBirthday #
+                                <label class="d-block"><strong class="k-required">*</strong>配偶生日：</label>
+                                <input class="w-100" id="mateBirthday" name="mateBirthday" type="date" pattern="^((?!年-月-日).)*$" data-pattern-msg="请输入配偶生日！" value="#= mateBirthday #">
+                                <span class="k-invalid-msg" data-for="mateBirthday"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>民族：</strong>
-                                #= nation.nationName #
+                                <label class="d-block"><strong class="k-required">*</strong>民族：</label>
+                                <input class="w-100" id="nation" name="nation" type="text" required data-required-msg="请选择民族！" value="#= nation.nation #">
+                                <span class="k-invalid-msg" data-for="nation"></span><span class="k-invalid-msg" data-for="nation_input"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>籍贯：</strong>
-                                #= nativePlace.provinceName # - #= nativePlace.cityName # - #= nativePlace.areaName #
+                                <label class="d-block"><strong class="k-required">*</strong>籍贯：</label>
+                                <span class="row">
+                                    <span class="col-xl-4 pr-xl-2">
+                                        <select class="w-100" id="province" name="province" required data-required-msg="请选择省份！">
+                                            <option value="#= nativePlace.province #"></option>
+                                        </select>
+                                        <span class="k-invalid-msg" data-for="province"></span>
+                                    </span>
+                                    <span class="col-xl-4 pl-xl-0 pr-xl-2">
+                                        <select class="w-100 mt-2 mt-xl-0" id="city" name="city" required data-required-msg="请选择城市！">
+                                            <option value="#= nativePlace.city #"></option>
+                                        </select>
+                                        <span class="k-invalid-msg" data-for="city"></span>
+                                    </span>
+                                    <span class="col-xl-4 pl-xl-0">
+                                        <select class="w-100 mt-2 mt-xl-0" id="area" name="area" required data-required-msg="请选择区县！">
+                                            <option value="#= nativePlace.area #"></option>
+                                        </select>
+                                        <span class="k-invalid-msg" data-for="area"></span>
+                                    </span>
+                                </span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>居住地：</strong>
-                                #= domicile.name #
+                                <label class="d-block"><strong class="k-required">*</strong>居住地：</label>
+                                <input class="w-100" id="domicile" name="domicile" type="text" required data-required-msg="请选择居住地！" value="#= domicile.code #">
+                                <span class="k-invalid-msg" data-for="domicile"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>银行卡：</strong>
-                                #= creditCard.replace(creditCard.substr(2, 12), '** **** **** **') #
+                                <label class="d-block"><strong class="k-required">*</strong>银行卡：</label>
+                                <input class="w-100" id="creditCard" name="creditCard" type="text" required data-required-msg="请输入银行卡！" pattern="[\\\d\\\s]{19}" data-pattern-msg="请补足位数！" value="#= creditCard #">
+                                <span class="k-invalid-msg" data-for="creditCard"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>资产：</strong>
-                                #= kendo.toString(asset, 'c') #
+                                <label class="d-block"><strong class="k-required">*</strong>资产：</label>
+                                <input class="w-100" id="asset" name="asset" type="number" required data-required-msg="请输入资产！" value="#= asset #">
+                                <span class="k-invalid-msg" data-for="asset"></span>
                             </p>
                         </div>
                     </div>
@@ -107,40 +150,32 @@
                     <div class="card-body">
                         <div class="row">
                             <p class="col-lg-6">
-                                <strong>语言：</strong>
-                                #= language #
+                                <label class="d-block"><strong class="k-required">*</strong>语言：</label>
+                                <input class="w-100" id="language" name="language" type="text" required data-required-msg="请输入语言！" value="#= language #">
+                                <span class="k-invalid-msg" data-for="language"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>教育程度：</strong>
-                                # for (var i = 0; i < education.length; i++) { #
-                                    # if (education[i] === '1') { #
-                                        小学&nbsp;
-                                    # } else if (education[i] === '2') { #
-                                        初中&nbsp;
-                                    # } else if (education[i] === '3') { #
-                                        高中&nbsp;
-                                    # } else if (education[i] === '4') { #
-                                        中专&nbsp;
-                                    # } else if (education[i] === '5') { #
-                                        大专&nbsp;
-                                    # } else if (education[i] === '6') { #
-                                        本科&nbsp;
-                                    # } else if (education[i] === '7') { #
-                                        硕士&nbsp;
-                                    # } else if (education[i] === '8') { #
-                                        博士&nbsp;
-                                    # } else if (education[i] === '9') { #
-                                        其他&nbsp;
-                                    # } #
-                                # } #
+                                <label class="d-block"><strong class="k-required">*</strong>教育程度：</label>
+                                <input class="k-checkbox" id="education1" name="education" type="checkbox" value="1"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '1') { # checked# } ## } #><label class="k-checkbox-label" for="education1">小学</label>
+                                <input class="k-checkbox" id="education2" name="education" type="checkbox" value="2"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '2') { # checked# } ## } #><label class="k-checkbox-label" for="education2">初中</label>
+                                <input class="k-checkbox" id="education3" name="education" type="checkbox" value="3"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '3') { # checked# } ## } #><label class="k-checkbox-label" for="education3">高中</label>
+                                <input class="k-checkbox" id="education4" name="education" type="checkbox" value="4"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '4') { # checked# } ## } #><label class="k-checkbox-label" for="education4">中专</label>
+                                <input class="k-checkbox" id="education5" name="education" type="checkbox" value="5"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '5') { # checked# } ## } #><label class="k-checkbox-label" for="education5">大专</label>
+                                <input class="k-checkbox" id="education6" name="education" type="checkbox" value="6"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '6') { # checked# } ## } #><label class="k-checkbox-label" for="education6">本科</label>
+                                <input class="k-checkbox" id="education7" name="education" type="checkbox" value="7"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '7') { # checked# } ## } #><label class="k-checkbox-label" for="education7">硕士</label>
+                                <input class="k-checkbox" id="education8" name="education" type="checkbox" value="8"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '8') { # checked# } ## } #><label class="k-checkbox-label" for="education8">博士</label>
+                                <input class="k-checkbox" id="education9" name="education" type="checkbox" value="9"# for (var i = 0; i < education.length; i++) { ## if (education[i] === '9') { # checked# } ## } #><label class="k-checkbox-label" for="education9">其他</label>
+                                <span class="k-invalid-msg" data-for="education"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>毕业年份：</strong>
-                                #= graduation #
+                                <label class="d-block"><strong class="k-required">*</strong>毕业年份：</label>
+                                <input class="w-100" id="graduation" name="graduation" required data-required-msg="请输入毕业年份！" value="#= graduation #">
+                                <span class="k-invalid-msg" data-for="graduation"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>参加工作年月：</strong>
-                                #= firstJob #
+                                <label class="d-block"><strong class="k-required">*</strong>参加工作年月：</label>
+                                <input class="w-100" id="firstJob" name="firstJob" type="month" required data-required-msg="请输入参加工作年月！" value="#= firstJob #">
+                                <span class="k-invalid-msg" data-for="firstJob"></span>
                             </p>
                         </div>
                     </div>
@@ -150,116 +185,83 @@
                     <div class="card-body">
                         <div class="row">
                             <p class="col-lg-6">
-                                <strong>手机：</strong>
-                                #= mobile #
+                                <label class="d-block"><strong class="k-required">*</strong>手机：</label>
+                                <input class="k-textbox w-100" name="mobile" type="tel" required data-required-msg="请输入手机！" pattern="^1(3[0-9]|4[579]|5[0-35-9]|6[6]|7[0135-8]|8[0-9]|9[89])\\\d{8}$" data-pattern-msg="手机格式不正确！" value="#= mobile #">
                             </p>
                             <p class="col-lg-6">
-                                <strong>电子邮件：</strong>
-                                #= email #
+                                <label class="d-block"><strong class="k-required">*</strong>电子邮件：</label>
+                                <input class="k-textbox w-100" name="email" type="email" required data-required-msg="请输入电子邮件！" data-email-msg="电子邮件格式不正确！" value="#= email #">
                             </p>
-                            <p class="col-lg-6">
-                                <strong>个人主页：</strong>
-                                #= homepage #
+                            <p class="col-12">
+                                <label class="d-block"><strong class="k-required">*</strong>个人主页：</label>
+                                <input class="k-textbox w-100" name="homepage" type="url" required data-required-msg="请输入个人主页！" data-url-msg="网址格式不正确！" value="#= homepage #">
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card mb-3">
                     <h5 class="card-header">个性介绍</h5>
                     <div class="card-body">
                         <div class="row">
                             <p class="col-lg-6">
-                                <strong>起床时间：</strong>
-                                #= getUp #
+                                <label class="d-block"><strong class="k-required">*</strong>起床时间：</label>
+                                <input class="w-100" id="getUp" name="getUp" type="time" required data-required-msg="请输入起床时间！" value="#= getUp #">
+                                <span class="k-invalid-msg" data-for="getUp"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>最有意义的时刻：</strong>
-                                #= importantMoment #
+                                <label class="d-block"><strong class="k-required">*</strong>最有意义的时刻：</label>
+                                <input class="w-100" id="importantMoment" name="importantMoment" type="datetime" required data-required-msg="请输入最有意义的时刻！" value="#= importantMoment #">
+                                <span class="k-invalid-msg" data-for="importantMoment"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>性格：</strong>
-                                # if (character === 10) { #
-                                    超级开朗
-                                # } else if (character === 8) { #
-                                    非常开朗
-                                # } else if (character === 6) { #
-                                    很开朗
-                                # } else if (character === 4) { #
-                                    比较开朗
-                                # } else if (character === 2) { #
-                                    有点开朗
-                                # } else if (character === 0) { #
-                                    普通
-                                # } else if (character === -2) { #
-                                    有点内向
-                                # } else if (character === -4) { #
-                                    比较内向
-                                # } else if (character === -6) { #
-                                    很内向
-                                # } else if (character === -8) { #
-                                    非常内向
-                                # } else if (character === -10) { #
-                                    超级内向
-                                # } #
+                                <label class="d-block"><strong class="k-required">*</strong>性格：</label>
+                                <input class="w-100" id="character" name="character" type="range" required data-required-msg="请选择性格！" value="#= character #">
+                                <span class="k-invalid-msg" data-for="character"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>颜色喜好：</strong>
-                                <span style="display: inline-block; width: 60%; height: 24px; background: #= color #; border: 1px solid \#c5c5c5; border-radius: 4px; vertical-align: middle;"></span>
+                                <label class="d-block"><strong class="k-required">*</strong>颜色喜好：</label>
+                                <input class="w-100" id="color" name="color" type="color" required data-required-msg="请选择颜色喜好！" value="#= color #">
+                                <span class="k-invalid-msg" data-for="color"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>相配的星座：</strong>
-                                # for (var i = 0; i < constellation.length; i++) { #
-                                    # if (constellation[i] === "1") { #
-                                        白羊座&nbsp;
-                                    # } else if (constellation[i] === "2") { #
-                                        金牛座&nbsp;
-                                    # } else if (constellation[i] === "3") { #
-                                        双子座&nbsp;
-                                    # } else if (constellation[i] === "4") { #
-                                        巨蟹座&nbsp;
-                                    # } else if (constellation[i] === "5") { #
-                                        狮子座&nbsp;
-                                    # } else if (constellation[i] === "6") { #
-                                        处女座&nbsp;
-                                    # } else if (constellation[i] === "7") { #
-                                        天秤座&nbsp;
-                                    # } else if (constellation[i] === "8") { #
-                                        天蝎座&nbsp;
-                                    # } else if (constellation[i] === "9") { #
-                                        射手座&nbsp;
-                                    # } else if (constellation[i] === "10") { #
-                                        山羊座&nbsp;
-                                    # } else if (constellation[i] === "11") { #
-                                        水瓶座&nbsp;
-                                    # } else if (constellation[i] === "12") { #
-                                        双鱼座&nbsp;
-                                    # } #
-                                # } #
+                                <label class="d-block"><strong class="k-required">*</strong>相配的星座：</label>
+                                <select class="w-100" id="constellation" name="constellation" multiple required data-required-msg="请选择相配的星座！">
+                                    <option value="1"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '1') { # selected# } ## } #>白羊座</option>
+                                    <option value="2"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '2') { # selected# } ## } #>金牛座</option>
+                                    <option value="3"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '3') { # selected# } ## } #>双子座</option>
+                                    <option value="4"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '4') { # selected# } ## } #>巨蟹座</option>
+                                    <option value="5"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '5') { # selected# } ## } #>狮子座</option>
+                                    <option value="6"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '6') { # selected# } ## } #>处女座</option>
+                                    <option value="7"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '7') { # selected# } ## } #>天秤座</option>
+                                    <option value="8"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '8') { # selected# } ## } #>天蝎座</option>
+                                    <option value="9"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '9') { # selected# } ## } #>射手座</option>
+                                    <option value="10"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '10') { # selected# } ## } #>山羊座</option>
+                                    <option value="11"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '11') { # selected# } ## } #>水瓶座</option>
+                                    <option value="12"# for (var i = 0; i < constellation.length; i++) { ## if (constellation[i] === '12') { # selected# } ## } #>双鱼座</option>
+                                </select>
+                                <span class="k-invalid-msg" data-for="constellation"></span>
                             </p>
                             <p class="col-lg-6">
-                                <strong>旅游足迹：</strong>
-                                # for (var i = 0; i < tourism.length; i++) { #
-                                    #= tourism[i].name #&nbsp;
-                                # } #
+                                <label class="d-block"><strong class="k-required">*</strong>旅游足迹：</label>
+                                <select class="w-100" id="tourism" name="tourism" multiple required data-required-msg="请选择旅游足迹！"></select>
+                                <span class="k-invalid-msg" data-for="tourism"></span>
                             </p>
                             <p class="col-12">
-                                <strong>自我介绍：</strong>
-                                #= summary #
+                                <label class="d-block"><strong class="k-required">*</strong>自我介绍：</label>
+                                <textarea class="k-textarea w-100" name="summary" required data-required-msg="请输入自我介绍！">#= summary #</textarea>
                             </p>
                             <p class="col-12">
-                                <strong>签名：</strong>
-                                #= sign #
+                                <label class="d-block"><strong class="k-required">*</strong>签名：</label>
+                                <textarea class="w-100" id="sign" name="sign" required data-required-msg="请输入签名！">#= sign #</textarea>
+                                <span class="k-invalid-msg" data-for="sign"></span>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </script>
     <style scoped>
-        #account figure {
-            position: relative;
-        }
         #account figure img {
             z-index: 1;
             max-width: 100%;
@@ -275,6 +277,19 @@
             background-position: center;
             filter: blur(50px);
             opacity: .8;
+        }
+        #account .fa-user-tie,
+        #account .fa-mars,
+        #account .fa-venus {
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+        }
+        #account .k-colorpicker {
+            width: 100%;
+        }
+        #account .k-colorpicker .k-selected-color {
+            width: calc(100% - 8px - 1.42857em);
         }
     </style>
 </script>
