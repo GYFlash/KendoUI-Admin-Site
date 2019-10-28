@@ -75,7 +75,7 @@
                 <div class="form-group row justify-content-lg-center" tabindex="-1">
                     <label class="col-form-label text-lg-right col-lg-2"><strong class="k-required">*</strong>配偶生日：</label>
                     <div class="col-lg-6">
-                        <input class="w-100" id="mateBirthday" name="mateBirthday" type="date" placeholder="日期时间掩码框" required data-required-msg="请输入配偶生日！" value="2006-06-06">
+                        <input class="w-100" id="mateBirthday" name="mateBirthday" type="date" placeholder="日期时间掩码框" pattern="^((?!年-月-日).)*$" data-pattern-msg="请输入配偶生日！" value="2006-06-06">
                         <span class="k-invalid-msg" data-for="mateBirthday"></span>
                     </div>
                 </div>
