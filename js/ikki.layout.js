@@ -44,7 +44,8 @@ $(function () {
         changeColor('default', accentColor, minorColor);
     }
     // 语言
-    kendo.culture('zh-CN');
+    kendo.culture('zh-CHS');
+    localStorage.setItem('culture', 'zh-CHS');
     // 左侧导航数据获取
     $.fn.ajaxPost({
         ajaxUrl: navUrl,
@@ -576,6 +577,7 @@ function changeColor(color, accent, minor) {
 function changeLang(lang) {
     $.getScript('js/global/kendo.' + lang + '.js', function () {
         kendo.culture(lang);
+        localStorage.setItem('culture', lang);
         refresh();
     });
 }

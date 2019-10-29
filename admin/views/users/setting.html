@@ -1,0 +1,190 @@
+<script id="settingTemp" type="text/x-kendo-template">
+    <div id="setting">
+        <div class="card mb-3">
+            <h5 class="card-header"><i class="fas fa-layer-group mr-2"></i>整体框架布局<small class="text-black-50 ml-2">Layout Edition</small></h5>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 col-xl-2 my-1">
+                        <input class="k-radio" id="edition1" name="edition" type="radio" value="router" checked>
+                        <label class="k-radio-label flex-wrap" for="edition1">
+                            <span class="mr-1">路由版</span>
+                            <small class="text-black-50">Router Edition</small>
+                        </label>
+                    </div>
+                    <div class="col-md-4 col-xl-2 my-1">
+                        <input class="k-radio" id="edition2" name="edition" type="radio" value="iframe">
+                        <label class="k-radio-label flex-wrap" for="edition2">
+                            <span class="mr-1">框架版</span>
+                            <small class="text-black-50">iFrame Edition</small>
+                        </label>
+                    </div>
+                    <div class="col-md-4 col-xl-2 my-1">
+                        <input class="k-radio" id="edition3" name="edition" type="radio" value="tabstrip">
+                        <label class="k-radio-label flex-wrap" for="edition3">
+                            <span class="mr-1">标签版</span>
+                            <small class="text-black-50">Tabstrip Edition</small>
+                        </label>
+                    </div>
+                    <div class="col-md-4 col-xl-2 my-1">
+                        <input class="k-radio" id="edition4" name="edition" type="radio" value="splitter_router">
+                        <label class="k-radio-label flex-wrap" for="edition4">
+                            <span class="mr-1">布局路由版</span>
+                            <small class="text-black-50">Splitter Router Edition</small>
+                        </label>
+                    </div>
+                    <div class="col-md-4 col-xl-2 my-1">
+                        <input class="k-radio" id="edition5" name="edition" type="radio" value="splitter_iframe">
+                        <label class="k-radio-label flex-wrap" for="edition5">
+                            <span class="mr-1">布局框架版</span>
+                            <small class="text-black-50">Splitter iFrame Edition</small>
+                        </label>
+                    </div>
+                    <div class="col-md-4 col-xl-2 my-1">
+                        <input class="k-radio" id="edition6" name="edition" type="radio" value="splitter_tabstrip">
+                        <label class="k-radio-label flex-wrap" for="edition6">
+                            <span class="mr-1">布局标签版</span>
+                            <small class="text-black-50">Splitter Tabstrip Edition</small>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <h5 class="card-header"><i class="fas fa-paint-brush mr-2"></i>主题配色<small class="text-black-50 ml-2">Theme Color</small></h5>
+            <div class="card-body">
+                <div class="d-flex justify-content-center flex-wrap">
+                    <div class="mx-3 mb-3 mb-xl-0">
+                        <h3 class="lead text-center text-muted mb-0">IKKI Amikoko</h3>
+                        <div id="IKKIAmikoko"></div>
+                    </div>
+                    <div class="mx-3 mb-3 mb-xl-0">
+                        <h3 class="lead text-center text-muted mb-0">Ant Design</h3>
+                        <div id="AntDesign"></div>
+                    </div>
+                    <div class="mx-3 mb-3 mb-xl-0">
+                        <h3 class="lead text-center text-muted mb-0">Material Design</h3>
+                        <div id="MaterialDesign"></div>
+                    </div>
+                    <div class="mx-3 mb-3 mb-xl-0">
+                        <h3 class="lead text-center text-muted mb-0">Kendo UI</h3>
+                        <div id="KendoUI"></div>
+                    </div>
+                    <div class="mx-3 mb-3 mb-xl-0">
+                        <h3 class="lead text-center text-muted mb-0">Bootstrap</h3>
+                        <div id="Bootstrap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <h5 class="card-header"><i class="fas fa-globe mr-2"></i>组件语言<small class="text-black-50 ml-2">Component Culture</small></h5>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language1" name="language" type="radio" value="zh-CHS">
+                        <label class="k-radio-label flex-column align-items-center" for="language1">
+                            <i class="flag-icon flag-icon-cn mb-1"></i>
+                            <span>中文简体</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language2" name="language" type="radio" value="zh-CHT">
+                        <label class="k-radio-label flex-column align-items-center" for="language2">
+                            <i class="flag-icon flag-icon-hk mb-1"></i>
+                            <span>中文繁體</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language3" name="language" type="radio" value="en-US">
+                        <label class="k-radio-label flex-column align-items-center" for="language3">
+                            <i class="flag-icon flag-icon-gb mb-1"></i>
+                            <span>English</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language4" name="language" type="radio" value="ru-RU">
+                        <label class="k-radio-label flex-column align-items-center" for="language4">
+                            <i class="flag-icon flag-icon-ru mb-1"></i>
+                            <span>Русский</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language5" name="language" type="radio" value="fr-FR">
+                        <label class="k-radio-label flex-column align-items-center" for="language5">
+                            <i class="flag-icon flag-icon-fr mb-1"></i>
+                            <span>Français</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language6" name="language" type="radio" value="de-DE">
+                        <label class="k-radio-label flex-column align-items-center" for="language6">
+                            <i class="flag-icon flag-icon-de mb-1"></i>
+                            <span>Deutsch</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language7" name="language" type="radio" value="it-IT">
+                        <label class="k-radio-label flex-column align-items-center" for="language7">
+                            <i class="flag-icon flag-icon-it mb-1"></i>
+                            <span>Italiano</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language8" name="language" type="radio" value="pt-PT">
+                        <label class="k-radio-label flex-column align-items-center" for="language8">
+                            <i class="flag-icon flag-icon-pt mb-1"></i>
+                            <span>Português</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language9" name="language" type="radio" value="es-ES">
+                        <label class="k-radio-label flex-column align-items-center" for="language9">
+                            <i class="flag-icon flag-icon-es mb-1"></i>
+                            <span>Español</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language10" name="language" type="radio" value="ar-SA">
+                        <label class="k-radio-label flex-column align-items-center" for="language10">
+                            <i class="flag-icon flag-icon-sa mb-1"></i>
+                            <span>العربية</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language11" name="language" type="radio" value="ja-JP">
+                        <label class="k-radio-label flex-column align-items-center" for="language11">
+                            <i class="flag-icon flag-icon-jp mb-1"></i>
+                            <span>日本語</span>
+                        </label>
+                    </div>
+                    <div class="col-4 col-md-3 col-lg-2 col-xl-1 my-2">
+                        <input class="k-radio" id="language12" name="language" type="radio" value="ko-KR">
+                        <label class="k-radio-label flex-column align-items-center" for="language12">
+                            <i class="flag-icon flag-icon-kr mb-1"></i>
+                            <span>한국어</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style scoped>
+        #setting path {
+            cursor: pointer;
+        }
+        #setting label.flex-column {
+            padding-left: 0;
+        }
+        #setting label.flex-column:before,
+        #setting label.flex-column:after {
+            display: none;
+            top: auto;
+            left: auto;
+        }
+        #setting .flag-icon {
+            border: 1px solid #ccc;
+            width: 42px;
+            height: 32px;
+        }
+    </style>
+</script>

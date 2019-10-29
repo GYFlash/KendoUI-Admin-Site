@@ -463,14 +463,14 @@ ROOT/·····································�
 * 路由页面加载进度条 <small>[ Router Progress ]</small> ✔️
 * 路由页面动画过渡 <small>[ Animated Transitions ]</small> ✔️
 * 骨架屏 <small>[ Skeleton ]</small> ✔️
-* 看板娘 <small>[ Live2D ]</small> ✔️
+* [看板娘 <small>[ Live2D ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/login.html) ✔️
 * 聊天机器人 <small>[ Bot ]</small> ✔️
 * 天气预报 <small>[ Weather Forecast ]</small> ✔️
 * 万年历 <small>[ Perpetual Calendar ]</small> ✔️
 * 便签 <small>[ Note ]</small> ✔️
 * 回到顶部 <small>[ Go Top ]</small> ✔️
 
-#### 顶部菜单 <small>[ Menu ]</small>
+#### 顶部菜单 <small>[ Menu ]</small> 💯
 
 * 导航折叠 <small>[ Navigation Drawer ]</small> ✔️
 * 面包屑 <small>[ Breadcrumb ]</small> ✔️
@@ -484,9 +484,9 @@ ROOT/·····································�
 * [提醒 <small>[ Notice ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/users/notice) ✔️
 * 用户名头像显示 <small>[ User Name & Avatar ]</small> ✔️
 * [前台切换 <small>[ Goto Website ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/site/index.html) ✔️
-* 用户中心 <small>[ User Center ]</small>
+* [用户中心 <small>[ User Center ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/users/account) ✔️
 * 修改密码 <small>[ Change Password ]</small> ✔️
-* 系统设置 <small>[ Setting ]</small>
+* [系统设置 <small>[ Setting ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/users/setting) ✔️
 * 退出登录 <small>[ Sign Out ]</small> ✔️
 
 #### 左侧导航 <small>[ Navigation ]</small>
