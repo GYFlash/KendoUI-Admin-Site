@@ -20,9 +20,9 @@ $(function () {
         series: [
             {
                 name: 'accent',
-                margin: 5,
+                margin: 0,
                 size: 72,
-                holeSize: 10,
+                holeSize: 5,
                 data: [
                     {
                         category: '默认',
@@ -279,9 +279,9 @@ $(function () {
         series: [
             {
                 name: 'accent',
-                margin: 5,
+                margin: 0,
                 size: 72,
-                holeSize: 10,
+                holeSize: 5,
                 data: [
                     {
                         category: '默认',
@@ -522,9 +522,9 @@ $(function () {
         series: [
             {
                 name: 'accent',
-                margin: 5,
+                margin: 0,
                 size: 72,
-                holeSize: 10,
+                holeSize: 5,
                 data: [
                     {
                         category: 'Default',
@@ -877,9 +877,9 @@ $(function () {
         series: [
             {
                 name: 'accent',
-                margin: 5,
+                margin: 0,
                 size: 72,
-                holeSize: 10,
+                holeSize: 5,
                 data: [
                     {
                         category: 'Default',
@@ -1040,9 +1040,9 @@ $(function () {
         series: [
             {
                 name: 'accent',
-                margin: 5,
+                margin: 0,
                 size: 72,
-                holeSize: 10,
+                holeSize: 5,
                 data: [
                     {
                         category: 'Bootstrap Blue',
