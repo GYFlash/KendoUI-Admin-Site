@@ -1530,13 +1530,13 @@ iframe#section {
     #toolBox:hover #tools {
       z-index: 4;
       opacity: 0; }
-    #toolBox:hover #bot {
+    #toolBox:hover button:nth-child(2) {
       bottom: 0; }
-    #toolBox:hover #weather {
+    #toolBox:hover button:nth-child(3) {
       bottom: 60px; }
-    #toolBox:hover #lunar {
+    #toolBox:hover button:nth-child(4) {
       bottom: 120px; }
-    #toolBox:hover #note {
+    #toolBox:hover button:nth-child(5) {
       bottom: 180px; }
 
 #goTop {
@@ -1901,11 +1901,11 @@ iframe#section {
     height: 40px; }
     #toolBox:hover {
       height: 160px; }
-      #toolBox:hover #weather {
+      #toolBox:hover button:nth-child(3) {
         bottom: 40px; }
-      #toolBox:hover #lunar {
+      #toolBox:hover button:nth-child(4) {
         bottom: 80px; }
-      #toolBox:hover #note {
+      #toolBox:hover button:nth-child(5) {
         bottom: 120px; }
 
   #goTop {

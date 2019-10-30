@@ -1747,16 +1747,16 @@ iframe#section {
             z-index: 4;
             opacity: 0;
         }
-        #bot {
+        button:nth-child(2) {
             bottom: 0;
         }
-        #weather {
+        button:nth-child(3) {
             bottom: 60px;
         }
-        #lunar {
+        button:nth-child(4) {
             bottom: 120px;
         }
-        #note {
+        button:nth-child(5) {
             bottom: 180px;
         }
     }
@@ -2220,13 +2220,13 @@ iframe#section {
         height: 40px;
         &:hover {
             height: 160px;
-            #weather {
+            button:nth-child(3) {
                 bottom: 40px;
             }
-            #lunar {
+            button:nth-child(4) {
                 bottom: 80px;
             }
-            #note {
+            button:nth-child(5) {
                 bottom: 120px;
             }
         }

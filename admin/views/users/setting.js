@@ -6,6 +6,7 @@ $(function () {
         }
     });
     // 主题配色
+    // IKKI Amikoko
     $('#IKKIAmikoko').kendoChart({
         theme: 'sass',
         chartArea: {
@@ -265,6 +266,7 @@ $(function () {
             changeColor(e.dataItem.name, e.dataItem.accent, e.dataItem.minor);
         }
     });
+    // Ant Design
     $('#AntDesign').kendoChart({
         theme: 'sass',
         chartArea: {
@@ -508,6 +510,7 @@ $(function () {
             changeColor(e.dataItem.name, e.dataItem.accent, e.dataItem.minor);
         }
     });
+    // Material Design
     $('#MaterialDesign').kendoChart({
         theme: 'sass',
         chartArea: {
@@ -863,6 +866,7 @@ $(function () {
             changeColor(e.dataItem.name, e.dataItem.accent, e.dataItem.minor);
         }
     });
+    // Kendo UI
     $('#KendoUI').kendoChart({
         theme: 'sass',
         chartArea: {
@@ -1026,6 +1030,7 @@ $(function () {
             changeColor(e.dataItem.name, e.dataItem.accent, e.dataItem.minor);
         }
     });
+    // Bootstrap
     $('#Bootstrap').kendoChart({
         theme: 'sass',
         chartArea: {
@@ -1232,6 +1237,199 @@ $(function () {
     $('input[name="language"]').click(function () {
         if ($(this).prop('checked')) {
             changeLang($(this).val());
+        }
+    });
+    // 功能开关
+    // 全局搜索
+    if (!localStorage.hasOwnProperty('globalSearch')) {
+        localStorage.setItem('globalSearch', true);
+    }
+    $('#globalSearchSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('globalSearch')),
+        change: function (e) {
+            localStorage.setItem('globalSearch', e.checked);
+            switchGlobalSearch(e.checked);
+            switchSeparator();
+        }
+    });
+    // 刷新
+    if (!localStorage.hasOwnProperty('refresh')) {
+        localStorage.setItem('refresh', true);
+    }
+    $('#refreshSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('refresh')),
+        change: function (e) {
+            localStorage.setItem('refresh', e.checked);
+            switchRefresh(e.checked);
+            switchSeparator();
+        }
+    });
+    // 全屏
+    if (!localStorage.hasOwnProperty('fullScreen')) {
+        localStorage.setItem('fullScreen', true);
+    }
+    $('#fullScreenSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('fullScreen')),
+        change: function (e) {
+            localStorage.setItem('fullScreen', e.checked);
+            switchFullScreen(e.checked);
+            switchSeparator();
+        }
+    });
+    // 锁屏
+    if (!localStorage.hasOwnProperty('lockScreen')) {
+        localStorage.setItem('lockScreen', true);
+    }
+    $('#lockScreenSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('lockScreen')),
+        change: function (e) {
+            localStorage.setItem('lockScreen', e.checked);
+            switchLockScreen(e.checked);
+            switchSeparator();
+        }
+    });
+    // 配色
+    if (!localStorage.hasOwnProperty('theme')) {
+        localStorage.setItem('theme', true);
+    }
+    $('#themeSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('theme')),
+        change: function (e) {
+            localStorage.setItem('theme', e.checked);
+            switchTheme(e.checked);
+            switchSeparator();
+        }
+    });
+    // 语言
+    if (!localStorage.hasOwnProperty('localization')) {
+        localStorage.setItem('localization', true);
+    }
+    $('#localizationSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('localization')),
+        change: function (e) {
+            localStorage.setItem('localization', e.checked);
+            switchLocalization(e.checked);
+            switchSeparator();
+        }
+    });
+    // 消息
+    if (!localStorage.hasOwnProperty('message')) {
+        localStorage.setItem('message', true);
+    }
+    $('#messageSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('message')),
+        change: function (e) {
+            localStorage.setItem('message', e.checked);
+            switchMessage(e.checked);
+            switchSeparator();
+        }
+    });
+    // 提醒
+    if (!localStorage.hasOwnProperty('notice')) {
+        localStorage.setItem('notice', true);
+    }
+    $('#noticeSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('notice')),
+        change: function (e) {
+            localStorage.setItem('notice', e.checked);
+            switchNotice(e.checked);
+            switchSeparator();
+        }
+    });
+    // 聊天机器人
+    if (!localStorage.hasOwnProperty('bot')) {
+        localStorage.setItem('bot', true);
+    }
+    $('#botSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('bot')),
+        change: function (e) {
+            localStorage.setItem('bot', e.checked);
+            switchBot(e.checked);
+            switchTools();
+        }
+    });
+    // 天气预报
+    if (!localStorage.hasOwnProperty('weather')) {
+        localStorage.setItem('weather', true);
+    }
+    $('#weatherForecastSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('weather')),
+        change: function (e) {
+            localStorage.setItem('weather', e.checked);
+            switchWeather(e.checked);
+            switchTools();
+        }
+    });
+    // 万年历
+    if (!localStorage.hasOwnProperty('lunar')) {
+        localStorage.setItem('lunar', true);
+    }
+    $('#perpetualCalendarSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('lunar')),
+        change: function (e) {
+            localStorage.setItem('lunar', e.checked);
+            switchLunar(e.checked);
+            switchTools();
+        }
+    });
+    // 便签
+    if (!localStorage.hasOwnProperty('note')) {
+        localStorage.setItem('note', true);
+    }
+    $('#noteSwitch').kendoSwitch({
+        messages: {
+            checked: '',
+            unchecked: ''
+        },
+        checked: JSON.parse(localStorage.getItem('note')),
+        change: function (e) {
+            localStorage.setItem('note', e.checked);
+            switchNote(e.checked);
+            switchTools();
         }
     });
 });

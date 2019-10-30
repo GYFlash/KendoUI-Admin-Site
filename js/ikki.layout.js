@@ -119,7 +119,7 @@ $(function () {
         }
     };
     // 全屏
-    $('#header').on('click', '.fullscreen', function () {
+    $('#header').on('click', '.full-screen', function () {
         var fullscreenEnabled = document.fullscreenEnabled       ||
                                 document.webkitFullscreenEnabled ||
                                 document.mozFullScreenEnabled    ||
@@ -345,6 +345,48 @@ $(function () {
     $('#goTop').click(function () {
         $('#section').animate({ scrollTop: 0 }, 500);
     });
+    // 功能开关
+    setTimeout(function () {
+        if (localStorage.hasOwnProperty('globalSearch')) {
+            switchGlobalSearch(JSON.parse(localStorage.getItem('globalSearch')));
+        }
+        if (localStorage.hasOwnProperty('refresh')) {
+            switchRefresh(JSON.parse(localStorage.getItem('refresh')));
+        }
+        if (localStorage.hasOwnProperty('fullScreen')) {
+            switchFullScreen(JSON.parse(localStorage.getItem('fullScreen')));
+        }
+        if (localStorage.hasOwnProperty('lockScreen')) {
+            switchLockScreen(JSON.parse(localStorage.getItem('lockScreen')));
+        }
+        if (localStorage.hasOwnProperty('theme')) {
+            switchTheme(JSON.parse(localStorage.getItem('theme')));
+        }
+        if (localStorage.hasOwnProperty('localization')) {
+            switchLocalization(JSON.parse(localStorage.getItem('localization')));
+        }
+        if (localStorage.hasOwnProperty('message')) {
+            switchMessage(JSON.parse(localStorage.getItem('message')));
+        }
+        if (localStorage.hasOwnProperty('notice')) {
+            switchNotice(JSON.parse(localStorage.getItem('notice')));
+        }
+        switchSeparator();
+        if (localStorage.hasOwnProperty('bot')) {
+            switchBot(JSON.parse(localStorage.getItem('bot')));
+        }
+        if (localStorage.hasOwnProperty('weather')) {
+            switchWeather(JSON.parse(localStorage.getItem('weather')));
+        }
+        if (localStorage.hasOwnProperty('lunar')) {
+            switchLunar(JSON.parse(localStorage.getItem('lunar')));
+        }
+        if (localStorage.hasOwnProperty('note')) {
+            switchNote(JSON.parse(localStorage.getItem('note')));
+        }
+        switchTools();
+    }, 200);
+
 });
 
 // 发送 Token 验证
@@ -3156,4 +3198,155 @@ function orderNote(dir) {
         dir: dir
     });
     $('#noteBox .k-order-button').toggle();
+}
+
+// 全局搜索开关
+function switchGlobalSearch(whether) {
+    if (whether) {
+        $('#menuH, #menuV').find('.global-search').show();
+    } else {
+        $('#menuH, #menuV').find('.global-search').hide();
+    }
+}
+
+// 刷新开关
+function switchRefresh(whether) {
+    if (whether) {
+        $('#menuH, #menuV').find('.refresh').show();
+    } else {
+        $('#menuH, #menuV').find('.refresh').hide();
+    }
+}
+
+// 全屏开关
+function switchFullScreen(whether) {
+    if (whether) {
+        $('#menuH, #menuV').find('.full-screen').show();
+    } else {
+        $('#menuH, #menuV').find('.full-screen').hide();
+    }
+}
+
+// 锁屏开关
+function switchLockScreen(whether) {
+    if (whether) {
+        $('#menuH, #menuV').find('.lock-screen').show();
+    } else {
+        $('#menuH, #menuV').find('.lock-screen').hide();
+    }
+}
+
+// 配色开关
+function switchTheme(whether) {
+    if (whether) {
+        $('#menuH, #menuV').find('.theme').show();
+    } else {
+        $('#menuH, #menuV').find('.theme').hide();
+    }
+}
+
+// 语言开关
+function switchLocalization(whether) {
+    if (whether) {
+        $('#menuH, #menuV').find('.localization').show();
+    } else {
+        $('#menuH, #menuV').find('.localization').hide();
+    }
+}
+
+// 消息开关
+function switchMessage(whether) {
+    if (whether) {
+        $('#menuH, #menuV').find('.links-message').show();
+    } else {
+        $('#menuH, #menuV').find('.links-message').hide();
+    }
+}
+
+// 提醒开关
+function switchNotice(whether) {
+    if (whether) {
+        $('#menuH, #menuV').find('.links-notice').show();
+    } else {
+        $('#menuH, #menuV').find('.links-notice').hide();
+    }
+}
+
+// 分隔线
+function switchSeparator() {
+    if (localStorage.hasOwnProperty('globalSearch') && localStorage.hasOwnProperty('refresh')) {
+        if (!JSON.parse(localStorage.getItem('globalSearch')) && !JSON.parse(localStorage.getItem('refresh'))) {
+            $('#menuH, #menuV').find('.separator:eq(0)').hide();
+        } else {
+            $('#menuH, #menuV').find('.separator:eq(0)').show();
+        }
+    }
+    if (localStorage.hasOwnProperty('fullScreen') && localStorage.hasOwnProperty('lockScreen')) {
+        if (!JSON.parse(localStorage.getItem('fullScreen')) && !JSON.parse(localStorage.getItem('lockScreen'))) {
+            $('#menuH, #menuV').find('.separator:eq(1)').hide();
+        } else {
+            $('#menuH, #menuV').find('.separator:eq(1)').show();
+        }
+    }
+    if (localStorage.hasOwnProperty('theme') && localStorage.hasOwnProperty('localization')) {
+        if (!JSON.parse(localStorage.getItem('theme')) && !JSON.parse(localStorage.getItem('localization'))) {
+            $('#menuH, #menuV').find('.separator:eq(2)').hide();
+        } else {
+            $('#menuH, #menuV').find('.separator:eq(2)').show();
+        }
+    }
+    if (localStorage.hasOwnProperty('message') && localStorage.hasOwnProperty('notice')) {
+        if (!JSON.parse(localStorage.getItem('message')) && !JSON.parse(localStorage.getItem('notice'))) {
+            $('#menuH, #menuV').find('.separator:eq(3)').hide();
+        } else {
+            $('#menuH, #menuV').find('.separator:eq(3)').show();
+        }
+    }
+}
+
+// 聊天机器人开关
+function switchBot(whether) {
+    if (whether) {
+        $('#bot').show();
+    } else {
+        $('#bot').hide();
+    }
+}
+
+// 天气预报开关
+function switchWeather(whether) {
+    if (whether) {
+        $('#weather').show();
+    } else {
+        $('#weather').hide();
+    }
+}
+
+// 万年历开关
+function switchLunar(whether) {
+    if (whether) {
+        $('#lunar').show();
+    } else {
+        $('#lunar').hide();
+    }
+}
+
+// 便签开关
+function switchNote(whether) {
+    if (whether) {
+        $('#note').show();
+    } else {
+        $('#note').hide();
+    }
+}
+
+// 工具箱
+function switchTools() {
+    if (localStorage.hasOwnProperty('bot') && localStorage.hasOwnProperty('weather') && localStorage.hasOwnProperty('lunar') && localStorage.hasOwnProperty('note')) {
+        if (!JSON.parse(localStorage.getItem('bot')) && !JSON.parse(localStorage.getItem('weather')) && !JSON.parse(localStorage.getItem('lunar')) && !JSON.parse(localStorage.getItem('note'))) {
+            $('#tools').hide();
+        } else {
+            $('#tools').show();
+        }
+    }
 }

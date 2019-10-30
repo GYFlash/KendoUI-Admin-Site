@@ -8,32 +8,37 @@
             "cssClass": "global-search"
         },
         {
-            "text": "<hr>",
-            "encoded": false
-        },
-        {
             "text": "<i class='fas fa-sync-alt'></i>刷新",
             "encoded": false,
+            "cssClass": "refresh",
             "url": "javascript:refresh();"
+        },
+        {
+            "text": "<hr>",
+            "encoded": false,
+            "cssClass": "separator"
         },
         {
             "text": "<i class='fas fa-expand'></i>全屏",
             "encoded": false,
-            "cssClass": "fullscreen",
+            "cssClass": "full-screen",
             "url": "javascript:;"
         },
         {
             "text": "<i class='fas fa-lock'></i>锁屏",
             "encoded": false,
+            "cssClass": "lock-screen",
             "url": "javascript:lockScreen();"
         },
         {
             "text": "<hr>",
-            "encoded": false
+            "encoded": false,
+            "cssClass": "separator"
         },
         {
             "text": "<i class='fas fa-paint-brush'></i>配色",
             "encoded": false,
+            "cssClass": "theme",
             "items": [
                 {
                     "text": "<i class='fas fa-genderless'></i>IKKI Amikoko",
@@ -395,6 +400,7 @@
         {
             "text": "<i class='fas fa-globe'></i>语言",
             "encoded": false,
+            "cssClass": "localization",
             "items": [
                 {
                     "text": "<i class='flag-icon flag-icon-cn'></i>中文简体",
@@ -460,7 +466,8 @@
         },
         {
             "text": "<hr>",
-            "encoded": false
+            "encoded": false,
+            "cssClass": "separator"
         },
         {
             "text": "<i class='fas fa-envelope'></i>消息",
@@ -484,7 +491,8 @@
         },
         {
             "text": "<hr>",
-            "encoded": false
+            "encoded": false,
+            "cssClass": "separator"
         },
         {
             "text": "<abbr>IKKI [ Admin ]</abbr><img src='img/IKKI.png' alt='IKKI'>",
