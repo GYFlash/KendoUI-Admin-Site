@@ -148,6 +148,28 @@ $(function () {
     });
     // 工具箱图标
     $('body').append('<div id="toolBox"><button class="k-button k-state-selected" id="tools"><i class="fas fa-tools"></i></button></div>');
+    $('#toolBox').hover(
+        function () {
+            var spacing;
+            if (window.outerWidth < 768) {
+                spacing = 40;
+            } else {
+                spacing = 60;
+            }
+            $(this).height(($(this).find('button:visible').length - 1) * spacing);
+            $.each($(this).find('button:not(:first):visible'), function (i, doms) {
+                $(doms).css('bottom', i * spacing + 'px');
+            });
+        },
+        function () {
+            if (window.outerWidth < 768) {
+                $(this).height(40);
+            } else {
+                $(this).height(60);
+            }
+            $(this).find('button:not(:first)').css('bottom', '0');
+        }
+    );
     // 聊天机器人图标
     $('#toolBox').append('<button class="k-button k-state-selected" id="bot"><label for="botCkb"><i class="fas fa-robot"></i></label></button>');
     $('body').append('<input id="botCkb" type="checkbox"><label for="botCkb"><span id="botMask"></span></label><div id="botChat"></div>');
@@ -385,7 +407,7 @@ $(function () {
             switchNote(JSON.parse(localStorage.getItem('note')));
         }
         switchTools();
-    }, 200);
+    }, 500);
 
 });
 

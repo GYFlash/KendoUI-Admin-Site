@@ -1739,25 +1739,12 @@ iframe#section {
         opacity: .6;
     }
     &:hover {
-        height: 240px;
         button {
             opacity: .6;
         }
         #tools {
             z-index: 4;
             opacity: 0;
-        }
-        button:nth-child(2) {
-            bottom: 0;
-        }
-        button:nth-child(3) {
-            bottom: 60px;
-        }
-        button:nth-child(4) {
-            bottom: 120px;
-        }
-        button:nth-child(5) {
-            bottom: 180px;
         }
     }
 }
@@ -2218,18 +2205,6 @@ iframe#section {
         bottom: 48px;
         width: 32px;
         height: 40px;
-        &:hover {
-            height: 160px;
-            button:nth-child(3) {
-                bottom: 40px;
-            }
-            button:nth-child(4) {
-                bottom: 80px;
-            }
-            button:nth-child(5) {
-                bottom: 120px;
-            }
-        }
     }
 
     #goTop {
