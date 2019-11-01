@@ -122,8 +122,21 @@
         </div>
     </div>
     <style scoped>
-        .k-drawer-items .fas {
+        .k-drawer-container {
+            align-items: stretch;
+            border: 1px solid #ccc;
+        }
+        .k-drawer-item {
+            align-items: center;
+            min-height: 40px;
+            white-space: nowrap;
+        }
+        .k-drawer-separator {
+            min-height: auto;
+        }
+        .k-drawer-item i {
             width: 20px;
+            min-width: 20px;
             height: 16px;
             font-size: 16px;
             line-height: 16px;
