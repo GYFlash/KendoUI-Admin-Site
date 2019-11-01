@@ -17,31 +17,33 @@ $(function () {
         },
         width: 120,
         show: function(e) {
-            $('#messageDrawerBtnView').animate({width: '120px'}, 300, 'swing').find('i').removeClass('fa-indent').addClass('fa-outdent');
+            $('#messageDrawerBtnView').animate({ width: '120px' }, 300, 'swing').find('i').removeClass('fa-indent').addClass('fa-outdent');
             $('#messageDrawerView .k-drawer-items sup').fadeOut();
             $('#messageDrawerView .k-drawer-items .badge').fadeIn();
         },
         hide: function(e) {
-            $('#messageDrawerBtnView').animate({width: '40px'}, 300, 'swing').find('i').removeClass('fa-outdent').addClass('fa-indent');
+            $('#messageDrawerBtnView').animate({ width: '40px' }, 300, 'swing').find('i').removeClass('fa-outdent').addClass('fa-indent');
             $('#messageDrawerView .k-drawer-items .badge').fadeOut();
             $('#messageDrawerView .k-drawer-items sup').fadeIn();
         },
         itemClick: function (e) {
-            $('#messageDrawerContentView > div').addClass('hide').eq(e.item.index()).removeClass('hide');
+            if(!e.item.hasClass('k-drawer-separator')){
+                $('#messageDrawerContentView > div').addClass('hide').eq(e.item.index()).removeClass('hide');
+            }
         }
     });
     $('#messageDrawerContentView').height($('#messageDrawerView').height()).find('.blank').html('<i class="fas fa-couch"></i>空空如也');
     // 抽屉折叠
     $('#messageDrawerBtnView i').show();
     $('#messageDrawerBtnView').click(function () {
-        if ($('#messageDrawerView').data('kendoDrawer').drawerContainer.hasClass('k-drawer-expanded')) {
+        if ($('#messageDrawerBtnView').width() > 40) {
             $('#messageDrawerView').data('kendoDrawer').hide();
-            $('#messageDrawerBtnView').animate({width: '40px'}, 300, 'swing').find('i').removeClass('fa-outdent').addClass('fa-indent');
+            $('#messageDrawerBtnView').animate({ width: '40px' }, 300, 'swing').find('i').removeClass('fa-outdent').addClass('fa-indent');
             $('#messageDrawerView .k-drawer-items .badge').fadeOut();
             $('#messageDrawerView .k-drawer-items sup').fadeIn();
         } else {
             $('#messageDrawerView').data('kendoDrawer').show();
-            $('#messageDrawerBtnView').animate({width: '120px'}, 300, 'swing').find('i').removeClass('fa-indent').addClass('fa-outdent');
+            $('#messageDrawerBtnView').animate({ width: '120px' }, 300, 'swing').find('i').removeClass('fa-indent').addClass('fa-outdent');
             $('#messageDrawerView .k-drawer-items sup').fadeOut();
             $('#messageDrawerView .k-drawer-items .badge').fadeIn();
         }
@@ -125,7 +127,10 @@ $(function () {
         tagTemplate: '<img src="#: avatar #" alt="#: nickName #">#: realName #'
     });
     // 收件箱工具栏
-    $('#inboxToolbar').width($('#messageDrawerContentView').width()).kendoToolBar({
+    if (window.outerWidth < 1024) {
+        $('#inboxToolbar').width($('#messageDrawerContentView').width());
+    }
+    $('#inboxToolbar').kendoToolBar({
         items: [
             {
                 template: '<input class="k-checkbox" id="inboxSelectAll" type="checkbox"><label class="k-checkbox-label" for="inboxSelectAll" title="全选"></label>'
@@ -393,7 +398,10 @@ $(function () {
     });
     // 发件箱工具栏
     $('#messageDrawerContentView > div:eq(2)').removeClass('hide');
-    $('#outboxToolbar').width($('#messageDrawerContentView').width()).kendoToolBar({
+    if (window.outerWidth < 1024) {
+        $('#outboxToolbar').width($('#messageDrawerContentView').width());
+    }
+    $('#outboxToolbar').kendoToolBar({
         items: [
             {
                 template: '<input class="k-checkbox" id="outboxSelectAll" type="checkbox"><label class="k-checkbox-label" for="outboxSelectAll" title="全选"></label>'
@@ -587,7 +595,10 @@ $(function () {
     });
     // 短信息工具栏
     $('#messageDrawerContentView > div:eq(4)').removeClass('hide');
-    $('#smsToolbar').width($('#messageDrawerContentView').width()).kendoToolBar({
+    if (window.outerWidth < 1024) {
+        $('#smsToolbar').width($('#messageDrawerContentView').width());
+    }
+    $('#smsToolbar').kendoToolBar({
         items: [
             {
                 template: '<input class="k-checkbox" id="smsSelectAll" type="checkbox"><label class="k-checkbox-label" for="smsSelectAll" title="全选"></label>'
@@ -885,7 +896,10 @@ $(function () {
     });
     // 通讯录工具栏
     $('#messageDrawerContentView > div:eq(6)').removeClass('hide');
-    $('#addressBookToolbar').width($('#messageDrawerContentView').width()).kendoToolBar({
+    if (window.outerWidth < 1024) {
+        $('#addressBookToolbar').width($('#messageDrawerContentView').width());
+    }
+    $('#addressBookToolbar').kendoToolBar({
         items: [
             {
                 template: '<input class="k-checkbox" id="addressBookSelectAll" type="checkbox"><label class="k-checkbox-label" for="addressBookSelectAll" title="全选"></label>'

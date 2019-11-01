@@ -754,7 +754,9 @@ function initMessage() {
             $('#messageBox .k-drawer-items sup').fadeIn();
         },
         itemClick: function (e) {
-            $('#messageDrawerContent > div').addClass('hide').eq(e.item.index()).removeClass('hide');
+            if(!e.item.hasClass('k-drawer-separator')){
+                $('#messageDrawerContent > div').addClass('hide').eq(e.item.index()).removeClass('hide');
+            }
         }
     });
     $('#messageDrawerBtn').click(function () {
