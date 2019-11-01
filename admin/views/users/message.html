@@ -67,10 +67,13 @@
         <div id="messageDrawerBtnView"><i class="fas fa-indent hide"></i></div>
     </div>
     <style scoped>
-        #messageDrawerView {
+        .k-drawer-container {
+            border: 1px solid #ccc;
             border-radius: 4px;
+            background: #fff;
         }
         #messageDrawerView i,
+        #messageDrawerContentView i,
         .k-window-content .mail-content i,
         .k-window-content .address-book-content button i {
             margin-right: 6px;
@@ -81,23 +84,26 @@
             text-align: center;
             vertical-align: middle;
         }
-        #messageDrawerView .k-drawer-container {
+        #messageDrawerView {
             border-top-left-radius: 4px;
             border-bottom-left-radius: 4px;
             background: #e6e6e6;
+            white-space: nowrap;
         }
-        #messageDrawerView .k-drawer-container .k-drawer-item {
+        #messageDrawerView .k-drawer-item {
+            align-items: center;
             position: relative;
             font-size: 14px;
         }
-        #messageDrawerView .k-drawer-container .k-drawer-item i {
+        #messageDrawerView .k-drawer-item i {
             margin: 0 12px 0 4px;
+            min-width: 16px;
         }
-        #messageDrawerView .k-drawer-container .k-drawer-item .badge {
+        #messageDrawerView .k-drawer-item .badge {
             margin-left: 6px;
             font-weight: 100;
         }
-        #messageDrawerView .k-drawer-container .k-drawer-item sup {
+        #messageDrawerView .k-drawer-item sup {
             display: inline-block;
             position: absolute;
             top: 8px;
@@ -141,67 +147,67 @@
         #messageDrawerContentView .k-toolbar .k-checkbox-label {
             margin-left: 4px;
         }
-        #messageDrawerView .k-listview {
+        #messageDrawerContentView .k-listview {
             border: 0;
             background: #eee;
             box-shadow: 1px 0 2px rgba(0, 0, 0, .1);
         }
-        #messageDrawerView .k-listview .mail-list {
+        #messageDrawerContentView .k-listview .mail-list {
             padding: 8px 12px;
         }
-        #messageDrawerView .k-listview .mail-list .k-checkbox-label {
+        #messageDrawerContentView .k-listview .mail-list .k-checkbox-label {
             margin-right: 8px;
         }
-        #messageDrawerView .k-listview .mail-list img {
+        #messageDrawerContentView .k-listview .mail-list img {
             margin: 0 6px 5px 0;
             border: 1px solid #ccc;
             border-radius: 50%;
             width: 20px;
             height: 20px;
         }
-        #messageDrawerView .k-listview .mail-list h5 {
+        #messageDrawerContentView .k-listview .mail-list h5 {
             margin-bottom: 0;
             font-size: 14px;
             color: #bababa;
         }
-        #messageDrawerView .k-listview .mail-list p {
+        #messageDrawerContentView .k-listview .mail-list p {
             margin-bottom: 3px;
             font-size: 12px;
             color: #bababa;
         }
-        #messageDrawerView .k-listview .mail-list time {
+        #messageDrawerContentView .k-listview .mail-list time {
             font-size: 12px;
             color: #bababa;
         }
-        #messageDrawerView .k-listview .unread h5 {
+        #messageDrawerContentView .k-listview .unread h5 {
             color: #000;
         }
-        #messageDrawerView .k-listview .unread p {
+        #messageDrawerContentView .k-listview .unread p {
             color: #666;
         }
-        #messageDrawerView .k-listview .unread time {
+        #messageDrawerContentView .k-listview .unread time {
             color: #999;
         }
-        #messageDrawerView .k-listview .k-state-selected h5,
-        #messageDrawerView .k-listview .k-state-selected p,
-        #messageDrawerView .k-listview .k-state-selected time {
+        #messageDrawerContentView .k-listview .k-state-selected h5,
+        #messageDrawerContentView .k-listview .k-state-selected p,
+        #messageDrawerContentView .k-listview .k-state-selected time {
             color: #000;
         }
-        #messageDrawerView .k-listview .sms-list {
+        #messageDrawerContentView .k-listview .sms-list {
             display: flex;
             align-items: center;
             position: relative;
             padding: 8px 12px;
         }
-        #messageDrawerView .k-listview .sms-list .k-checkbox-label {
+        #messageDrawerContentView .k-listview .sms-list .k-checkbox-label {
             margin-right: 8px;
         }
-        #messageDrawerView .k-listview .sms-list figure {
+        #messageDrawerContentView .k-listview .sms-list figure {
             flex: 0 0 44px;
             margin: 0;
             padding-right: 8px;
         }
-        #messageDrawerView .k-listview .sms-list sup {
+        #messageDrawerContentView .k-listview .sms-list sup {
             display: inline-block;
             position: absolute;
             top: 1px;
@@ -214,20 +220,20 @@
             text-align: center;
             transform: scale(0.8);
         }
-        #messageDrawerView .k-listview .sms-list img {
+        #messageDrawerContentView .k-listview .sms-list img {
             border-radius: 4px;
             width: 100%;
             box-shadow: 0 0 2px 1px rgba(0, 0, 0, .2);
         }
-        #messageDrawerView .k-listview .sms-list > div {
+        #messageDrawerContentView .k-listview .sms-list > div {
             flex: auto;
         }
-        #messageDrawerView .k-listview .sms-list h5 {
+        #messageDrawerContentView .k-listview .sms-list h5 {
             margin-bottom: 2px;
             font-size: 14px;
             color: #000;
         }
-        #messageDrawerView .k-listview .sms-list strong {
+        #messageDrawerContentView .k-listview .sms-list strong {
             display: inline-block;
             width: calc(100% - 36px);
             font-weight: normal;
@@ -235,12 +241,12 @@
             text-overflow: ellipsis;
             overflow: hidden;
         }
-        #messageDrawerView .k-listview .sms-list time {
+        #messageDrawerContentView .k-listview .sms-list time {
             float: right;
             font-size: 12px;
             color: #999;
         }
-        #messageDrawerView .k-listview .sms-list p {
+        #messageDrawerContentView .k-listview .sms-list p {
             margin-bottom: 0;
             width: 80px;
             font-size: 12px;
@@ -249,52 +255,52 @@
             text-overflow: ellipsis;
             overflow: hidden;
         }
-        #messageDrawerView .k-listview .address-book-list {
+        #messageDrawerContentView .k-listview .address-book-list {
             padding: 8px 0;
         }
-        #messageDrawerView .k-listview .address-book-list h4 {
+        #messageDrawerContentView .k-listview .address-book-list h4 {
             padding: 0 12px;
             font-size: 12px;
             color: #999;
         }
-        #messageDrawerView .k-listview .address-book-list h5 {
+        #messageDrawerContentView .k-listview .address-book-list h5 {
             margin-bottom: 0;
             padding: 5px 12px;
             font-size: 12px;
             color: #000;
         }
-        #messageDrawerView .k-listview .address-book-list h5:hover {
+        #messageDrawerContentView .k-listview .address-book-list h5:hover {
             background: #ddd;
             cursor: pointer;
         }
-        #messageDrawerView .k-listview .address-book-list h5.k-state-selected {
+        #messageDrawerContentView .k-listview .address-book-list h5.k-state-selected {
             background: #ccc;
         }
-        #messageDrawerView .k-listview .address-book-list .k-checkbox-label {
+        #messageDrawerContentView .k-listview .address-book-list .k-checkbox-label {
             margin-right: 8px;
         }
-        #messageDrawerView .k-listview .address-book-list img {
+        #messageDrawerContentView .k-listview .address-book-list img {
             margin: 0 6px 0 0;
             border: 1px solid #ccc;
             border-radius: 50%;
             width: 30px;
             height: 30px;
         }
-        #messageDrawerView .blank {
+        #messageDrawerContentView .blank {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        #messageDrawerView .mail-content {
+        #messageDrawerContentView .mail-content {
             overflow: auto;
             padding: 10px 20px;
             height: 100%;
         }
-        #messageDrawerView .mail-content h6,
+        #messageDrawerContentView .mail-content h6,
         .k-window-content .mail-content h6 {
             line-height: 1.5;
         }
-        #messageDrawerView .mail-content dl,
+        #messageDrawerContentView .mail-content dl,
         .k-window-content .mail-content dl {
             margin-top: 10px;
             margin-bottom: 10px;
@@ -304,13 +310,13 @@
             padding-bottom: 5px;
             font-size: 12px;
         }
-        #messageDrawerView .mail-content dt,
+        #messageDrawerContentView .mail-content dt,
         .k-window-content .mail-content dt {
             font-weight: normal;
             color: #999;
             text-align: right;
         }
-        #messageDrawerView .mail-content dd > img,
+        #messageDrawerContentView .mail-content dd > img,
         .k-window-content .mail-content dd > img {
             margin-right: 3px;
             border: 1px solid #ccc;
@@ -319,14 +325,14 @@
             height: 12px;
             vertical-align: -10%;
         }
-        #messageDrawerView .mail-content .btns,
+        #messageDrawerContentView .mail-content .btns,
         .k-window-content .mail-content .btns {
             margin-top: 10px;
             border-top: 1px solid #ccc;
             padding: 10px 5px;
             text-align: center;
         }
-        #messageDrawerView .mail-content .btns button,
+        #messageDrawerContentView .mail-content .btns button,
         .k-window-content .mail-content .btns button {
             margin: 0 10px;
         }
@@ -393,7 +399,7 @@
         #smsChatView .k-message-box {
             border-color: #ccc;
         }
-        #messageDrawerView .address-book-content,
+        #messageDrawerContentView .address-book-content,
         .window-box .address-book-content {
             display: flex;
             flex-direction: column;
@@ -402,7 +408,7 @@
             height: 100%;
             color: #fff;
         }
-        #messageDrawerView .address-book-content figure,
+        #messageDrawerContentView .address-book-content figure,
         .window-box .address-book-content figure {
             position: absolute;
             width: 100%;
@@ -414,14 +420,14 @@
             filter: blur(50px);
             opacity: .8;
         }
-        #messageDrawerView .address-book-content img,
+        #messageDrawerContentView .address-book-content img,
         .window-box .address-book-content img {
             position: relative;
             margin-bottom: 30px;
             width: 160px;
             height: 160px;
         }
-        #messageDrawerView .address-book-content h5,
+        #messageDrawerContentView .address-book-content h5,
         .window-box .address-book-content h5 {
             position: relative;
             margin-bottom: 15px;
@@ -429,7 +435,7 @@
             font-weight: 100;
             opacity: .8;
         }
-        #messageDrawerView .address-book-content h5 i,
+        #messageDrawerContentView .address-book-content h5 i,
         .window-box .address-book-content h5 i {
             margin: 0;
             width: 30px;
@@ -439,7 +445,7 @@
             text-align: center;
             vertical-align: -4%;
         }
-        #messageDrawerView .address-book-content h6,
+        #messageDrawerContentView .address-book-content h6,
         .window-box .address-book-content h6 {
             position: relative;
             margin-bottom: 15px;
@@ -447,7 +453,7 @@
             font-weight: 100;
             opacity: .8;
         }
-        #messageDrawerView .address-book-content p,
+        #messageDrawerContentView .address-book-content p,
         .window-box .address-book-content p {
             position: relative;
             margin-bottom: 30px;
@@ -455,7 +461,7 @@
             font-weight: 100;
             opacity: .8;
         }
-        #messageDrawerView .address-book-content .btns,
+        #messageDrawerContentView .address-book-content .btns,
         .window-box .address-book-content .btns {
             position: relative;
             border-top: 1px solid rgba(255, 255, 255, .4);
@@ -463,7 +469,7 @@
             width: 80%;
             text-align: center;
         }
-        #messageDrawerView .address-book-content button,
+        #messageDrawerContentView .address-book-content button,
         .window-box .address-book-content button {
             margin: 0 10px;
         }
@@ -474,7 +480,7 @@
             #messageDrawerContentView .k-toolbar .k-overflow-anchor {
                 width: 20px;
             }
-            #messageDrawerView .k-listview .sms-list p {
+            #messageDrawerContentView .k-listview .sms-list p {
                 width: 200px;
             }
             .k-window .k-window-title img {
@@ -492,10 +498,10 @@
             }
         }
         @media only screen and (min-width: 900px) {
-            #messageDrawerView .k-listview .sms-list figure {
+            #messageDrawerContentView .k-listview .sms-list figure {
                 flex: 0 0 64px;
             }
-            #messageDrawerView .k-listview .sms-list p {
+            #messageDrawerContentView .k-listview .sms-list p {
                 width: auto;
                 height: 34px;
                 white-space: normal;

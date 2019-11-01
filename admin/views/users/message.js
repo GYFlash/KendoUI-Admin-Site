@@ -1,6 +1,6 @@
 $(function () {
     // 抽屉生成
-    $('#messageDrawerView').height($('#container').height()).kendoDrawer({
+    $('#messageDrawerView').height($('#container').height() - 2).kendoDrawer({
         mode: 'push',
         template:
             '<ul>' +
@@ -30,7 +30,7 @@ $(function () {
             $('#messageDrawerContentView > div').addClass('hide').eq(e.item.index()).removeClass('hide');
         }
     });
-    $('#messageDrawerContentView .blank').html('<i class="fas fa-couch"></i>空空如也');
+    $('#messageDrawerContentView').height($('#messageDrawerView').height()).find('.blank').html('<i class="fas fa-couch"></i>空空如也');
     // 抽屉折叠
     $('#messageDrawerBtnView i').show();
     $('#messageDrawerBtnView').click(function () {

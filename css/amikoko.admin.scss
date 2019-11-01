@@ -699,15 +699,18 @@ iframe#section {
             }
             .card-body {
                 padding: 0;
-                #messageDrawer {
+                .k-drawer-container {
                     border: 0;
-                    .k-drawer-container {
+                    border-radius: 0;
+                    #messageDrawer {
                         background: #e6e6e6;
                         .k-drawer-item {
+                            align-items: center;
                             position: relative;
                             font-size: $font-size-m;
                             i {
                                 margin: 0 12px 0 4px;
+                                min-width: 16px;
                             }
                             .badge {
                                 margin-left: 6px;
@@ -722,297 +725,300 @@ iframe#section {
                             }
                         }
                     }
-                    .k-listview {
-                        border: 0;
-                        background: #eee;
-                        box-shadow: 1px 0 2px rgba(0, 0, 0, .1);
-                        .mail-list {
-                            padding: 8px 12px;
-                            img {
-                                margin: 0 6px 5px 0;
-                                border: 1px solid $line-color;
-                                border-radius: $border-radius-round;
-                                width: 20px;
-                                height: 20px;
-                            }
-                            h5 {
-                                margin-bottom: 0;
-                                font-size: $font-size-m;
-                                color: #bababa;
-                                white-space: normal;
-                            }
-                            p {
-                                margin-bottom: 3px;
-                                font-size: $font-size-s;
-                                color: #bababa;
-                                white-space: normal;
-                            }
-                            time {
-                                font-size: $font-size-s;
-                                color: #bababa;
-                            }
-                        }
-                        .unread {
-                            h5 {
-                                color: #000;
-                            }
-                            p {
-                                color: #666;
-                            }
-                            time {
-                                color: #999;
-                            }
-                        }
-                        .k-state-selected {
-                            h5,
-                            p,
-                            time {
-                                color: #000;
-                            }
-                        }
-                        .sms-list {
-                            display: flex;
-                            position: relative;
-                            padding: 8px 12px;
-                            figure {
-                                flex: 0 0 44px;
-                                margin: 0;
-                                padding-right: 8px;
-                                sup {
-                                    top: 1px;
-                                    left: 5px;
-                                }
+                    #messageDrawerContent {
+                        .k-listview {
+                            border: 0;
+                            background: #eee;
+                            box-shadow: 1px 0 2px rgba(0, 0, 0, .1);
+                            .mail-list {
+                                padding: 8px 12px;
                                 img {
-                                    border-radius: $border-radius;
-                                    width: 100%;
-                                    box-shadow: 0 0 2px 1px rgba(0, 0, 0, .2);
-                                }
-                            }
-                            > div {
-                                flex: auto;
-                                h5 {
-                                    margin-bottom: 2px;
-                                    font-size: $font-size-m;
-                                    color: #000;
-                                    strong {
-                                        display: inline-block;
-                                        width: calc(100% - 36px);
-                                        font-weight: normal;
-                                        text-overflow: ellipsis;
-                                        overflow: hidden;
-                                    }
-                                    time {
-                                        float: right;
-                                        font-size: $font-size-s;
-                                        color: #999;
-                                    }
-                                }
-                                p {
-                                    margin-bottom: 0;
-                                    width: 90px;
-                                    font-size: $font-size-s;
-                                    color: #999;
-                                    text-overflow: ellipsis;
-                                    overflow: hidden;
-                                }
-                            }
-                        }
-                        .address-book-list {
-                            padding: 8px 0;
-                            h4 {
-                                padding: 0 12px;
-                                font-size: $font-size-m;
-                                color: #999;
-                            }
-                            h5 {
-                                margin-bottom: 0;
-                                padding: 5px 12px;
-                                font-size: $font-size-m;
-                                color: #000;
-                                white-space: normal;
-                                &:hover {
-                                    background: #ddd;
-                                    cursor: pointer;
-                                }
-                                &.k-state-selected {
-                                    background: #ccc;
-                                }
-                            }
-                            img {
-                                margin: 0 6px 0 0;
-                                border: 1px solid $line-color;
-                                border-radius: $border-radius-round;
-                                width: 30px;
-                                height: 30px;
-                            }
-                        }
-                    }
-                    .blank {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 600px;
-                        .k-i-loading {
-                            margin-right: 6px;
-                        }
-                    }
-                    .mail-content {
-                        overflow: auto;
-                        padding: 10px 20px;
-                        height: 600px;
-                        h6 {
-                            line-height: 1.5;
-                            white-space: normal;
-                        }
-                        dl {
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            border-top: 1px solid $line-color;
-                            border-bottom: 1px solid $line-color;
-                            padding-top: 5px;
-                            padding-bottom: 5px;
-                            font-size: $font-size-s;
-                            dt {
-                                font-weight: normal;
-                                color: #999;
-                                text-align: right;
-                            }
-                            dd {
-                                white-space: normal;
-                                > img {
-                                    margin-right: 3px;
-                                    border: 1px solid $line-color;
-                                    border-radius: $border-radius-round;
-                                    width: 12px;
-                                    height: 12px;
-                                    vertical-align: -10%;
-                                }
-                            }
-                        }
-                        .content {
-                            white-space: normal;
-                        }
-                        .btns {
-                            margin-top: 10px;
-                            border-top: 1px solid $line-color;
-                            padding: 10px;
-                            text-align: center;
-                            button {
-                                margin: 0 10px;
-                            }
-                        }
-                    }
-                    #writeMail {
-                        .mail-content {
-                            padding: 20px;
-                            .k-multiselect-wrap {
-                                img {
-                                    margin-right: 6px;
+                                    margin: 0 6px 5px 0;
                                     border: 1px solid $line-color;
                                     border-radius: $border-radius-round;
                                     width: 20px;
                                     height: 20px;
                                 }
+                                h5 {
+                                    margin-bottom: 0;
+                                    font-size: $font-size-m;
+                                    color: #bababa;
+                                    white-space: normal;
+                                }
+                                p {
+                                    margin-bottom: 3px;
+                                    font-size: $font-size-s;
+                                    color: #bababa;
+                                    white-space: normal;
+                                }
+                                time {
+                                    font-size: $font-size-s;
+                                    color: #bababa;
+                                }
                             }
-                            textarea {
-                                height: 320px;
+                            .unread {
+                                h5 {
+                                    color: #000;
+                                }
+                                p {
+                                    color: #666;
+                                }
+                                time {
+                                    color: #999;
+                                }
+                            }
+                            .k-state-selected {
+                                h5,
+                                p,
+                                time {
+                                    color: #000;
+                                }
+                            }
+                            .sms-list {
+                                display: flex;
+                                position: relative;
+                                padding: 8px 12px;
+                                figure {
+                                    flex: 0 0 44px;
+                                    margin: 0;
+                                    padding-right: 8px;
+                                    sup {
+                                        top: 1px;
+                                        left: 5px;
+                                    }
+                                    img {
+                                        border-radius: $border-radius;
+                                        width: 100%;
+                                        box-shadow: 0 0 2px 1px rgba(0, 0, 0, .2);
+                                    }
+                                }
+                                > div {
+                                    flex: auto;
+                                    h5 {
+                                        margin-bottom: 2px;
+                                        font-size: $font-size-m;
+                                        color: #000;
+                                        strong {
+                                            display: inline-block;
+                                            width: calc(100% - 36px);
+                                            font-weight: normal;
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                        }
+                                        time {
+                                            float: right;
+                                            font-size: $font-size-s;
+                                            color: #999;
+                                        }
+                                    }
+                                    p {
+                                        margin-bottom: 0;
+                                        width: 90px;
+                                        font-size: $font-size-s;
+                                        color: #999;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                    }
+                                }
+                            }
+                            .address-book-list {
+                                padding: 8px 0;
+                                h4 {
+                                    padding: 0 12px;
+                                    font-size: $font-size-m;
+                                    color: #999;
+                                }
+                                h5 {
+                                    margin-bottom: 0;
+                                    padding: 5px 12px;
+                                    font-size: $font-size-m;
+                                    color: #000;
+                                    white-space: normal;
+                                    &:hover {
+                                        background: #ddd;
+                                        cursor: pointer;
+                                    }
+                                    &.k-state-selected {
+                                        background: #ccc;
+                                    }
+                                }
+                                img {
+                                    margin: 0 6px 0 0;
+                                    border: 1px solid $line-color;
+                                    border-radius: $border-radius-round;
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
+                        }
+                        .blank {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 600px;
+                            .k-i-loading {
+                                margin-right: 6px;
+                            }
+                        }
+                        .mail-content {
+                            overflow: auto;
+                            padding: 10px 20px;
+                            height: 600px;
+                            line-height: 1.25rem;
+                            h6 {
+                                line-height: 1.5;
+                                white-space: normal;
+                            }
+                            dl {
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                border-top: 1px solid $line-color;
+                                border-bottom: 1px solid $line-color;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                font-size: $font-size-s;
+                                dt {
+                                    font-weight: normal;
+                                    color: #999;
+                                    text-align: right;
+                                }
+                                dd {
+                                    white-space: normal;
+                                    > img {
+                                        margin-right: 3px;
+                                        border: 1px solid $line-color;
+                                        border-radius: $border-radius-round;
+                                        width: 12px;
+                                        height: 12px;
+                                        vertical-align: -10%;
+                                    }
+                                }
+                            }
+                            .content {
+                                white-space: normal;
                             }
                             .btns {
-                                margin-top: 0;
-                                border-top: 0;
+                                margin-top: 10px;
+                                border-top: 1px solid $line-color;
+                                padding: 10px;
+                                text-align: center;
+                                button {
+                                    margin: 0 10px;
+                                }
                             }
                         }
-                    }
-                    #sms {
-                        .blank {
-                            height: 550px;
-                        }
-                    }
-                    #smsChat {
-                        border-top: 0;
-                        border-right: 0;
-                        border-bottom: 0;
-                        background: #f4f4f4;
-                        white-space: normal;
-                        .k-message-list {
-                            img {
-                                border: 1px solid $line-color;
+                        #writeMail {
+                            .mail-content {
+                                padding: 20px;
+                                .k-multiselect-wrap {
+                                    img {
+                                        margin-right: 6px;
+                                        border: 1px solid $line-color;
+                                        border-radius: $border-radius-round;
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
+                                textarea {
+                                    height: 320px;
+                                }
+                                .btns {
+                                    margin-top: 0;
+                                    border-top: 0;
+                                }
                             }
-                            time {
-                                color: #999;
+                        }
+                        #sms {
+                            .blank {
+                                height: 550px;
                             }
                         }
-                        .k-message-box {
-                            border-color: $line-color;
+                        #smsChat {
+                            border-top: 0;
+                            border-right: 0;
+                            border-bottom: 0;
+                            background: #f4f4f4;
+                            white-space: normal;
+                            .k-message-list {
+                                img {
+                                    border: 1px solid $line-color;
+                                }
+                                time {
+                                    color: #999;
+                                }
+                            }
+                            .k-message-box {
+                                border-color: $line-color;
+                            }
                         }
-                    }
-                    #smsSearch,
-                    #addressBookSearch {
-                        padding: 10px;
-                        background: #eee;
-                        box-shadow: 1px 0 2px rgba(0, 0, 0, .1);
-                    }
-                    .address-book-content {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        height: 600px;
-                        color: #fff;
-                        figure {
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            margin: 0;
-                            background-repeat: no-repeat;
-                            background-size: cover;
-                            background-position: center;
-                            filter: blur(50px);
-                            opacity: .8;
+                        #smsSearch,
+                        #addressBookSearch {
+                            padding: 10px;
+                            background: #eee;
+                            box-shadow: 1px 0 2px rgba(0, 0, 0, .1);
                         }
-                        img {
-                            position: relative;
-                            margin-bottom: 30px;
-                            width: 160px;
-                            height: 160px;
-                        }
-                        h5 {
-                            position: relative;
-                            margin-bottom: 15px;
-                            font-size: 30px;
-                            font-weight: 100;
-                            opacity: .8;
-                            i {
+                        .address-book-content {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            height: 600px;
+                            color: #fff;
+                            figure {
+                                position: absolute;
+                                width: 100%;
+                                height: 100%;
                                 margin: 0;
-                                width: 30px;
-                                height: 30px;
-                                font-size: 30px;
-                                line-height: 30px;
-                                vertical-align: -4%;
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                background-position: center;
+                                filter: blur(50px);
+                                opacity: .8;
                             }
-                        }
-                        h6 {
-                            position: relative;
-                            margin-bottom: 15px;
-                            font-size: 20px;
-                            font-weight: 100;
-                            opacity: .8;
-                        }
-                        p {
-                            position: relative;
-                            margin-bottom: 30px;
-                            font-size: 16px;
-                            font-weight: 100;
-                            opacity: .8;
-                        }
-                        .btns {
-                            position: relative;
-                            border-top: 1px solid rgba(255, 255, 255, .4);
-                            padding-top: 30px;
-                            width: 80%;
-                            text-align: center;
-                            button {
-                                margin: 0 10px;
+                            img {
+                                position: relative;
+                                margin-bottom: 30px;
+                                width: 160px;
+                                height: 160px;
+                            }
+                            h5 {
+                                position: relative;
+                                margin-bottom: 15px;
+                                font-size: 30px;
+                                font-weight: 100;
+                                opacity: .8;
+                                i {
+                                    margin: 0;
+                                    width: 30px;
+                                    height: 30px;
+                                    font-size: 30px;
+                                    line-height: 30px;
+                                    vertical-align: -4%;
+                                }
+                            }
+                            h6 {
+                                position: relative;
+                                margin-bottom: 15px;
+                                font-size: 20px;
+                                font-weight: 100;
+                                opacity: .8;
+                            }
+                            p {
+                                position: relative;
+                                margin-bottom: 30px;
+                                font-size: 16px;
+                                font-weight: 100;
+                                opacity: .8;
+                            }
+                            .btns {
+                                position: relative;
+                                border-top: 1px solid rgba(255, 255, 255, .4);
+                                padding-top: 30px;
+                                width: 80%;
+                                text-align: center;
+                                button {
+                                    margin: 0 10px;
+                                }
                             }
                         }
                     }
