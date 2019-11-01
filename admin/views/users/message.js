@@ -17,11 +17,17 @@ $(function () {
         },
         width: 120,
         show: function(e) {
+            if (window.outerWidth < 1024) {
+                $('#inboxToolbar, #outboxToolbar, #smsToolbar, #addressBookToolbar').width(0);
+            }
             $('#messageDrawerBtnView').animate({ width: '120px' }, 300, 'swing').find('i').removeClass('fa-indent').addClass('fa-outdent');
             $('#messageDrawerView .k-drawer-items sup').fadeOut();
             $('#messageDrawerView .k-drawer-items .badge').fadeIn();
         },
         hide: function(e) {
+            if (window.outerWidth < 1024) {
+                $('#inboxToolbar, #outboxToolbar, #smsToolbar, #addressBookToolbar').width(0);
+            }
             $('#messageDrawerBtnView').animate({ width: '40px' }, 300, 'swing').find('i').removeClass('fa-outdent').addClass('fa-indent');
             $('#messageDrawerView .k-drawer-items .badge').fadeOut();
             $('#messageDrawerView .k-drawer-items sup').fadeIn();
@@ -38,11 +44,17 @@ $(function () {
     $('#messageDrawerBtnView').click(function () {
         if ($('#messageDrawerBtnView').width() > 40) {
             $('#messageDrawerView').data('kendoDrawer').hide();
+            if (window.outerWidth < 1024) {
+                $('#inboxToolbar, #outboxToolbar, #smsToolbar, #addressBookToolbar').width(0);
+            }
             $('#messageDrawerBtnView').animate({ width: '40px' }, 300, 'swing').find('i').removeClass('fa-outdent').addClass('fa-indent');
             $('#messageDrawerView .k-drawer-items .badge').fadeOut();
             $('#messageDrawerView .k-drawer-items sup').fadeIn();
         } else {
             $('#messageDrawerView').data('kendoDrawer').show();
+            if (window.outerWidth < 1024) {
+                $('#inboxToolbar, #outboxToolbar, #smsToolbar, #addressBookToolbar').width(0);
+            }
             $('#messageDrawerBtnView').animate({ width: '120px' }, 300, 'swing').find('i').removeClass('fa-indent').addClass('fa-outdent');
             $('#messageDrawerView .k-drawer-items sup').fadeOut();
             $('#messageDrawerView .k-drawer-items .badge').fadeIn();
