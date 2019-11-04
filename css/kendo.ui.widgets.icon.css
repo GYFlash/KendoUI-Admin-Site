@@ -25,6 +25,10 @@
 }
 
 /* Data Management */
+.filterIcon:after {
+    content: '\e90f';
+}
+
 .gridIcon:after {
     content: '\e818';
 }
@@ -71,7 +75,7 @@
 }
 
 .dateTimePickerIcon:after {
-    content: '\e80e';
+    content: '\e84f';
 }
 
 .dropDownListIcon:after {
@@ -106,8 +110,16 @@
     content: '\e825';
 }
 
+.ratingIcon:after {
+    content: '\e90e';
+}
+
 .sliderIcon:after {
     content: '\e833';
+}
+
+.mobileSwitchIcon:after {
+    content: '\e839';
 }
 
 .timePickerIcon:after {
@@ -122,13 +134,18 @@
     content: '\e841';
 }
 
-.mobileSwitchIcon:after {
-    content: '\e839';
-}
-
 /* Conversational UI */
 .chatIcon:after {
     content: '\e907';
+}
+
+/* PDF */
+.pdfIcon:after {
+    content: '\e84e';
+}
+
+.pdfviewerIcon:after {
+    content: '\e90d';
 }
 
 /* Charts */
@@ -262,11 +279,7 @@
 }
 
 .drawingIcon:after {
-    content: '\e835';
-}
-
-.pdfIcon:after {
-    content: '\e84e';
+    content: '\e855';
 }
 
 .globalizationIcon:after {
@@ -274,7 +287,7 @@
 }
 
 .integrationIcon:after {
-    content: '\e810';
+    content: '\e850';
 }
 
 .mvvmIcon:after {
@@ -282,15 +295,15 @@
 }
 
 .spaIcon:after {
-    content: '\e832';
+    content: '\e801';
 }
 
 .templatesIcon:after {
     content: '\e83c';
 }
 
-.mobileAppIcon:after {
-    content: '\e851';
+.touchEventsIcon:after {
+    content: '\e906';
 }
 
 /* Media */
@@ -298,11 +311,15 @@
     content: '\e858';
 }
 
-.mobileScrollViewIcon:after {
+.scrollviewIcon:after {
     content: '\e831';
 }
 
 /* Layout */
+.cardsIcon:after {
+    content: '\e912';
+}
+
 .dialogIcon:after {
     content: '\e857';
 }
@@ -312,7 +329,7 @@
 }
 
 .responsivePanelIcon:after {
-    content: '\e849';
+    content: '\e84a';
 }
 
 .splitterIcon:after {
@@ -352,6 +369,14 @@
     content: '\e852';
 }
 
+.drawerIcon:after {
+    content: '\e812';
+}
+
+.timelineIcon:after {
+    content: '\e910';
+}
+
 .treeViewIcon:after {
     content: '\e83f';
 }
@@ -362,7 +387,7 @@
 }
 
 .effectsIcon:after {
-    content: '\e815';
+    content: '\e837';
 }
 
 .progressBarIcon:after {
@@ -374,12 +399,24 @@
 }
 
 .stylingIcon:after {
-    content: '\e850';
+    content: '\e832';
+}
+
+.rippleIcon:after {
+    content: '\e810';
 }
 
 /* Others */
+.chunkprogressbarIcon:after {
+    content: '\e911';
+}
+
 .i-layout:after {
     content: '\e819';
+}
+
+.mobileAppIcon:after {
+    content: '\e851';
 }
 
 .spreadprocessingIcon:after {

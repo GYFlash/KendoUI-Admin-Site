@@ -540,6 +540,7 @@ ROOT/·····································�
 * 布局 <small>[ Layout ]</small> 💯
     * [页面布局 <small>[ Splitter ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/layout/splitter) ✔️
     * [响应面板 <small>[ Responsive Panel ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/layout/responsive_panel) ✔️
+    * 卡片 <small>[ Cards ]</small>
     * [模态框 <small>[ Window ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/layout/window) ✔️
     * [对话框 <small>[ Dialog ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/layout/dialog) ✔️
     * [通知框 <small>[ Notification ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/layout/notification) ✔️
@@ -551,6 +552,7 @@ ROOT/·····································�
     * [选项卡 <small>[ TabStrip ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/navigation/tabstrip) ✔️
     * [工具栏 <small>[ ToolBar ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/navigation/toolbar) ✔️
     * [树形视图 <small>[ TreeView ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/navigation/treeview) ✔️
+    * 时间线 <small>[ Timeline ]</small>
     * [按钮 <small>[ Button ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/navigation/button) ✔️
     * [按钮组 <small>[ ButtonGroup ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/navigation/buttongroup) ✔️
 * 表单 <small>[ Forms ]</small> 💯
@@ -570,6 +572,7 @@ ROOT/·····································�
     * [树形下拉框 <small>[ DropDownTree ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/dropdowntree) ✔️
     * [颜色框 <small>[ ColorPicker ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/colorpicker) ✔️
     * [滑块框 <small>[ Slider ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/slider) ✔️
+    * 评级框 <small>[ Rating ]</small>
     * [穿梭框 <small>[ ListBox ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/listbox) ✔️
     * [富文本框 <small>[ Editor ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/editor) ✔️
     * [上传框 <small>[ Upload ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/upload) ✔️
@@ -580,6 +583,7 @@ ROOT/·····································�
     * [列表视图 <small>[ ListView ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/data/listview) ✔️
     * [电子表格 <small>[ Spreadsheet ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/data/spreadsheet) ✔️
     * [透视表格 <small>[ PivotGrid ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/data/pivotgrid) ✔️
+    * 过滤器 <small>[ Filter ]</small>
 * 日程 <small>[ Scheduling ]</small> 💯
     * [日历 <small>[ Calendar ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/scheduling/calendar) ✔️
     * [多重日历 <small>[ MultiViewCalendar ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/scheduling/multiviewcalendar) ✔️

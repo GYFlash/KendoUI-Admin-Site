@@ -309,14 +309,14 @@
                 },
                 {
                     "id": "0208",
-                    "text": "<i class='pdfIcon'></i>PDF查看<small>PDF Viewer</small>",
+                    "text": "<i class='pdfviewerIcon'></i>PDF查看<small>PDF Viewer</small>",
                     "encoded": false,
                     "cssClass": "links-pdf_viewer",
                     "url": "javascript:linkTo(\"/framework/\", \"pdf_viewer\");"
                 },
                 {
                     "id": "0209",
-                    "text": "<i class='mobileAppIcon'></i>触摸事件<small>Touch Events</small>",
+                    "text": "<i class='touchEventsIcon'></i>触摸事件<small>Touch Events</small>",
                     "encoded": false,
                     "cssClass": "links-touch_events",
                     "url": "javascript:linkTo(\"/framework/\", \"touch_events\");"
@@ -351,27 +351,34 @@
                 },
                 {
                     "id": "0303",
+                    "text": "<i class='cardsIcon'></i>卡片<small>Cards</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "encoded": false,
+                    "cssClass": "links-cards",
+                    "url": "javascript:linkTo(\"/layout/\", \"cards\");"
+                },
+                {
+                    "id": "0304",
                     "text": "<i class='windowIcon'></i>模态框<small>Window</small>",
                     "encoded": false,
                     "cssClass": "links-window",
                     "url": "javascript:linkTo(\"/layout/\", \"window\");"
                 },
                 {
-                    "id": "0304",
+                    "id": "0305",
                     "text": "<i class='dialogIcon'></i>对话框<small>Dialog</small>",
                     "encoded": false,
                     "cssClass": "links-dialog",
                     "url": "javascript:linkTo(\"/layout/\", \"dialog\");"
                 },
                 {
-                    "id": "0305",
+                    "id": "0306",
                     "text": "<i class='notificationIcon'></i>通知框<small>Notification</small>",
                     "encoded": false,
                     "cssClass": "links-notification",
                     "url": "javascript:linkTo(\"/layout/\", \"notification\");"
                 },
                 {
-                    "id": "0306",
+                    "id": "0307",
                     "text": "<i class='tooltipIcon'></i>提示框<small>Tooltip</small>",
                     "encoded": false,
                     "cssClass": "links-tooltip",
@@ -400,7 +407,7 @@
                 },
                 {
                     "id": "0403",
-                    "text": "<i class='responsivePanelIcon'></i>抽屉<small>Drawer</small>",
+                    "text": "<i class='drawerIcon'></i>抽屉<small>Drawer</small>",
                     "encoded": false,
                     "cssClass": "links-drawer",
                     "url": "javascript:linkTo(\"/navigation/\", \"drawer\");"
@@ -428,13 +435,20 @@
                 },
                 {
                     "id": "0407",
+                    "text": "<i class='timelineIcon'></i>时间线<small>Timeline</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "encoded": false,
+                    "cssClass": "links-timeline",
+                    "url": "javascript:linkTo(\"/navigation/\", \"timeline\");"
+                },
+                {
+                    "id": "0408",
                     "text": "<i class='buttonIcon'></i>按钮<small>Button</small>",
                     "encoded": false,
                     "cssClass": "links-button",
                     "url": "javascript:linkTo(\"/navigation/\", \"button\");"
                 },
                 {
-                    "id": "0408",
+                    "id": "0409",
                     "text": "<i class='mobileButtonGroupIcon'></i>按钮组<small>ButtonGroup</small>",
                     "encoded": false,
                     "cssClass": "links-buttongroup",
@@ -561,27 +575,34 @@
                 },
                 {
                     "id": "0517",
+                    "text": "<i class='ratingIcon'></i>评级框<small>Rating</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "encoded": false,
+                    "cssClass": "links-rating",
+                    "url": "javascript:linkTo(\"/forms/\", \"rating\");"
+                },
+                {
+                    "id": "0518",
                     "text": "<i class='listBoxIcon'></i>穿梭框<small>ListBox</small>",
                     "encoded": false,
                     "cssClass": "links-listbox",
                     "url": "javascript:linkTo(\"/forms/\", \"listbox\");"
                 },
                 {
-                    "id": "0518",
+                    "id": "0519",
                     "text": "<i class='editorIcon'></i>富文本框<small>Editor</small>",
                     "encoded": false,
                     "cssClass": "links-editor",
                     "url": "javascript:linkTo(\"/forms/\", \"editor\");"
                 },
                 {
-                    "id": "0519",
+                    "id": "0520",
                     "text": "<i class='uploadIcon'></i>上传框<small>Upload</small>",
                     "encoded": false,
                     "cssClass": "links-upload",
                     "url": "javascript:linkTo(\"/forms/\", \"upload\");"
                 },
                 {
-                    "id": "0520",
+                    "id": "0521",
                     "text": "<i class='validatorIcon'></i>验证<small>Validator</small>",
                     "encoded": false,
                     "cssClass": "links-validator",
@@ -628,6 +649,13 @@
                     "encoded": false,
                     "cssClass": "links-pivotgrid",
                     "url": "javascript:linkTo(\"/data/\", \"pivotgrid\");"
+                },
+                {
+                    "id": "0606",
+                    "text": "<i class='filterIcon'></i>过滤器<small>Filter</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "encoded": false,
+                    "cssClass": "links-filter",
+                    "url": "javascript:linkTo(\"/data/\", \"filter\");"
                 }
             ]
         },
@@ -652,14 +680,14 @@
                 },
                 {
                     "id": "0703",
-                    "text": "<i class='schedulerIcon'></i>日程表<small>Scheduler</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "text": "<i class='schedulerIcon'></i>日程表<small>Scheduler</small>",
                     "encoded": false,
                     "cssClass": "links-scheduler",
                     "url": "javascript:linkTo(\"/scheduling/\", \"scheduler\");"
                 },
                 {
                     "id": "0704",
-                    "text": "<i class='ganttIcon'></i>甘特图<small>Gantt</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "text": "<i class='ganttIcon'></i>甘特图<small>Gantt</small>",
                     "encoded": false,
                     "cssClass": "links-gantt",
                     "url": "javascript:linkTo(\"/scheduling/\", \"gantt\");"
@@ -694,7 +722,7 @@
                 },
                 {
                     "id": "0902",
-                    "text": "<i class='mobileScrollViewIcon'></i>滚动视图<small>ScrollView</small>",
+                    "text": "<i class='scrollviewIcon'></i>滚动视图<small>ScrollView</small>",
                     "encoded": false,
                     "cssClass": "links-scrollview",
                     "url": "javascript:linkTo(\"/media/\", \"scrollview\");"
@@ -743,7 +771,7 @@
                 },
                 {
                     "id": "1006",
-                    "text": "<i class='stylingIcon'></i>波纹效果<small>Ripple Container</small>",
+                    "text": "<i class='rippleIcon'></i>波纹效果<small>Ripple Container</small>",
                     "encoded": false,
                     "cssClass": "links-ripple_container",
                     "url": "javascript:linkTo(\"/interactivity/\", \"ripple_container\");"
