@@ -2375,8 +2375,10 @@ iframe#section {
 
 /* 通知框 */
 .k-notification-wrap {
+    align-items: center;
+    padding: 10px 0;
     font-size: $font-size-m;
-    line-height: 2.4em;
+    white-space: nowrap;
 }
 
 /* 对话框 */

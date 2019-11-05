@@ -2010,8 +2010,11 @@ iframe#section {
 /* Kendo UI 细节完善 ------------------------------ */
 /* 通知框 */
 .k-notification-wrap {
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 10px 0;
   font-size: 14px;
-  line-height: 2.4em; }
+  white-space: nowrap; }
 
 /* 对话框 */
 .k-dialog .k-window-title img,
