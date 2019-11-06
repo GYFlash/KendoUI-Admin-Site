@@ -2520,6 +2520,11 @@ form {
     }
 }
 
+/* 复选框 */
+.k-checkbox:checked + .k-checkbox-label:after {
+    transform: scale(.8);
+}
+
 /* 下拉框 */
 .k-animation-container {
     .k-list-container {
