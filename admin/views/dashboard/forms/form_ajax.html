@@ -241,6 +241,13 @@
                     </div>
                 </div>
                 <div class="form-group row justify-content-lg-center" tabindex="-1">
+                    <label class="col-form-label text-lg-right col-lg-2"><strong class="k-required">*</strong>自我评价：</label>
+                    <div class="col-lg-6">
+                        <input class="w-100" id="evaluation" name="evaluation" required data-required-msg="请选择自我评价！" value="5">
+                        <span class="k-invalid-msg" data-for="evaluation"></span>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-lg-center" tabindex="-1">
                     <label class="col-form-label text-lg-right col-lg-2"><strong class="k-required">*</strong>自我介绍：</label>
                     <div class="col-lg-6">
                         <textarea class="k-textarea w-100" name="summary" placeholder="文本域框" required data-required-msg="请输入自我介绍！">我叫沙加！这里是我的自我介绍哦~</textarea>
@@ -269,7 +276,7 @@
                 <div class="form-group row justify-content-lg-center" tabindex="-1">
                     <label class="col-form-label col-lg-2 d-none d-lg-block">&nbsp;</label>
                     <div class="col-lg-6">
-                        <input id="agree" name="agree" type="checkbox" required data-required-msg="必须同意条款才能提交！"><label class="ml-2 mb-0 align-middle" for="agree">我同意</label>
+                        <input id="agree" name="agree" type="checkbox" required data-required-msg="必须同意才能提交！"><label class="ml-2 mb-0 align-middle" for="agree">我同意</label>
                         <span class="k-invalid-msg" data-for="agree"></span>
                     </div>
                 </div>
