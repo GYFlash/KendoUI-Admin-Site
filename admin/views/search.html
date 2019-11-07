@@ -18,7 +18,7 @@
         </div>
     </div>
     <script id="listTemplate" type="text/x-kendo-template">
-        <div class="listArea listItem card rounded-0 hide">
+        <div class="listArea listItem card rounded-0 w-100">
             <div class="row no-gutters">
                 <div class="col-md-2 col-xl-1 border-right d-none d-md-block">
                     <div class="card-body text-center p-2">
@@ -279,13 +279,31 @@
                                     # } #
                                 </p>
                             </div>
+                            <div class="row">
+                                <p class="col-md-12 col-xl-6 mb-0">
+                                    <strong>自我评价：</strong>
+                                    # if (evaluation === 1) { #
+                                        不合格
+                                    # } else if (evaluation === 2) { #
+                                        待提升
+                                    # } else if (evaluation === 3) { #
+                                        合格
+                                    # } else if (evaluation === 4) { #
+                                        良好
+                                    # } else if (evaluation === 5) { #
+                                        优秀
+                                    # } else if (evaluation === 6) { #
+                                        完美
+                                    # } #
+                                </p>
+                            </div>
                         </div>
                         <div class="card-footer">#= sign #</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="picArea listItem border-0 p-3 col-md-4 col-lg-3 col-xl-2">
+        <div class="picArea listItem border-0 p-3 col-md-4 col-lg-3 col-xl-2 hide">
             <div class="card">
                 <img class="card-img-top" src="#= photo.url #" alt="#= nickName #" title="#= realName #">
                 <div class="card-footer p-2 text-center">

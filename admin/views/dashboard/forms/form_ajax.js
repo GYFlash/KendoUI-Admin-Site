@@ -327,17 +327,17 @@ $(function () {
         label: {
             template:
                 '# if (value === 1) { #' +
-                '不合格' +
+                    '不合格' +
                 '# } else if (value === 2) { #' +
-                '待提升' +
+                    '待提升' +
                 '# } else if (value === 3) { #' +
-                '合格' +
+                    '合格' +
                 '# } else if (value === 4) { #' +
-                '良好' +
+                    '良好' +
                 '# } else if (value === 5) { #' +
-                '优秀' +
+                    '优秀' +
                 '# } else if (value === 6) { #' +
-                '完美' +
+                    '完美' +
                 '# } #'
         }
     }).data('kendoRating').wrapper.kendoTooltip({

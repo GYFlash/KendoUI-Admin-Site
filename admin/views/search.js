@@ -13,8 +13,8 @@ $(function () {
             { template: '<input class="k-textbox w-100" id="search" name="search" type="text" placeholder="结果内查找...">' },
             { template: '<select class="w-100" id="filter" name="filter"></select>' },
             { type: 'spacer' },
-            { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="switchView(\'list\', this)"><span class="k-icon k-i-grid-layout"></span>列表</a>' },
-            { template: '<a class="k-button k-button-icontext theme-m-box" href="javascript:;" onclick="switchView(\'pic\', this);"><span class="k-icon k-i-group"></span>大图</a>' }
+            { template: '<a class="k-button k-button-icontext theme-m-box" href="javascript:;" onclick="switchView(\'list\', this)"><span class="k-icon k-i-grid-layout"></span>列表</a>' },
+            { template: '<a class="k-button k-button-icontext" href="javascript:;" onclick="switchView(\'pic\', this);"><span class="k-icon k-i-group"></span>大图</a>' }
         ]
     });
     // 筛选
@@ -34,6 +34,7 @@ $(function () {
                 operator: 'contains',
                 value: this.value()
             });
+            $('#toolbar .k-i-grid-layout').parent().click();
         }
     });
     // 定义数据源
@@ -102,6 +103,7 @@ $(function () {
                     color: { type: 'string' },
                     constellation: { type: 'object' },
                     tourism: { type: 'object' },
+                    evaluation: { type: 'number' },
                     summary: { type: 'string' },
                     photo: { type: 'object' },
                     sign: { type: 'string' }
@@ -142,6 +144,7 @@ $(function () {
                 { field: 'homepage', operator: 'contains', value: $(this).val() }
             ]
         });
+        $('#toolbar .k-i-grid-layout').parent().click();
     });
 });
 
@@ -152,6 +155,7 @@ function order(dir) {
         dir: dir
     });
     $('.orderBtn').toggle();
+    $('#toolbar .k-i-grid-layout').parent().click();
 }
 
 // 切换
