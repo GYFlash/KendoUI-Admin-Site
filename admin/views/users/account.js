@@ -331,6 +331,31 @@ $(function () {
                 autoClose: false,
                 value: tourismValue
             });
+            // 自我评价
+            $('#evaluation').kendoRating({
+                max: 6,
+                label: {
+                    template:
+                        '# if (value === 1) { #' +
+                            '不合格' +
+                        '# } else if (value === 2) { #' +
+                            '待提升' +
+                        '# } else if (value === 3) { #' +
+                            '合格' +
+                        '# } else if (value === 4) { #' +
+                            '良好' +
+                        '# } else if (value === 5) { #' +
+                            '优秀' +
+                        '# } else if (value === 6) { #' +
+                            '完美' +
+                        '# } #'
+                }
+            }).data('kendoRating').wrapper.kendoTooltip({
+                filter: '.k-rating-item',
+                content: function (e) {
+                    return e.target.data('value') + '分';
+                }
+            });
             // 头像
             $('#photo').kendoUpload({
                 async: {
