@@ -472,9 +472,25 @@ function advSearch(dom) {
     if ($('.adv-search-area:visible').length > 0) {
         $('form.condition').get(0).reset();
     }
+    var switchChecked = false;
+    if ($('form.condition').find('input[data-role="switch"]:checked').length > 0) {
+        switchChecked = true;
+    }
     $('#searchBtn').fadeToggle();
     $(dom).find('i').toggleClass('fa-angle-double-up');
     $('.adv-search-area').slideToggle();
+    $('form.condition').on('reset', function (e) {
+        if ($(this).find('input[data-role="colorpicker"]').length > 0) {
+            $(this).find('input[data-role="colorpicker"]').data('kendoColorPicker').value(null);
+        }
+        if ($(this).find('select[data-role="dropdowntree"][multiple]').length > 0) {
+            $(this).find('select[data-role="dropdowntree"][multiple]').data('kendoDropDownTree').value('');
+        }
+        if ($(this).find('input[data-role="rating"]').length > 0) {
+            $(this).find('input[data-role="rating"]').data('kendoRating').reset();
+        }
+        $(this).find('input[data-role="switch"]').data('kendoSwitch').check(switchChecked);
+    });
 }
 
 // 条件搜索
