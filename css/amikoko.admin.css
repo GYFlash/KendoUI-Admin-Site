@@ -2288,7 +2288,8 @@ form .searchBtn.row {
   .k-edit-form-container div.k-tooltip-validation {
     -ms-flex-direction: row;
         flex-direction: row;
-    margin: .5em 0 0 0 !important; }
+    margin: .5em 0 0 0 !important;
+    padding: 0; }
     .k-edit-form-container div.k-tooltip-validation .k-icon {
       margin-right: 4px; }
 

@@ -23,21 +23,21 @@
                             <input class="k-radio" id="gender1" name="gender" type="radio" value="1"><label class="k-radio-label" for="gender1">男</label>
                             <input class="k-radio" id="gender2" name="gender" type="radio" value="2"><label class="k-radio-label" for="gender2">女</label>
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">年龄：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="ageStart" name="ageStart" type="number" placeholder="数字框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="ageEnd" name="ageEnd" type="number" placeholder="数字框结束"></span>
-                            </div>
+                            <input class="w-100" id="ageStart" name="ageStart" type="number" placeholder="数字框起始">
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="ageEnd" name="ageEnd" type="number" placeholder="数字框结束">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">身高：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="heightStart" name="heightStart" type="number" placeholder="小数单位数字框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="heightEnd" name="heightEnd" type="number" placeholder="小数单位数字框结束"></span>
-                            </div>
+                            <input class="w-100" id="heightStart" name="heightStart" type="number" placeholder="小数单位数字框起始">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="heightEnd" name="heightEnd" type="number" placeholder="小数单位数字框结束">
                         </div>
                         <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">血型：</label>
@@ -50,33 +50,33 @@
                                 <option value="5">其他</option>
                             </select>
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">生日：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="birthdayStart" name="birthdayStart" type="date" placeholder="日期框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="birthdayEnd" name="birthdayEnd" type="date" placeholder="日期框结束"></span>
-                            </div>
+                            <input class="w-100" id="birthdayStart" name="birthdayStart" type="date" placeholder="日期框起始">
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="birthdayEnd" name="birthdayEnd" type="date" placeholder="日期框结束">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">配偶生日：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="mateBirthdayStart" name="mateBirthdayStart" type="date" placeholder="日期时间掩码框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="mateBirthdayEnd" name="mateBirthdayEnd" type="date" placeholder="日期时间掩码框结束"></span>
-                            </div>
+                            <input class="w-100" id="mateBirthdayStart" name="mateBirthdayStart" type="date" placeholder="日期时间掩码框起始">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="mateBirthdayEnd" name="mateBirthdayEnd" type="date" placeholder="日期时间掩码框结束">
                         </div>
                         <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">银行卡：</label>
                             <input class="w-100" id="creditCard" name="creditCard" type="text" placeholder="掩码框">
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">资产：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="assetStart" name="assetStart" type="number" placeholder="金融数字框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="assetEnd" name="assetEnd" type="number" placeholder="金融数字框结束"></span>
-                            </div>
+                            <input class="w-100" id="assetStart" name="assetStart" type="number" placeholder="金融数字框起始">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="assetEnd" name="assetEnd" type="number" placeholder="金融数字框结束">
                         </div>
                         <div class="form-group col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">籍贯：</label>
@@ -106,7 +106,7 @@
                             <label class="d-block">语言：</label>
                             <input class="w-100" id="language" name="language" type="text" placeholder="自动完成框">
                         </div>
-                        <div class="form-group col-md-8 col-lg-6">
+                        <div class="form-group col-lg-9 col-xl-6">
                             <label class="d-block">教育程度：</label>
                             <input class="k-checkbox" id="education1" name="education" type="checkbox" value="1"><label class="k-checkbox-label" for="education1">小学</label>
                             <input class="k-checkbox" id="education2" name="education" type="checkbox" value="2"><label class="k-checkbox-label" for="education2">初中</label>
@@ -118,21 +118,21 @@
                             <input class="k-checkbox" id="education8" name="education" type="checkbox" value="8"><label class="k-checkbox-label" for="education8">博士</label>
                             <input class="k-checkbox" id="education9" name="education" type="checkbox" value="9"><label class="k-checkbox-label" for="education9">其他</label>
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">毕业年份：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="graduationStart" name="graduationStart" placeholder="年份框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="graduationEnd" name="graduationEnd" placeholder="年份框结束"></span>
-                            </div>
+                            <input class="w-100" id="graduationStart" name="graduationStart" placeholder="年份框起始">
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="graduationEnd" name="graduationEnd" placeholder="年份框结束">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">参加工作年月：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="firstJobStart" name="firstJobStart" type="month" placeholder="月份框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="firstJobEnd" name="firstJobEnd" type="month" placeholder="月份框结束"></span>
-                            </div>
+                            <input class="w-100" id="firstJobStart" name="firstJobStart" type="month" placeholder="月份框起始">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="firstJobEnd" name="firstJobEnd" type="month" placeholder="月份框结束">
                         </div>
                         <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">手机：</label>
@@ -146,21 +146,21 @@
                             <label class="d-block">个人主页：</label>
                             <input class="k-textbox w-100" name="homepage" type="url" placeholder="网址框">
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">起床时间：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="getUpStart" name="getUpStart" type="time" placeholder="时间框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="getUpEnd" name="getUpEnd" type="time" placeholder="时间框结束"></span>
-                            </div>
+                            <input class="w-100" id="getUpStart" name="getUpStart" type="time" placeholder="时间框起始">
                         </div>
-                        <div class="form-group col-lg-6 col-xl-4">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="getUpEnd" name="getUpEnd" type="time" placeholder="时间框结束">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">最有意义的时刻：</label>
-                            <div class="d-flex align-items-center">
-                                <span class="d-inline-block w-48"><input class="w-100" id="importantMomentStart" name="importantMomentStart" type="datetime" placeholder="日期时间框起始"></span>
-                                <span class="w-4 text-center">~</span>
-                                <span class="d-inline-block w-48"><input class="w-100" id="importantMomentEnd" name="importantMomentEnd" type="datetime" placeholder="日期时间框结束"></span>
-                            </div>
+                            <input class="w-100" id="importantMomentStart" name="importantMomentStart" type="datetime" placeholder="日期时间框起始">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <label class="d-none d-md-block">至</label>
+                            <input class="w-100" id="importantMomentEnd" name="importantMomentEnd" type="datetime" placeholder="日期时间框结束">
                         </div>
                         <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">性格：</label>
@@ -190,6 +190,14 @@
                         <div class="form-group col-lg-6 col-xl-4">
                             <label class="d-block">旅游足迹：</label>
                             <select class="w-100" id="tourism" name="tourism" multiple></select>
+                        </div>
+                        <div class="form-group col-lg-6 col-xl-2">
+                            <label class="d-block">自我评价：</label>
+                            <input class="w-100" id="evaluation" name="evaluation">
+                        </div>
+                        <div class="form-group col-lg-6 col-xl-6">
+                            <label class="d-block">自我介绍：</label>
+                            <textarea class="k-textarea w-100" name="summary" placeholder="文本域框"></textarea>
                         </div>
                         <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <label class="d-block">是否在线：</label>
@@ -377,6 +385,22 @@
             <div class="k-edit-field">
                 # for (var i = 0; i < tourism.length; i++) { #
                     #= tourism[i].name #&nbsp;
+                # } #
+            </div>
+            <div class="k-edit-label py-0">自我评价：</div>
+            <div class="k-edit-field">
+                # if (evaluation === 1) { #
+                    不合格
+                # } else if (evaluation === 2) { #
+                    待提升
+                # } else if (evaluation === 3) { #
+                    合格
+                # } else if (evaluation === 4) { #
+                    良好
+                # } else if (evaluation === 5) { #
+                    优秀
+                # } else if (evaluation === 6) { #
+                    完美
                 # } #
             </div>
             <div class="k-edit-label py-0">自我介绍：</div>
