@@ -288,6 +288,31 @@ $(function () {
         checkboxes: true,
         autoClose: false
     });
+    // 自我评价
+    $('#evaluation').kendoRating({
+        max: 6,
+        label: {
+            template:
+                '# if (value === 1) { #' +
+                    '不合格' +
+                '# } else if (value === 2) { #' +
+                    '待提升' +
+                '# } else if (value === 3) { #' +
+                    '合格' +
+                '# } else if (value === 4) { #' +
+                    '良好' +
+                '# } else if (value === 5) { #' +
+                    '优秀' +
+                '# } else if (value === 6) { #' +
+                    '完美' +
+                '# } #'
+        }
+    }).data('kendoRating').wrapper.kendoTooltip({
+        filter: '.k-rating-item',
+        content: function (e) {
+            return e.target.data('value') + '分';
+        }
+    });
     // 是否在线
     $('#online').kendoSwitch({
         messages: {
@@ -804,6 +829,7 @@ $(function () {
                             }
                         },
                         character: { type: 'number',
+                            defaultValue: null,
                             validation: {
                                 characterRequired: function (input) {
                                     if (!input.is('.k-grid-edit-row [name=character]')) {
@@ -860,6 +886,18 @@ $(function () {
                                     }
                                     input.attr('data-tourismRequired-msg', '请选择旅游足迹！');
                                     return input.prev().find('li.k-button').length > 0;
+                                }
+                            }
+                        },
+                        evaluation: { type: 'number',
+                            defaultValue: null,
+                            validation: {
+                                evaluationRequired: function (input) {
+                                    if (!input.is('.k-grid-edit-row [name=evaluation]')) {
+                                        return true;
+                                    }
+                                    input.attr('data-evaluationRequired-msg', '请选择自我评价！');
+                                    return input.val() !== '';
                                 }
                             }
                         },
@@ -1558,7 +1596,13 @@ $(function () {
                 }
             },
             { field: 'color', title: '颜色喜好', width: '90px',
-                template: '<span style="display: inline-block; width: 100%; height: 24px; background: #= color #; border: 1px solid \\#c5c5c5; border-radius: 4px; vertical-align: middle;"></span>',
+                template: function (dataItem) {
+                    if (dataItem.color) {
+                        return '<span style="display: inline-block; width: 100%; height: 24px; background: ' + dataItem.color + '; border: 1px solid #c5c5c5; border-radius: 4px; vertical-align: middle;"></span>';
+                    } else {
+                        return '';
+                    }
+                },
                 editor: function (container, options) {
                     $('<strong class="k-required d-block">*<small>必填</small></strong>').appendTo(container);
                     $('<input name="color" data-bind="value: '+ options.field +'">')
@@ -1673,6 +1717,47 @@ $(function () {
                             }
                         });
                     $('<span class="k-invalid-msg" data-for="tourism"></span>')
+                        .appendTo(container);
+                }
+            },
+            { field: 'evaluation', title: '自我评价', width: '270px',
+                values: [
+                    { text: '不合格', value: 1 },
+                    { text: '待提升', value: 2 },
+                    { text: '合格', value: 3 },
+                    { text: '良好', value: 4 },
+                    { text: '优秀', value: 5 },
+                    { text: '完美', value: 6 }
+                ],
+                editor: function (container, options) {
+                    $('<strong class="k-required d-block">*<small>必填</small></strong>').appendTo(container);
+                    $('<input name="evaluation" data-bind="value: '+ options.field +'">')
+                        .appendTo(container)
+                        .kendoRating({
+                            max: 6,
+                            label: {
+                                template:
+                                    '# if (value === 1) { #' +
+                                        '不合格' +
+                                    '# } else if (value === 2) { #' +
+                                        '待提升' +
+                                    '# } else if (value === 3) { #' +
+                                        '合格' +
+                                    '# } else if (value === 4) { #' +
+                                        '良好' +
+                                    '# } else if (value === 5) { #' +
+                                        '优秀' +
+                                    '# } else if (value === 6) { #' +
+                                        '完美' +
+                                    '# } #'
+                            }
+                        }).data('kendoRating').wrapper.kendoTooltip({
+                            filter: '.k-rating-item',
+                            content: function (e) {
+                                return e.target.data('value') + '分';
+                            }
+                        });
+                    $('<span class="k-invalid-msg" data-for="evaluation"></span>')
                         .appendTo(container);
                 }
             },
