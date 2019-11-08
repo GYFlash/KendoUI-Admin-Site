@@ -122,7 +122,9 @@ $(function () {
                                 return kendo.toString(kendo.parseDate(e), 'yyyy-MM-dd HH:mm');
                             }
                         },
-                        character: { type: 'number' },
+                        character: { type: 'number',
+                            defaultValue: null
+                        },
                         color: {
                             defaultValue: null,
                             parse: function (e) {
@@ -144,6 +146,9 @@ $(function () {
                                 }
                                 return arr;
                             }
+                        },
+                        evaluation: { type: 'number',
+                            defaultValue: null
                         },
                         summary: { type: 'string' },
                         photo: { type: 'object',
@@ -746,7 +751,13 @@ $(function () {
                 }
             },
             { field: 'color', title: '颜色喜好', width: '90px',
-                template: '<span style="display: inline-block; width: 100%; height: 24px; background: #= color #; border: 1px solid \\#c5c5c5; border-radius: 4px; vertical-align: middle;"></span>',
+                template: function (dataItem) {
+                    if (dataItem.color) {
+                        return '<span style="display: inline-block; width: 100%; height: 24px; background: ' + dataItem.color + '; border: 1px solid #c5c5c5; border-radius: 4px; vertical-align: middle;"></span>';
+                    } else {
+                        return '';
+                    }
+                },
                 editor: function (container, options) {
                     $('<input name="color" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -851,6 +862,44 @@ $(function () {
                             autoClose: false,
                             change: function () {
                                 options.model.set('tourism', this._allCheckedItems);
+                            }
+                        });
+                }
+            },
+            { field: 'evaluation', title: '自我评价', width: '270px',
+                values: [
+                    { text: '不合格', value: 1 },
+                    { text: '待提升', value: 2 },
+                    { text: '合格', value: 3 },
+                    { text: '良好', value: 4 },
+                    { text: '优秀', value: 5 },
+                    { text: '完美', value: 6 }
+                ],
+                editor: function (container, options) {
+                    $('<input name="evaluation" data-bind="value: '+ options.field +'">')
+                        .appendTo(container)
+                        .kendoRating({
+                            max: 6,
+                            label: {
+                                template:
+                                    '# if (value === 1) { #' +
+                                        '不合格' +
+                                    '# } else if (value === 2) { #' +
+                                        '待提升' +
+                                    '# } else if (value === 3) { #' +
+                                        '合格' +
+                                    '# } else if (value === 4) { #' +
+                                        '良好' +
+                                    '# } else if (value === 5) { #' +
+                                        '优秀' +
+                                    '# } else if (value === 6) { #' +
+                                        '完美' +
+                                    '# } #'
+                            }
+                        }).data('kendoRating').wrapper.kendoTooltip({
+                            filter: '.k-rating-item',
+                            content: function (e) {
+                                return e.target.data('value') + '分';
                             }
                         });
                 }
