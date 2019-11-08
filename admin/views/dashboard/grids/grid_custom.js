@@ -289,6 +289,31 @@ $(function () {
         checkboxes: true,
         autoClose: false
     });
+    // 自我评价
+    $('#evaluation').kendoRating({
+        max: 6,
+        label: {
+            template:
+                '# if (value === 1) { #' +
+                    '不合格' +
+                '# } else if (value === 2) { #' +
+                    '待提升' +
+                '# } else if (value === 3) { #' +
+                    '合格' +
+                '# } else if (value === 4) { #' +
+                    '良好' +
+                '# } else if (value === 5) { #' +
+                    '优秀' +
+                '# } else if (value === 6) { #' +
+                    '完美' +
+                '# } #'
+        }
+    }).data('kendoRating').wrapper.kendoTooltip({
+        filter: '.k-rating-item',
+        content: function (e) {
+            return e.target.data('value') + '分';
+        }
+    });
     // 是否在线
     $('#online').kendoSwitch({
         messages: {
@@ -577,6 +602,9 @@ $(function () {
                                 return arr;
                             }
                         },
+                        evaluation: { type: 'number',
+                            defaultValue: null
+                        },
                         summary: { type: 'string' },
                         photo: { type: 'object',
                             defaultValue: {
@@ -801,6 +829,16 @@ $(function () {
                         '#= tourism[i].name #&nbsp;' +
                     '# } #'
             },
+            { field: 'evaluation', title: '自我评价', width: '110px',
+                values: [
+                    { text: '不合格', value: 1 },
+                    { text: '待提升', value: 2 },
+                    { text: '合格', value: 3 },
+                    { text: '良好', value: 4 },
+                    { text: '优秀', value: 5 },
+                    { text: '完美', value: 6 }
+                ]
+            },
             { field: 'summary', title: '自我介绍', width: '310px' },
             { field: 'photo', title: '头像', width: '120px',
                 template: '<a href="javascript:showBigPic(\'#= photo.url #\');"><img class="w-25 rounded-circle" src="#= photo.url #" alt="#= photo.name ##= photo.extension #"></a><small class="ml-2 text-muted">[#= kendo.toString(photo.size / 1024, "0.00") # KB]</small>'
@@ -831,7 +869,7 @@ $(function () {
         editable: {
             mode: 'popup',
             window: {
-                width: '80%',
+                width: '88%',
                 height: '40%'
             },
             template: kendo.template($('#editTemplate').html()),
@@ -1179,6 +1217,31 @@ $(function () {
                 autoClose: false,
                 change: function () {
                     e.model.set('tourism', this._allCheckedItems);
+                }
+            });
+            // 自我评价
+            $('#evaluationEdit').kendoRating({
+                max: 6,
+                label: {
+                    template:
+                        '# if (value === 1) { #' +
+                            '不合格' +
+                        '# } else if (value === 2) { #' +
+                            '待提升' +
+                        '# } else if (value === 3) { #' +
+                            '合格' +
+                        '# } else if (value === 4) { #' +
+                            '良好' +
+                        '# } else if (value === 5) { #' +
+                            '优秀' +
+                        '# } else if (value === 6) { #' +
+                            '完美' +
+                        '# } #'
+                }
+            }).data('kendoRating').wrapper.kendoTooltip({
+                filter: '.k-rating-item',
+                content: function (e) {
+                    return e.target.data('value') + '分';
                 }
             });
             // 头像

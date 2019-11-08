@@ -108,7 +108,7 @@ $(function () {
         $(window).resize(function () {
             showPath(location.hash.split('#')[1].split('/')[location.hash.split('#')[1].split('/').length - 1]);
         }).resize();
-    }, 200);
+    }, 500);
     // 刷新接管
     document.onkeydown = function () {
         var e = window.event || arguments[0];
