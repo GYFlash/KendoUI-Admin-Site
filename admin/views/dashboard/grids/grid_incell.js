@@ -815,7 +815,7 @@ $(function () {
                             }
                         },
                         color: {
-                            defaultValue: 'rgba(0, 0, 0, 0)',
+                            defaultValue: null,
                             parse: function (e) {
                                 return 'rgba('+ kendo.parseColor(e).r +', '+ kendo.parseColor(e).g +', '+ kendo.parseColor(e).b +', '+ kendo.parseColor(e).a +')';
                             },
