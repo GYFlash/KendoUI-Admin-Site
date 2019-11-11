@@ -204,6 +204,7 @@ $(function () {
                                 }
                             }
                         },
+                        evaluation: { type: 'number' },
                         summary: { type: 'string' },
                         photo: { type: 'string',
                             parse: function (e) {
@@ -291,6 +292,7 @@ $(function () {
                     { field: 'color', operator: 'eq', value: null },
                     { field: 'constellation', operator: 'contains', value: null },
                     { field: 'tourism', operator: 'contains', value: null },
+                    { field: 'evaluation', operator: 'eq', value: null },
                     { field: 'summary', operator: 'contains', value: null },
                     { field: 'photo', operator: 'contains', value: null },
                     { field: 'sign', operator: 'contains', value: null }
@@ -604,6 +606,16 @@ $(function () {
                         }
                     }
                 }
+            },
+            { field: 'evaluation', title: '自我评价', width: '190px',
+                values: [
+                    { text: '不合格', value: 1 },
+                    { text: '待提升', value: 2 },
+                    { text: '合格', value: 3 },
+                    { text: '良好', value: 4 },
+                    { text: '优秀', value: 5 },
+                    { text: '完美', value: 6 }
+                ]
             },
             { field: 'summary', title: '自我介绍', width: '390px' },
             { field: 'photo', title: '头像', width: '230px',
