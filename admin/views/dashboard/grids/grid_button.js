@@ -173,6 +173,7 @@ $(function () {
                                 return str;
                             }
                         },
+                        evaluation: { type: 'number' },
                         summary: { type: 'string' },
                         photo: { type: 'string',
                             parse: function (e) {
@@ -609,6 +610,16 @@ $(function () {
             },
             { field: 'constellation', title: '相配的星座', width: '170px' },
             { field: 'tourism', title: '旅游足迹', width: '200px' },
+            { field: 'evaluation', title: '自我评价', width: '90px',
+                values: [
+                    { text: '不合格', value: 1 },
+                    { text: '待提升', value: 2 },
+                    { text: '合格', value: 3 },
+                    { text: '良好', value: 4 },
+                    { text: '优秀', value: 5 },
+                    { text: '完美', value: 6 }
+                ]
+            },
             { field: 'summary', title: '自我介绍', width: '310px' },
             { field: 'photo', title: '头像', width: '120px',
                 template:
