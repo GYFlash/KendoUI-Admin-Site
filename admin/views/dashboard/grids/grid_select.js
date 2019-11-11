@@ -66,6 +66,7 @@ $(function () {
                         color: { type: 'string' },
                         constellation: { type: 'object' },
                         tourism: { type: 'object' },
+                        evaluation: { type: 'number' },
                         summary: { type: 'string' },
                         photo: { type: 'object' },
                         sign: { type: 'string' }
@@ -228,6 +229,16 @@ $(function () {
                     '# for (var i = 0; i < tourism.length; i++) { #' +
                         '#= tourism[i].name #&nbsp;' +
                     '# } #'
+            },
+            { field: 'evaluation', title: '自我评价', width: '90px',
+                values: [
+                    { text: '不合格', value: 1 },
+                    { text: '待提升', value: 2 },
+                    { text: '合格', value: 3 },
+                    { text: '良好', value: 4 },
+                    { text: '优秀', value: 5 },
+                    { text: '完美', value: 6 }
+                ]
             },
             { field: 'summary', title: '自我介绍', width: '310px' },
             { field: 'photo', title: '头像', width: '120px',
