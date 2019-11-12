@@ -193,6 +193,14 @@
                                     <label class="d-block">旅游足迹：</label>
                                     <select class="w-100" id="tourism" name="tourism" multiple></select>
                                 </div>
+                                <div class="form-group col-lg-6 col-xl-2">
+                                    <label class="d-block">自我评价：</label>
+                                    <input class="w-100" id="evaluation" name="evaluation">
+                                </div>
+                                <div class="form-group col-lg-6 col-xl-6">
+                                    <label class="d-block">自我介绍：</label>
+                                    <textarea class="k-textarea w-100" name="summary" placeholder="文本域框"></textarea>
+                                </div>
                                 <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-2">
                                     <label class="d-block">是否在线：</label>
                                     <input id="online" name="online" type="checkbox">
@@ -498,6 +506,24 @@
                                     <strong>旅游足迹：</strong>
                                     # for (var i = 0; i < tourism.length; i++) { #
                                         #= tourism[i].name #&nbsp;
+                                    # } #
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-md-12 col-xl-6 mb-0">
+                                    <strong>自我评价：</strong>
+                                    # if (evaluation === 1) { #
+                                        不合格
+                                    # } else if (evaluation === 2) { #
+                                        待提升
+                                    # } else if (evaluation === 3) { #
+                                        合格
+                                    # } else if (evaluation === 4) { #
+                                        良好
+                                    # } else if (evaluation === 5) { #
+                                        优秀
+                                    # } else if (evaluation === 6) { #
+                                        完美
                                     # } #
                                 </p>
                             </div>
