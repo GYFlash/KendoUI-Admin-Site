@@ -74,6 +74,7 @@ $(function () {
                     color: { type: 'string' },
                     constellation: { type: 'object' },
                     tourism: { type: 'object' },
+                    evaluation: { type: 'number' },
                     summary: { type: 'string' },
                     photo: { type: 'object' },
                     sign: { type: 'string' }
