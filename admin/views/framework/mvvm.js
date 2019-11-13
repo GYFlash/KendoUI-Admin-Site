@@ -379,6 +379,8 @@ $(function () {
                 .replace(/}/g, '\n' + tab + tab + '}')
                 .replace(/]/g, '\n' + tab + ']');
         },
+        // 自我评价
+        evaluation: 5,
         // 自我介绍
         summary: '\uD83C\uDF38我叫艾欧里亚！这里是我的自我介绍哦~',
         // 头像

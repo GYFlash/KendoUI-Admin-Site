@@ -209,6 +209,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-form-label text-lg-right col-lg-3 pr-lg-0">自我评价：</label>
+                            <div class="col-lg-8">
+                                <input class="w-100" data-role="rating" data-bind="value: evaluation" data-max="6" data-label="false">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-form-label text-lg-right col-lg-3 pr-lg-0">自我介绍：</label>
                             <div class="col-lg-8">
                                 <textarea class="k-textarea w-100" data-bind="value: summary"></textarea>
@@ -280,6 +286,7 @@
     "color": "<code class="theme-m" data-bind='text: color'></code>",
     "constellation": <code class="theme-m" data-bind='text: constellationParse'></code>,
     "tourism": <code class="theme-m" data-bind='text: tourismParse'></code>,
+    "evaluation": <code class="theme-m" data-bind='text: evaluation'></code>,
     "summary": "<code class="theme-m" data-bind='text: summary'></code>",
     "photo": <code class="theme-m" data-bind='text: photoParse'></code>,
     "sign": "<code class="theme-m" data-bind='text: sign'></code>"
