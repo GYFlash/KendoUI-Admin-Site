@@ -281,6 +281,24 @@
                                     # } #
                                 </p>
                             </div>
+                            <div class="row">
+                                <p class="col-md-12 col-xl-6 mb-0">
+                                    <strong>自我评价：</strong>
+                                    # if (evaluation === 1) { #
+                                        不合格
+                                    # } else if (evaluation === 2) { #
+                                        待提升
+                                    # } else if (evaluation === 3) { #
+                                        合格
+                                    # } else if (evaluation === 4) { #
+                                        良好
+                                    # } else if (evaluation === 5) { #
+                                        优秀
+                                    # } else if (evaluation === 6) { #
+                                        完美
+                                    # } #
+                                </p>
+                            </div>
                         </div>
                         <div class="card-footer">#= sign #</div>
                     </div>
@@ -483,6 +501,12 @@
                                         <select class="w-100" id="tourismEdit" name="tourism" multiple></select>
                                     </p>
                                 </div>
+                                <div class="row">
+                                    <p class="col-md-12 col-xl-6 mb-0">
+                                        <label class="d-block">自我评价：</label>
+                                        <input class="w-100" id="evaluationEdit" name="evaluation">
+                                    </p>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <label class="d-block">签名：</label>
@@ -512,6 +536,9 @@
         .k-listview > div .k-edit-button,
         .k-listview > div .k-delete-button {
             visibility: visible;
+        }
+        .k-upload .k-dropzone .k-upload-status {
+            display: none;
         }
     </style>
 </script>

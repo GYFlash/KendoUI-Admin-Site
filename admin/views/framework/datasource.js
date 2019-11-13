@@ -223,7 +223,9 @@ $(function () {
                             return kendo.toString(kendo.parseDate(e), 'yyyy-MM-dd HH:mm');
                         }
                     },
-                    character: { type: 'number' },
+                    character: { type: 'number',
+                        defaultValue: null
+                    },
                     color: {
                         defaultValue: null,
                         parse: function (e) {
@@ -245,6 +247,9 @@ $(function () {
                             }
                             return arr;
                         }
+                    },
+                    evaluation: { type: 'number',
+                        defaultValue: null
                     },
                     summary: { type: 'string' },
                     photo: { type: 'object',
@@ -268,7 +273,7 @@ $(function () {
             { field: 'userName', title: '用户名', width: '80px' },
             { field: 'realName', title: '姓名', width: '100px' },
             { field: 'nickName', title: '昵称', width: '110px' },
-            { field: 'password', title: '密码', width: '100px',
+            { field: 'password', title: '密码', width: '70px',
                 template: function (dataItem) {
                     if (dataItem.password) {
                         return dataItem.password.replace(dataItem.password.substr(0), '******');
@@ -281,7 +286,7 @@ $(function () {
                         .appendTo(container);
                 }
             },
-            { field: 'confirmPassword', title: '确认密码', width: '100px',
+            { field: 'confirmPassword', title: '确认密码', width: '90px',
                 template: function (dataItem) {
                     if (dataItem.confirmPassword) {
                         return dataItem.confirmPassword.replace(dataItem.confirmPassword.substr(0), '******');
@@ -312,7 +317,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'gender', title: '性别', width: '120px',
+            { field: 'gender', title: '性别', width: '60px',
                 values: [
                     { text: '男', value: '1' },
                     { text: '女', value: '2' }
@@ -323,7 +328,7 @@ $(function () {
                         .appendTo(container);
                 }
             },
-            { field: 'age', title: '年龄', width: '80px',
+            { field: 'age', title: '年龄', width: '70px',
                 template: function (dataItem) {
                     if (dataItem.age) {
                         return dataItem.age + ' 岁';
@@ -342,7 +347,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'height', title: '身高', width: '100px',
+            { field: 'height', title: '身高', width: '80px',
                 template: function (dataItem) {
                     if (dataItem.height) {
                         return kendo.toString(dataItem.height, '0.00') + ' m';
@@ -362,7 +367,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'bloodType', title: '血型', width: '130px',
+            { field: 'bloodType', title: '血型', width: '70px',
                 values: [
                     { text: 'A 型', value: '1' },
                     { text: 'B 型', value: '2' },
@@ -389,7 +394,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'birthday', title: '生日', width: '140px',
+            { field: 'birthday', title: '生日', width: '110px',
                 editor: function (container, options) {
                     $('<input name="birthday" type="date" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -412,7 +417,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'creditCard', title: '银行卡', width: '170px',
+            { field: 'creditCard', title: '银行卡', width: '150px',
                 template: function (dataItem) {
                     if (dataItem.creditCard) {
                         return dataItem.creditCard.replace(dataItem.creditCard.substr(2, 12), '** **** **** **');
@@ -428,7 +433,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'asset', title: '资产', width: '170px',
+            { field: 'asset', title: '资产', width: '140px',
                 format: '{0:c}',
                 editor: function (container, options) {
                     $('<input name="asset" type="number" data-bind="value: '+ options.field +'">')
@@ -533,7 +538,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'domicile', title: '居住地', width: '240px',
+            { field: 'domicile', title: '居住地', width: '100px',
                 template: '#= domicile.name #',
                 editor: function (container, options) {
                     $('<input name="domicile" data-bind="value: '+ options.field +'">')
@@ -567,7 +572,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'nation', title: '民族', width: '140px',
+            { field: 'nation', title: '民族', width: '100px',
                 template: '#= nation.nationName #',
                 editor: function (container, options) {
                     $('<input name="nation" data-bind="value: '+ options.field +'">')
@@ -597,7 +602,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'zodiac', title: '生肖', width: '90px',
+            { field: 'zodiac', title: '生肖', width: '60px',
                 template: '#= zodiac.zodiacName #',
                 editor: function (container, options) {
                     $('<input name="zodiac" data-bind="value: '+ options.field +'">')
@@ -638,7 +643,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'language', title: '语言', width: '240px',
+            { field: 'language', title: '语言', width: '210px',
                 editor: function (container, options) {
                     $('<input name="language" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -667,7 +672,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'education', title: '教育程度', width: '210px',
+            { field: 'education', title: '教育程度', width: '130px',
                 template:
                     '# for (var i = 0; i < education.length; i++) { #' +
                         '# if (education[i] === "1") { #' +
@@ -754,7 +759,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'importantMoment', title: '最有意义的时刻', width: '200px',
+            { field: 'importantMoment', title: '最有意义的时刻', width: '150px',
                 editor: function (container, options) {
                     $('<input name="importantMoment" type="datetime" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -764,7 +769,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'character', title: '性格', width: '200px',
+            { field: 'character', title: '性格', width: '90px',
                 values: [
                     { text: '超级开朗', value: 10 },
                     { text: '非常开朗', value: 8 },
@@ -818,7 +823,13 @@ $(function () {
                 }
             },
             { field: 'color', title: '颜色喜好', width: '90px',
-                template: '<span style="display: inline-block; width: 100%; height: 24px; background: #= color #; border: 1px solid \\#c5c5c5; border-radius: 4px; vertical-align: middle;"></span>',
+                template: function (dataItem) {
+                    if (dataItem.color) {
+                        return '<span style="display: inline-block; width: 100%; height: 24px; background: ' + dataItem.color + '; border: 1px solid #c5c5c5; border-radius: 4px; vertical-align: middle;"></span>';
+                    } else {
+                        return '';
+                    }
+                },
                 editor: function (container, options) {
                     $('<input name="color" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -828,7 +839,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'constellation', title: '相配的星座', width: '270px',
+            { field: 'constellation', title: '相配的星座', width: '170px',
                 template:
                     '# for (var i = 0; i < constellation.length; i++) { #' +
                         '# if (constellation[i] === "1") { #' +
@@ -885,7 +896,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'tourism', title: '旅游足迹', width: '270px',
+            { field: 'tourism', title: '旅游足迹', width: '200px',
                 template:
                     '# for (var i = 0; i < tourism.length; i++) { #' +
                         '#= tourism[i].name #&nbsp;' +
@@ -927,14 +938,52 @@ $(function () {
                         });
                 }
             },
+            { field: 'evaluation', title: '自我评价', width: '90px',
+                values: [
+                    { text: '不合格', value: 1 },
+                    { text: '待提升', value: 2 },
+                    { text: '合格', value: 3 },
+                    { text: '良好', value: 4 },
+                    { text: '优秀', value: 5 },
+                    { text: '完美', value: 6 }
+                ],
+                editor: function (container, options) {
+                    $('<input name="evaluation" data-bind="value: '+ options.field +'">')
+                        .appendTo(container)
+                        .kendoRating({
+                            max: 6,
+                            label: {
+                                template:
+                                    '# if (value === 1) { #' +
+                                        '不合格' +
+                                    '# } else if (value === 2) { #' +
+                                        '待提升' +
+                                    '# } else if (value === 3) { #' +
+                                        '合格' +
+                                    '# } else if (value === 4) { #' +
+                                        '良好' +
+                                    '# } else if (value === 5) { #' +
+                                        '优秀' +
+                                    '# } else if (value === 6) { #' +
+                                        '完美' +
+                                    '# } #'
+                            }
+                        }).data('kendoRating').wrapper.kendoTooltip({
+                        filter: '.k-rating-item',
+                        content: function (e) {
+                            return e.target.data('value') + '分';
+                        }
+                    });
+                }
+            },
             { field: 'summary', title: '自我介绍', width: '310px',
                 editor: function (container, options) {
                     $('<textarea class="k-textarea" name="summary" data-bind="value: '+ options.field +'"></textarea>')
                         .appendTo(container);
                 }
             },
-            { field: 'photo', title: '头像', width: '320px',
-                template: '<a href="javascript:showBigPic(\'#= photo.url #\');"><img class="w-10 rounded-circle" src="#= photo.url #" alt="#= photo.name ##= photo.extension #"></a><small class="ml-2 text-muted">[#= kendo.toString(photo.size / 1024, "0.00") # KB]</small>',
+            { field: 'photo', title: '头像', width: '120px',
+                template: '<a href="javascript:showBigPic(\'#= photo.url #\');"><img class="w-25 rounded-circle" src="#= photo.url #" alt="#= photo.name ##= photo.extension #"></a><small class="ml-2 text-muted">[#= kendo.toString(photo.size / 1024, "0.00") # KB]</small>',
                 editor: function (container, options) {
                     $('<div class="media">' +
                         '<img class="img-thumbnail w-15 mr-2" id="photoShow" src="'+ options.model.photo.url +'" alt="'+ options.model.photo.name + options.model.photo.extension +'" title="'+ kendo.toString(options.model.photo.size / 1024, "0.00") +' KB">' +
@@ -994,7 +1043,7 @@ $(function () {
                         });
                 }
             },
-            { field: 'sign', title: '签名', width: '600px',
+            { field: 'sign', title: '签名', width: '310px',
                 template: '#= sign #',
                 editor: function (container, options) {
                     $('<textarea name="sign" data-bind="value: '+ options.field +'"></textarea>')
@@ -1373,6 +1422,31 @@ $(function () {
                 autoClose: false,
                 change: function () {
                     e.model.set('tourism', this._allCheckedItems);
+                }
+            });
+            // 自我评价
+            $('#evaluationEdit').kendoRating({
+                max: 6,
+                label: {
+                    template:
+                        '# if (value === 1) { #' +
+                            '不合格' +
+                        '# } else if (value === 2) { #' +
+                            '待提升' +
+                        '# } else if (value === 3) { #' +
+                            '合格' +
+                        '# } else if (value === 4) { #' +
+                            '良好' +
+                        '# } else if (value === 5) { #' +
+                            '优秀' +
+                        '# } else if (value === 6) { #' +
+                            '完美' +
+                        '# } #'
+                }
+            }).data('kendoRating').wrapper.kendoTooltip({
+                filter: '.k-rating-item',
+                content: function (e) {
+                    return e.target.data('value') + '分';
                 }
             });
             // 头像
