@@ -74,6 +74,7 @@ $(function () {
                         color: { type: 'string' },
                         constellation: { type: 'object' },
                         tourism: { type: 'object' },
+                        evaluation: { type: 'number' },
                         summary: { type: 'string' },
                         photo: { type: 'object' },
                         sign: { type: 'string' },
@@ -182,7 +183,7 @@ $(function () {
                     },
                     { field: 'nation', title: '民族', width: '100px',
                         template: '#= nation.nationName #'
-                    },
+                    }
                 ]
             },
             { field: 'zodiac', title: '生肖', width: '100px',
@@ -218,7 +219,7 @@ $(function () {
                             '# } #'
                     },
                     { field: 'graduation', title: '毕业年份', width: '130px' },
-                    { field: 'firstJob', title: '参加工作年月', width: '160px' },
+                    { field: 'firstJob', title: '参加工作年月', width: '160px' }
                 ]
             },
             { title: '联系方式',
@@ -226,7 +227,7 @@ $(function () {
                 columns: [
                     { field: 'mobile', title: '手机', width: '120px' },
                     { field: 'email', title: '电子邮件', width: '180px' },
-                    { field: 'homepage', title: '个人主页', width: '190px' },
+                    { field: 'homepage', title: '个人主页', width: '190px' }
                 ]
             },
             { title: '个性介绍',
@@ -299,18 +300,34 @@ $(function () {
                                 '#= tourism[i].name #&nbsp;' +
                             '# } #'
                     },
+                    { field: 'evaluation', title: '自我评价', width: '110px',
+                        template:
+                            '# if (evaluation === 1) { #' +
+                                '不合格' +
+                            '# } else if (evaluation === 2) { #' +
+                                '待提升' +
+                            '# } else if (evaluation === 3) { #' +
+                                '合格' +
+                            '# } else if (evaluation === 4) { #' +
+                                '良好' +
+                            '# } else if (evaluation === 5) { #' +
+                                '优秀' +
+                            '# } else if (evaluation === 6) { #' +
+                                '完美' +
+                            '# } #'
+                    },
+                    { field: 'summary', title: '自我介绍', width: '310px',
+                        headerAttributes: { 'class': 'align-middle' }
+                    },
+                    { field: 'photo', title: '头像', width: '120px',
+                        headerAttributes: { 'class': 'align-middle' },
+                        template: '<a href="javascript:showBigPic(\'#= photo.url #\');"><img class="w-25 rounded-circle" src="#= photo.url #" alt="#= photo.name ##= photo.extension #"></a><small class="ml-2 text-muted">[#= kendo.toString(photo.size / 1024, "0.00") # KB]</small>'
+                    },
+                    { field: 'sign', title: '签名', width: '310px',
+                        headerAttributes: { 'class': 'align-middle' },
+                        template: '#= sign #'
+                    }
                 ]
-            },
-            { field: 'summary', title: '自我介绍', width: '310px',
-                headerAttributes: { 'class': 'align-middle' }
-            },
-            { field: 'photo', title: '头像', width: '120px',
-                headerAttributes: { 'class': 'align-middle' },
-                template: '<a href="javascript:showBigPic(\'#= photo.url #\');"><img class="w-25 rounded-circle" src="#= photo.url #" alt="#= photo.name ##= photo.extension #"></a><small class="ml-2 text-muted">[#= kendo.toString(photo.size / 1024, "0.00") # KB]</small>'
-            },
-            { field: 'sign', title: '签名', width: '310px',
-                headerAttributes: { 'class': 'align-middle' },
-                template: '#= sign #'
             }
         ],
         pageable: {
@@ -477,6 +494,9 @@ $(function () {
                                 }
                                 return arr;
                             }
+                        },
+                        evaluation: { type: 'number',
+                            defaultValue: null
                         },
                         summary: { type: 'string' },
                         photo: { type: 'object',
@@ -1159,6 +1179,50 @@ $(function () {
                         });
                 }
             },
+            { field: 'evaluation', title: '自我评价', width: '90px',
+                template:
+                    '# if (evaluation === 1) { #' +
+                        '不合格' +
+                    '# } else if (evaluation === 2) { #' +
+                        '待提升' +
+                    '# } else if (evaluation === 3) { #' +
+                        '合格' +
+                    '# } else if (evaluation === 4) { #' +
+                        '良好' +
+                    '# } else if (evaluation === 5) { #' +
+                        '优秀' +
+                    '# } else if (evaluation === 6) { #' +
+                        '完美' +
+                    '# } #',
+                editor: function (container, options) {
+                    $('<input name="evaluation" data-bind="value: '+ options.field +'">')
+                        .appendTo(container)
+                        .kendoRating({
+                            max: 6,
+                            label: {
+                                template:
+                                    '# if (value === 1) { #' +
+                                        '不合格' +
+                                    '# } else if (value === 2) { #' +
+                                        '待提升' +
+                                    '# } else if (value === 3) { #' +
+                                        '合格' +
+                                    '# } else if (value === 4) { #' +
+                                        '良好' +
+                                    '# } else if (value === 5) { #' +
+                                        '优秀' +
+                                    '# } else if (value === 6) { #' +
+                                        '完美' +
+                                    '# } #'
+                            }
+                        }).data('kendoRating').wrapper.kendoTooltip({
+                            filter: '.k-rating-item',
+                            content: function (e) {
+                                return e.target.data('value') + '分';
+                            }
+                        });
+                }
+            },
             { field: 'summary', title: '自我介绍', width: '310px',
                 editor: function (container, options) {
                     $('<textarea class="k-textarea" name="summary" data-bind="value: '+ options.field +'"></textarea>')
@@ -1425,6 +1489,9 @@ $(function () {
                                 }
                                 return arr;
                             }
+                        },
+                        evaluation: { type: 'number',
+                            defaultValue: null
                         },
                         summary: { type: 'string' },
                         photo: { type: 'object',
@@ -2113,6 +2180,50 @@ $(function () {
                         });
                 }
             },
+            { field: 'evaluation', title: '自我评价', width: '270px',
+                template:
+                    '# if (evaluation === 1) { #' +
+                        '不合格' +
+                    '# } else if (evaluation === 2) { #' +
+                        '待提升' +
+                    '# } else if (evaluation === 3) { #' +
+                        '合格' +
+                    '# } else if (evaluation === 4) { #' +
+                        '良好' +
+                    '# } else if (evaluation === 5) { #' +
+                        '优秀' +
+                    '# } else if (evaluation === 6) { #' +
+                        '完美' +
+                    '# } #',
+                editor: function (container, options) {
+                    $('<input name="evaluation" data-bind="value: '+ options.field +'">')
+                        .appendTo(container)
+                        .kendoRating({
+                            max: 6,
+                            label: {
+                                template:
+                                    '# if (value === 1) { #' +
+                                        '不合格' +
+                                    '# } else if (value === 2) { #' +
+                                        '待提升' +
+                                    '# } else if (value === 3) { #' +
+                                        '合格' +
+                                    '# } else if (value === 4) { #' +
+                                        '良好' +
+                                    '# } else if (value === 5) { #' +
+                                        '优秀' +
+                                    '# } else if (value === 6) { #' +
+                                        '完美' +
+                                    '# } #'
+                            }
+                        }).data('kendoRating').wrapper.kendoTooltip({
+                            filter: '.k-rating-item',
+                            content: function (e) {
+                                return e.target.data('value') + '分';
+                            }
+                        });
+                }
+            },
             { field: 'summary', title: '自我介绍', width: '310px',
                 editor: function (container, options) {
                     $('<textarea class="k-textarea" name="summary" data-bind="value: '+ options.field +'"></textarea>')
@@ -2347,7 +2458,9 @@ $(function () {
                                 return kendo.toString(kendo.parseDate(e), 'yyyy-MM-dd HH:mm');
                             }
                         },
-                        character: { type: 'number' },
+                        character: { type: 'number',
+                            defaultValue: null
+                        },
                         color: {
                             defaultValue: null,
                             parse: function (e) {
@@ -2369,6 +2482,9 @@ $(function () {
                                 }
                                 return arr;
                             }
+                        },
+                        evaluation: { type: 'number',
+                            defaultValue: null
                         },
                         summary: { type: 'string' },
                         photo: { type: 'object',
@@ -2979,7 +3095,13 @@ $(function () {
                 }
             },
             { field: 'color', title: '颜色喜好', width: '90px',
-                template: '<span style="display: inline-block; width: 100%; height: 24px; background: #= color #; border: 1px solid \\#c5c5c5; border-radius: 4px; vertical-align: middle;"></span>',
+                template: function (dataItem) {
+                    if (dataItem.color) {
+                        return '<span style="display: inline-block; width: 100%; height: 24px; background: ' + dataItem.color + '; border: 1px solid #c5c5c5; border-radius: 4px; vertical-align: middle;"></span>';
+                    } else {
+                        return '';
+                    }
+                },
                 editor: function (container, options) {
                     $('<input name="color" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -3084,6 +3206,50 @@ $(function () {
                             autoClose: false,
                             change: function () {
                                 options.model.set('tourism', this._allCheckedItems);
+                            }
+                        });
+                }
+            },
+            { field: 'evaluation', title: '自我评价', width: '270px',
+                template:
+                    '# if (evaluation === 1) { #' +
+                        '不合格' +
+                    '# } else if (evaluation === 2) { #' +
+                        '待提升' +
+                    '# } else if (evaluation === 3) { #' +
+                        '合格' +
+                    '# } else if (evaluation === 4) { #' +
+                        '良好' +
+                    '# } else if (evaluation === 5) { #' +
+                        '优秀' +
+                    '# } else if (evaluation === 6) { #' +
+                        '完美' +
+                    '# } #',
+                editor: function (container, options) {
+                    $('<input name="evaluation" data-bind="value: '+ options.field +'">')
+                        .appendTo(container)
+                        .kendoRating({
+                            max: 6,
+                            label: {
+                                template:
+                                    '# if (value === 1) { #' +
+                                        '不合格' +
+                                    '# } else if (value === 2) { #' +
+                                        '待提升' +
+                                    '# } else if (value === 3) { #' +
+                                        '合格' +
+                                    '# } else if (value === 4) { #' +
+                                        '良好' +
+                                    '# } else if (value === 5) { #' +
+                                        '优秀' +
+                                    '# } else if (value === 6) { #' +
+                                        '完美' +
+                                    '# } #'
+                            }
+                        }).data('kendoRating').wrapper.kendoTooltip({
+                            filter: '.k-rating-item',
+                            content: function (e) {
+                                return e.target.data('value') + '分';
                             }
                         });
                 }
@@ -3277,6 +3443,7 @@ $(function () {
                         color: { type: 'string' },
                         constellation: { type: 'object' },
                         tourism: { type: 'object' },
+                        evaluation: { type: 'number' },
                         summary: { type: 'string' },
                         photo: { type: 'object' },
                         sign: { type: 'string' },
@@ -3292,13 +3459,13 @@ $(function () {
         columns: [
             { field: 'realName', title: '姓名', width: '150px' },
             { field: 'nickName', title: '昵称', width: '110px' },
-            { hidden: true, field: 'userName', title: '用户名', width: '120px' },
-            { hidden: true, field: 'password', title: '密码', width: '100px',
+            { hidden: true, field: 'userName', title: '用户名', width: '80px' },
+            { hidden: true, field: 'password', title: '密码', width: '70px',
                 template: function (dataItem) {
                     return dataItem.password.replace(dataItem.password.substr(0), '******');
                 }
             },
-            { field: 'online', title: '状态', width: '100px',
+            { field: 'online', title: '状态', width: '70px',
                 template:
                     '# if (online) { #' +
                         '<span class="dot-color k-notification-success"></span><span class="k-notification-success bg-transparent ml-2">在线</span>' +
@@ -3306,7 +3473,7 @@ $(function () {
                         '<span class="dot-color k-notification-error"></span><span class="k-notification-error bg-transparent ml-2">离线</span>' +
                     '# } #'
             },
-            { field: 'gender', title: '性别', width: '100px',
+            { field: 'gender', title: '性别', width: '60px',
                 template:
                     '# if (gender === "1") { #' +
                         '男' +
@@ -3314,13 +3481,13 @@ $(function () {
                         '女' +
                     '# } #'
             },
-            { field: 'age', title: '年龄', width: '100px',
+            { field: 'age', title: '年龄', width: '70px',
                 template: '#= age # 岁'
             },
-            { field: 'height', title: '身高', width: '100px',
+            { field: 'height', title: '身高', width: '80px',
                 template: '#= kendo.toString(height, "0.00") # m'
             },
-            { field: 'bloodType', title: '血型', width: '100px',
+            { field: 'bloodType', title: '血型', width: '70px',
                 template:
                     '# if (bloodType === "1") { #' +
                         'A 型' +
@@ -3335,7 +3502,7 @@ $(function () {
                     '# } #'
             },
             { field: 'birthday', title: '生日', width: '110px' },
-            { field: 'mateBirthday', title: '配偶生日', width: '130px' },
+            { field: 'mateBirthday', title: '配偶生日', width: '110px' },
             { field: 'creditCard', title: '银行卡', width: '150px',
                 template: function (dataItem) {
                     return dataItem.creditCard.replace(dataItem.creditCard.substr(2, 12), '** **** **** **');
@@ -3347,13 +3514,13 @@ $(function () {
             { field: 'nativePlace', title: '籍贯', width: '250px',
                 template: '#= nativePlace.provinceName # - #= nativePlace.cityName # - #= nativePlace.areaName #'
             },
-            { field: 'domicile', title: '居住地', width: '120px',
+            { field: 'domicile', title: '居住地', width: '100px',
                 template: '#= domicile.name #'
             },
             { field: 'nation', title: '民族', width: '100px',
                 template: '#= nation.nationName #'
             },
-            { field: 'zodiac', title: '生肖', width: '100px',
+            { field: 'zodiac', title: '生肖', width: '60px',
                 template: '#= zodiac.zodiacName #'
             },
             { field: 'language', title: '语言', width: '210px' },
@@ -3381,14 +3548,14 @@ $(function () {
                         '# } #' +
                     '# } #'
             },
-            { field: 'graduation', title: '毕业年份', width: '130px' },
-            { field: 'firstJob', title: '参加工作年月', width: '160px' },
+            { field: 'graduation', title: '毕业年份', width: '90px' },
+            { field: 'firstJob', title: '参加工作年月', width: '110px' },
             { field: 'mobile', title: '手机', width: '120px' },
             { field: 'email', title: '电子邮件', width: '180px' },
             { field: 'homepage', title: '个人主页', width: '190px' },
-            { field: 'getUp', title: '起床时间', width: '130px' },
-            { field: 'importantMoment', title: '最有意义的时刻', width: '170px' },
-            { field: 'character', title: '性格', width: '100px',
+            { field: 'getUp', title: '起床时间', width: '90px' },
+            { field: 'importantMoment', title: '最有意义的时刻', width: '150px' },
+            { field: 'character', title: '性格', width: '90px',
                 template:
                     '# if (character === 10) { #' +
                         '超级开朗' +
@@ -3414,7 +3581,7 @@ $(function () {
                         '超级内向' +
                     '# } #'
             },
-            { field: 'color', title: '颜色喜好', width: '130px',
+            { field: 'color', title: '颜色喜好', width: '90px',
                 template: '<span style="display: inline-block; width: 100%; height: 24px; background: #= color #; border: 1px solid \\#c5c5c5; border-radius: 4px; vertical-align: middle;"></span>'
             },
             { field: 'constellation', title: '相配的星座', width: '170px',
@@ -3451,6 +3618,22 @@ $(function () {
                 template:
                     '# for (var i = 0; i < tourism.length; i++) { #' +
                         '#= tourism[i].name #&nbsp;' +
+                    '# } #'
+            },
+            { field: 'evaluation', title: '自我评价', width: '90px',
+                template:
+                    '# if (evaluation === 1) { #' +
+                        '不合格' +
+                    '# } else if (evaluation === 2) { #' +
+                        '待提升' +
+                    '# } else if (evaluation === 3) { #' +
+                        '合格' +
+                    '# } else if (evaluation === 4) { #' +
+                        '良好' +
+                    '# } else if (evaluation === 5) { #' +
+                        '优秀' +
+                    '# } else if (evaluation === 6) { #' +
+                        '完美' +
                     '# } #'
             },
             { field: 'summary', title: '自我介绍', width: '310px' },
