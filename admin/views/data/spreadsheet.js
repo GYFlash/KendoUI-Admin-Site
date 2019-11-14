@@ -1134,6 +1134,23 @@ $(function () {
                                         return str;
                                     }
                                 },
+                                evaluation: { type: 'number',
+                                    parse: function (e) {
+                                        if (e === 1) {
+                                            return '不合格';
+                                        } else if (e === 2) {
+                                            return '待提升';
+                                        } else if (e === 3) {
+                                            return '合格';
+                                        } else if (e === 4) {
+                                            return '良好';
+                                        } else if (e === 5) {
+                                            return '优秀';
+                                        } else if (e === 6) {
+                                            return '完美';
+                                        }
+                                    }
+                                },
                                 summary: { type: 'string' },
                                 photo: { type: 'string',
                                     parse: function (e) {
@@ -1389,17 +1406,24 @@ $(function () {
                                 background: minorColor,
                                 bold: true,
                                 color: '#fff',
-                                comment: '自我介绍'
+                                comment: '自我评价'
                             },
                             {
                                 index: 33,
                                 background: minorColor,
                                 bold: true,
                                 color: '#fff',
-                                comment: '头像'
+                                comment: '自我介绍'
                             },
                             {
                                 index: 34,
+                                background: minorColor,
+                                bold: true,
+                                color: '#fff',
+                                comment: '头像'
+                            },
+                            {
+                                index: 35,
                                 background: minorColor,
                                 bold: true,
                                 color: '#fff',
@@ -1440,7 +1464,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(217, 182, 172, .8)',
                                 color: '#000'
                             }
@@ -1479,7 +1503,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(236, 135, 192, .8)',
                                 color: '#000'
                             }
@@ -1518,7 +1542,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(237, 85, 101, .8)',
                                 color: '#000'
                             }
@@ -1557,7 +1581,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(255, 183, 77, .8)',
                                 color: '#000'
                             }
@@ -1596,7 +1620,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(255, 206, 84, .8)',
                                 color: '#000'
                             }
@@ -1635,7 +1659,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(160, 212, 104, .8)',
                                 color: '#000'
                             }
@@ -1674,7 +1698,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(72, 207, 173, .8)',
                                 color: '#000'
                             }
@@ -1713,7 +1737,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(79, 193, 233, .8)',
                                 color: '#000'
                             }
@@ -1752,7 +1776,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(93, 156, 236, .8)',
                                 color: '#000'
                             }
@@ -1791,7 +1815,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(172, 146, 236, .8)',
                                 color: '#000'
                             }
@@ -1830,7 +1854,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(101, 109, 120, .8)',
                                 color: '#000'
                             }
@@ -1869,7 +1893,7 @@ $(function () {
                                 color: '#fff'
                             },
                             {
-                                index: 34,
+                                index: 35,
                                 background: 'rgba(204, 209, 217, .8)',
                                 color: '#000'
                             }
@@ -2040,110 +2064,114 @@ $(function () {
                     },
                     {
                         index: 32,
-                        width: 250
+                        width: 85
                     },
                     {
                         index: 33,
-                        width: 175
+                        width: 250
                     },
                     {
                         index: 34,
+                        width: 175
+                    },
+                    {
+                        index: 35,
                         width: 250
                     }
                 ],
                 drawings: [
                     {
-                        topLeftCell: 'AH2',
+                        topLeftCell: 'AI2',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Aries'
                     },
                     {
-                        topLeftCell: 'AH3',
+                        topLeftCell: 'AI3',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Taurus'
                     },
                     {
-                        topLeftCell: 'AH4',
+                        topLeftCell: 'AI4',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Gemini'
                     },
                     {
-                        topLeftCell: 'AH5',
+                        topLeftCell: 'AI5',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Cancer'
                     },
                     {
-                        topLeftCell: 'AH6',
+                        topLeftCell: 'AI6',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Leo'
                     },
                     {
-                        topLeftCell: 'AH7',
+                        topLeftCell: 'AI7',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Virgo'
                     },
                     {
-                        topLeftCell: 'AH8',
+                        topLeftCell: 'AI8',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Libra'
                     },
                     {
-                        topLeftCell: 'AH9',
+                        topLeftCell: 'AI9',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Scorpion'
                     },
                     {
-                        topLeftCell: 'AH10',
+                        topLeftCell: 'AI10',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Sagittarius'
                     },
                     {
-                        topLeftCell: 'AH11',
+                        topLeftCell: 'AI11',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Capricorn'
                     },
                     {
-                        topLeftCell: 'AH12',
+                        topLeftCell: 'AI12',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Aquarius'
                     },
                     {
-                        topLeftCell: 'AH13',
+                        topLeftCell: 'AI13',
                         offsetX: 4,
-                        offsetY: 4,
+                        offsetY: 6,
                         width: 18,
                         height: 18,
                         image: 'Picses'

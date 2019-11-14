@@ -72,6 +72,7 @@
                     "name": "厦门市"
                 }
             ],
+            "evaluation": 1,
             "summary": "\uD83C\uDF38我叫穆！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Aries.png",
@@ -151,6 +152,7 @@
                     "name": "景德镇市"
                 }
             ],
+            "evaluation": 2,
             "summary": "\uD83C\uDF38我叫阿鲁迪巴！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Taurus.png",
@@ -230,6 +232,7 @@
                     "name": "青岛市"
                 }
             ],
+            "evaluation": 3,
             "summary": "\uD83C\uDF38我叫撒加！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Gemini.png",
@@ -309,6 +312,7 @@
                     "name": "开封市"
                 }
             ],
+            "evaluation": 4,
             "summary": "\uD83C\uDF38我叫迪斯马斯克！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Cancer.png",
@@ -388,6 +392,7 @@
                     "name": "黄石市"
                 }
             ],
+            "evaluation": 5,
             "summary": "\uD83C\uDF38我叫艾欧里亚！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Leo.png",
@@ -467,6 +472,7 @@
                     "name": "株洲市"
                 }
             ],
+            "evaluation": 6,
             "summary": "\uD83C\uDF38我叫沙加！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Virgo.png",
@@ -546,6 +552,7 @@
                     "name": "韶关市"
                 }
             ],
+            "evaluation": 1,
             "summary": "\uD83C\uDF38我叫童虎！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Libra.png",
@@ -625,6 +632,7 @@
                     "name": "柳州市"
                 }
             ],
+            "evaluation": 2,
             "summary": "\uD83C\uDF38我叫米罗！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Scorpion.png",
@@ -704,6 +712,7 @@
                     "name": "三亚市"
                 }
             ],
+            "evaluation": 3,
             "summary": "\uD83C\uDF38我叫艾俄洛斯！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Sagittarius.png",
@@ -783,6 +792,7 @@
                     "name": "涪陵区"
                 }
             ],
+            "evaluation": 4,
             "summary": "\uD83C\uDF38我叫修罗！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Capricorn.png",
@@ -862,6 +872,7 @@
                     "name": "自贡市"
                 }
             ],
+            "evaluation": 5,
             "summary": "\uD83C\uDF38我叫卡妙！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Aquarius.png",
@@ -941,6 +952,7 @@
                     "name": "六盘水市"
                 }
             ],
+            "evaluation": 6,
             "summary": "\uD83C\uDF38我叫阿布罗狄！这里是我的自我介绍哦~",
             "photo": {
                 "url": "img/temp/Picses.png",
