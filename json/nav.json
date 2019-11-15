@@ -351,7 +351,7 @@
                 },
                 {
                     "id": "0303",
-                    "text": "<i class='cardsIcon'></i>卡片<small>Cards</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "text": "<i class='cardsIcon'></i>卡片<small>Cards</small><sub class='theme-l'>\uD83D\uDD28</sub>",
                     "encoded": false,
                     "cssClass": "links-cards",
                     "url": "javascript:linkTo(\"/layout/\", \"cards\");"
@@ -435,7 +435,7 @@
                 },
                 {
                     "id": "0407",
-                    "text": "<i class='timelineIcon'></i>时间线<small>Timeline</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "text": "<i class='timelineIcon'></i>时间线<small>Timeline</small><sub class='theme-l'>\uD83D\uDD28</sub>",
                     "encoded": false,
                     "cssClass": "links-timeline",
                     "url": "javascript:linkTo(\"/navigation/\", \"timeline\");"
@@ -652,7 +652,7 @@
                 },
                 {
                     "id": "0606",
-                    "text": "<i class='filterIcon'></i>过滤器<small>Filter</small><sub class='theme-l'>\uD83C\uDF1F</sub>",
+                    "text": "<i class='filterIcon'></i>过滤器<small>Filter</small><sub class='theme-l'>\uD83D\uDD28</sub>",
                     "encoded": false,
                     "cssClass": "links-filter",
                     "url": "javascript:linkTo(\"/data/\", \"filter\");"

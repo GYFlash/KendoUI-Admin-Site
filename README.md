@@ -572,7 +572,7 @@ ROOT/·····································�
     * [树形下拉框 <small>[ DropDownTree ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/dropdowntree) ✔️
     * [颜色框 <small>[ ColorPicker ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/colorpicker) ✔️
     * [滑块框 <small>[ Slider ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/slider) ✔️
-    * 评级框 <small>[ Rating ]</small>
+    * [评级框 <small>[ Rating ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/rating) ✔️
     * [穿梭框 <small>[ ListBox ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/listbox) ✔️
     * [富文本框 <small>[ Editor ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/editor) ✔️
     * [上传框 <small>[ Upload ]</small>](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/forms/upload) ✔️
