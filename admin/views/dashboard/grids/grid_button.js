@@ -692,6 +692,7 @@ function importTemp() {
                         },
                         succeed: function (res) {
                             divWindow.close();
+                            $('#grid').data('kendoGrid').dataSource.read();
                         }
                     });
                 }
