@@ -1,0 +1,121 @@
+<script id="ratingTemp" type="text/x-kendo-template">
+    <div class="row">
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">DOM 评级框</h5>
+                <div class="card-body">
+                    <input id="domRating" min="1" max="5" value="3">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">普通评级框</h5>
+                <div class="card-body">
+                    <input id="generalRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">只读评级框</h5>
+                <div class="card-body">
+                    <input id="readonlyRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">禁用评级框</h5>
+                <div class="card-body">
+                    <input id="disabledRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">默认值评级框</h5>
+                <div class="card-body">
+                    <input id="defaultValueRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">单一选择评级框</h5>
+                <div class="card-body">
+                    <input id="selectionRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">半选评级框</h5>
+                <div class="card-body">
+                    <input id="precisionRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">无标签评级框</h5>
+                <div class="card-body">
+                    <input id="noLabelRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">无提示评级框</h5>
+                <div class="card-body">
+                    <input id="noTipRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">自定义标签评级框</h5>
+                <div class="card-body">
+                    <input id="labelRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">自定义提示评级框</h5>
+                <div class="card-body">
+                    <input id="tipRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3">
+            <div class="card mb-3">
+                <h5 class="card-header">自定义评级框</h5>
+                <div class="card-body">
+                    <input id="customRating">
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card mb-3">
+                <h5 class="card-header">等宽评级框</h5>
+                <div class="card-body">
+                    <input class="w-100" id="widthRating" max="10">
+                </div>
+            </div>
+        </div>
+    </div>
+    <style scoped>
+        .k-tooltip-content {
+            white-space: nowrap;
+        }
+        #widthRating + .k-rating-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        #widthRating ~ .k-rating-label {
+            white-space: nowrap;
+        }
+    </style>
+</script>
