@@ -2266,12 +2266,10 @@ form .searchBtn.row {
       vertical-align: -50%; }
   .k-edit-form-container .k-edit-field {
     padding-right: 5%;
-    width: 75%; }
-    .k-edit-form-container .k-edit-field .k-switch,
+    width: 75%;
+    line-height: 28px; }
     .k-edit-form-container .k-edit-field .k-radio-label,
     .k-edit-form-container .k-edit-field .k-checkbox-label {
-      margin-top: 6px; }
-    .k-edit-form-container .k-edit-field .k-slider .k-tick {
       margin-top: 2px; }
     .k-edit-form-container .k-edit-field .k-colorpicker {
       width: 100%; }
