@@ -209,9 +209,13 @@ $(function () {
                     }
                 ]
             },
-            { field: 'userName', title: '用户名', width: '120px' },
+            { field: 'userName', title: '用户名', width: '120px',
+                media: 'lg'
+            },
             { field: 'realName', title: '姓名', width: '100px' },
-            { field: 'nickName', title: '昵称', width: '110px' },
+            { field: 'nickName', title: '昵称', width: '110px',
+                media: 'md'
+            },
             { hidden: true, field: 'password', title: '密码', width: '100px',
                 template: function (dataItem) {
                     return dataItem.password.replace(dataItem.password.substr(0), '******');
@@ -231,6 +235,7 @@ $(function () {
                 }
             },
             { field: 'online', title: '状态', width: '100px',
+                media: 'md',
                 template:
                     '# if (online) { #' +
                         '<span class="dot-color k-notification-success"></span><span class="k-notification-success bg-transparent ml-2">在线</span>' +
@@ -249,6 +254,7 @@ $(function () {
                 }
             },
             { field: 'gender', title: '性别', width: '100px',
+                media: 'sm',
                 values: [
                     { text: '男', value: '1' },
                     { text: '女', value: '2' }
@@ -260,6 +266,7 @@ $(function () {
                 }
             },
             { field: 'age', title: '年龄', width: '100px',
+                media: 'lg',
                 template: '#= age # 岁',
                 editor: function (container, options) {
                     $('<input name="age" type="number" data-bind="value: '+ options.field +'">')
@@ -273,6 +280,7 @@ $(function () {
                 }
             },
             { field: 'height', title: '身高', width: '100px',
+                media: 'xl',
                 template: '#= kendo.toString(height, "0.00") # m',
                 editor: function (container, options) {
                     $('<input name="height" type="number" data-bind="value: '+ options.field +'">')
@@ -287,6 +295,7 @@ $(function () {
                 }
             },
             { field: 'bloodType', title: '血型', width: '100px',
+                media: 'xl',
                 values: [
                     { text: 'A 型', value: '1' },
                     { text: 'B 型', value: '2' },
@@ -314,6 +323,7 @@ $(function () {
                 }
             },
             { field: 'birthday', title: '生日', width: '110px',
+                media: 'xl',
                 editor: function (container, options) {
                     $('<input name="birthday" type="date" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -326,6 +336,7 @@ $(function () {
                 }
             },
             { field: 'mateBirthday', title: '配偶生日', width: '130px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input name="mateBirthday" type="date" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -337,6 +348,7 @@ $(function () {
                 }
             },
             { field: 'creditCard', title: '银行卡', width: '150px',
+                media: '(min-width: 1600px)',
                 template: function (dataItem) {
                     return dataItem.creditCard.replace(dataItem.creditCard.substr(2, 12), '** **** **** **');
                 },
@@ -349,6 +361,7 @@ $(function () {
                 }
             },
             { field: 'asset', title: '资产', width: '140px',
+                media: '(min-width: 1600px)',
                 format: '{0:c}',
                 editor: function (container, options) {
                     $('<input name="asset" type="number" data-bind="value: '+ options.field +'">')
@@ -361,6 +374,7 @@ $(function () {
                 }
             },
             { field: 'nativePlace', title: '籍贯', width: '250px',
+                media: '(min-width: 1600px)',
                 template: '#= nativePlace.provinceName # - #= nativePlace.cityName # - #= nativePlace.areaName #',
                 editor: function (container, options) {
                     $('<select class="mb-2" id="provinceEdit" name="nativePlace" data-bind="value: '+ options.field +'"></select>')
@@ -448,6 +462,7 @@ $(function () {
                 }
             },
             { field: 'domicile', title: '居住地', width: '120px',
+                media: '(min-width: 1600px)',
                 template: '#= domicile.name #',
                 editor: function (container, options) {
                     $('<input name="domicile" data-bind="value: '+ options.field +'">')
@@ -482,6 +497,7 @@ $(function () {
                 }
             },
             { field: 'nation', title: '民族', width: '100px',
+                media: '(min-width: 1600px)',
                 template: '#= nation.nationName #',
                 editor: function (container, options) {
                     $('<input name="nation" data-bind="value: '+ options.field +'">')
@@ -512,6 +528,7 @@ $(function () {
                 }
             },
             { field: 'zodiac', title: '生肖', width: '100px',
+                media: 'xl',
                 template: '#= zodiac.zodiacName #',
                 editor: function (container, options) {
                     $('<input name="zodiac" data-bind="value: '+ options.field +'">')
@@ -553,6 +570,7 @@ $(function () {
                 }
             },
             { field: 'language', title: '语言', width: '210px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input name="language" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -582,6 +600,7 @@ $(function () {
                 }
             },
             { field: 'education', title: '教育程度', width: '130px',
+                media: '(min-width: 1600px)',
                 template:
                     '# for (var i = 0; i < education.length; i++) { #' +
                         '# if (education[i] === "1") { #' +
@@ -618,6 +637,7 @@ $(function () {
                 }
             },
             { field: 'graduation', title: '毕业年份', width: '130px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input name="graduation" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -630,6 +650,7 @@ $(function () {
                 }
             },
             { field: 'firstJob', title: '参加工作年月', width: '160px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input name="firstJob" type="month" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -642,24 +663,28 @@ $(function () {
                 }
             },
             { field: 'mobile', title: '手机', width: '120px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input class="k-textbox" name="mobile" type="tel" data-bind="value: '+ options.field +'">')
                         .appendTo(container);
                 }
             },
             { field: 'email', title: '电子邮件', width: '180px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input class="k-textbox" name="email" type="email" data-bind="value: '+ options.field +'">')
                         .appendTo(container);
                 }
             },
             { field: 'homepage', title: '个人主页', width: '190px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input class="k-textbox" name="homepage" type="url" data-bind="value: '+ options.field +'">')
                         .appendTo(container);
                 }
             },
             { field: 'getUp', title: '起床时间', width: '130px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input name="getUp" type="time" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -669,6 +694,7 @@ $(function () {
                 }
             },
             { field: 'importantMoment', title: '最有意义的时刻', width: '170px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<input name="importantMoment" type="datetime" data-bind="value: '+ options.field +'">')
                         .appendTo(container)
@@ -679,6 +705,7 @@ $(function () {
                 }
             },
             { field: 'character', title: '性格', width: '100px',
+                media: '(min-width: 1600px)',
                 values: [
                     { text: '超级开朗', value: 10 },
                     { text: '非常开朗', value: 8 },
@@ -732,6 +759,7 @@ $(function () {
                 }
             },
             { field: 'color', title: '颜色喜好', width: '130px',
+                media: '(min-width: 1600px)',
                 template: '<span style="display: inline-block; width: 100%; height: 24px; background: #= color #; border: 1px solid \\#c5c5c5; border-radius: 4px; vertical-align: middle;"></span>',
                 editor: function (container, options) {
                     $('<input name="color" data-bind="value: '+ options.field +'">')
@@ -743,6 +771,7 @@ $(function () {
                 }
             },
             { field: 'constellation', title: '相配的星座', width: '170px',
+                media: '(min-width: 1600px)',
                 template:
                     '# for (var i = 0; i < constellation.length; i++) { #' +
                         '# if (constellation[i] === "1") { #' +
@@ -800,6 +829,7 @@ $(function () {
                 }
             },
             { field: 'tourism', title: '旅游足迹', width: '200px',
+                media: '(min-width: 1600px)',
                 template:
                     '# for (var i = 0; i < tourism.length; i++) { #' +
                         '#= tourism[i].name #&nbsp;' +
@@ -842,6 +872,7 @@ $(function () {
                 }
             },
             { field: 'evaluation', title: '自我评价', width: '110px',
+                media: '(min-width: 1600px)',
                 values: [
                     { text: '不合格', value: 1 },
                     { text: '待提升', value: 2 },
@@ -880,12 +911,14 @@ $(function () {
                 }
             },
             { field: 'summary', title: '自我介绍', width: '310px',
+                media: '(min-width: 1600px)',
                 editor: function (container, options) {
                     $('<textarea class="k-textarea" name="summary" data-bind="value: '+ options.field +'"></textarea>')
                         .appendTo(container);
                 }
             },
             { field: 'photo', title: '头像', width: '120px',
+                media: '(min-width: 1600px)',
                 template: '<a href="javascript:showBigPic(\'#= photo.url #\');"><img class="w-25 rounded-circle" src="#= photo.url #" alt="#= photo.name ##= photo.extension #"></a><small class="ml-2 text-muted">[#= kendo.toString(photo.size / 1024, "0.00") # KB]</small>',
                 editor: function (container, options) {
                     $('<div class="media">' +
@@ -947,6 +980,7 @@ $(function () {
                 }
             },
             { field: 'sign', title: '签名', width: '310px',
+                media: '(min-width: 1600px)',
                 template: '#= sign #',
                 editor: function (container, options) {
                     $('<textarea name="sign" data-bind="value: '+ options.field +'"></textarea>')
