@@ -2688,6 +2688,11 @@ form {
         height: 16px;
         line-height: 16px;
     }
+    .k-grid-search {
+        .k-input-icon {
+            width: 16px;
+        }
+    }
     .k-hierarchy-cell + td {
         border-left-width: 1px;
     }

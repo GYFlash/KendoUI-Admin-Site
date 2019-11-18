@@ -638,7 +638,8 @@ $(function () {
             { name: 'create' },
             { template: '<a class="k-button k-button-icontext" href="javascript:batchSubmitId(\'json/response.json\');"><span class="k-icon k-i-x"></span>批量删除</a>' },
             { name: 'excel' },
-            { name: 'pdf' }
+            { name: 'pdf' },
+            { name: 'search' }
         ],
         excel: {
             allPages: true,

@@ -174,7 +174,8 @@ $(function () {
         toolbar: [
             { name: 'create' },
             { name: 'excel' },
-            { name: 'pdf' }
+            { name: 'pdf' },
+            { name: 'search' }
         ],
         excel: {
             allPages: true,

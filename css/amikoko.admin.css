@@ -2242,6 +2242,8 @@ form .searchBtn.row {
   width: 16px;
   height: 16px;
   line-height: 16px; }
+.k-grid .k-grid-search .k-input-icon {
+  width: 16px; }
 .k-grid .k-hierarchy-cell + td {
   border-left-width: 1px; }
 .k-grid .k-detail-row {
