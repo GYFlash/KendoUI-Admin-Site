@@ -649,7 +649,7 @@ ROOT/·····································�
 * [Particleground](https://requestlab.fr/) ( v1.1.0 )
 * [Live2D Widget](https://github.com/xiazeyu/live2d-widget.js) ( v3.0.5 )
 * [JetBrains Open Source Support Program](https://www.jetbrains.com/community/opensource/)
-* [JetBrains WebStorm](https://www.jetbrains.com/?from=KendoUI-Admin-Site) ( v2019.2.3 x64 )
+* [JetBrains WebStorm](https://www.jetbrains.com/?from=KendoUI-Admin-Site) ( v2019.2.4 x64 )
 
 ## 📷 界面预览 <small>Screenshot</small>
 
