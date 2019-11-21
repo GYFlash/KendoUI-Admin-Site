@@ -86,7 +86,6 @@ $(function () {
             checkChildren: true
         },
         checkAll: true,
-        checkAllTemplate: '全选',
         autoWidth: true,
         height: 500,
         loadOnDemand: true,
@@ -271,7 +270,6 @@ $(function () {
             checkChildren: true
         },
         checkAll: true,
-        checkAllTemplate: '全选',
         autoWidth: true,
         value: ['11', '31'],
         loadOnDemand: true,
@@ -338,7 +336,6 @@ $(function () {
             checkChildren: true
         },
         checkAll: true,
-        checkAllTemplate: '全选',
         autoWidth: true,
         autoClose: false,
         filter: 'contains',
@@ -407,7 +404,6 @@ $(function () {
             checkChildren: true
         },
         checkAll: true,
-        checkAllTemplate: '全选',
         autoWidth: true,
         loadOnDemand: true,
         autoClose: false,
@@ -491,7 +487,6 @@ $(function () {
             checkChildren: true
         },
         checkAll: true,
-        checkAllTemplate: '全选',
         autoWidth: true,
         loadOnDemand: true,
         autoClose: false,
@@ -538,7 +533,6 @@ $(function () {
             checkChildren: true
         },
         checkAll: true,
-        checkAllTemplate: '全选',
         autoWidth: true,
         loadOnDemand: true,
         autoClose: false,
@@ -602,7 +596,6 @@ $(function () {
             checkChildren: true
         },
         checkAll: true,
-        checkAllTemplate: '全选',
         autoWidth: true,
         loadOnDemand: true,
         autoClose: false

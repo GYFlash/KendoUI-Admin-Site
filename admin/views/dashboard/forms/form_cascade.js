@@ -183,7 +183,6 @@ $(function () {
             checkChildren: true
         },
         checkAll: true,
-        checkAllTemplate: '全选',
         height: 500,
         loadOnDemand: true,
         autoClose: false
