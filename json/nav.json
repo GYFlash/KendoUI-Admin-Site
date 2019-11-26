@@ -44,13 +44,20 @@
                         },
                         {
                             "id": "010105",
+                            "text": "<i class='fas fa-genderless'></i>弹出框选择<sub class='theme-l'>\uD83D\uDD28</sub>",
+                            "encoded": false,
+                            "cssClass": "links-form_popup",
+                            "url": "javascript:linkTo(\"/dashboard/forms/\", \"form_popup\");"
+                        },
+                        {
+                            "id": "010106",
                             "text": "<i class='fas fa-genderless'></i>下拉分组多选级联",
                             "encoded": false,
                             "cssClass": "links-form_cascade",
                             "url": "javascript:linkTo(\"/dashboard/forms/\", \"form_cascade\");"
                         },
                         {
-                            "id": "010106",
+                            "id": "010107",
                             "text": "<i class='fas fa-genderless'></i>地图联动选择",
                             "encoded": false,
                             "cssClass": "links-form_map",

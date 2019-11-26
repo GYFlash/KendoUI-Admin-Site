@@ -335,7 +335,7 @@ function alertMsgNoBtn(msg, type, closed) {
             if (closed) {
                 closed();
             }
-            setTimeout(function (){
+            setTimeout(function () {
                 alertDialog.close();
             }, 2000);
         },

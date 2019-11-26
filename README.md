@@ -497,6 +497,7 @@ ROOT/·····································�
         * [表单 Post 提交](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/dashboard/forms/form_post) ✔️
         * [表单 Ajax 提交](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/dashboard/forms/form_ajax) ✔️
         * [范围选择](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/dashboard/forms/form_range) ✔️
+        * 弹出框选择
         * [下拉分组多选级联](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/dashboard/forms/form_cascade) ✔️
         * [地图联动选择](https://ikki2000.github.io/KendoUI-Admin-Site/admin/#/dashboard/forms/form_map) ✔️
     * 表格 <small>[ Grids ]</small> 💯
@@ -649,7 +650,7 @@ ROOT/·····································�
 * [Particleground](https://requestlab.fr/) ( v1.1.0 )
 * [Live2D Widget](https://github.com/xiazeyu/live2d-widget.js) ( v3.0.5 )
 * [JetBrains Open Source Support Program](https://www.jetbrains.com/community/opensource/)
-* [JetBrains WebStorm](https://www.jetbrains.com/?from=KendoUI-Admin-Site) ( v2019.2.4 x64 )
+* [JetBrains WebStorm](https://www.jetbrains.com/?from=KendoUI-Admin-Site) ( v2019.3 x64 )
 
 ## 📷 界面预览 <small>Screenshot</small>
 
