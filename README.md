@@ -632,7 +632,27 @@ ROOT/·····································�
         * 架构图 <small>[ Diagram ]</small>
         * 地图 <small>[ Map ]</small>
 * 移动端 <small>[ Hybrid ]</small>
-    * 敬请期待……
+    * 动作面板 <small>[ ActionSheet ]</small>
+    * 整体应用 <small>[ Application ]</small>
+    * 按钮 <small>[ Button ]</small>
+    * 按钮组 <small>[ ButtonGroup ]</small>
+    * 折叠面板 <small>[ Collapsilble ]</small>
+    * 抽屉 <small>[ Drawer ]</small>
+    * 表单 <small>[ Forms ]</small>
+    * 表格 <small>[ Grid ]</small>
+    * 列表 <small>[ ListView ]</small>
+    * 模态框 <small>[ ModalView ]</small>
+    * 导航栏 <small>[ NavBar ]</small>
+    * 弹出层 <small>[ PopOver ]</small>
+    * 日程表 <small>[ Scheduler ]</small>
+    * 滚动 <small>[ Scroller ]</small>
+    * 滚动视图 <small>[ ScrollView ]</small>
+    * 拆分视图 <small>[ SplitView ]</small>
+    * 样式 <small>[ Styling ]</small>
+    * 开关 <small>[ Switch ]</small>
+    * 标签页 <small>[ TabStrip ]</small>
+    * 触摸事件 <small>[ Touch Events ]</small>
+    * 视图 <small>[ View ]</small>
 
 ## 🔗 相关链接 <small>Thanks for</small>
 

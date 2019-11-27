@@ -399,11 +399,96 @@
 }
 
 .stylingIcon:after {
-    content: '\e832';
+    content: '\e80c';
 }
 
 .rippleIcon:after {
     content: '\e810';
+}
+
+/* Hybrid UI */
+.km-ActionSheetIcon:after {
+    content: '\e800';
+}
+
+.km-ApplicationIcon:after {
+    content: '\e832';
+}
+
+.km-ButtonIcon:after {
+    content: '\e809';
+}
+
+.km-ButtonGroupIcon:after {
+    content: '\e80a';
+}
+
+.km-CollapsilbleIcon:after {
+    content: '\e826';
+}
+
+.km-DrawerIcon:after {
+    content: '\e849';
+}
+
+.km-FormsIcon:after {
+    content: '\e903';
+}
+
+.km-GridIcon:after {
+    content: '\e818';
+}
+
+.km-ListViewIcon:after {
+    content: '\e856';
+}
+
+.km-ModalViewIcon:after {
+    content: '\e859';
+}
+
+.km-NavBarIcon:after {
+    content: '\e823';
+}
+
+.km-PopOverIcon:after {
+    content: '\e829';
+}
+
+.km-SchedulerIcon:after {
+    content: '\e82f';
+}
+
+.km-ScrollerIcon:after {
+    content: '\e830';
+}
+
+.km-ScrollViewIcon:after {
+    content: '\e831';
+}
+
+.km-SplitViewIcon:after {
+    content: '\e837';
+}
+
+.km-StylingIcon:after {
+    content: '\e80c';
+}
+
+.km-SwitchIcon:after {
+    content: '\e839';
+}
+
+.km-TabStripIcon:after {
+    content: '\e83b';
+}
+
+.km-TouchEventsIcon:after {
+    content: '\e815';
+}
+
+.km-ViewIcon:after {
+    content: '\e820';
 }
 
 /* Others */
@@ -433,4 +518,20 @@
 
 .ziplibraryIcon:after {
     content: '\e900';
+}
+
+.x1Icon:after {
+    content: '\e854';
+}
+
+.x2Icon:after {
+    content: '\e85a';
+}
+
+.x3Icon:after {
+    content: '\e904';
+}
+
+.x4Icon:after {
+    content: '\e905';
 }
