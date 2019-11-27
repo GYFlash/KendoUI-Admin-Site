@@ -643,13 +643,13 @@ ROOT/·····································�
     * 列表 <small>[ ListView ]</small>
     * 模态框 <small>[ ModalView ]</small>
     * 导航栏 <small>[ NavBar ]</small>
-    * 弹出层 <small>[ PopOver ]</small>
+    * 气泡层 <small>[ PopOver ]</small>
     * 日程表 <small>[ Scheduler ]</small>
     * 滚动 <small>[ Scroller ]</small>
     * 滚动视图 <small>[ ScrollView ]</small>
     * 拆分视图 <small>[ SplitView ]</small>
     * 样式 <small>[ Styling ]</small>
-    * 开关 <small>[ Switch ]</small>
+    * 滑动开关 <small>[ Switch ]</small>
     * 标签页 <small>[ TabStrip ]</small>
     * 触摸事件 <small>[ Touch Events ]</small>
     * 视图 <small>[ View ]</small>

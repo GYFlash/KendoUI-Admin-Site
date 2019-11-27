@@ -1072,7 +1072,7 @@
                 },
                 {
                     "id": "1212",
-                    "text": "<i class='km-PopOverIcon'></i>弹出层<small>PopOver</small>",
+                    "text": "<i class='km-PopOverIcon'></i>气泡层<small>PopOver</small>",
                     "encoded": false,
                     "cssClass": "links-m_popover",
                     "url": "javascript:linkTo(\"/hybrid/\", \"m_popover\");"
@@ -1114,7 +1114,7 @@
                 },
                 {
                     "id": "1218",
-                    "text": "<i class='km-SwitchIcon'></i>开关<small>Switch</small>",
+                    "text": "<i class='km-SwitchIcon'></i>滑动开关<small>Switch</small>",
                     "encoded": false,
                     "cssClass": "links-m_switch",
                     "url": "javascript:linkTo(\"/hybrid/\", \"m_switch\");"
