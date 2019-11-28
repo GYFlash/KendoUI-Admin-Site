@@ -83,15 +83,20 @@ $(function () {
                         template: '#= value #'
                     }
                 });
-                var homeIntervalID = setInterval(function () {
-                    dataArr.push(dataArr[0]);
-                    dataArr.shift();
-                    $('#trendMonth').data('kendoChart').setDataSource(dataArr.slice(0, months));
-                    $('#trendMonth').data('kendoChart').refresh();
-                }, 1000);
-                router.bind('change', function () {
-                    clearInterval(homeIntervalID);
-                });
+                for (var i = 0; i < 1000; i++) {
+                    clearInterval(i);
+                }
+                setTimeout(function () {
+                    var homeIntervalID = setInterval(function () {
+                        dataArr.push(dataArr[0]);
+                        dataArr.shift();
+                        $('#trendMonth').data('kendoChart').setDataSource(dataArr.slice(0, months));
+                        $('#trendMonth').data('kendoChart').refresh();
+                    }, 1000);
+                    router.bind('change', function () {
+                        clearInterval(homeIntervalID);
+                    });
+                }, 10);
                 // 新访客占比
                 $('#visitNew').kendoChart({
                     theme: 'sass',

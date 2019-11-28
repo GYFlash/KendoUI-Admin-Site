@@ -502,7 +502,7 @@ $(function () {
                 { text: '双鱼座', value: '12' }
             ]
         },
-        optionLabel: "-= 请选择 =-",
+        optionLabel: '-= 请选择 =-',
         dataValueField: 'value',
         dataTextField: 'text'
     });

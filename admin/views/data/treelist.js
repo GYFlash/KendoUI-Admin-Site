@@ -634,7 +634,7 @@ $(function () {
                                     { text: '其他', value: '5' }
                                 ]
                             },
-                            optionLabel: "-= 请选择 =-",
+                            optionLabel: '-= 请选择 =-',
                             dataValueField: 'value',
                             dataTextField: 'text'
                         });
@@ -1635,7 +1635,7 @@ $(function () {
                                     { text: '其他', value: '5' }
                                 ]
                             },
-                            optionLabel: "-= 请选择 =-",
+                            optionLabel: '-= 请选择 =-',
                             dataValueField: 'value',
                             dataTextField: 'text'
                         });
@@ -2649,7 +2649,7 @@ $(function () {
                                     { text: '其他', value: '5' }
                                 ]
                             },
-                            optionLabel: "-= 请选择 =-",
+                            optionLabel: '-= 请选择 =-',
                             dataValueField: 'value',
                             dataTextField: 'text'
                         });
