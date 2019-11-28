@@ -84,14 +84,10 @@ $(function () {
                     }
                 });
                 var homeIntervalID = setInterval(function () {
-                    if (homeIntervalID < 100) {
-                        dataArr.push(dataArr[0]);
-                        dataArr.shift();
-                        $('#trendMonth').data('kendoChart').setDataSource(dataArr.slice(0, months));
-                        $('#trendMonth').data('kendoChart').refresh();
-                    } else {
-                        clearInterval(homeIntervalID);
-                    }
+                    dataArr.push(dataArr[0]);
+                    dataArr.shift();
+                    $('#trendMonth').data('kendoChart').setDataSource(dataArr.slice(0, months));
+                    $('#trendMonth').data('kendoChart').refresh();
                 }, 1000);
                 router.bind('change', function () {
                     clearInterval(homeIntervalID);
