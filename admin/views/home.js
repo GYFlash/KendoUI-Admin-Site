@@ -84,7 +84,7 @@ $(function () {
                     }
                 });
                 var homeIntervalID = setInterval(function () {
-                    if (homeIntervalID === 32) {
+                    if (homeIntervalID < 100) {
                         dataArr.push(dataArr[0]);
                         dataArr.shift();
                         $('#trendMonth').data('kendoChart').setDataSource(dataArr.slice(0, months));
