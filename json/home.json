@@ -9,19 +9,24 @@
     },
     "area": [
         {
+            "category": "2018-05",
+            "pv_count": 1191,
+            "visitor_count": 170
+        },
+        {
             "category": "2018-06",
             "pv_count": 973,
-            "visitor_count": 105
+            "visitor_count": 106
         },
         {
-            "category": "",
+            "category": "2018-07",
             "pv_count": 583,
-            "visitor_count": 113
+            "visitor_count": 114
         },
         {
-            "category": "",
+            "category": "2018-08",
             "pv_count": 522,
-            "visitor_count": 108
+            "visitor_count": 110
         },
         {
             "category": "2018-09",
@@ -29,44 +34,69 @@
             "visitor_count": 88
         },
         {
-            "category": "",
+            "category": "2018-10",
             "pv_count": 665,
             "visitor_count": 86
         },
         {
-            "category": "",
+            "category": "2018-11",
             "pv_count": 769,
-            "visitor_count": 131
+            "visitor_count": 133
         },
         {
             "category": "2018-12",
             "pv_count": 2194,
-            "visitor_count": 256
+            "visitor_count": 255
         },
         {
-            "category": "",
+            "category": "2019-01",
             "pv_count": 765,
-            "visitor_count": 109
+            "visitor_count": 113
         },
         {
-            "category": "",
+            "category": "2019-02",
             "pv_count": 869,
-            "visitor_count": 69
+            "visitor_count": 70
         },
         {
             "category": "2019-03",
             "pv_count": 2936,
-            "visitor_count": 592
+            "visitor_count": 667
         },
         {
-            "category": "",
+            "category": "2019-04",
             "pv_count": 3397,
-            "visitor_count": 481
+            "visitor_count": 542
         },
         {
-            "category": "",
+            "category": "2019-05",
             "pv_count": 3067,
-            "visitor_count": 447
+            "visitor_count": 513
+        },
+        {
+            "category": "2019-06",
+            "pv_count": 2872,
+            "visitor_count": 509
+        },
+        {
+            "category": "2019-07",
+            "pv_count": 6321,
+            "visitor_count": 800
+        },
+        {
+            "category": "2019-08",
+            "pv_count": 4979,
+            "visitor_count": 762
+        },
+        {
+            "category": "2019-09",
+            "pv_count": 21733,
+            "visitor_count": 1259
+        },
+        {
+            "category": "2019-10",
+            "pv_count": 22513,
+            "visitor_count": 1297
         }
     ],
     "donut": [

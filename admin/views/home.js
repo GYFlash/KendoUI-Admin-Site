@@ -14,13 +14,16 @@ $(function () {
                 // IP 数
                 new CountUp('ipCount', 0, res.count.ip_count).start();
                 // 访客趋势图
+                var months = 6,
+                    dataArr = res.area;
                 $('#trendMonth').kendoChart({
                     theme: 'sass',
+                    transitions: false,
                     chartArea: {
                         height: 240
                     },
                     dataSource: {
-                        data: res.area,
+                        data: dataArr.slice(0, months),
                         schema: {
                             model: {
                                 id: 'uid',
@@ -51,20 +54,47 @@ $(function () {
                     series: [
                         {
                             field: 'pv_count',
-                            name: '浏览量（PV）'
+                            name: '浏览量（PV）',
+                            labels: {
+                                visible: true,
+                                color: '#fff',
+                                background: accentColor
+                            }
                         },
                         {
                             field: 'visitor_count',
-                            name: '访客数（UV）'
+                            name: '访客数（UV）',
+                            labels: {
+                                visible: true,
+                                color: '#000',
+                                background: minorColor
+                            }
                         }
                     ],
                     categoryAxis: {
                         field: 'category'
                     },
+                    valueAxis: {
+                        visible: false
+                    },
                     tooltip: {
                         visible: true,
+                        shared: true,
                         template: '#= value #'
                     }
+                });
+                var homeIntervalID = setInterval(function () {
+                    if (homeIntervalID === 32) {
+                        dataArr.push(dataArr[0]);
+                        dataArr.shift();
+                        $('#trendMonth').data('kendoChart').setDataSource(dataArr.slice(0, months));
+                        $('#trendMonth').data('kendoChart').refresh();
+                    } else {
+                        clearInterval(homeIntervalID);
+                    }
+                }, 1000);
+                router.bind('change', function () {
+                    clearInterval(homeIntervalID);
                 });
                 // 新访客占比
                 $('#visitNew').kendoChart({
