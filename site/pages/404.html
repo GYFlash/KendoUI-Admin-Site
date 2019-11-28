@@ -39,6 +39,9 @@
                         }
                     }, 1000);
                 $('#countdown').text(sec);
+                window.onbeforeunload = function () {
+                    clearInterval(intervalID);
+                };
             });
         </script>
     </body>

@@ -11,4 +11,7 @@ $(function () {
             }
         }, 1000);
     $('#countdown').text(sec);
+    router.bind('change', function () {
+        clearInterval(intervalID);
+    });
 });
