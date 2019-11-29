@@ -666,7 +666,7 @@ ROOT/·····································�
 * [Flag Icon Css](https://github.com/lipis/flag-icon-css) ( v3.4.5 )
 * [Weather Icons](https://github.com/erikflowers/weather-icons) ( v2.0.10 )
 * [Count Up](https://github.com/inorganik/countUp.js) ( v1.9.3 )
-* [Verify](https://github.com/Hibear/verify) ( v0.1.0 )
+* [Verify](https://github.com/Hibear/verify) ( v0.1.1 )
 * [Particleground](https://requestlab.fr/) ( v1.1.0 )
 * [Live2D Widget](https://github.com/xiazeyu/live2d-widget.js) ( v3.0.5 )
 * [JetBrains Open Source Support Program](https://www.jetbrains.com/community/opensource/)
