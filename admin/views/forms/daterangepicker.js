@@ -120,4 +120,6 @@ $(function () {
             end: new Date(1949, 9, 7)
         }
     });
+    // 等宽日期框
+    $('#widthDateRangePicker').kendoDateRangePicker();
 });
