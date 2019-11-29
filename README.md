@@ -663,7 +663,7 @@ ROOT/·····································�
 * [Font Awesome](https://github.com/FortAwesome/Font-Awesome) ( v5.11.2 )
 * [Ant Design Colors](https://ant.design/docs/spec/colors-cn)
 * [Material Design Colors](https://www.material.io/design/color/the-color-system.html#tools-for-picking-colors)
-* [Flag Icon Css](https://github.com/lipis/flag-icon-css) ( v3.3.0 )
+* [Flag Icon Css](https://github.com/lipis/flag-icon-css) ( v3.4.5 )
 * [Weather Icons](https://github.com/erikflowers/weather-icons) ( v2.0.10 )
 * [Count Up](https://github.com/inorganik/countUp.js) ( v1.9.3 )
 * [Verify](https://github.com/Hibear/verify) ( v0.1.0 )
